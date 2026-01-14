@@ -1,0 +1,226 @@
+{
+    "Should process single-end sarscov2 FASTQ files and generate HTML and ZIP quality reports": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_1_fastqc.zip:md5,80619fe327454a14d0fbc4d06b4c9659"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_1_fastqc.zip:md5,80619fe327454a14d0fbc4d06b4c9659"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-14T15:18:05.856970011"
+    },
+    "Should stub process paired-end sarscov2 FASTQ files without running actual analysis": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-14T15:27:16.123114065"
+    },
+    "Should stub process single-end sarscov2 FASTQ files without running actual analysis": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-14T15:24:31.216809972"
+    },
+    "Should process paired-end sarscov2 FASTQ files and generate HTML and ZIP quality reports for both reads": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e",
+                            "test_2_fastqc.html:md5,87098360b19923137150d72d11944b2c"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,2a800dfb1e99854854a60d2de78caa83",
+                            "test_2_fastqc.zip:md5,c651fb5c27d4648a5abc2d0ec443d7c6"
+                        ]
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e",
+                            "test_2_fastqc.html:md5,87098360b19923137150d72d11944b2c"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,e1cc25ca8af856014824abd842e93978"
+                ],
+                "zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,2a800dfb1e99854854a60d2de78caa83",
+                            "test_2_fastqc.zip:md5,c651fb5c27d4648a5abc2d0ec443d7c6"
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-14T15:21:51.328233482"
+    }
+}
