@@ -17,7 +17,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_1_fastqc.zip:md5,c0b9831893546351ee868da50b3a19e4"
+                        "test_1_fastqc.zip:md5,57028f6640d08e0f9cb6cc56f7799bd2"
                     ]
                 ],
                 "2": [
@@ -41,7 +41,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_1_fastqc.zip:md5,c0b9831893546351ee868da50b3a19e4"
+                        "test_1_fastqc.zip:md5,57028f6640d08e0f9cb6cc56f7799bd2"
                     ]
                 ]
             }
@@ -50,7 +50,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-15T02:37:21.183562999"
+        "timestamp": "2026-01-15T02:57:16.616505568"
     },
     "Should stub process paired-end sarscov2 FASTQ files without running actual analysis": {
         "content": [
@@ -180,8 +180,8 @@
                             "single_end": false
                         },
                         [
-                            "test_1_fastqc.zip:md5,91ebc2f3821a2bebe52de01e8b4c1c27",
-                            "test_2_fastqc.zip:md5,9f7a5b6a3d51f8411b734f5bec490098"
+                            "test_1_fastqc.zip:md5,44cd6ffe4415bbcc1113a23df9ba8253",
+                            "test_2_fastqc.zip:md5,6cdb9dc05d74ff9459cf419f15acf706"
                         ]
                     ]
                 ],
@@ -210,8 +210,8 @@
                             "single_end": false
                         },
                         [
-                            "test_1_fastqc.zip:md5,91ebc2f3821a2bebe52de01e8b4c1c27",
-                            "test_2_fastqc.zip:md5,9f7a5b6a3d51f8411b734f5bec490098"
+                            "test_1_fastqc.zip:md5,44cd6ffe4415bbcc1113a23df9ba8253",
+                            "test_2_fastqc.zip:md5,6cdb9dc05d74ff9459cf419f15acf706"
                         ]
                     ]
                 ]
@@ -221,6 +221,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-15T02:38:32.396588122"
+        "timestamp": "2026-01-15T02:58:35.208941813"
     }
 }
