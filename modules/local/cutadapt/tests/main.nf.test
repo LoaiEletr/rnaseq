@@ -1,0 +1,124 @@
+nextflow_process {
+    name "Test Process CUTADAPT"
+    script "modules/local/cutadapt/main.nf"
+    process "CUTADAPT"
+
+    tag "modules"
+    tag "cutadapt"
+
+    test("Should trim single-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file("$projectDir/assets/adapters-SE.fa", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.reads.get(0).get(1)  ==~ ".*/test\\.cutadapt\\.fastq\\.gz" },
+                { assert process.out.json.get(0).get(1)  ==~ ".*/test\\.cutadapt\\.json" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should trim paired-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'NovaSeq'],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file("$projectDir/assets/adapters-PE.fa", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                {
+                    def trimmed_reads = process.out.reads.get(0).get(1)
+                    assert trimmed_reads.size() == 2
+                    assert trimmed_reads[0] ==~ ".*/test\\.cutadapt_1\\.fastq\\.gz"
+                    assert trimmed_reads[1] ==~ ".*/test\\.cutadapt_2\\.fastq\\.gz"
+                },
+                { assert process.out.json.get(0).get(1) ==~ ".*/test\\.cutadapt\\.json" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+
+    test("Should stub trim single-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file("$projectDir/assets/adapters-SE.fa", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub trim paired-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'NovaSeq'],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file("$projectDir/assets/adapters-PE.fa", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
