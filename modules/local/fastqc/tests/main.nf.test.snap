@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e"
+                        "test_1_fastqc.html:md5,afa7d1d05cab653de92498648b32354c"
                     ]
                 ],
                 "1": [
@@ -17,7 +17,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_1_fastqc.zip:md5,80619fe327454a14d0fbc4d06b4c9659"
+                        "test_1_fastqc.zip:md5,c0b9831893546351ee868da50b3a19e4"
                     ]
                 ],
                 "2": [
@@ -29,7 +29,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e"
+                        "test_1_fastqc.html:md5,afa7d1d05cab653de92498648b32354c"
                     ]
                 ],
                 "versions": [
@@ -41,16 +41,16 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_1_fastqc.zip:md5,80619fe327454a14d0fbc4d06b4c9659"
+                        "test_1_fastqc.zip:md5,c0b9831893546351ee868da50b3a19e4"
                     ]
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-14T15:18:05.856970011"
+        "timestamp": "2026-01-15T02:37:21.183562999"
     },
     "Should stub process paired-end sarscov2 FASTQ files without running actual analysis": {
         "content": [
@@ -100,10 +100,10 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-14T15:27:16.123114065"
+        "timestamp": "2026-01-15T02:41:15.871067028"
     },
     "Should stub process single-end sarscov2 FASTQ files without running actual analysis": {
         "content": [
@@ -153,10 +153,10 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-14T15:24:31.216809972"
+        "timestamp": "2026-01-15T02:39:56.637277686"
     },
     "Should process paired-end sarscov2 FASTQ files and generate HTML and ZIP quality reports for both reads": {
         "content": [
@@ -168,8 +168,8 @@
                             "single_end": false
                         },
                         [
-                            "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e",
-                            "test_2_fastqc.html:md5,87098360b19923137150d72d11944b2c"
+                            "test_1_fastqc.html:md5,afa7d1d05cab653de92498648b32354c",
+                            "test_2_fastqc.html:md5,1377bca21f21187cd8500ee763122d7a"
                         ]
                     ]
                 ],
@@ -180,8 +180,8 @@
                             "single_end": false
                         },
                         [
-                            "test_1_fastqc.zip:md5,2a800dfb1e99854854a60d2de78caa83",
-                            "test_2_fastqc.zip:md5,c651fb5c27d4648a5abc2d0ec443d7c6"
+                            "test_1_fastqc.zip:md5,91ebc2f3821a2bebe52de01e8b4c1c27",
+                            "test_2_fastqc.zip:md5,9f7a5b6a3d51f8411b734f5bec490098"
                         ]
                     ]
                 ],
@@ -195,8 +195,8 @@
                             "single_end": false
                         },
                         [
-                            "test_1_fastqc.html:md5,77147574bbb8e5b0e1e236dfc15ee32e",
-                            "test_2_fastqc.html:md5,87098360b19923137150d72d11944b2c"
+                            "test_1_fastqc.html:md5,afa7d1d05cab653de92498648b32354c",
+                            "test_2_fastqc.html:md5,1377bca21f21187cd8500ee763122d7a"
                         ]
                     ]
                 ],
@@ -210,17 +210,17 @@
                             "single_end": false
                         },
                         [
-                            "test_1_fastqc.zip:md5,2a800dfb1e99854854a60d2de78caa83",
-                            "test_2_fastqc.zip:md5,c651fb5c27d4648a5abc2d0ec443d7c6"
+                            "test_1_fastqc.zip:md5,91ebc2f3821a2bebe52de01e8b4c1c27",
+                            "test_2_fastqc.zip:md5,9f7a5b6a3d51f8411b734f5bec490098"
                         ]
                     ]
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-14T15:21:51.328233482"
+        "timestamp": "2026-01-15T02:38:32.396588122"
     }
 }
