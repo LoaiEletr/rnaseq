@@ -1,0 +1,37 @@
+{
+    "Should stub convert GTF to BED and return mocked BED file": {
+        "content": [
+            {
+                "0": [
+                    "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,02d14217e3f0332acbec8b006775fefc"
+                ],
+                "bed": [
+                    "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,02d14217e3f0332acbec8b006775fefc"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T04:38:59.348288686"
+    },
+    "versions": {
+        "content": [
+            [
+                "versions.yml:md5,02d14217e3f0332acbec8b006775fefc"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T04:38:06.362632991"
+    }
+}
