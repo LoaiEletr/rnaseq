@@ -1,0 +1,48 @@
+{
+    "Should stub sort a BED file and return mocked sorted BED file": {
+        "content": [
+            {
+                "0": [
+                    "test.sorted.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                ],
+                "bed": [
+                    "test.sorted.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T03:55:37.914086588"
+    },
+    "Should sort a BED file and return sorted BED file": {
+        "content": [
+            {
+                "0": [
+                    "test.sorted.bed:md5,21d0139e4424be50c563d3f9b26e2b66"
+                ],
+                "1": [
+                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                ],
+                "bed": [
+                    "test.sorted.bed:md5,21d0139e4424be50c563d3f9b26e2b66"
+                ],
+                "versions": [
+                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T03:54:52.441382876"
+    }
+}

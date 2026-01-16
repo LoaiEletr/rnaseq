@@ -1,0 +1,53 @@
+nextflow_process {
+    name "Test Process BEDTOOLS_SORT"
+    script "modules/local/bedtools/sort/main.nf"
+    process "BEDTOOLS_SORT"
+
+    tag "modules"
+    tag "bedtools"
+    tag "bedtools/sort"
+
+    test("Should sort a BED file and return sorted BED file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of(
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scramble/test.bed', checkIfExists: true)
+                )
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.bed.get(0) ==~ ".*/*.sorted\\.bed" },
+                { assert snapshot(process.out).match() },
+            )
+        }
+    }
+
+    test("Should stub sort a BED file and return mocked sorted BED file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of(
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scramble/test.bed', checkIfExists: true)
+                )
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() },
+            )
+        }
+    }
+}
