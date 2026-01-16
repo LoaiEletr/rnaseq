@@ -1,0 +1,72 @@
+name: make_bamlist
+description: |
+  Creates a text file listing BAM files for downstream analysis.
+keywords:
+  - bam
+  - file list
+  - utility
+tools:
+  - bash:
+      description: "GNU Bash shell"
+      homepage: "https://www.gnu.org/software/bash/"
+      documentation: "https://www.gnu.org/software/bash/manual/"
+      tool_dev_url: "https://git.savannah.gnu.org/cgit/bash.git"
+      licence: ["GPL-3.0-only"]
+      identifier: "bash"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing condition information
+          e.g. `[ condition:'control' ]`
+    - bam_files:
+        type: file
+        description: |
+          BAM files to be listed
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572"
+
+output:
+  txt:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing condition information
+            e.g. `[ condition:'control' ]`
+      - "*.txt":
+          type: file
+          description: |
+            Text file containing list of BAM file paths
+          pattern: "*.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330"
+
+  versions_bash:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bash:
+          type: string
+          description: The name of the tool
+      - "bash --version | head -n1 | awk '{print $4}'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bash:
+          type: string
+          description: The name of the tool
+      - "bash --version | head -n1 | awk '{print $4}'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
