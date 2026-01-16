@@ -1,0 +1,49 @@
+nextflow_process {
+    name "Test Process KALLISTO_INDEX"
+    script "modules/local/kallisto/index/main.nf"
+    process "KALLISTO_INDEX"
+
+    tag "modules"
+    tag "kallisto"
+    tag "kallisto/index"
+
+    test("Should build Kallisto index from transcriptome and return index file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/transcriptome.fasta', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.index.get(0) ==~ ".*/*.idx" },
+                { assert snapshot(process.out.versions).match("versions") }
+            )
+        }
+    }
+
+    test("Should stub build Kallisto index from transcriptome and return mocked index file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/transcriptome.fasta', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

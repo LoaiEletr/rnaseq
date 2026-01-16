@@ -1,0 +1,61 @@
+name: kallisto_index
+description: |
+  Builds kallisto pseudoalignment index from transcriptome sequences.
+keywords:
+  - kallisto
+  - index
+  - transcriptome
+tools:
+  - kallisto:
+      description: "Near-optimal RNA-Seq quantification"
+      homepage: "https://pachterlab.github.io/kallisto/"
+      documentation: "https://pachterlab.github.io/kallisto/manual"
+      tool_dev_url: "https://github.com/pachterlab/kallisto"
+      licence: ["BSD-2-Clause"]
+      identifier: "kallisto"
+
+input:
+  - transcriptome:
+      type: file
+      description: |
+        Transcriptome sequences in FASTA format
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_1929"
+
+output:
+  index:
+    - "*.idx":
+        type: file
+        description: |
+          Kallisto index file for pseudoalignment
+        pattern: "*.idx"
+        ontologies: []
+
+  versions_kallisto:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - kallisto:
+          type: string
+          description: The name of the tool
+      - "kallisto version | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - kallisto:
+          type: string
+          description: The name of the tool
+      - "kallisto version | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
