@@ -1,0 +1,68 @@
+{
+    "Should decompress gzipped file and return decompressed output": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,a412992421727d291a7d65cc62cd5db8"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                ],
+                "gunzip": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,a412992421727d291a7d65cc62cd5db8"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T03:27:29.145262143"
+    },
+    "Should stub decompress gzipped file and return mocked decompressed output": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                ],
+                "gunzip": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T03:28:14.215487138"
+    }
+}
