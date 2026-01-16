@@ -1,0 +1,48 @@
+{
+    "Should extract exons from GTF and return exons TSV file": {
+        "content": [
+            {
+                "0": [
+                    "genome.exons.tsv:md5,46ef24d307ab0edc1a7d65474f98fa3d"
+                ],
+                "1": [
+                    "versions.yml:md5,39023cf98787ece0d2a6bda5811317de"
+                ],
+                "exons_sites": [
+                    "genome.exons.tsv:md5,46ef24d307ab0edc1a7d65474f98fa3d"
+                ],
+                "versions": [
+                    "versions.yml:md5,39023cf98787ece0d2a6bda5811317de"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T15:34:43.534951449"
+    },
+    "Should stub extract exons from GTF and return mocked exons TSV file": {
+        "content": [
+            {
+                "0": [
+                    "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,39023cf98787ece0d2a6bda5811317de"
+                ],
+                "exons_sites": [
+                    "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,39023cf98787ece0d2a6bda5811317de"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T15:35:45.522103592"
+    }
+}

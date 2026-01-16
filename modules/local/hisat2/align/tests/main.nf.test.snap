@@ -1,0 +1,160 @@
+{
+    "Should align paired-end reads against reference genome using built index and return BAM file with summary": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "lib_type": "reverse",
+                        "single_end": false
+                    },
+                    "test.hisat2.summary:md5,293b613add3f935f5e332524fffbe805"
+                ]
+            ],
+            [
+                "versions.yml:md5,ee7766e3e45dae6c6741355f75f559ea"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T18:33:17.088074036"
+    },
+    "Should stub align paired-end reads against reference genome using built index and return mocked BAM file with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,ee7766e3e45dae6c6741355f75f559ea"
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ee7766e3e45dae6c6741355f75f559ea"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T18:35:10.768468792"
+    },
+    "Should stub align single-end reads against reference genome using built index and return mocked BAM file with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,ee7766e3e45dae6c6741355f75f559ea"
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ee7766e3e45dae6c6741355f75f559ea"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T18:34:13.329977536"
+    },
+    "Should align single-end reads against reference genome using built index and return BAM file with summary": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "lib_type": "forward",
+                        "single_end": true
+                    },
+                    "test.hisat2.summary:md5,708baa4cfe0bc231fbeeb9fabe5175b3"
+                ]
+            ],
+            [
+                "versions.yml:md5,ee7766e3e45dae6c6741355f75f559ea"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T18:32:15.598169591"
+    }
+}

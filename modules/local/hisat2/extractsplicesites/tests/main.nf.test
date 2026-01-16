@@ -1,0 +1,49 @@
+nextflow_process {
+    name "Test Process HISAT2_EXTRACTSPLICESITES"
+    script "modules/local/hisat2/extractsplicesites/main.nf"
+    process "HISAT2_EXTRACTSPLICESITES"
+
+    tag "modules"
+    tag "hisat2"
+    tag "hisat2/extractsplicesites"
+
+    test("Should extract splice sites from GTF and return splice sites TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.splice_sites.get(0) ==~ ".*/*.splice_sites\\.tsv"},
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub extract splice sites from GTF and return mocked splice sites TSV file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

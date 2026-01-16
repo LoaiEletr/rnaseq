@@ -1,0 +1,73 @@
+nextflow_process {
+    name "Test Process HISAT2_BUILD"
+    script "modules/local/hisat2/build/main.nf"
+    process "HISAT2_BUILD"
+
+    tag "modules"
+    tag "hisat2"
+    tag "hisat2/build"
+
+    setup {
+        run("HISAT2_EXTRACTEXONS") {
+            script "modules/local/hisat2/extractexons/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+
+        run("HISAT2_EXTRACTSPLICESITES") {
+            script "modules/local/hisat2/extractsplicesites/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+    }
+
+    test("Should build HISAT2 index using extracted exons and splice sites and return index directory") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[1] = HISAT2_EXTRACTSPLICESITES.out.splice_sites
+                input[2] = HISAT2_EXTRACTEXONS.out.exons_sites
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.index.get(0) ==~ ".*/index"},
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub build HISAT2 index using extracted exons and splice sites and return mocked index directory") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[1] = HISAT2_EXTRACTSPLICESITES.out.splice_sites
+                input[2] = HISAT2_EXTRACTEXONS.out.exons_sites
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

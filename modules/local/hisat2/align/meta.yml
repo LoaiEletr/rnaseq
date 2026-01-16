@@ -1,0 +1,101 @@
+name: hisat2_align
+description: |
+  Aligns RNA-seq reads to a reference genome using HISAT2 with strand-specific options.
+keywords:
+  - hisat2
+  - alignment
+  - rna-seq
+  - stranded
+tools:
+  - hisat2:
+      description: "Hierarchical indexing for spliced alignment of transcripts"
+      homepage: "https://daehwankimlab.github.io/hisat2/"
+      documentation: "https://daehwankimlab.github.io/hisat2/manual/"
+      tool_dev_url: "https://github.com/DaehwanKimLab/hisat2"
+      licence: ["GPL-3.0-only"]
+      identifier: "hisat2"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s) for alignment
+          Single file for single-end, two files for paired-end data
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930"
+
+  - index:
+      type: file
+      description: |
+        HISAT2 genome index directory
+      pattern: "index/"
+
+  - ref:
+      type: file
+      description: |
+        Reference genome FASTA file used for index building
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_1929"
+
+output:
+  bam:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
+      - "*.bam":
+          type: file
+          description: |
+            Aligned reads in BAM format
+          pattern: "*.bam"
+          ontologies:
+            - edam: "http://edamontology.org/format_2572"
+
+  summary:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
+      - "*.summary":
+          type: file
+          description: |
+            HISAT2 alignment summary statistics
+          pattern: "*.summary"
+          ontologies: []
+
+  versions_hisat2:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - hisat2:
+          type: string
+          description: The name of the tool
+      - "hisat2 --version | head -n 1 | awk '{print $3}'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - hisat2:
+          type: string
+          description: The name of the tool
+      - "hisat2 --version | head -n 1 | awk '{print $3}'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
