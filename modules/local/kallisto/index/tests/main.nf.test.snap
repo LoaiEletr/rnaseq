@@ -1,0 +1,37 @@
+{
+    "versions": {
+        "content": [
+            [
+                "versions.yml:md5,45c4b0d7096ba49d580e63cd72e6bc1d"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T20:37:04.770844424"
+    },
+    "Should stub build Kallisto index from transcriptome and return mocked index file": {
+        "content": [
+            {
+                "0": [
+                    "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,45c4b0d7096ba49d580e63cd72e6bc1d"
+                ],
+                "index": [
+                    "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,45c4b0d7096ba49d580e63cd72e6bc1d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T20:37:48.170439277"
+    }
+}
