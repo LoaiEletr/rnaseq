@@ -1,0 +1,49 @@
+nextflow_process {
+    name "Test Process HISAT2_EXTRACTEXONS"
+    script "modules/local/hisat2/extractexons/main.nf"
+    process "HISAT2_EXTRACTEXONS"
+
+    tag "modules"
+    tag "hisat2"
+    tag "hisat2/extractexons"
+
+    test("Should extract exons from GTF and return exons TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.exons_sites.get(0) ==~ ".*/*.exons\\.tsv"},
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub extract exons from GTF and return mocked exons TSV file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
