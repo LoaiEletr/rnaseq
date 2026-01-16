@@ -1,0 +1,48 @@
+{
+    "Should extract splice sites from GTF and return splice sites TSV file": {
+        "content": [
+            {
+                "0": [
+                    "genome.splice_sites.tsv:md5,dc6da761e1dda4b7c490eea01260ee21"
+                ],
+                "1": [
+                    "versions.yml:md5,eeea7231fe197810659b8bad4133aff2"
+                ],
+                "splice_sites": [
+                    "genome.splice_sites.tsv:md5,dc6da761e1dda4b7c490eea01260ee21"
+                ],
+                "versions": [
+                    "versions.yml:md5,eeea7231fe197810659b8bad4133aff2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T15:48:26.536939707"
+    },
+    "Should stub extract splice sites from GTF and return mocked splice sites TSV file": {
+        "content": [
+            {
+                "0": [
+                    "genome.splice_sites.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,eeea7231fe197810659b8bad4133aff2"
+                ],
+                "splice_sites": [
+                    "genome.splice_sites.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,eeea7231fe197810659b8bad4133aff2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T15:49:11.66688981"
+    }
+}
