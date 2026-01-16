@@ -1,0 +1,63 @@
+name: gxf2bed
+description: |
+  Converts GFF/GTF files to BED format.
+keywords:
+  - gff
+  - gtf
+  - bed
+  - format conversion
+tools:
+  - gxf2bed:
+      description: "Converter from GFF/GTF to BED format"
+      homepage: "https://github.com/alejandrogzi/gxf2bed"
+      documentation: "https://github.com/alejandrogzi/gxf2bed"
+      tool_dev_url: "https://github.com/alejandrogzi/gxf2bed"
+      licence: ["MIT"]
+      identifier: "gxf2bed"
+
+input:
+  - gtf:
+      type: file
+      description: |
+        Input GFF or GTF file to convert to BED format
+      pattern: "*.{gff,gtf,gff3,gff.gz,gtf.gz,gff3.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_2306"
+
+output:
+  bed:
+    - "*.bed":
+        type: file
+        description: |
+          Output BED file converted from GFF/GTF input
+        pattern: "*.bed"
+        ontologies:
+          - edam: "	http://edamontology.org/format_3003"
+
+  versions_gxf2bed:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - gxf2bed:
+          type: string
+          description: The name of the tool
+      - "gxf2bed --version | grep 'gxf2bed [0-9]' | sed 's/.*ed //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - gxf2bed:
+          type: string
+          description: The name of the tool
+      - "gxf2bed --version | grep 'gxf2bed [0-9]' | sed 's/.*ed //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
