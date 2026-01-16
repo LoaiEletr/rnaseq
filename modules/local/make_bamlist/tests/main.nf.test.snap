@@ -1,0 +1,104 @@
+{
+    "Should create BAM list file for multiple BAM files and return TXT files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,f0c88682babcd5de24d3d8c07936dff8"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,72fda09f655f9605f74d8939fc224b3f"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                ],
+                "txt": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,f0c88682babcd5de24d3d8c07936dff8"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,72fda09f655f9605f74d8939fc224b3f"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T22:11:50.767568334"
+    },
+    "Should stub create BAM list file for multiple BAM files and return mocked TXT files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                ],
+                "txt": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
+                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T22:12:38.838953672"
+    }
+}
