@@ -18,6 +18,9 @@ process HISAT2_BUILD {
     path "index", emit: index
     path "versions.yml", emit: versions
 
+    when:
+    task.ext.when == null || task.ext.when
+
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${ref.getSimpleName()}"

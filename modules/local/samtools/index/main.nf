@@ -16,6 +16,9 @@ process SAMTOOLS_INDEX {
     tuple val(meta), path("*.bai"), emit: bai
     path "versions.yml", emit: versions
 
+    when:
+    task.ext.when == null || task.ext.when
+
     script:
     def args = task.ext.args ?: ''
     """

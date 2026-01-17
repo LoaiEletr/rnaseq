@@ -16,6 +16,9 @@ process HISAT2_EXTRACTEXONS {
     path "*.exons.tsv", emit: exons_sites
     path "versions.yml", emit: versions
 
+    when:
+    task.ext.when == null || task.ext.when
+
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${gtf.baseName}"
