@@ -1,0 +1,55 @@
+nextflow_process {
+    name "Test Process SAMTOOLS_SORT"
+    script "modules/local/samtools/sort/main.nf"
+    process "SAMTOOLS_SORT"
+
+    tag "modules"
+    tag "samtools"
+    tag "samtools/sort"
+
+    test("Should sort BAM file and return sorted BAM file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.sorted_bam.get(0).get(1) ==~ ".*/*.sorted\\.bam" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub sort BAM file and return mocked sorted BAM file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
