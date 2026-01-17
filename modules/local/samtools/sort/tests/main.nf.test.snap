@@ -1,0 +1,68 @@
+{
+    "Should sort BAM file and return sorted BAM file": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bam:md5,5064b3409cbdef5a17ecfcbe18d75b94"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,99bf14dbc2fd799179ebd9c7076913fe"
+                ],
+                "sorted_bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bam:md5,5064b3409cbdef5a17ecfcbe18d75b94"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,99bf14dbc2fd799179ebd9c7076913fe"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T17:05:28.240213584"
+    },
+    "Should stub sort BAM file and return mocked sorted BAM file": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,99bf14dbc2fd799179ebd9c7076913fe"
+                ],
+                "sorted_bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,99bf14dbc2fd799179ebd9c7076913fe"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T17:06:17.632048134"
+    }
+}
