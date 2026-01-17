@@ -31,15 +31,12 @@ process SALMON_QUANT {
 
     def paired_end_strandedness_opts = [
         'A',
-        'IS',
         'IU',
         'ISF',
         'ISR',
-        'OS',
         'OU',
         'OSF',
         'OSR',
-        'MS',
         'MU',
         'MSF',
         'MSR',
@@ -48,8 +45,8 @@ process SALMON_QUANT {
     def single_end_strandedness_opts = [
         'U',
         'A',
-        'ISF',
-        'ISR',
+        'SF',
+        'SR',
     ]
 
     // Determine strand flag
