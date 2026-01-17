@@ -23,7 +23,7 @@ process MAKE_BAMLIST {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bash: \$(bash --version | head -n1 | awk '{print \$4}')
+        bash: \$(bash --version | head -n1 | awk '{print \$4}' | sed 's/(.*//')
     END_VERSIONS
     """
 
@@ -34,7 +34,7 @@ process MAKE_BAMLIST {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bash: \$(bash --version | head -n1 | awk '{print \$4}')
+        bash: \$(bash --version | head -n1 | awk '{print \$4}' | sed 's/(.*//')
     END_VERSIONS
     """
 }

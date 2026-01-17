@@ -19,8 +19,8 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558",
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558"
                 ],
                 "txt": [
                     [
@@ -39,8 +39,8 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558",
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558"
                 ]
             }
         ],
@@ -48,7 +48,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T22:11:50.767568334"
+        "timestamp": "2026-01-17T21:48:05.669847905"
     },
     "Should stub create BAM list file for multiple BAM files and return mocked TXT files": {
         "content": [
@@ -70,8 +70,8 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558",
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558"
                 ],
                 "txt": [
                     [
@@ -90,8 +90,8 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa",
-                    "versions.yml:md5,bebf177e813ef28b6e150e37a66b9aaa"
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558",
+                    "versions.yml:md5,fc697137e988ff59d2f6f8de0f53f558"
                 ]
             }
         ],
@@ -99,6 +99,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T22:12:38.838953672"
+        "timestamp": "2026-01-17T21:48:52.019473348"
     }
 }

@@ -63,7 +63,7 @@ output:
       - awk:
           type: string
           description: The name of the tool
-      - "awk --version | awk 'NR==1 {print $2}'":
+      - "awk --version | awk 'NR==1 {print $3}' | tr -d ','":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -75,7 +75,7 @@ topics:
       - awk:
           type: string
           description: The name of the tool
-      - "awk --version | awk 'NR==1 {print $2}'":
+      - "awk --version | awk 'NR==1 {print $3}' | tr -d ','":
           type: eval
           description: The expression to obtain the version of the tool
 
