@@ -1,0 +1,94 @@
+name: subread_featurecounts
+description: |
+  Counts reads overlapping genomic features using featureCounts from Subread package with strand-specific options.
+keywords:
+  - subread
+  - featurecounts
+  - quantification
+  - rna-seq
+tools:
+  - subread:
+      description: "High-performance read alignment, quantification and mutation discovery"
+      homepage: "http://subread.sourceforge.net/"
+      documentation: "http://subread.sourceforge.net/featureCounts.html"
+      tool_dev_url: "https://sourceforge.net/projects/subread/"
+      licence: ["GPL-3.0-only"]
+      identifier: "subread"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false, lib_type:'ISF' ]`
+    - bam:
+        type: file
+        description: |
+          BAM file for read counting
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572"
+
+  - gtf:
+      type: file
+      description: |
+        GTF annotation file for feature counting
+      pattern: "*.{gtf,gtf.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_2306"
+
+output:
+  counts:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false, lib_type:'ISF' ]`
+      - "*.counts.txt":
+          type: file
+          description: |
+            File containing read counts per gene
+          pattern: "*.counts.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330"
+
+  summary:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false, lib_type:'ISF' ]`
+      - "*.summary":
+          type: file
+          description: |
+            Summary statistics file
+          pattern: "*.summary"
+          ontologies: []
+
+  versions_subread:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - subread:
+          type: string
+          description: The name of the tool
+      - "echo $(featureCounts -v 2>&1) | sed -e 's/featureCounts v//g'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - subread:
+          type: string
+          description: The name of the tool
+      - "featureCounts -v 2>&1 | sed 's/featureCounts v//'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

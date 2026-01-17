@@ -1,0 +1,119 @@
+nextflow_process {
+    name "Test Process SUBREAD_FEATURECOUNTS"
+    script "modules/local/subread/featurecounts/main.nf"
+    process "SUBREAD_FEATURECOUNTS"
+
+    tag "modules"
+    tag "subread"
+    tag "subread/featurecounts"
+
+    test("Should count single-end reads with featureCounts and return counts with summary") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'reverse', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.counts.get(0).get(1) ==~ ".*/test\\.counts\\.txt" },
+                { assert process.out.summary.get(0).get(1) ==~ ".*/test\\.counts\\.txt\\.summary" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should count paired-end reads with featureCounts and return counts with summary") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'reverse', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.counts.get(0).get(1) ==~ ".*/test\\.counts\\.txt" },
+                { assert process.out.summary.get(0).get(1) ==~ ".*/test\\.counts\\.txt\\.summary" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub count single-end reads with featureCounts and return mocked counts with summary") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'reverse', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.counts.get(0).get(1) ==~ ".*/test\\.counts\\.txt" },
+                { assert process.out.summary.get(0).get(1) ==~ ".*/test\\.counts\\.txt\\.summary" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub count paired-end reads with featureCounts and return mocked counts with summary") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'reverse', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.counts.get(0).get(1) ==~ ".*/test\\.counts\\.txt" },
+                { assert process.out.summary.get(0).get(1) ==~ ".*/test\\.counts\\.txt\\.summary" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

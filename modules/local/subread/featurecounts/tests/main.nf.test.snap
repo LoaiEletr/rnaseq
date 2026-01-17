@@ -1,0 +1,230 @@
+{
+    "Should count single-end reads with featureCounts and return counts with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,aa43021d456d9cd255832ef3c15d021a"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,4e50fb077f63df0fe65e0159ab0c1d36"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,aa43021d456d9cd255832ef3c15d021a"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,4e50fb077f63df0fe65e0159ab0c1d36"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T22:12:24.982620756"
+    },
+    "Should stub count paired-end reads with featureCounts and return mocked counts with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T22:20:20.518246889"
+    },
+    "Should count paired-end reads with featureCounts and return counts with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,ee9271be8ab33f00a279369d6261ee0e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,1da8956b1684a40bdbfb83c95089c2a7"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,ee9271be8ab33f00a279369d6261ee0e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,1da8956b1684a40bdbfb83c95089c2a7"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T22:13:50.040910581"
+    },
+    "Should stub count single-end reads with featureCounts and return mocked counts with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T22:19:27.519107418"
+    }
+}
