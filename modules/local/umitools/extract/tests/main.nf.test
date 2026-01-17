@@ -1,0 +1,124 @@
+nextflow_process {
+    name "Test Process UMITOOLS_EXTRACT"
+    script "modules/local/umitools/extract/main.nf"
+    process "UMITOOLS_EXTRACT"
+
+    tag "modules"
+    tag "umitools"
+    tag "umitools/extract"
+
+    test("Should extract UMIs from single-end reads and return UMI-extracted FASTQ with log") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = "quantseq"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.reads.get(0).get(1) ==~ ".*/test\\.umi_extract\\.fastq\\.gz" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_extract\\.log" },
+                { assert snapshot(
+                    process.out.reads,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should extract UMIs from paired-end reads and return UMI-extracted FASTQ files with log") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = "takara"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.reads.get(0).get(1)[0] ==~ ".*/test\\.umi_extract_1\\.fastq\\.gz" },
+                { assert process.out.reads.get(0).get(1)[1] ==~ ".*/test\\.umi_extract_2\\.fastq\\.gz" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_extract\\.log" },
+                { assert snapshot(
+                    process.out.reads,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should stub extract UMIs from single-end reads and return mocked UMI-extracted FASTQ with log") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = "quantseq"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub extract UMIs from paired-end reads and return mocked UMI-extracted FASTQ files with log") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = "quantseq"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
