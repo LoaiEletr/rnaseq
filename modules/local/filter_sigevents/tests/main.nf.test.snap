@@ -13,8 +13,8 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166",
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166"
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
                 ],
                 "sig_rmats": [
                     [
@@ -27,8 +27,8 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166",
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166"
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
                 ]
             }
         ],
@@ -36,7 +36,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T04:02:59.924161136"
+        "timestamp": "2026-01-17T05:18:01.648967878"
     },
     "Should filter significant alternative splicing events from rMATS results and return filtered files": {
         "content": [
@@ -52,8 +52,8 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166",
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166"
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
                 ],
                 "sig_rmats": [
                     [
@@ -66,8 +66,8 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166",
-                    "versions.yml:md5,74f0c7c88e1d762f76baf5be58cce166"
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
                 ]
             }
         ],
@@ -75,6 +75,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T04:01:56.197197851"
+        "timestamp": "2026-01-17T05:16:43.756190946"
     }
 }

@@ -4,6 +4,11 @@ process FILTER_SIGEVENTS {
     tag "${event_type}"
     label 'process_low'
 
+    conda "${moduleDir}/environment.yml"
+    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
+        ? 'https://depot.galaxyproject.org/singularity/rmats:4.3.0--py39hbadf43b_5'
+        : 'biocontainers/rmats:4.3.0--py39hbadf43b_5'}"
+
     input:
     path rmats_post_output
     each event_type
