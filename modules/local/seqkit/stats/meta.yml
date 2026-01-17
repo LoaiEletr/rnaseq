@@ -1,0 +1,67 @@
+name: seqkit_stats
+description: |
+  Calculates average read length from FASTQ files using seqkit stats.
+keywords:
+  - seqkit
+  - statistics
+  - read length
+  - fastq
+tools:
+  - seqkit:
+      description: "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation"
+      homepage: "https://bioinf.shenwei.me/seqkit/"
+      documentation: "https://bioinf.shenwei.me/seqkit/usage/"
+      tool_dev_url: "https://github.com/shenwei356/seqkit"
+      licence: ["MIT"]
+      identifier: "seqkit"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s) for read length calculation
+          For paired-end data, uses first read file
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930"
+
+output:
+  avg_length:
+    - AVG_READLENGTH:
+        type: integer
+        description: |
+          Average read length (rounded to nearest integer)
+        pattern: "[0-9]+"
+
+  versions_seqkit:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - seqkit:
+          type: string
+          description: The name of the tool
+      - "seqkit version | sed 's/seqkit v//'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - seqkit:
+          type: string
+          description: The name of the tool
+      - "seqkit version | sed 's/seqkit v//'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

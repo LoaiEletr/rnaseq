@@ -1,0 +1,48 @@
+{
+    "Should calculate average read length with SeqKit and return statistics": {
+        "content": [
+            {
+                "0": [
+                    "151"
+                ],
+                "1": [
+                    "versions.yml:md5,1f897d80a064c5bd3cebc79983dad42f"
+                ],
+                "avg_length": [
+                    "151"
+                ],
+                "versions": [
+                    "versions.yml:md5,1f897d80a064c5bd3cebc79983dad42f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T17:26:16.296275871"
+    },
+    "Should stub calculate average read length with SeqKit and return mocked statistics": {
+        "content": [
+            {
+                "0": [
+                    "100"
+                ],
+                "1": [
+                    "versions.yml:md5,6c3508dd665d55c0d179c6416f4106a4"
+                ],
+                "avg_length": [
+                    "100"
+                ],
+                "versions": [
+                    "versions.yml:md5,6c3508dd665d55c0d179c6416f4106a4"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T17:27:00.013771281"
+    }
+}
