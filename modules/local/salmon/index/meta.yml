@@ -1,0 +1,60 @@
+name: salmon_index
+description: |
+  Builds salmon transcriptome index for quasi-mapping.
+keywords:
+  - salmon
+  - index
+  - transcriptome
+tools:
+  - salmon:
+      description: "Fast, bias-aware quantification of transcript expression"
+      homepage: "https://combine-lab.github.io/salmon/"
+      documentation: "https://salmon.readthedocs.io/"
+      tool_dev_url: "https://github.com/COMBINE-lab/salmon"
+      licence: ["GPL-3.0-only"]
+      identifier: "salmon"
+
+input:
+  - transcriptome:
+      type: file
+      description: |
+        Transcriptome sequences in FASTA format
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_1929"
+
+output:
+  index:
+    - transcripts_index:
+        type: file
+        description: |
+          Directory containing salmon transcriptome index
+        pattern: "transcripts_index/*"
+
+  versions_salmon:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - salmon:
+          type: string
+          description: The name of the tool
+      - "salmon --version | sed 's/salmon //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - salmon:
+          type: string
+          description: The name of the tool
+      - "salmon --version | sed 's/salmon //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
