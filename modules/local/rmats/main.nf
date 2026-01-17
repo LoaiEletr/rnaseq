@@ -84,6 +84,7 @@ process RMATS {
     """
     # Create output directory
     mkdir -p ${prefix}
+    mkdir -p rmats_prep_tmp
 
     # Create all rMATS output files
     touch ${prefix}/A3SS.MATS.JCEC.txt
