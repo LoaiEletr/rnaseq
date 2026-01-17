@@ -1,0 +1,55 @@
+nextflow_process {
+    name "Test Process SAMTOOLS_INDEX"
+    script "modules/local/samtools/index/main.nf"
+    process "SAMTOOLS_INDEX"
+
+    tag "modules"
+    tag "samtools"
+    tag "samtools/index"
+
+    test("Should index BAM file and return BAI index file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.bai.get(0).get(1) ==~ ".*/*.bai" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub index BAM file and return mocked BAI index file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
