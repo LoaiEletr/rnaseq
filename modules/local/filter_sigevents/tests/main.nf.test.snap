@@ -1,0 +1,80 @@
+{
+    "Should stub filter significant alternative splicing events from rMATS results and return mocked filtered files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "RI",
+                        "RI_filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        "SE",
+                        "SE_filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
+                ],
+                "sig_rmats": [
+                    [
+                        "RI",
+                        "RI_filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        "SE",
+                        "SE_filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T05:18:01.648967878"
+    },
+    "Should filter significant alternative splicing events from rMATS results and return filtered files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "RI",
+                        "RI_filtered.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                    ],
+                    [
+                        "SE",
+                        "SE_filtered.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
+                ],
+                "sig_rmats": [
+                    [
+                        "RI",
+                        "RI_filtered.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                    ],
+                    [
+                        "SE",
+                        "SE_filtered.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148",
+                    "versions.yml:md5,0b9724ec79acb2c48d8ce0929008f148"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T05:16:43.756190946"
+    }
+}
