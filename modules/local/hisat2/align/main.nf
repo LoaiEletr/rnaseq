@@ -24,7 +24,7 @@ process HISAT2_ALIGN {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def fastq_in = meta.single_end ? "-U ${reads}" : "-1 ${reads[0]} -2 ${reads[1]}"
     strand_flag = ""
-    if (meta.lib_type == "IU" || meta.lib_type == "U") {
+    if (meta.lib_type in ["IU", "U", "MU", "OU"]) {
         strand_flag = ""
     }
     else if (meta.lib_type in ["SR", "ISR", "MSR", "OSR", "reverse"]) {
