@@ -1,0 +1,49 @@
+{
+    "Should stub run rMATS for alternative splicing analysis and return mocked results": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "post_output": [
+                    
+                ],
+                "prep_output": [
+                    
+                ],
+                "prep_tmp": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T02:27:05.128221787"
+    },
+    "versions": {
+        "content": [
+            [
+                "versions.yml:md5,2a355221449c5eb6b211ed2f5bb2bea5"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T02:25:57.127586216"
+    }
+}
