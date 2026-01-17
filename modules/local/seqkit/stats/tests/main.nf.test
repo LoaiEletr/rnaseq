@@ -1,0 +1,58 @@
+nextflow_process {
+    name "Test Process SEQKIT_STATS"
+    script "modules/local/seqkit/stats/main.nf"
+    process "SEQKIT_STATS"
+
+    tag "modules"
+    tag "seqkit"
+    tag "seqkit/stats"
+
+    test("Should calculate average read length with SeqKit and return statistics") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub calculate average read length with SeqKit and return mocked statistics") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
