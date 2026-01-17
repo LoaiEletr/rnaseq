@@ -50,7 +50,7 @@ output:
       - bash:
           type: string
           description: The name of the tool
-      - "bash --version | head -n1 | awk '{print $4}'":
+      - "bash --version | head -n1 | awk '{print $4}' | sed 's/(.*//'":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -62,7 +62,7 @@ topics:
       - bash:
           type: string
           description: The name of the tool
-      - "bash --version | head -n1 | awk '{print $4}'":
+      - "bash --version | head -n1 | awk '{print $4}' | sed 's/(.*//'":
           type: eval
           description: The expression to obtain the version of the tool
 

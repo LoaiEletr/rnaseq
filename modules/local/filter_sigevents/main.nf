@@ -6,8 +6,8 @@ process FILTER_SIGEVENTS {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/rmats:4.3.0--py39hbadf43b_5'
-        : 'biocontainers/rmats:4.3.0--py39hbadf43b_5'}"
+        ? 'https://depot.galaxyproject.org/singularity/gawk:5.3.0'
+        : 'biocontainers/gawk:5.3.1'}"
 
     input:
     path rmats_post_output
@@ -40,7 +40,7 @@ process FILTER_SIGEVENTS {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$(awk --version | awk 'NR==1 {print \$2}')
+        awk: \$(awk --version | awk 'NR==1 {print \$3}' | tr -d ',')
     END_VERSIONS
     """
 
@@ -51,7 +51,7 @@ process FILTER_SIGEVENTS {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$(awk --version | awk 'NR==1 {print \$2}')
+        awk: \$(awk --version | awk 'NR==1 {print \$3}' | tr -d ',')
     END_VERSIONS
     """
 }
