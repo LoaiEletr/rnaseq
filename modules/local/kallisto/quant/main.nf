@@ -34,11 +34,10 @@ process KALLISTO_QUANT {
     def fastq_in = meta.single_end ? "--single -l ${fragment_length} -s ${fragment_length_sd} ${reads}" : "${reads[0]} ${reads[1]}"
     strand_flag = ""
 
-    // Use the meta.lib_type input value (from auto-detection)
-    if (meta.lib_type == "IU" || meta.lib_type == "U") {
+    if (meta.lib_type in ["IU", "U", "MU", "OU"]) {
         strand_flag = ""
     }
-    else if (meta.lib_type in ["ISR", "SF", "MSR", "OSR", "reverse"]) {
+    else if (meta.lib_type in ["ISR", "SR", "MSR", "OSR", "reverse"]) {
         strand_flag = "--rf-stranded"
     }
     else if (meta.lib_type in ["ISF", "SF", "MSF", "OSF", "forward"]) {
