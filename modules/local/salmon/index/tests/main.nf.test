@@ -1,0 +1,49 @@
+nextflow_process {
+    name "Test Process SALMON_INDEX"
+    script "modules/local/salmon/index/main.nf"
+    process "SALMON_INDEX"
+
+    tag "modules"
+    tag "salmon"
+    tag "salmon/index"
+
+    test("Should build Salmon index from transcriptome and return index directory") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/transcriptome.fasta', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.index.get(0) ==~ ".*/transcripts_index" },
+                { assert snapshot(process.out.versions).match("versions") }
+            )
+        }
+    }
+
+    test("Should stub build Salmon index from transcriptome and return mocked index directory") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/transcriptome.fasta', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

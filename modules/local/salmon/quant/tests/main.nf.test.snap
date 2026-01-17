@@ -1,0 +1,252 @@
+{
+    "versions_paired_end": {
+        "content": [
+            [
+                "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T15:54:00.118596307"
+    },
+    "versions_single_end": {
+        "content": [
+            [
+                "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T15:53:05.082266452"
+    },
+    "Should stub quantify single-end reads with Salmon and return mocked quantification results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "IU"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "IU"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T15:54:53.395869287"
+    },
+    "Should stub quantify paired-end reads with Salmon and return mocked quantification results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "IU"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "IU"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-17T15:55:43.683808469"
+    }
+}
