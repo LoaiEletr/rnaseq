@@ -44,11 +44,10 @@ process CUTADAPT {
     """
 
     stub:
-    def args = task.ext.args ?: ''
-    def args2 = task.ext.args2 ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def gzip_fastq_out = meta.single_end ? "echo '' | gzip > ${prefix}.cutadapt.fastq.gz" : "echo '' | gzip > ${prefix}.cutadapt_1.fastq.gz ; echo '' | gzip > ${prefix}.cutadapt_2.fastq.gz"
     """
-    echo "" | gzip > ${prefix}.cutadapt.fastq.gz
+    ${gzip_fastq_out}
     touch ${prefix}.cutadapt.json
 
     cat <<-END_VERSIONS > versions.yml

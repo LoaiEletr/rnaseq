@@ -82,7 +82,10 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.umi_extract.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        [
+                            "test.umi_extract_1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.umi_extract_2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
                     ]
                 ],
                 "1": [
@@ -112,7 +115,10 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.umi_extract.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        [
+                            "test.umi_extract_1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.umi_extract_2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
                     ]
                 ],
                 "versions": [
@@ -124,7 +130,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T01:23:32.744721378"
+        "timestamp": "2026-01-18T23:50:29.870822387"
     },
     "Should extract UMIs from paired-end reads and return UMI-extracted FASTQ files with log": {
         "content": [
