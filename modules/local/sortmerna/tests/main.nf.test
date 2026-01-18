@@ -1,0 +1,154 @@
+nextflow_process {
+    name "Test Process SORTMERNA"
+    script "modules/local/sortmerna/main.nf"
+    process "SORTMERNA"
+
+    tag "modules"
+    tag "sortmerna"
+
+    setup {
+        run("UNTAR") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = file("https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz")
+                """
+            }
+        }
+
+        run("SORTMERNA", alias: "SORTMERNA_INDEX") {
+            script "modules/local/sortmerna/main.nf"
+            process {
+                """
+                input[0] = [[],[]]
+                input[1] = []
+                input[2] = UNTAR.out.untar
+                input[3] = "default"  // Use default database
+                input[4] = true  // Build index mode
+                """
+            }
+        }
+    }
+
+
+    test("Should filter rRNA from single-end reads using built index and return non-rRNA FASTQ files") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SORTMERNA_INDEX.out.index
+                input[2] = UNTAR.out.untar
+                input[3] = "default"
+                input[4] = false
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.reads.get(0).get(1) ==~ ".*/test_non_rRNA_reads\\.fq\\.gz" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/*\\.log" },
+                { assert snapshot(process.out.versions).match("sortmerna_single_end_non_rrna") }
+            )
+        }
+    }
+
+    test("Should filter rRNA from paired-end reads using built index and return non-rRNA FASTQ files") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SORTMERNA_INDEX.out.index
+                input[2] = UNTAR.out.untar
+                input[3] = "default"
+                input[4] = false
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.reads.get(0).get(1)[0] ==~ ".*/test_non_rRNA_reads_fwd\\.fq\\.gz" },
+                { assert process.out.reads.get(0).get(1)[1] ==~ ".*/test_non_rRNA_reads_rev\\.fq\\.gz" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/*\\.log" },
+                { assert snapshot(process.out.versions).match("sortmerna_paired_end_non_rrna") }
+            )
+        }
+    }
+
+    test("Should stub filter rRNA from single-end reads using built index and return mocked non-rRNA FASTQ files") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SORTMERNA_INDEX.out.index
+                input[2] = UNTAR.out.untar
+                input[3] = "default"
+                input[4] = false
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub filter rRNA from paired-end reads using built index and return mocked non-rRNA FASTQ files") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SORTMERNA_INDEX.out.index
+                input[2] = UNTAR.out.untar
+                input[3] = "default"
+                input[4] = false
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
