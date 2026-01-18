@@ -1,0 +1,96 @@
+name: umitools_extract
+description: |
+  Extracts UMI (Unique Molecular Identifier) sequences from FASTQ files for different library preparation kits.
+keywords:
+  - umi_tools
+  - umi
+  - extraction
+  - deduplication
+tools:
+  - umi_tools:
+      description: "Tools for handling Unique Molecular Identifiers in NGS data sets"
+      homepage: "https://umi-tools.readthedocs.io/"
+      documentation: "https://umi-tools.readthedocs.io/en/latest/"
+      tool_dev_url: "https://github.com/CGATOxford/UMI-tools"
+      licence: ["MIT"]
+      identifier: "umi_tools"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s) containing UMI sequences
+          Single file for single-end, two files for paired-end data
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930"
+
+  - lib_kit:
+      type: string
+      description: |
+        Library preparation kit type for UMI extraction
+        Options: quantseq, corall, takara
+      pattern: "quantseq|corall|takara"
+
+output:
+  reads:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.fastq.gz":
+          type: file
+          description: |
+            FASTQ file(s) with extracted UMIs
+            Single file for single-end, two files for paired-end data
+          pattern: "*.fastq.gz"
+          ontologies:
+            - edam: "http://edamontology.org/format_1930"
+
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.log":
+          type: file
+          description: |
+            Log file from UMI extraction
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678"
+
+  versions_umi_tools:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - umi_tools:
+          type: string
+          description: The name of the tool
+      - "umi_tools --version | sed 's/.*version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - umi_tools:
+          type: string
+          description: The name of the tool
+      - "umi_tools --version | sed 's/.*version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
