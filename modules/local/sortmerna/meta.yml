@@ -1,0 +1,125 @@
+name: sortmerna
+description: |
+  Filters rRNA sequences from RNA-seq reads using SortMeRNA, with option to build rRNA index.
+keywords:
+  - sortmerna
+  - rrna
+  - filtering
+  - rna-seq
+tools:
+  - sortmerna:
+      description: "Fast and accurate filtering of ribosomal RNA in metatranscriptomic data"
+      homepage: "https://bioinfo.lifl.fr/RNA/sortmerna/"
+      documentation: "https://github.com/biocore/sortmerna/wiki"
+      tool_dev_url: "https://github.com/biocore/sortmerna"
+      licence: ["GPL-3.0-only"]
+      identifier: "sortmerna"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s) for rRNA filtering
+          Single file for single-end, two files for paired-end data
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930"
+
+  - index:
+      type: file
+      description: |
+        SortMeRNA index directory
+      pattern: "index/"
+
+  - ref_dir:
+      type: file
+      description: |
+        Directory containing rRNA reference databases
+      pattern: "*"
+
+  - rrna_db_type:
+      type: string
+      description: |
+        rRNA database type
+        Options: fast, default, sensitive, sensitive_rfam
+      pattern: "fast|default|sensitive|sensitive_rfam"
+
+  - only_build_index:
+      type: boolean
+      description: |
+        true: Only build rRNA index
+        false: Filter reads using existing index
+      pattern: "true|false"
+
+output:
+  reads:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*non_rRNA*.fq.gz":
+          type: file
+          description: |
+            FASTQ file(s) with rRNA reads removed
+            Single file for single-end, two files for paired-end data
+          pattern: "*non_rRNA.fq.gz"
+          ontologies:
+            - edam: "http://edamontology.org/format_1930"
+        optional: true
+
+  index:
+    - index:
+        type: file
+        description: |
+          Directory containing built SortMeRNA index
+        pattern: "index/*"
+        optional: true
+
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.log":
+          type: file
+          description: |
+            Log file from SortMeRNA run
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678"
+        optional: true
+
+  versions_sortmerna:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - sortmerna:
+          type: string
+          description: The name of the tool
+      - "sortmerna --version | grep Sort | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - sortmerna:
+          type: string
+          description: The name of the tool
+      - "sortmerna --version | grep Sort | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
