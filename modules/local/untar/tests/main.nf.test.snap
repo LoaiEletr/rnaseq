@@ -1,0 +1,52 @@
+{
+    "Should extract tar.gz archive and return extracted files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "hello.txt:md5,e59ff97941044f85df5297e1c302d260"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                ],
+                "untar": [
+                    [
+                        "hello.txt:md5,e59ff97941044f85df5297e1c302d260"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-18T02:34:45.199290424"
+    },
+    "Should stub extract tar.gz archive and return mocked extracted files": {
+        "content": [
+            {
+                "0": [
+                    "hello:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                ],
+                "untar": [
+                    "hello:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-18T02:36:43.328632996"
+    }
+}
