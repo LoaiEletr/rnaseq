@@ -211,7 +211,7 @@ nextflow_process {
                 input[1] = BBMAP_BBSPLIT_INDEX.out.index
 
 
-                input[2] = []
+                input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz', checkIfExists: true)
 
 
                 input[3] = []
@@ -249,7 +249,7 @@ nextflow_process {
                 ])
 
                 input[1] = BBMAP_BBSPLIT_INDEX.out.index
-                input[2] = []
+                input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz', checkIfExists: true)
                 input[3] = []
                 input[4] = false
                 """

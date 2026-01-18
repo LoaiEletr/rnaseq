@@ -72,9 +72,9 @@ process BBMAP_BBSPLIT {
     }
 
     stub:
-    def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: (only_build_index == true ? "build_index" : "${meta.id}")
     def primary_ref_name = primary_ref ? primary_ref.getSimpleName() : ''
+    def gzip_fastq_out = meta.single_end ? "echo '' | gzip > ${prefix}_primary_${primary_ref_name}.fastq.gz" : "echo '' | gzip > ${prefix}_primary_${primary_ref_name}_1.fastq.gz ; echo '' | gzip > ${prefix}_primary_${primary_ref_name}_2.fastq.gz"
     if (only_build_index) {
         """
         mkdir -p bbsplit/genome/1
@@ -99,7 +99,7 @@ process BBMAP_BBSPLIT {
     }
     else {
         """
-        echo "" | gzip > ${prefix}_primary_${primary_ref_name}.fastq.gz
+        ${gzip_fastq_out}
         touch ${prefix}.bbsplit_stats.txt
 
         cat <<-END_VERSIONS > versions.yml

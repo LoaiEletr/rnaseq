@@ -36,7 +36,6 @@ process BEDTOOLS_SORT {
     """
 
     stub:
-    def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${bed.baseName}"
     """
     touch ${prefix}.sorted.bed

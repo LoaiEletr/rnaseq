@@ -36,11 +36,10 @@ process FASTQC {
     """
 
     stub:
-    def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def touch_fastqc_output = meta.single_end ? "touch ${prefix}_fastqc.html ; touch ${prefix}_fastqc.zip" : "touch ${prefix}_1_fastqc.html  ; touch ${prefix}_2_fastqc.html ; touch ${prefix}_1_fastqc.zip  ; touch ${prefix}_2_fastqc.zip"
     """
-    touch ${prefix}.html
-    touch ${prefix}.zip
+    ${touch_fastqc_output}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

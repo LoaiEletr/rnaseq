@@ -186,7 +186,10 @@
                             "single_end": false,
                             "sequencer": "NovaSeq"
                         },
-                        "test.cutadapt.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        [
+                            "test.cutadapt_1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.cutadapt_2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
                     ]
                 ],
                 "1": [
@@ -219,7 +222,10 @@
                             "single_end": false,
                             "sequencer": "NovaSeq"
                         },
-                        "test.cutadapt.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        [
+                            "test.cutadapt_1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.cutadapt_2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
                     ]
                 ],
                 "versions": [
@@ -231,6 +237,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-15T22:46:06.502580748"
+        "timestamp": "2026-01-18T23:33:55.168470486"
     }
 }
