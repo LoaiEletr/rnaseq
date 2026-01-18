@@ -1,0 +1,60 @@
+name: untar
+description: |
+  Extracts contents from tar.gz archives.
+keywords:
+  - tar
+  - extraction
+  - archive
+tools:
+  - tar:
+      description: "GNU tar - an archiving utility"
+      homepage: "https://www.gnu.org/software/tar/"
+      documentation: "https://www.gnu.org/software/tar/manual/"
+      tool_dev_url: "https://git.savannah.gnu.org/cgit/tar.git"
+      licence: ["GPL-3.0-only"]
+      identifier: "tar"
+
+input:
+  - archive:
+      type: file
+      description: |
+        tar.gz archive file to extract
+      pattern: "*.tar.gz"
+      ontologies:
+        - edam: "http://edamontology.org/format_3989"
+
+output:
+  untar:
+    - "${prefix}":
+        type: file
+        description: |
+          Directory containing extracted contents
+        pattern: "*"
+
+  versions_tar:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - tar:
+          type: string
+          description: The name of the tool
+      - "tar --version | head -n 1 | sed 's/.*) //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - tar:
+          type: string
+          description: The name of the tool
+      - "tar --version | head -n 1 | sed 's/.*) //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
