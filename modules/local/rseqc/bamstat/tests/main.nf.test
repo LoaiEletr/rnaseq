@@ -1,0 +1,55 @@
+nextflow_process {
+    name "Test Process RSEQC_BAMSTAT"
+    script "modules/local/rseqc/bamstat/main.nf"
+    process "RSEQC_BAMSTAT"
+
+    tag "modules"
+    tag "rseqc"
+    tag "rseqc/bamstat"
+
+    test("Should generate BAM statistics with RSeQC and return statistics TXT file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.txt.get(0).get(1) ==~ ".*/test_bam_stat\\.txt" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub generate BAM statistics with RSeQC and return mocked statistics TXT file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
