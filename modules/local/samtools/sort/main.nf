@@ -16,6 +16,9 @@ process SAMTOOLS_SORT {
     tuple val(meta), path("*.sorted.bam"), emit: sorted_bam
     path "versions.yml", emit: versions
 
+    when:
+    task.ext.when == null || task.ext.when
+
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: (bam.name.contains("umi_dedup") ? "${meta.id}.umi_dedup" : "${meta.id}")
