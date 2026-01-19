@@ -13,7 +13,7 @@ workflow GTF_EXTRACTSPLICESITES_EXTRACTEXONS_BUILD_HISAT2 {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     // Extract splice sites from GTF
     HISAT2_EXTRACTSPLICESITES(ch_gtf)
