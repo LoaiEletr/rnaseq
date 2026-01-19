@@ -15,7 +15,9 @@ process RSEQC_GENEBODYCOVERAGE {
     path bed
 
     output:
-    path "genebody_coverage.*", emit: genecoverage_files
+    path "*.geneBodyCoverage.r", emit: rscript
+    path "*.geneBodyCoverage.curves.pdf", emit: pdf
+    path "*.geneBodyCoverage.txt", emit: txt
     path "log.txt", emit: log
     path "versions.yml", emit: versions
 

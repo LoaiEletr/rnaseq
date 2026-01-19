@@ -31,15 +31,13 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                {
-                    def coverageFiles = process.out.genecoverage_files
-                    assert coverageFiles != null
-                    assert coverageFiles.size() >= 1
-                },
+                { assert process.out.rscript.get(0) ==~ ".*/*\\.geneBodyCoverage\\.r" },
+                { assert process.out.pdf.get(0) ==~ ".*/*\\.geneBodyCoverage\\.curves\\.pdf" },
+                { assert process.out.txt.get(0) ==~ ".*/*\\.geneBodyCoverage\\.txt" },
                 { assert process.out.log.get(0) ==~ ".*/log\\.txt" },
                 { assert snapshot(
-                    process.out.genecoverage_files.get(0).get(1),
-                    process.out.genecoverage_files.get(0).get(2),
+                    process.out.rscript,
+                    process.out.txt,
                     process.out.versions
                 ).match() }
             )
