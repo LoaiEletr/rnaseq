@@ -37,12 +37,32 @@ input:
         - edam: "http://edamontology.org/format_3003"
 
 output:
-  genecoverage_files:
-    - genebody_coverage.*:
+  rscript:
+    - "*.geneBodyCoverage.r":
         type: file
         description: |
-          Gene body coverage output files
-        pattern: "genebody_coverage.*"
+          R script for generating gene body coverage plots
+        pattern: "*.geneBodyCoverage.r"
+        ontologies:
+          - edam: "http://edamontology.org/format_3999"
+
+  pdf:
+    - "*.geneBodyCoverage.curves.pdf":
+        type: file
+        description: |
+          PDF file with gene body coverage curves
+        pattern: "*.geneBodyCoverage.curves.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508"
+
+  txt:
+    - "*.geneBodyCoverage.txt":
+        type: file
+        description: |
+          Text file with gene body coverage statistics
+        pattern: "*.geneBodyCoverage.txt"
+        ontologies:
+          - edam: "http://edamontology.org/format_2330"
 
   log:
     - log.txt:
