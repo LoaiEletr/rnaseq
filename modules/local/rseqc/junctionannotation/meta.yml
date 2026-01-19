@@ -1,0 +1,155 @@
+name: rseqc_junctionannotation
+description: |
+  Annotates splice junctions from RNA-seq BAM files using RSeQC junction_annotation.py.
+keywords:
+  - rseqc
+  - splice junctions
+  - annotation
+  - rna-seq
+tools:
+  - rseqc:
+      description: "RNA-seq quality control package"
+      homepage: "http://rseqc.sourceforge.net/"
+      documentation: "http://rseqc.sourceforge.net/"
+      tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      licence: ["GPL-3.0-only"]
+      identifier: "rseqc"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: |
+          BAM file for splice junction annotation
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572"
+
+  - bed:
+      type: file
+      description: |
+        BED file with gene annotations
+      pattern: "*.{bed,bed.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_3003"
+
+output:
+  xls:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.xls":
+          type: file
+          description: |
+            Excel file with junction annotation results
+          pattern: "*.xls"
+          ontologies:
+            - edam: "http://edamontology.org/format_3468"
+
+  rscript:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.r":
+          type: file
+          description: |
+            R script for generating junction plots
+          pattern: "*.r"
+          ontologies:
+            - edam: "http://edamontology.org/format_3999"
+
+  bed:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.junction.bed":
+          type: file
+          description: |
+            BED file with junction annotations
+          pattern: "*.junction.bed"
+          ontologies:
+            - edam: "http://edamontology.org/format_3003"
+        optional: true
+
+  interact_bed:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.Interact.bed":
+          type: file
+          description: |
+            BED file with interaction annotations
+          pattern: "*.Interact.bed"
+          ontologies:
+            - edam: "http://edamontology.org/format_3003"
+        optional: true
+
+  pdf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*junction.pdf":
+          type: file
+          description: |
+            PDF plot of junction annotations
+          pattern: "*junction.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508"
+        optional: true
+
+  events_pdf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*events.pdf":
+          type: file
+          description: |
+            PDF plot of splicing events
+          pattern: "*events.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508"
+        optional: true
+
+  versions_rseqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "junction_annotation.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "junction_annotation.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

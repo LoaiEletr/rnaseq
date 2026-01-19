@@ -1,0 +1,115 @@
+name: rseqc_readduplication
+description: |
+  Calculates read duplication rates from RNA-seq BAM files using RSeQC read_duplication.py.
+keywords:
+  - rseqc
+  - duplication
+  - pcr duplicates
+  - rna-seq
+tools:
+  - rseqc:
+      description: "RNA-seq quality control package"
+      homepage: "http://rseqc.sourceforge.net/"
+      documentation: "http://rseqc.sourceforge.net/"
+      tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      licence: ["GPL-3.0-only"]
+      identifier: "rseqc"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: |
+          BAM file for duplication analysis
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572"
+
+output:
+  pdf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.DupRate_plot.pdf":
+          type: file
+          description: |
+            PDF plot of duplication rate
+          pattern: "*.DupRate_plot.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508"
+
+  rscript:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.DupRate_plot.r":
+          type: file
+          description: |
+            R script for generating duplication plots
+          pattern: "*.DupRate_plot.r"
+          ontologies:
+            - edam: "http://edamontology.org/format_3999"
+
+  seq_duplicaterate:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.seq.DupRate.xls":
+          type: file
+          description: |
+            Excel file with sequence-based duplication rates
+          pattern: "*.seq.DupRate.xls"
+          ontologies:
+            - edam: "http://edamontology.org/format_3468"
+
+  pos_duplicaterate:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.pos.DupRate.xls":
+          type: file
+          description: |
+            Excel file with position-based duplication rates
+          pattern: "*.pos.DupRate.xls"
+          ontologies:
+            - edam: "http://edamontology.org/format_3468"
+
+  versions_rseqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "read_duplication.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "read_duplication.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

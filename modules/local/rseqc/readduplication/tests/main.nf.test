@@ -1,0 +1,63 @@
+nextflow_process {
+    name "Test Process RSEQC_READDUPLICATION"
+    script "modules/local/rseqc/readduplication/main.nf"
+    process "RSEQC_READDUPLICATION"
+
+    tag "modules"
+    tag "rseqc"
+    tag "rseqc/readduplication"
+
+    test("Should calculate read duplication rate for RNA-seq data with RSeQC and return duplication files with PDF and R script") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.seq_duplicaterate.get(0).get(1) =~ ".*/*\\.seq\\.DupRate\\.xls" },
+                { assert process.out.pos_duplicaterate.get(0).get(1) =~ ".*/*\\.pos\\.DupRate\\.xls" },
+                { assert process.out.pdf.get(0).get(1) =~ ".*/*\\.pdf" },
+                { assert process.out.rscript.get(0).get(1) =~ ".*/*\\.r" },
+                { assert snapshot(
+                    process.out.seq_duplicaterate,
+                    process.out.pos_duplicaterate,
+                    process.out.rscript,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should stub calculate read duplication rate for RNA-seq data with RSeQC and return mocked duplication files with PDF and R script") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

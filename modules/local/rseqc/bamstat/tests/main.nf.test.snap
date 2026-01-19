@@ -1,0 +1,68 @@
+{
+    "Should generate BAM statistics with RSeQC and return statistics TXT file": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_bam_stat.txt:md5,ca5705e6249ef0ec367f8317ad75c05b"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_bam_stat.txt:md5,ca5705e6249ef0ec367f8317ad75c05b"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T01:23:21.119475696"
+    },
+    "Should stub generate BAM statistics with RSeQC and return mocked statistics TXT file": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T01:24:05.653676591"
+    }
+}

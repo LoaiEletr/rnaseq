@@ -1,0 +1,81 @@
+name: rseqc_inferexperiment
+description: |
+  Infers strand-specificity of RNA-seq experiments using RSeQC infer_experiment.py.
+keywords:
+  - rseqc
+  - strandness
+  - inference
+  - rna-seq
+tools:
+  - rseqc:
+      description: "RNA-seq quality control package"
+      homepage: "http://rseqc.sourceforge.net/"
+      documentation: "http://rseqc.sourceforge.net/"
+      tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      licence: ["GPL-3.0-only"]
+      identifier: "rseqc"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - bam:
+        type: file
+        description: |
+          BAM file for strandness inference
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572"
+
+  - bed:
+      type: file
+      description: |
+        BED file with strand-specific gene annotations
+      pattern: "*.{bed,bed.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_3003"
+
+output:
+  txt:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.infer_experiment.txt":
+          type: file
+          description: |
+            Text file with strandness inference results
+          pattern: "*.infer_experiment.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330"
+
+  versions_rseqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "infer_experiment.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "infer_experiment.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

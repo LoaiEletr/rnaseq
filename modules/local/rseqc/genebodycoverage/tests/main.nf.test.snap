@@ -1,0 +1,61 @@
+{
+    "Should stub calculate gene body coverage for multiple BAM files with RSeQC and return mocked coverage files with log": {
+        "content": [
+            {
+                "0": [
+                    "genebody_coverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "versions.yml:md5,676786893fba326ad9e153fe37535cb2"
+                ],
+                "log": [
+                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "pdf": [
+                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "rscript": [
+                    "genebody_coverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "txt": [
+                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,676786893fba326ad9e153fe37535cb2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T02:28:54.59207695"
+    },
+    "Should calculate gene body coverage for multiple BAM files with RSeQC and return coverage files with log": {
+        "content": [
+            [
+                "genebody_coverage.geneBodyCoverage.r:md5,5b5fc7e0aadb1c55c7bf426845d33db5"
+            ],
+            [
+                "genebody_coverage.geneBodyCoverage.txt:md5,11ecc8f0c9644450685fe48ead48ffe4"
+            ],
+            [
+                "versions.yml:md5,676786893fba326ad9e153fe37535cb2"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T02:26:18.173248586"
+    }
+}
