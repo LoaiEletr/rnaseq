@@ -1,0 +1,130 @@
+{
+    "Should stub calculate read duplication rate for RNA-seq data with RSeQC and return mocked duplication files with PDF and R script": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.DupRate_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.DupRate_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq.DupRate.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pos.DupRate.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,377e8fb9c7bfb000f8cea1c29c8f4f3c"
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.DupRate_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pos_duplicaterate": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pos.DupRate.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "rscript": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.DupRate_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "seq_duplicaterate": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq.DupRate.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,377e8fb9c7bfb000f8cea1c29c8f4f3c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T04:09:53.88198756"
+    },
+    "Should calculate read duplication rate for RNA-seq data with RSeQC and return duplication files with PDF and R script": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.seq.DupRate.xls:md5,ab670424547af065ef8ff3e7f0b37405"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.pos.DupRate.xls:md5,1379c67bb2a037104115bce0a0521c58"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.DupRate_plot.r:md5,d88d3bbd40656d504f321d06e3234cab"
+                ]
+            ],
+            [
+                "versions.yml:md5,377e8fb9c7bfb000f8cea1c29c8f4f3c"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T04:08:00.162313558"
+    }
+}
