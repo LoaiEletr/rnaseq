@@ -1,0 +1,108 @@
+{
+    "Should stub calculate Transcript Integrity Number (TIN) for RNA-seq data with RSeQC and return mocked TIN files with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                ],
+                "xls": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T04:30:03.712363621"
+    },
+    "Should calculate Transcript Integrity Number (TIN) for RNA-seq data with RSeQC and return TIN files with summary": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,6b1b1b0dc1dc265342ba8c3f27fa60e6"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                ],
+                "xls": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,6b1b1b0dc1dc265342ba8c3f27fa60e6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T04:28:07.649251903"
+    }
+}
