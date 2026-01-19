@@ -1,0 +1,108 @@
+{
+    "Should identify RNA-seq strandedness with RSeQC and return experiment inference results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "U"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "U"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T04:54:09.731878428"
+    },
+    "Should stub identify RNA-seq strandedness with RSeQC and return mocked experiment inference results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.infer_experiment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "IU"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "IU"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.infer_experiment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T04:58:29.29743438"
+    }
+}
