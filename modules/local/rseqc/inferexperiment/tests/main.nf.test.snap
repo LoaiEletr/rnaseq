@@ -12,25 +12,7 @@
                     ]
                 ],
                 "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "U"
-                    ]
-                ],
-                "2": [
                     "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
-                ],
-                "strandness": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "U"
-                    ]
                 ],
                 "txt": [
                     [
@@ -50,7 +32,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T04:54:09.731878428"
+        "timestamp": "2026-01-19T05:23:38.240637174"
     },
     "Should stub identify RNA-seq strandedness with RSeQC and return mocked experiment inference results": {
         "content": [
@@ -65,25 +47,7 @@
                     ]
                 ],
                 "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "IU"
-                    ]
-                ],
-                "2": [
                     "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
-                ],
-                "strandness": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "IU"
-                    ]
                 ],
                 "txt": [
                     [
@@ -103,6 +67,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T04:58:29.29743438"
+        "timestamp": "2026-01-19T05:24:23.503992936"
     }
 }

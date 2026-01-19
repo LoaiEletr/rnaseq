@@ -15,7 +15,6 @@ process RSEQC_INFEREXPERIMENT {
 
     output:
     tuple val(meta), path("*.infer_experiment.txt"), emit: txt
-    tuple val(meta), env("strandness"), emit: strandness
     path ("versions.yml"), emit: versions
 
     when:
@@ -31,19 +30,6 @@ process RSEQC_INFEREXPERIMENT {
         -i ${bam} \\
         > ${prefix}.infer_experiment.txt
 
-    forward=\$(grep '1++/1--/2+-/2-+' ${prefix}.infer_experiment.txt | awk '{print \$NF}' 2>/dev/null || echo "0")
-    reverse=\$(grep '1+-/1-+/2++/2--' ${prefix}.infer_experiment.txt | awk '{print \$NF}' 2>/dev/null || echo "0")
-
-    if (( \$(echo "\$forward > 0.7" | bc -l) )); then
-        strandness="forward"
-    elif (( \$(echo "\$reverse > 0.7" | bc -l) )); then
-        strandness="reverse"
-    elif [ "${meta.single_end}" = "true" ]; then
-        strandness="U"
-    else
-        strandness="IU"
-    fi
-
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         rseqc: \$( infer_experiment.py --version | sed 's/.*.py //' )
@@ -54,7 +40,6 @@ process RSEQC_INFEREXPERIMENT {
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.infer_experiment.txt
-    strandness="IU"
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

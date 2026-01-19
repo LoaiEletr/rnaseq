@@ -52,19 +52,6 @@ output:
           ontologies:
             - edam: "http://edamontology.org/format_2330"
 
-  strandness:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
-      - strandness:
-          type: string
-          description: |
-            Inferred strandness type
-            Options: forward, reverse, U, IU
-          pattern: "forward|reverse|U|IU"
-
   versions_rseqc:
     - - "${task.process}":
           type: string
