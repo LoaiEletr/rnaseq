@@ -1,0 +1,72 @@
+{
+    "Should stub calculate read distribution across genomic features with RSeQC and return mocked distribution TXT file": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.read_distribution.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,8828ded24cc0f4605190f0947770ff2a"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.read_distribution.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,8828ded24cc0f4605190f0947770ff2a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T03:48:56.628001131"
+    },
+    "Should calculate read distribution across genomic features with RSeQC and return distribution TXT file": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.read_distribution.txt:md5,56893fdc0809d968629a363551a1655f"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,8828ded24cc0f4605190f0947770ff2a"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.read_distribution.txt:md5,56893fdc0809d968629a363551a1655f"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,8828ded24cc0f4605190f0947770ff2a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T03:46:20.390372664"
+    }
+}
