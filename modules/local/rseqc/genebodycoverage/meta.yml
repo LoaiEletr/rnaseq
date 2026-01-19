@@ -1,0 +1,82 @@
+name: rseqc_genebodycoverage
+description: |
+  Calculates gene body coverage statistics from BAM files using RSeQC geneBody_coverage.py.
+keywords:
+  - rseqc
+  - gene body coverage
+  - rna-seq
+  - quality control
+tools:
+  - rseqc:
+      description: "RNA-seq quality control package"
+      homepage: "http://rseqc.sourceforge.net/"
+      documentation: "http://rseqc.sourceforge.net/"
+      tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      licence: ["GPL-3.0-only"]
+      identifier: "rseqc"
+
+input:
+  - bam_files:
+      type: file
+      description: |
+        BAM files for gene body coverage analysis
+      pattern: "*.{bam,bam.gz}"
+
+  - bai_files:
+      type: file
+      description: |
+        BAM index files
+      pattern: "*.{bai}"
+
+  - bed:
+      type: file
+      description: |
+        BED file with gene annotations
+      pattern: "*.{bed,bed.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_3003"
+
+output:
+  genecoverage_files:
+    - genebody_coverage.*:
+        type: file
+        description: |
+          Gene body coverage output files
+        pattern: "genebody_coverage.*"
+
+  log:
+    - log.txt:
+        type: file
+        description: |
+          Log file from gene body coverage analysis
+        pattern: "log.txt"
+        ontologies:
+          - edam: "http://edamontology.org/data_1678"
+
+  versions_rseqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "geneBody_coverage.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "geneBody_coverage.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
