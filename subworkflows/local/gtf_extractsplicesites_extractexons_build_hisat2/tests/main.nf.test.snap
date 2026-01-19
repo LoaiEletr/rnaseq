@@ -1,0 +1,116 @@
+{
+    "sarscov2 - gtf - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    "genome.splice_sites.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        "genome.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,778bb7fa510e435432286beeb7e4d582",
+                    "versions.yml:md5,d7c87aa57a709bbe33ae7647f4018845",
+                    "versions.yml:md5,fbc801e24f78302b6936da1882fe53cc"
+                ],
+                "exonssites": [
+                    "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "index": [
+                    [
+                        "genome.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "genome.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "splicesites": [
+                    "genome.splice_sites.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,778bb7fa510e435432286beeb7e4d582",
+                    "versions.yml:md5,d7c87aa57a709bbe33ae7647f4018845",
+                    "versions.yml:md5,fbc801e24f78302b6936da1882fe53cc"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T20:51:50.060149005"
+    },
+    "sarscov2 - gtf - fasta": {
+        "content": [
+            {
+                "0": [
+                    "genome.splice_sites.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        "genome.1.ht2:md5,057cfa8a22b97ee9cff4c8d342498803",
+                        "genome.2.ht2:md5,47b153cd1319abc88dda532462651fcf",
+                        "genome.3.ht2:md5,4ed93abba181d8dfab2e303e33114777",
+                        "genome.4.ht2:md5,c25be5f8b0378abf7a58c8a880b87626",
+                        "genome.5.ht2:md5,91198831aaba993acac1734138c5f173",
+                        "genome.6.ht2:md5,265e1284ce85686516fae5d35540994a",
+                        "genome.7.ht2:md5,9013eccd91ad614d7893c739275a394f",
+                        "genome.8.ht2:md5,33cdeccccebe80329f1fdbee7f5874cb"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,778bb7fa510e435432286beeb7e4d582",
+                    "versions.yml:md5,d7c87aa57a709bbe33ae7647f4018845",
+                    "versions.yml:md5,fbc801e24f78302b6936da1882fe53cc"
+                ],
+                "exonssites": [
+                    "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "index": [
+                    [
+                        "genome.1.ht2:md5,057cfa8a22b97ee9cff4c8d342498803",
+                        "genome.2.ht2:md5,47b153cd1319abc88dda532462651fcf",
+                        "genome.3.ht2:md5,4ed93abba181d8dfab2e303e33114777",
+                        "genome.4.ht2:md5,c25be5f8b0378abf7a58c8a880b87626",
+                        "genome.5.ht2:md5,91198831aaba993acac1734138c5f173",
+                        "genome.6.ht2:md5,265e1284ce85686516fae5d35540994a",
+                        "genome.7.ht2:md5,9013eccd91ad614d7893c739275a394f",
+                        "genome.8.ht2:md5,33cdeccccebe80329f1fdbee7f5874cb"
+                    ]
+                ],
+                "splicesites": [
+                    "genome.splice_sites.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,778bb7fa510e435432286beeb7e4d582",
+                    "versions.yml:md5,d7c87aa57a709bbe33ae7647f4018845",
+                    "versions.yml:md5,fbc801e24f78302b6936da1882fe53cc"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T20:48:40.332724066"
+    }
+}

@@ -1,0 +1,56 @@
+name: gtf_extractsplicesites_extractexons_build_hisat2
+description: Extract splice sites and exons from GTF and build HISAT2 index
+keywords:
+  - hisat2
+  - indexing
+  - gtf
+  - splice-sites
+  - exons
+  - reference
+  - genome
+components:
+  - hisat2/extractexons
+  - hisat2/extractsplicesites
+  - hisat2/build
+input:
+  - ch_gtf:
+      type: file
+      description: |
+        The input channel containing GTF annotation files
+        Structure: [ path(gtf) ]
+      pattern: "*.gtf"
+  - ch_ref:
+      type: file
+      description: |
+        The input channel containing reference genome FASTA files
+        Structure: [ path(ref) ]
+      pattern: "*.{fa,fasta}"
+output:
+  - splicesites:
+      type: file
+      description: |
+        Channel containing extracted splice sites files
+        Structure: [ path(splice_sites) ]
+      pattern: "*.splice_sites.tsv"
+  - exonssites:
+      type: file
+      description: |
+        Channel containing extracted exons files
+        Structure: [ path(exons_sites) ]
+      pattern: "*.exons.tsv"
+  - index:
+      type: file
+      description: |
+        Channel containing HISAT2 index files
+        Structure: [ path(index) ]
+      pattern: "index"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from all modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
