@@ -1,0 +1,204 @@
+{
+    "Should annotate splice junctions in RNA-seq data with RSeQC and return annotation files with R script": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                ],
+                "events_pdf": [
+                    
+                ],
+                "interact_bed": [
+                    
+                ],
+                "junction_bed": [
+                    
+                ],
+                "junction_pdf": [
+                    
+                ],
+                "rscript": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                ],
+                "xls": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T03:28:49.766056844"
+    },
+    "Should stub annotate splice junctions in RNA-seq data with RSeQC and return mocked annotation files with R script": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.events.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "6": [
+                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                ],
+                "events_pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.events.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "interact_bed": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "junction_bed": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "junction_pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "rscript": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                ],
+                "xls": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T03:30:55.28106944"
+    }
+}
