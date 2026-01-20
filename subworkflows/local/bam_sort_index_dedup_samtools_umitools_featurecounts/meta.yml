@@ -1,0 +1,99 @@
+name: "bam_sort_index_dedup_samtools_umitools_featurecounts"
+description: |
+  Comprehensive BAM processing workflow with optional UMI deduplication and feature counting.
+  Performs: BAM sorting and indexing (SAMtools), optional UMI deduplication (UMI-tools),
+  and gene expression quantification (Subread featureCounts).
+keywords:
+  - bam
+  - sorting
+  - indexing
+  - deduplication
+  - umi
+  - feature-counting
+  - rna-seq
+  - samtools
+  - umi-tools
+  - subread
+  - featurecounts
+components:
+  - samtools/sort
+  - samtools/index
+  - umitools/dedup
+  - subread/featurecounts
+input:
+  - ch_bam:
+      type: file
+      description: |
+        Input channel containing BAM/CRAM/SAM files
+        Structure: [ val(meta), path(bam) ]
+      pattern: "*.{bam,cram,sam,bam.gz,cram.gz,sam.gz}"
+  - ch_gtf:
+      type: file
+      description: |
+        Channel containing GTF annotation file for feature counting
+        Structure: [ val(meta), path(gtf) ]
+      pattern: "*.{gtf,gtf.gz}"
+  - with_umi:
+      type: boolean
+      description: |
+        Whether to perform UMI deduplication (true) or skip it (false)
+        Structure: true/false
+output:
+  - bam:
+      type: file
+      description: |
+        Processed BAM files (sorted, and deduplicated if with_umi=true)
+        Structure: [ val(meta), path(bam) ]
+      pattern: "*.sorted.bam"
+  - bai:
+      type: file
+      description: |
+        BAM index files (BAI format)
+        Structure: [ val(meta), path(bai) ]
+      pattern: "*.sorted.bam.bai"
+  - edit_distance:
+      type: file
+      description: |
+        TSV files with edit distance statistics from UMI deduplication (only when with_umi=true)
+        Structure: [ val(meta), path(tsv_edit_distance) ]
+      pattern: "*edit_distance.tsv"
+  - per_umi:
+      type: file
+      description: |
+        TSV files with per-UMI statistics from deduplication (only when with_umi=true)
+        Structure: [ val(meta), path(tsv_per_umi) ]
+      pattern: "*per_umi.tsv"
+  - per_position:
+      type: file
+      description: |
+        TSV files with UMI per position statistics (only when with_umi=true)
+        Structure: [ val(meta), path(tsv_umi_per_position) ]
+      pattern: "*umi_per_position.tsv"
+  - umi_log:
+      type: file
+      description: |
+        Log files from UMI deduplication (only when with_umi=true)
+        Structure: [ val(meta), path(log) ]
+      pattern: "*.log"
+  - counts:
+      type: file
+      description: |
+        Gene expression count matrices from featureCounts
+        Structure: [ val(meta), path(counts) ]
+      pattern: "*.counts.txt"
+  - summary:
+      type: file
+      description: |
+        Summary statistics files from featureCounts
+        Structure: [ val(meta), path(summary) ]
+      pattern: "*.summary.txt"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from all executed modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
