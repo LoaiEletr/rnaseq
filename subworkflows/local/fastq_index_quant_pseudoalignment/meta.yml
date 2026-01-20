@@ -1,0 +1,93 @@
+name: "fastq_index_quant_pseudoalignment"
+description: |
+  Flexible RNA-seq quantification workflow supporting both Kallisto and Salmon pseudoaligners.
+  Performs transcriptome indexing and quantification with user-selected pseudoalignment method.
+  Automatically handles method-specific parameters and outputs.
+keywords:
+  - pseudoalignment
+  - quantification
+  - rna-seq
+  - kallisto
+  - salmon
+  - transcriptomics
+  - indexing
+  - transcriptome
+components:
+  - kallisto/index
+  - salmon/index
+  - kallisto/quant
+  - salmon/quant
+input:
+  - reads:
+      type: file
+      description: |
+        Input channel containing FASTQ files (single or paired-end)
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+  - ch_transcriptome:
+      type: file
+      description: |
+        Channel containing transcriptome FASTA file for indexing
+        Structure: [ path(transcriptome) ]
+      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+  - ch_gtf:
+      type: file
+      description: |
+        Channel containing GTF annotation file for quantification
+        Structure: [ path(gtf) ]
+      pattern: "*.{gtf,gtf.gz}"
+  - val_bootstrap_count:
+      type: integer
+      description: |
+        Number of bootstrap samples for Kallisto quantification
+        Structure: integer
+  - val_fragment_length:
+      type: integer
+      description: |
+        Average fragment length for Kallisto (single-end mode)
+        Structure: integer
+  - val_fragment_length_sd:
+      type: integer
+      description: |
+        Fragment length standard deviation for Kallisto (single-end mode)
+        Structure: integer
+  - val_pseudoaligner_method:
+      type: string
+      description: |
+        Pseudoalignment method to use: 'kallisto' or 'salmon'
+        Structure: [ "kallisto" | "salmon" ]
+output:
+  - index:
+      type: file
+      description: |
+        Pseudoaligner index files (Kallisto or Salmon format)
+        Structure: [ path(index) ]
+      pattern: "*"
+  - quant_dir:
+      type: file
+      description: |
+        Quantification output directories containing results
+        Structure: [ val(meta), path(quant_dir) ]
+      pattern: "*"
+  - json_info:
+      type: file
+      description: |
+        JSON info files from Kallisto quantification (only when method='kallisto')
+        Structure: [ val(meta), path(json_info) ]
+      pattern: "*.json"
+  - quant_log:
+      type: file
+      description: |
+        Log files from quantification (Kallisto or Salmon)
+        Structure: [ val(meta), path(quant_log) ]
+      pattern: "*.log"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from executed modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

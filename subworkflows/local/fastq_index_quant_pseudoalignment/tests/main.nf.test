@@ -1,0 +1,225 @@
+nextflow_workflow {
+
+    name "Test Workflow FASTQ_INDEX_QUANT_PSEUDOALIGNMENT"
+    script "../main.nf"
+    workflow "FASTQ_INDEX_QUANT_PSEUDOALIGNMENT"
+
+    tag "subworkflows"
+    tag "subworkflows/fastq_index_quant_pseudoalignment"
+    tag "kallisto"
+    tag "kallisto/index"
+    tag "kallisto/quant"
+    tag "salmon"
+    tag "salmon/index"
+    tag "salmon/quant"
+
+    test("sarscov2 - fastq - fasta - gtf | kallisto") {
+        when {
+            params {
+                outdir = "$outputDir"
+                bootstrap_count = 0
+                fragment_length = 200
+                fragment_length_sd = 30
+                pseudoaligner_method = "kallisto"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, lib_type: 'U' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[3] = params.bootstrap_count
+                input[4] = params.fragment_length
+                input[5] = params.fragment_length_sd
+                input[6] = params.pseudoaligner_method
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_kallisto_single_end") }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - fasta - gtf | kallisto") {
+        when {
+            params {
+                outdir = "$outputDir"
+                bootstrap_count = 0
+                fragment_length = 200
+                fragment_length_sd = 30
+                pseudoaligner_method = "kallisto"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, lib_type: 'IU' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[3] = params.bootstrap_count
+                input[4] = params.fragment_length
+                input[5] = params.fragment_length_sd
+                input[6] = params.pseudoaligner_method
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_kallisto_paired_end") }
+            )
+        }
+    }
+
+    test("sarscov2 - fastq - fasta - gtf | salmon") {
+        when {
+            params {
+                outdir = "$outputDir"
+                bootstrap_count = 0
+                fragment_length = 200
+                fragment_length_sd = 30
+                pseudoaligner_method = "salmon"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, lib_type: 'U' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[3] = params.bootstrap_count
+                input[4] = params.fragment_length
+                input[5] = params.fragment_length_sd
+                input[6] = params.pseudoaligner_method
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_salmon_single_end") }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - fasta - gtf | salmon") {
+        when {
+            params {
+                outdir = "$outputDir"
+                bootstrap_count = 0
+                fragment_length = 200
+                fragment_length_sd = 30
+                pseudoaligner_method = "salmon"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, lib_type: 'IU' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[3] = params.bootstrap_count
+                input[4] = params.fragment_length
+                input[5] = params.fragment_length_sd
+                input[6] = params.pseudoaligner_method
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_salmon_paired_end") }
+            )
+        }
+    }
+
+    // Stub tests
+    test("sarscov2 - fastq - fasta - gtf | kallisto - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                bootstrap_count = 0
+                fragment_length = 200
+                fragment_length_sd = 30
+                pseudoaligner_method = "kallisto"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, lib_type: 'U' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[3] = params.bootstrap_count
+                input[4] = params.fragment_length
+                input[5] = params.fragment_length_sd
+                input[6] = params.pseudoaligner_method
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - fasta - gtf | salmon - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                bootstrap_count = 0
+                fragment_length = 200
+                fragment_length_sd = 30
+                pseudoaligner_method = "salmon"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, lib_type: 'IU' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[3] = params.bootstrap_count
+                input[4] = params.fragment_length
+                input[5] = params.fragment_length_sd
+                input[6] = params.pseudoaligner_method
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
