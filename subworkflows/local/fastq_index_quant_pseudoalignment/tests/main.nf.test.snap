@@ -1,0 +1,286 @@
+{
+    "sarscov2 - fastq - fasta - gtf | kallisto - stub": {
+        "content": [
+            {
+                "0": [
+                    "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,1b6f33d7e1c85357c1ee5d34f9533706",
+                    "versions.yml:md5,c584a8b2c1f91e700f8226f046f0311c"
+                ],
+                "index": [
+                    "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "json_info": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "quant_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1b6f33d7e1c85357c1ee5d34f9533706",
+                    "versions.yml:md5,c584a8b2c1f91e700f8226f046f0311c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T18:21:07.951674274"
+    },
+    "versions_salmon_paired_end": {
+        "content": [
+            [
+                "versions.yml:md5,9e653d25936447aac7e2b3fb34afcf96",
+                "versions.yml:md5,d9f8cb15402e4b37073bfa55399f24ac"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T18:20:15.893501674"
+    },
+    "versions_salmon_single_end": {
+        "content": [
+            [
+                "versions.yml:md5,9e653d25936447aac7e2b3fb34afcf96",
+                "versions.yml:md5,d9f8cb15402e4b37073bfa55399f24ac"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T18:19:23.6703459"
+    },
+    "versions_kallisto_single_end": {
+        "content": [
+            [
+                "versions.yml:md5,1b6f33d7e1c85357c1ee5d34f9533706",
+                "versions.yml:md5,c584a8b2c1f91e700f8226f046f0311c"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T18:12:45.708436121"
+    },
+    "versions_kallisto_paired_end": {
+        "content": [
+            [
+                "versions.yml:md5,1b6f33d7e1c85357c1ee5d34f9533706",
+                "versions.yml:md5,c584a8b2c1f91e700f8226f046f0311c"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T18:18:28.572027645"
+    },
+    "sarscov2 - [fastq1, fastq2] - fasta - gtf | salmon - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,9e653d25936447aac7e2b3fb34afcf96",
+                    "versions.yml:md5,d9f8cb15402e4b37073bfa55399f24ac"
+                ],
+                "index": [
+                    [
+                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "json_info": [
+                    
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "quant_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9e653d25936447aac7e2b3fb34afcf96",
+                    "versions.yml:md5,d9f8cb15402e4b37073bfa55399f24ac"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T18:22:03.379652659"
+    }
+}
