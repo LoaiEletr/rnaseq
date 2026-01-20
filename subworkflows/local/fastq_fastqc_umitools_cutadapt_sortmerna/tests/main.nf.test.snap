@@ -1,0 +1,688 @@
+{
+    "sarscov2 paired-end [fastq] | skip_umi_extract": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    [
+                        "test_non_rRNA_reads_fwd.fq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                        "test_non_rRNA_reads_rev.fq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                    ]
+                ]
+            ],
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    "test.cutadapt.json:md5,9f81a1377eda7be943f7b170f8aa44f9"
+                ]
+            ],
+            [
+                "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T01:05:44.005571683"
+    },
+    "sarscov2 paired-end [fastq] | skip_sortmerna": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    [
+                        "test.cutadapt_1.fastq.gz:md5,224f92d260987cde4c8ef6620bf2ded7",
+                        "test.cutadapt_2.fastq.gz:md5,624b0db474d5306465432fabda38f5b7"
+                    ]
+                ]
+            ],
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    "test.cutadapt.json:md5,9f81a1377eda7be943f7b170f8aa44f9"
+                ]
+            ],
+            [
+                
+            ],
+            [
+                "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T01:53:00.089989388"
+    },
+    "sarscov2 paired-end [fastq] | skip_fastqc": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    [
+                        "test_non_rRNA_reads_fwd.fq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                        "test_non_rRNA_reads_rev.fq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                    ]
+                ]
+            ],
+            [
+                
+            ],
+            [
+                
+            ],
+            [
+                
+            ],
+            [
+                
+            ],
+            [
+                
+            ],
+            [
+                "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T23:53:03.1820173"
+    },
+    "sarscov2 paired-end [fastq] | skip_cutadapt": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    [
+                        "test_non_rRNA_reads_fwd.fq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                        "test_non_rRNA_reads_rev.fq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                    ]
+                ]
+            ],
+            [
+                
+            ],
+            [
+                
+            ],
+            [
+                "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T01:49:37.035702902"
+    },
+    "sarscov2 single-end [fastq] - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "6": [
+                    [
+                        
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "8": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "9": [
+                    "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                    "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                    "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                    "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                    "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "index": [
+                    [
+                        
+                    ]
+                ],
+                "nonrrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                    "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                    "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                    "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                    "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T02:35:13.590749317"
+    },
+    "sarscov2 paired-end [fastq] | with_umi": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    [
+                        "test_non_rRNA_reads_fwd.fq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                        "test_non_rRNA_reads_rev.fq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                    ]
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    [
+                        "test_non_rRNA_reads_fwd.fq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                        "test_non_rRNA_reads_rev.fq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                    ]
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    "test.cutadapt.json:md5,64ba0a8cdfd95efae2dcf362f99da789"
+                ]
+            ],
+            [
+                "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                "versions.yml:md5,8fd56c06588eaf1c1de0610dc4cdd62a",
+                "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T00:29:39.748772212"
+    },
+    "sarscov2 paired-end [fastq]": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    [
+                        "test_non_rRNA_reads_fwd.fq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                        "test_non_rRNA_reads_rev.fq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                    ]
+                ]
+            ],
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false,
+                        "sequencer": "NovaSeq"
+                    },
+                    "test.cutadapt.json:md5,9f81a1377eda7be943f7b170f8aa44f9"
+                ]
+            ],
+            [
+                "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-19T23:17:44.048932845"
+    },
+    "sarscov2 paired-end [fastq] - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "6": [
+                    [
+                        
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "8": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "9": [
+                    "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                    "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                    "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                    "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                    "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "index": [
+                    [
+                        
+                    ]
+                ],
+                "nonrrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                    "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                    "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                    "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                    "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T02:32:31.885840737"
+    },
+    "sarscov2 single-end [fastq]": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "sequencer": "NovaSeq"
+                    },
+                    "test_non_rRNA_reads.fq.gz:md5,384571fee67a1e303102fbbfee699177"
+                ]
+            ],
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "sequencer": "NovaSeq"
+                    },
+                    "test.cutadapt.json:md5,265189748f91abf4bbd3a60e6ce9266c"
+                ]
+            ],
+            [
+                "versions.yml:md5,0dab4689fa22022d2cfdddc2b8d1bda1",
+                "versions.yml:md5,26d03d31d3186965facc42f37fc302b0",
+                "versions.yml:md5,375f30f95213ab0182f23b948c50862d",
+                "versions.yml:md5,a88c1862b30777f119a01b268fcf6c71",
+                "versions.yml:md5,b4273580b248041e989cd850a8d6c1fb"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T02:29:12.342305651"
+    }
+}
