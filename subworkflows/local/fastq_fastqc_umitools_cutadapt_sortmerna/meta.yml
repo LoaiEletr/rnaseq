@@ -1,0 +1,139 @@
+name: "fastq_fastqc_umitools_cutadapt_sortmerna"
+description: |
+  Comprehensive FASTQ preprocessing workflow for RNA-seq data.
+  Performs quality control (FASTQC), UMI extraction (UMI-tools), adapter trimming (Cutadapt),
+  and ribosomal RNA filtering (SortMeRNA). Each step is configurable and optional.
+keywords:
+  - fastq
+  - preprocessing
+  - quality-control
+  - umi
+  - adapter-trimming
+  - rrna-filtering
+  - rna-seq
+  - fastqc
+  - cutadapt
+  - umi-tools
+  - sortmerna
+components:
+  - fastqc
+  - umitools/extract
+  - cutadapt
+  - sortmerna
+input:
+  - ch_reads:
+      type: file
+      description: |
+        Input channel containing FASTQ files (single or paired-end)
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+  - ch_adapter:
+      type: string
+      description: |
+        Channel containing adapter sequences for trimming
+        Structure: [ path(adapter) ]
+  - ch_rrna_db:
+      type: file
+      description: |
+        Channel containing ribosomal RNA database files for SortMeRNA
+        Structure: [ path(rrna_db) ]
+  - val_rrna_db_type:
+      type: string
+      description: |
+        SortMeRNA database type (default, fast, or sensitive)
+        Structure: [ "default" | "fast" | "sensitive" ]
+  - val_lib_kit:
+      type: string
+      description: |
+        Library preparation kit for UMI extraction (quantseq, corall, or takara)
+        Structure: [ "quantseq" | "corall" | "takara" ]
+  - val_with_umi:
+      type: boolean
+      description: |
+        Whether the reads contain UMIs
+        Structure: true/false
+  - val_skip_umi_extract:
+      type: boolean
+      description: |
+        Skip UMI extraction step
+        Structure: true/false
+  - val_skip_fastqc:
+      type: boolean
+      description: |
+        Skip FASTQC quality control steps
+        Structure: true/false
+  - val_skip_cutadapt:
+      type: boolean
+      description: |
+        Skip adapter trimming with Cutadapt
+        Structure: true/false
+  - val_skip_sortmerna:
+      type: boolean
+      description: |
+        Skip rRNA filtering with SortMeRNA
+        Structure: true/false
+output:
+  - fastqc_raw_html:
+      type: file
+      description: |
+        HTML reports from raw reads quality control (if val_skip_fastqc is false)
+        Structure: [ val(meta), path(html) ]
+      pattern: "*.html"
+  - fastqc_raw_zip:
+      type: file
+      description: |
+        ZIP archives from raw reads quality control (if val_skip_fastqc is false)
+        Structure: [ val(meta), path(zip) ]
+      pattern: "*.zip"
+  - umi_log:
+      type: file
+      description: |
+        Log files from UMI extraction (if val_with_umi is true and val_skip_umi_extract is false)
+        Structure: [ val(meta), path(log) ]
+      pattern: "*.log"
+  - trim_json:
+      type: file
+      description: |
+        JSON reports from Cutadapt trimming (if val_skip_cutadapt is false)
+        Structure: [ val(meta), path(json) ]
+      pattern: "*.json"
+  - fastqc_trim_html:
+      type: file
+      description: |
+        HTML reports from trimmed reads quality control (if both val_skip_fastqc and val_skip_cutadapt are false)
+        Structure: [ val(meta), path(html) ]
+      pattern: "*.html"
+  - fastqc_trim_zip:
+      type: file
+      description: |
+        ZIP archives from trimmed reads quality control (if both val_skip_fastqc and val_skip_cutadapt are false)
+        Structure: [ val(meta), path(zip) ]
+      pattern: "*.zip"
+  - index:
+      type: file
+      description: |
+        SortMeRNA rRNA database index files (if val_skip_sortmerna is false)
+        Structure: [ path(index) ]
+      pattern: "*"
+  - reads:
+      type: file
+      description: |
+        Preprocessed FASTQ files after all enabled steps
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+  - nonrrna_log:
+      type: file
+      description: |
+        Log files from SortMeRNA rRNA filtering (if val_skip_sortmerna is false)
+        Structure: [ val(meta), path(log) ]
+      pattern: "*.log"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from all executed modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "Loai3tr"
+maintainers:
+  - "Loai3tr"
