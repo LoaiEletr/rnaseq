@@ -19,7 +19,7 @@ workflow FASTQ_SAMPLE_SEQKIT_SALMON {
 
     // 1. Subsample reads with SeqKit
     SEQKIT_SAMPLE(ch_reads)
-    ch_versions = ch_versions.mix(SEQKIT_SAMPLE.out.versions)
+    ch_versions = ch_versions.mix(SEQKIT_SAMPLE.out.versions.first())
 
     // 2. Build Salmon index
     SALMON_INDEX(ch_transcriptome)
@@ -34,7 +34,7 @@ workflow FASTQ_SAMPLE_SEQKIT_SALMON {
         ch_gtf,
         libtype,
     )
-    ch_versions = ch_versions.mix(SALMON_QUANT.out.versions)
+    ch_versions = ch_versions.mix(SALMON_QUANT.out.versions.first())
 
     emit:
     reads = SEQKIT_SAMPLE.out.reads // channel: [ val(meta), [ reads ] ]
