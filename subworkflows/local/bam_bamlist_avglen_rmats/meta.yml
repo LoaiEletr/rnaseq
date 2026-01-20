@@ -14,10 +14,10 @@ keywords:
   - splicing-analysis
   - gene-expression
 components:
-  - make_bamlist
+  - make/bamlist
   - seqkit/stats
   - rmats
-  - filter_sigevents
+  - filter/sigevents
   - rmats2sashimiplot
 input:
   - ch_bam:
