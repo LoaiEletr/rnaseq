@@ -1,0 +1,200 @@
+name: "bam_rseqc"
+description: |
+  Comprehensive BAM quality control workflow using RSeQC modules.
+  Performs selective RSeQC analyses based on user-specified modules including:
+  BAM statistics, gene body coverage, strandness inference, inner distance, junction annotation,
+  read distribution, read duplication, and transcript integrity number (TIN) calculations.
+keywords:
+  - rseqc
+  - quality-control
+  - bam
+  - rna-seq
+  - qc
+  - gene-body-coverage
+  - tin
+  - junction-annotation
+  - read-distribution
+components:
+  - rseqc/bamstat
+  - rseqc/genebodycoverage
+  - rseqc/inferexperiment
+  - rseqc/innerdistance
+  - rseqc/junctionannotation
+  - rseqc/readdistribution
+  - rseqc/readduplication
+  - rseqc/tin
+input:
+  - rseqc_modules:
+      type: list
+      description: |
+        List of RSeQC module names to execute. Available modules:
+        'bam_stat', 'genebody_coverage', 'infer_experiment', 'inner_distance',
+        'junction_annotation', 'read_distribution', 'read_duplication', 'tin'
+        Structure: list or channel of module names
+  - ch_bam:
+      type: file
+      description: |
+        Input channel containing BAM files
+        Structure: [ val(meta), path(bam) ]
+      pattern: "*.{bam,bam.gz}"
+  - ch_bed:
+      type: file
+      description: |
+        Channel containing BED annotation file for various RSeQC modules
+        Structure: [ path(bed) ]
+      pattern: "*.bed"
+  - ch_bai:
+      type: file
+      description: |
+        Channel containing BAM index files (required for some modules)
+        Structure: [ val(meta), path(bai) ]
+      pattern: "*.bai"
+output:
+  - bamstat:
+      type: file
+      description: |
+        BAM statistics text files (only when 'bam_stat' in rseqc_modules)
+        Structure: [ val(meta), path(txt) ]
+      pattern: "*.txt"
+  - genebodycoverage_r:
+      type: file
+      description: |
+        R scripts for gene body coverage plots (only when 'genebody_coverage' in rseqc_modules)
+        Structure: [ path(rscript) ]
+      pattern: "*.r"
+  - genebodycoverage_pdf:
+      type: file
+      description: |
+        PDF plots of gene body coverage (only when 'genebody_coverage' in rseqc_modules)
+        Structure: [ path(pdf) ]
+      pattern: "*.pdf"
+  - genebodycoverage_txt:
+      type: file
+      description: |
+        Text files with gene body coverage data (only when 'genebody_coverage' in rseqc_modules)
+        Structure: [ path(txt) ]
+      pattern: "*.txt"
+  - genebodycoverage_log:
+      type: file
+      description: |
+        Log files from gene body coverage analysis (only when 'genebody_coverage' in rseqc_modules)
+        Structure: [ path(log) ]
+      pattern: "*.log"
+  - inferexperiment:
+      type: file
+      description: |
+        Strandness inference results (only when 'infer_experiment' in rseqc_modules)
+        Structure: [ val(meta), path(txt) ]
+      pattern: "*.txt"
+  - innerdistance_distance:
+      type: file
+      description: |
+        Inner distance distribution data (only when 'inner_distance' in rseqc_modules)
+        Structure: [ val(meta), path(distance) ]
+      pattern: "*.distance.txt"
+  - innerdistance_freq:
+      type: file
+      description: |
+        Inner distance frequency data (only when 'inner_distance' in rseqc_modules)
+        Structure: [ val(meta), path(freq) ]
+      pattern: "*.freq.txt"
+  - innerdistance_pdf:
+      type: file
+      description: |
+        Inner distance PDF plots (only when 'inner_distance' in rseqc_modules)
+        Structure: [ val(meta), path(pdf) ]
+      pattern: "*.pdf"
+  - innerdistance_r:
+      type: file
+      description: |
+        R scripts for inner distance plots (only when 'inner_distance' in rseqc_modules)
+        Structure: [ val(meta), path(rscript) ]
+      pattern: "*.r"
+  - junctionannotation_xls:
+      type: file
+      description: |
+        Junction annotation Excel files (only when 'junction_annotation' in rseqc_modules)
+        Structure: [ val(meta), path(xls) ]
+      pattern: "*.xls"
+  - junctionannotation_r:
+      type: file
+      description: |
+        R scripts for junction annotation plots (only when 'junction_annotation' in rseqc_modules)
+        Structure: [ val(meta), path(rscript) ]
+      pattern: "*.r"
+  - junctionannotation_bed:
+      type: file
+      description: |
+        Junction BED files (only when 'junction_annotation' in rseqc_modules)
+        Structure: [ val(meta), path(junction_bed) ]
+      pattern: "*.bed"
+  - junctionannotation_interact:
+      type: file
+      description: |
+        Interactive BED files for visualization (only when 'junction_annotation' in rseqc_modules)
+        Structure: [ val(meta), path(interact_bed) ]
+      pattern: "*.interact.bed"
+  - junctionannotation_pdf:
+      type: file
+      description: |
+        Junction annotation PDF plots (only when 'junction_annotation' in rseqc_modules)
+        Structure: [ val(meta), path(junction_pdf) ]
+      pattern: "*.pdf"
+  - junctionannotation_events_pdf:
+      type: file
+      description: |
+        Alternative splicing events PDF plots (only when 'junction_annotation' in rseqc_modules)
+        Structure: [ val(meta), path(events_pdf) ]
+      pattern: "*.events.pdf"
+  - readdistribution:
+      type: file
+      description: |
+        Read distribution statistics (only when 'read_distribution' in rseqc_modules)
+        Structure: [ val(meta), path(txt) ]
+      pattern: "*.txt"
+  - readduplication_pdf:
+      type: file
+      description: |
+        Read duplication PDF plots (only when 'read_duplication' in rseqc_modules)
+        Structure: [ val(meta), path(pdf) ]
+      pattern: "*.pdf"
+  - readduplication_r:
+      type: file
+      description: |
+        R scripts for read duplication plots (only when 'read_duplication' in rseqc_modules)
+        Structure: [ val(meta), path(rscript) ]
+      pattern: "*.r"
+  - readduplication_seq:
+      type: file
+      description: |
+        Sequence-based duplication rates (only when 'read_duplication' in rseqc_modules)
+        Structure: [ val(meta), path(seq_duplicaterate) ]
+      pattern: "*.seq_duplication.txt"
+  - readduplication_pos:
+      type: file
+      description: |
+        Position-based duplication rates (only when 'read_duplication' in rseqc_modules)
+        Structure: [ val(meta), path(pos_duplicaterate) ]
+      pattern: "*.pos_duplication.txt"
+  - tin_txt:
+      type: file
+      description: |
+        Transcript Integrity Number (TIN) text files (only when 'tin' in rseqc_modules)
+        Structure: [ val(meta), path(txt) ]
+      pattern: "*.txt"
+  - tin_xls:
+      type: file
+      description: |
+        Transcript Integrity Number (TIN) Excel files (only when 'tin' in rseqc_modules)
+        Structure: [ val(meta), path(xls) ]
+      pattern: "*.xls"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from executed modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
