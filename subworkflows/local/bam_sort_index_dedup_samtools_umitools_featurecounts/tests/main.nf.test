@@ -1,0 +1,130 @@
+nextflow_workflow {
+
+    name "Test Workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS"
+    script "../main.nf"
+    workflow "BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS"
+
+    tag "subworkflows"
+    tag "subworkflows/bam_sort_index_dedup_samtools_umitools_featurecounts"
+    tag "samtools"
+    tag "samtools/sort"
+    tag "samtools/index"
+    tag "umitools"
+    tag "umitools/dedup"
+    tag "subread"
+    tag "subread/featurecounts"
+
+    test("sarscov2 - bam - gtf | with_umi") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, lib_type: 'U'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[2] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.bam,
+                    workflow.out.bai,
+                    workflow.out.per_umi,
+                    workflow.out.per_position,
+                    workflow.out.counts,
+                    workflow.out.summary,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - gtf") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, lib_type: 'U'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[2] = false
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.bam,
+                    workflow.out.bai,
+                    workflow.out.per_umi,
+                    workflow.out.per_position,
+                    workflow.out.counts,
+                    workflow.out.summary,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - gtf | with_umi - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, lib_type: 'U'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[2] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - gtf - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, lib_type: 'U'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                ])
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[2] = false
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

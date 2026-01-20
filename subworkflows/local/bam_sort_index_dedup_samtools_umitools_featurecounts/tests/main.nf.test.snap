@@ -1,0 +1,451 @@
+{
+    "sarscov2 - bam - gtf | with_umi - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.umi_dedup.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.umi_dedup.sorted.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.edit_distance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.per_umi.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.umi_dedup.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "8": [
+                    "versions.yml:md5,1048e77bf4c729de2346a0152a890000",
+                    "versions.yml:md5,37003c1078c9477995a6c648a7b185cc",
+                    "versions.yml:md5,88158217d23e39887d8dcff1d6681bd7",
+                    "versions.yml:md5,d978500741b32bc7c9eb53aec9c2b2c3",
+                    "versions.yml:md5,e29f9301df3071cdbd202b577551c985",
+                    "versions.yml:md5,e52cc04f1ab4976151a4d1d12e0b1a64"
+                ],
+                "bai": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.umi_dedup.sorted.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.umi_dedup.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "edit_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.edit_distance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "per_position": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "per_umi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.per_umi.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "umi_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.umi_dedup.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1048e77bf4c729de2346a0152a890000",
+                    "versions.yml:md5,37003c1078c9477995a6c648a7b185cc",
+                    "versions.yml:md5,88158217d23e39887d8dcff1d6681bd7",
+                    "versions.yml:md5,d978500741b32bc7c9eb53aec9c2b2c3",
+                    "versions.yml:md5,e29f9301df3071cdbd202b577551c985",
+                    "versions.yml:md5,e52cc04f1ab4976151a4d1d12e0b1a64"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T19:06:55.987100048"
+    },
+    "sarscov2 - bam - gtf": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.sorted.bam:md5,31295a3e42e4bc4eafcd73846a6a8060"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.sorted.bam.bai:md5,258d78c6850d1c2c6ed56131ec4a69be"
+                ]
+            ],
+            [
+                
+            ],
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.counts.txt:md5,3af472b19c1f21b70f5f331842d778a9"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.counts.txt.summary:md5,babd3f7ad05738268b5b50f16e41160e"
+                ]
+            ],
+            [
+                "versions.yml:md5,37003c1078c9477995a6c648a7b185cc",
+                "versions.yml:md5,88158217d23e39887d8dcff1d6681bd7",
+                "versions.yml:md5,e29f9301df3071cdbd202b577551c985"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T19:05:36.559077173"
+    },
+    "sarscov2 - bam - gtf | with_umi": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.umi_dedup.sorted.bam:md5,fa8a4803f263b2425e4f615017b9b492"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.umi_dedup.sorted.bam.bai:md5,0c079a16dcfadaabf24cb48d7e20167b"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test_per_umi.tsv:md5,9b59b25634740ae3dd02a38b3aee1397"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test_per_umi_per_position.tsv:md5,2e1a12e6f720510880068deddeefe063"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.counts.txt:md5,2fc419f2d9f3dc40b8b218d0d09e4fb2"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "lib_type": "U"
+                    },
+                    "test.counts.txt.summary:md5,c446520d24d2cf44b1f5ee0d12f239fb"
+                ]
+            ],
+            [
+                "versions.yml:md5,1048e77bf4c729de2346a0152a890000",
+                "versions.yml:md5,37003c1078c9477995a6c648a7b185cc",
+                "versions.yml:md5,88158217d23e39887d8dcff1d6681bd7",
+                "versions.yml:md5,d978500741b32bc7c9eb53aec9c2b2c3",
+                "versions.yml:md5,e29f9301df3071cdbd202b577551c985",
+                "versions.yml:md5,e52cc04f1ab4976151a4d1d12e0b1a64"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T19:04:36.346507499"
+    },
+    "sarscov2 - bam - gtf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.sorted.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "8": [
+                    "versions.yml:md5,37003c1078c9477995a6c648a7b185cc",
+                    "versions.yml:md5,88158217d23e39887d8dcff1d6681bd7",
+                    "versions.yml:md5,e29f9301df3071cdbd202b577551c985"
+                ],
+                "bai": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.sorted.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "edit_distance": [
+                    
+                ],
+                "per_position": [
+                    
+                ],
+                "per_umi": [
+                    
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "U"
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,37003c1078c9477995a6c648a7b185cc",
+                    "versions.yml:md5,88158217d23e39887d8dcff1d6681bd7",
+                    "versions.yml:md5,e29f9301df3071cdbd202b577551c985"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T19:07:47.558764619"
+    }
+}
