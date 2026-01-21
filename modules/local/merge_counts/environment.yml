@@ -1,5 +1,4 @@
 channels:
   - conda-forge
-  - bioconda
 dependencies:
-  - bioconda::r-base=4.4.1
+  - conda-forge::r-base=4.4.1
