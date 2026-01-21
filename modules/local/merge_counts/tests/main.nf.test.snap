@@ -1,0 +1,48 @@
+{
+    "Should merge featureCounts files successfully and return merged counts table": {
+        "content": [
+            {
+                "0": [
+                    "merged_counts.rds:md5,640b95b04ab9199bf039a8a1278a5527"
+                ],
+                "1": [
+                    "versions.yml:md5,a9814794d7b80d2e853b6d619da8dd6d"
+                ],
+                "counts_table": [
+                    "merged_counts.rds:md5,640b95b04ab9199bf039a8a1278a5527"
+                ],
+                "versions": [
+                    "versions.yml:md5,a9814794d7b80d2e853b6d619da8dd6d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T02:06:56.455041456"
+    },
+    "Should stub merge featureCounts files successfully and return mocked merged counts table": {
+        "content": [
+            {
+                "0": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,a9814794d7b80d2e853b6d619da8dd6d"
+                ],
+                "counts_table": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,a9814794d7b80d2e853b6d619da8dd6d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T02:07:54.735090935"
+    }
+}

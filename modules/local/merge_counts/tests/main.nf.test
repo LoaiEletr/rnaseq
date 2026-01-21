@@ -1,0 +1,99 @@
+nextflow_process {
+    name "Test Process MERGE_COUNTS"
+    script "modules/local/merge_counts/main.nf"
+    process "MERGE_COUNTS"
+
+    tag "modules"
+    tag "merge_counts"
+
+    setup {
+        run("SUBREAD_FEATURECOUNTS") {
+            script "modules/local/subread/featurecounts/main.nf"
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id: 'test1', lib_type: 'reverse', single_end: true ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test2', lib_type: 'reverse', single_end: false ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test3', lib_type: 'reverse', single_end: false ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test4', lib_type: 'reverse', single_end: true ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.unaligned.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test5', lib_type: 'reverse', single_end: true ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                        ]
+                    ]
+                )
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+    }
+
+    test("Should merge featureCounts files successfully and return merged counts table") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = SUBREAD_FEATURECOUNTS.out.counts
+                .map { meta, counts ->
+                    counts
+                }
+                .collect()
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.counts_table.get(0) ==~ ".*/merged_counts\\.rds" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub merge featureCounts files successfully and return mocked merged counts table") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = SUBREAD_FEATURECOUNTS.out.counts
+                .map { meta, counts ->
+                    counts
+                }
+                .collect()
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

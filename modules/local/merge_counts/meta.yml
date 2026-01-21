@@ -1,0 +1,60 @@
+name: merge_counts
+description: |
+  Merges multiple featureCounts count files into a single count matrix using R.
+keywords:
+  - count matrix
+  - merging
+  - featurecounts
+  - rna-seq
+tools:
+  - r_base:
+      description: "R programming language for statistical computing"
+      homepage: "https://www.r-project.org/"
+      documentation: "https://www.r-project.org/"
+      tool_dev_url: "https://cran.r-project.org/"
+      licence: ["GPL-2.0-only"]
+      identifier: "r_base"
+
+input:
+  - counts:
+      type: file
+      description: |
+        Multiple featureCounts count files to merge
+      pattern: "*.counts.txt"
+
+output:
+  counts_table:
+    - merged_counts.rds:
+        type: file
+        description: |
+          RDS file containing merged count matrix
+        pattern: "merged_counts.rds"
+        ontologies: []
+
+  versions_r_base:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of the tool
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of the tool
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
