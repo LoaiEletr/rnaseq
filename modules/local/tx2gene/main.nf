@@ -29,4 +29,15 @@ process TX2GENE {
         bioconductor-biomart: \$(Rscript -e "library(biomaRt); cat(as.character(packageVersion('biomaRt')))")
     END_VERSIONS
     """
+
+    stub:
+    """
+    touch tx2gene.tsv
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
+        bioconductor-biomart: \$(Rscript -e "library(biomaRt); cat(as.character(packageVersion('biomaRt')))")
+    END_VERSIONS
+    """
 }

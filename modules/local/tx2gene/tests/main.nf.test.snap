@@ -49,13 +49,13 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,0fc7d55558972e04324bfd9db00e5008"
+                    "tx2gene.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "1": [
                     "versions.yml:md5,d11d36f564be356c349b8361500ca738"
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,0fc7d55558972e04324bfd9db00e5008"
+                    "tx2gene.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "versions": [
                     "versions.yml:md5,d11d36f564be356c349b8361500ca738"
@@ -66,7 +66,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T04:21:09.178610335"
+        "timestamp": "2026-01-21T15:27:27.098102142"
     },
     "Should generate transcript-to-gene mapping file for human species and return TSV file": {
         "content": [
