@@ -1,0 +1,289 @@
+nextflow_process {
+    name "Test Process TX2GENE"
+    script "modules/local/tx2gene/main.nf"
+    process "TX2GENE"
+
+    tag "modules"
+    tag "tx2gene"
+
+    test("Should generate transcript-to-gene mapping file for human species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "human"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for mouse species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "mouse"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for rat species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "rat"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for yeast species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for fruitfly species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "fruitfly"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for zebrafish species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "zebrafish"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for worm species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "worm"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for arabidopsis species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "arabidopsis"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for chicken species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "chicken"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for cow species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "cow"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for pig species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "pig"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for dog species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "dog"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should generate transcript-to-gene mapping file for monkey species and return TSV file") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "monkey"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    // Stub tests (one representative stub test to show pattern)
+    test("Should stub generate transcript-to-gene mapping file for human species and return mocked TSV file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "human"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

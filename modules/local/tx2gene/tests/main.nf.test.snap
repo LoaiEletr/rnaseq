@@ -1,0 +1,324 @@
+{
+    "Should generate transcript-to-gene mapping file for yeast species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,9e2a75a98605387381df293ba2dae5d7"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,9e2a75a98605387381df293ba2dae5d7"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T03:55:29.680323118"
+    },
+    "Should generate transcript-to-gene mapping file for chicken species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,394f4927dac14e1801f59c9e4b72ade3"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,394f4927dac14e1801f59c9e4b72ade3"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:10:14.010631406"
+    },
+    "Should stub generate transcript-to-gene mapping file for human species and return mocked TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,0fc7d55558972e04324bfd9db00e5008"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,0fc7d55558972e04324bfd9db00e5008"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:21:09.178610335"
+    },
+    "Should generate transcript-to-gene mapping file for human species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,0fc7d55558972e04324bfd9db00e5008"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,0fc7d55558972e04324bfd9db00e5008"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T03:49:18.862656906"
+    },
+    "Should generate transcript-to-gene mapping file for monkey species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,6ac820cc495b7fbe025adb96152eccad"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,6ac820cc495b7fbe025adb96152eccad"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:18:16.841197468"
+    },
+    "Should generate transcript-to-gene mapping file for pig species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,de1303a65c2f470f44289108620f26bc"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,de1303a65c2f470f44289108620f26bc"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:14:11.620131597"
+    },
+    "Should generate transcript-to-gene mapping file for fruitfly species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,ce6f005551fd3f4a5b69d276c2a15cca"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,ce6f005551fd3f4a5b69d276c2a15cca"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T03:56:57.913633806"
+    },
+    "Should generate transcript-to-gene mapping file for worm species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,87de035d87640326ce793ff8bfe5f17b"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,87de035d87640326ce793ff8bfe5f17b"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:06:29.884907537"
+    },
+    "Should generate transcript-to-gene mapping file for arabidopsis species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,0eb6dbe696eeb9818a7840fe26882223"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,0eb6dbe696eeb9818a7840fe26882223"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:08:19.383102013"
+    },
+    "Should generate transcript-to-gene mapping file for cow species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,2a4567beda3637ece95c57fef069b8b2"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,2a4567beda3637ece95c57fef069b8b2"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:12:18.386018255"
+    },
+    "Should generate transcript-to-gene mapping file for mouse species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,f0140304b87e21a3d9d82493b80c044a"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,f0140304b87e21a3d9d82493b80c044a"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T03:51:52.301871298"
+    },
+    "Should generate transcript-to-gene mapping file for zebrafish species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,04a64c4ca695f7445ee129e4c2fb7ed6"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,04a64c4ca695f7445ee129e4c2fb7ed6"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:04:35.362763539"
+    },
+    "Should generate transcript-to-gene mapping file for rat species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,46ebc0ac18d475ee89b048c542e41a1b"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,46ebc0ac18d475ee89b048c542e41a1b"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T03:53:59.630695724"
+    },
+    "Should generate transcript-to-gene mapping file for dog species and return TSV file": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,73427cbdde665a3918ddc6c69cd49c50"
+                ],
+                "1": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,73427cbdde665a3918ddc6c69cd49c50"
+                ],
+                "versions": [
+                    "versions.yml:md5,d11d36f564be356c349b8361500ca738"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T04:16:24.355762516"
+    }
+}
