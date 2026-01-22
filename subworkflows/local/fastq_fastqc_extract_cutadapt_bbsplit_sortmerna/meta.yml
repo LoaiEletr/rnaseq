@@ -1,24 +1,29 @@
-name: "fastq_fastqc_umitools_cutadapt_sortmerna"
+name: "fastq_fastqc_extract_cutadapt_bbsplit_sortmerna"
 description: |
-  Comprehensive FASTQ preprocessing workflow for RNA-seq data.
-  Performs quality control (FASTQC), UMI extraction (UMI-tools), adapter trimming (Cutadapt),
-  and ribosomal RNA filtering (SortMeRNA). Each step is configurable and optional.
+  Comprehensive FASTQ preprocessing workflow for RNA-seq data with contamination removal.
+  Performs: quality control (FASTQC), UMI extraction (UMI-tools), adapter trimming (Cutadapt),
+  contamination removal (BBMap bbsplit), and ribosomal RNA filtering (SortMeRNA).
+  Each step is configurable and optional.
 keywords:
   - fastq
   - preprocessing
   - quality-control
   - umi
   - adapter-trimming
+  - contamination-removal
   - rrna-filtering
   - rna-seq
   - fastqc
   - cutadapt
   - umi-tools
+  - bbmap
+  - bbsplit
   - sortmerna
 components:
   - fastqc
   - umitools/extract
   - cutadapt
+  - bbmap/bbsplit
   - sortmerna
 input:
   - ch_reads:
@@ -31,12 +36,24 @@ input:
       type: string
       description: |
         Channel containing adapter sequences for trimming
-        Structure: [ path(adapter) ]
+        Structure: [ adapter ]
   - ch_rrna_db:
       type: file
       description: |
         Channel containing ribosomal RNA database files for SortMeRNA
         Structure: [ path(rrna_db) ]
+  - ch_primary_ref:
+      type: file
+      description: |
+        Channel containing primary reference genome for BBMap bbsplit
+        Structure: [ path(primary_ref) ]
+      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+  - ch_other_ref:
+      type: file
+      description: |
+        Channel containing other reference genomes for contamination detection
+        Structure: [ path(other_ref) ]
+      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
   - val_rrna_db_type:
       type: string
       description: |
@@ -66,6 +83,11 @@ input:
       type: boolean
       description: |
         Skip adapter trimming with Cutadapt
+        Structure: true/false
+  - val_skip_bbsplit:
+      type: boolean
+      description: |
+        Skip contamination removal with BBMap bbsplit
         Structure: true/false
   - val_skip_sortmerna:
       type: boolean
@@ -109,7 +131,19 @@ output:
         ZIP archives from trimmed reads quality control (if both val_skip_fastqc and val_skip_cutadapt are false)
         Structure: [ val(meta), path(zip) ]
       pattern: "*.zip"
-  - index:
+  - bbsplit_index:
+      type: file
+      description: |
+        BBMap bbsplit index files for contamination detection (if val_skip_bbsplit is false)
+        Structure: [ path(index) ]
+      pattern: "*"
+  - bbsplit_stats:
+      type: file
+      description: |
+        Statistics from BBMap bbsplit contamination removal (if val_skip_bbsplit is false)
+        Structure: [ path(stats) ]
+      pattern: "*.stats.txt"
+  - sortmerna_index:
       type: file
       description: |
         SortMeRNA rRNA database index files (if val_skip_sortmerna is false)
@@ -134,6 +168,6 @@ output:
         Structure: [ path(versions.yml) ]
       pattern: "versions.yml"
 authors:
-  - "Loai3tr"
+  - "@Loai3tr"
 maintainers:
-  - "Loai3tr"
+  - "@Loai3tr"

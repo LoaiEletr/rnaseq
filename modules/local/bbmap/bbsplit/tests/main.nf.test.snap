@@ -58,7 +58,14 @@
                     ]
                 ],
                 "2": [
-                    "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "test",
+                            "condition": "treated",
+                            "single_end": true
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "3": [
                     "versions.yml:md5,c8f1fcb4ff53d747bccd30ab7d3aa491"
@@ -95,7 +102,14 @@
                     ]
                 ],
                 "stats": [
-                    "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "test",
+                            "condition": "treated",
+                            "single_end": true
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "versions": [
                     "versions.yml:md5,c8f1fcb4ff53d747bccd30ab7d3aa491"
@@ -106,7 +120,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T23:11:06.751878313"
+        "timestamp": "2026-01-21T17:58:57.815117489"
     },
     "versions_build_index": {
         "content": [
@@ -229,7 +243,14 @@
                     ]
                 ],
                 "2": [
-                    "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "test",
+                            "condition": "control",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "3": [
                     "versions.yml:md5,c8f1fcb4ff53d747bccd30ab7d3aa491"
@@ -269,7 +290,14 @@
                     ]
                 ],
                 "stats": [
-                    "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "test",
+                            "condition": "control",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "versions": [
                     "versions.yml:md5,c8f1fcb4ff53d747bccd30ab7d3aa491"
@@ -280,6 +308,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T23:14:17.502016621"
+        "timestamp": "2026-01-21T18:00:47.38805444"
     }
 }

@@ -9,7 +9,7 @@
                             "single_end": true,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.fastq.gz:md5,959099f91e391f2c9f19c45d4f2cf738"
+                        "test.cutadapt.fastq.gz:md5,f3f66fca1c1450afe4c95fcf02ea6bab"
                     ]
                 ],
                 "1": [
@@ -19,7 +19,7 @@
                             "single_end": true,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.json:md5,dcfdb6c2ef967bc3c7c59af95ebf43a0"
+                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
                     ]
                 ],
                 "2": [
@@ -32,7 +32,7 @@
                             "single_end": true,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.json:md5,dcfdb6c2ef967bc3c7c59af95ebf43a0"
+                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
                     ]
                 ],
                 "reads": [
@@ -42,7 +42,7 @@
                             "single_end": true,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.fastq.gz:md5,959099f91e391f2c9f19c45d4f2cf738"
+                        "test.cutadapt.fastq.gz:md5,f3f66fca1c1450afe4c95fcf02ea6bab"
                     ]
                 ],
                 "versions": [
@@ -54,7 +54,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-15T22:41:09.917438825"
+        "timestamp": "2026-01-22T03:43:43.76531416"
     },
     "Should trim paired-end reads with Cutadapt and return trimmed FASTQ files with summary JSON": {
         "content": [
@@ -67,8 +67,8 @@
                             "sequencer": "NovaSeq"
                         },
                         [
-                            "test.cutadapt_1.fastq.gz:md5,d2bd492385225e668c8036839404fd51",
-                            "test.cutadapt_2.fastq.gz:md5,9ae5c11c6584bf18277243920a0c491f"
+                            "test.cutadapt_1.fastq.gz:md5,ffc8a86a4bc5accbd8acba7b6870ff26",
+                            "test.cutadapt_2.fastq.gz:md5,bb48a4dbf374729c4827fd2e5b98663d"
                         ]
                     ]
                 ],
@@ -79,7 +79,7 @@
                             "single_end": false,
                             "sequencer": "NovaSeq"
                         },
-                        "test.cutadapt.json:md5,763e8ba1f4e1fa8b40b0a07ec474b1b8"
+                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
                     ]
                 ],
                 "2": [
@@ -92,7 +92,7 @@
                             "single_end": false,
                             "sequencer": "NovaSeq"
                         },
-                        "test.cutadapt.json:md5,763e8ba1f4e1fa8b40b0a07ec474b1b8"
+                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
                     ]
                 ],
                 "reads": [
@@ -103,8 +103,8 @@
                             "sequencer": "NovaSeq"
                         },
                         [
-                            "test.cutadapt_1.fastq.gz:md5,d2bd492385225e668c8036839404fd51",
-                            "test.cutadapt_2.fastq.gz:md5,9ae5c11c6584bf18277243920a0c491f"
+                            "test.cutadapt_1.fastq.gz:md5,ffc8a86a4bc5accbd8acba7b6870ff26",
+                            "test.cutadapt_2.fastq.gz:md5,bb48a4dbf374729c4827fd2e5b98663d"
                         ]
                     ]
                 ],
@@ -117,7 +117,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-15T22:42:56.977363528"
+        "timestamp": "2026-01-22T03:45:09.689839015"
     },
     "Should stub trim single-end reads with Cutadapt and return trimmed FASTQ files with summary JSON": {
         "content": [
