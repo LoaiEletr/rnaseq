@@ -1,16 +1,19 @@
 nextflow_workflow {
 
-    name "Test Workflow FASTQ_FASTQC_UMITOOLS_CUTADAPT_SORTMERNA"
+    name "Test Workflow FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA"
     script "../main.nf"
-    workflow "FASTQ_FASTQC_UMITOOLS_CUTADAPT_SORTMERNA"
+    workflow "FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA"
     config './nextflow.config'
 
     tag "subworkflows"
-    tag "subworkflows/fastq_fastqc_umitools_cutadapt_sortmerna"
+    tag "subworkflows_local"
+    tag "subworkflows/fastq_fastqc_extract_cutadapt_bbsplit_sortmerna"
     tag "fastqc"
     tag "umitools"
     tag "umitools/extract"
     tag "cutadapt"
+    tag "bbmap"
+    tag "bbmap/bbsplit"
     tag "sortmerna"
 
     setup {
@@ -33,15 +36,16 @@ nextflow_workflow {
                 with_umi          = false
                 skip_umi_extract  = false
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-PE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
@@ -49,13 +53,16 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -80,15 +87,16 @@ nextflow_workflow {
                 with_umi          = false
                 skip_umi_extract  = false
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-PE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
@@ -96,13 +104,16 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -130,15 +141,16 @@ nextflow_workflow {
                 with_umi          = true
                 skip_umi_extract  = false
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-PE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
@@ -146,13 +158,16 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -177,15 +192,16 @@ nextflow_workflow {
                 with_umi          = true
                 skip_umi_extract  = true
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-PE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
@@ -193,13 +209,16 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -224,15 +243,16 @@ nextflow_workflow {
                 with_umi          = false
                 skip_umi_extract  = false
                 skip_cutadapt     = true
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-PE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
@@ -240,13 +260,67 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.reads,
+                    workflow.out.umi_log,
+                    workflow.out.trim_json,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("sarscov2 paired-end [fastq] | skip_bbsplit") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = true
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = file(params.adapter)
+                input[2] = UNTAR.out.untar
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -271,15 +345,16 @@ nextflow_workflow {
                 with_umi          = false
                 skip_umi_extract  = false
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = true
                 adapter = "$projectDir/assets/adapters-PE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
@@ -287,13 +362,16 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -320,28 +398,32 @@ nextflow_workflow {
                 with_umi          = false
                 skip_umi_extract  = false
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-SE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: true, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: true, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -358,7 +440,7 @@ nextflow_workflow {
         }
     }
 
-    // Stub tests for each configuration
+    // Stub tests
     test("sarscov2 paired-end [fastq] - stub") {
         options "-stub"
         when {
@@ -368,15 +450,16 @@ nextflow_workflow {
                 with_umi          = false
                 skip_umi_extract  = false
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-PE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
@@ -384,13 +467,16 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }
@@ -411,28 +497,32 @@ nextflow_workflow {
                 with_umi          = false
                 skip_umi_extract  = false
                 skip_cutadapt     = false
+                skip_bbsplit      = false
                 skip_sortmerna    = false
                 adapter = "$projectDir/assets/adapters-SE.fa"
-                rrna_db_type = "default"
+                rrna_db_type = "fast"
                 lib_kit = "quantseq"
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: true, sequencer: 'NovaSeq' ],
+                    [ id: 'test', single_end: true, sequencer: 'HiSeq' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = params.rrna_db_type
-                input[4] = params.lib_kit
-                input[5] = params.with_umi
-                input[6] = params.skip_umi_extract
-                input[7] = params.skip_fastqc
-                input[8] = params.skip_cutadapt
-                input[9] = params.skip_sortmerna
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[5] = params.rrna_db_type
+                input[6] = params.lib_kit
+                input[7] = params.with_umi
+                input[8] = params.skip_umi_extract
+                input[9] = params.skip_fastqc
+                input[10] = params.skip_cutadapt
+                input[11] = params.skip_bbsplit
+                input[12] = params.skip_sortmerna
                 """
             }
         }

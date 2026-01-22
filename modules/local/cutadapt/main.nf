@@ -32,6 +32,7 @@ process CUTADAPT {
     cutadapt \\
         ${args} \\
         ${args2} \\
+        -q 20,20 \\
         --json=${prefix}.cutadapt.json \\
         ${adapter_in} \\
         ${fastq_out} \\

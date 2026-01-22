@@ -12,22 +12,13 @@ nextflow_process {
             script "modules/local/bbmap/bbsplit/main.nf"
             process {
                 """
-
                 input[0] = Channel.of([
                     [ id: 'test' ],
                     []
                 ])
-
-
                 input[1] = []
-
-
                 input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz', checkIfExists: true)
-
-
                 input[3] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
-
-
                 input[4] = true
                 """
             }
@@ -41,22 +32,13 @@ nextflow_process {
             }
             process {
                 """
-
                 input[0] = Channel.of([
                     [ id: 'test' ],
                     []
                 ])
-
-
                 input[1] = []
-
-
                 input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz', checkIfExists: true)
-
-
                 input[3] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
-
-
                 input[4] = true
                 """
             }
@@ -76,24 +58,15 @@ nextflow_process {
             }
             process {
                 """
-
                 input[0] = Channel.of([
                     [ id: 'test', condition: 'treated', single_end: true ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-
-
                 input[1] = BBMAP_BBSPLIT_INDEX.out.index
-
-
                 input[2] = []
-
-
                 input[3] = []
-
-
                 input[4] = false
                 """
             }
@@ -101,12 +74,8 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                {
-
-                    def reads = process.out.reads.get(0).get(1)
-                    assert reads ==~ ".*/test_.*\\.fastq\\.gz"
-                },
-                { assert process.out.stats.get(0) ==~ ".*/test\\.bbsplit_stats\\.txt" },
+                { assert process.out.reads.get(0).get(1) ==~ ".*/test_.*\\.fastq\\.gz" },
+                { assert process.out.stats.get(0).get(1) ==~ ".*/test\\.bbsplit_stats\\.txt" },
                 { assert snapshot(process.out.versions).match("versions_single_end") }
             )
         }
@@ -138,14 +107,9 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                {
-
-                    def reads = process.out.reads.get(0).get(1)
-                    assert reads.size() == 2
-                    assert reads[0] ==~ ".*/test_.*_1\\.fastq\\.gz"
-                    assert reads[1] ==~ ".*/test_.*_2\\.fastq\\.gz"
-                },
-                { assert process.out.stats.get(0) ==~ ".*/test\\.bbsplit_stats\\.txt" },
+                { assert process.out.reads.get(0).get(1)[0] ==~ ".*/test_.*_1\\.fastq\\.gz" },
+                { assert process.out.reads.get(0).get(1)[1] ==~ ".*/test_.*_2\\.fastq\\.gz" },
+                { assert process.out.stats.get(0).get(1) ==~ ".*/test\\.bbsplit_stats\\.txt" },
                 { assert snapshot(process.out.versions).match("versions_paired_end") }
             )
         }
@@ -161,22 +125,13 @@ nextflow_process {
             }
             process {
                 """
-
                 input[0] = Channel.of([
                     [ id: 'test' ],
                     []
                 ])
-
-
                 input[1] = []
-
-
                 input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz', checkIfExists: true)
-
-
                 input[3] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
-
-
                 input[4] = true
                 """
             }
@@ -199,24 +154,15 @@ nextflow_process {
             }
             process {
                 """
-
                 input[0] = Channel.of([
                     [ id: 'test', condition: 'treated', single_end: true ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-
-
                 input[1] = BBMAP_BBSPLIT_INDEX.out.index
-
-
                 input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz', checkIfExists: true)
-
-
                 input[3] = []
-
-
                 input[4] = false
                 """
             }
@@ -247,7 +193,6 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-
                 input[1] = BBMAP_BBSPLIT_INDEX.out.index
                 input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz', checkIfExists: true)
                 input[3] = []

@@ -19,7 +19,7 @@ process BBMAP_BBSPLIT {
     output:
     tuple val(meta), path("*primary*.fastq.gz"), optional: true, emit: reads
     path "bbsplit", optional: true, emit: index
-    path "*stats.txt", optional: true, emit: stats
+    tuple val(meta), path("*stats.txt"), optional: true, emit: stats
     path "versions.yml", emit: versions
 
     when:
