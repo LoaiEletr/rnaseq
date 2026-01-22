@@ -89,7 +89,7 @@ mart <- tryCatch({
 ## =============================================================================
 
 tx2geneData <- getBM(
-    attributes = c("ensembl_transcript_id", "external_gene_name"),
+    attributes = c("ensembl_transcript_id", "ensembl_gene_id"),
     mart = mart
 )
 
