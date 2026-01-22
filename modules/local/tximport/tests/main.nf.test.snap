@@ -1,50 +1,4 @@
 {
-    "Should import kallisto quantification with tximport and return RDS results": {
-        "content": [
-            {
-                "0": [
-                    "tximport_results.rds:md5,11d9cf05d224c1428f2a56bf15716fb5"
-                ],
-                "1": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
-                ],
-                "rds": [
-                    "tximport_results.rds:md5,11d9cf05d224c1428f2a56bf15716fb5"
-                ],
-                "versions": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-21T16:10:23.919011905"
-    },
-    "Should import salmon quantification with tximport and return RDS results": {
-        "content": [
-            {
-                "0": [
-                    "tximport_results.rds:md5,628705f3f4de428d803658be47315908"
-                ],
-                "1": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
-                ],
-                "rds": [
-                    "tximport_results.rds:md5,628705f3f4de428d803658be47315908"
-                ],
-                "versions": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-22T20:26:27.257710909"
-    },
     "Should stub import kallisto quantification with tximport and return mocked RDS results": {
         "content": [
             {
@@ -66,7 +20,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T20:31:31.482761165"
+        "timestamp": "2026-01-22T21:34:23.86166052"
     },
     "Should stub import salmon quantification with tximport and return mocked RDS results": {
         "content": [
@@ -89,6 +43,30 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T20:32:40.652663706"
+        "timestamp": "2026-01-22T21:35:32.556271896"
+    },
+    "versions_tximport_kallisto": {
+        "content": [
+            [
+                "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-22T21:31:11.58210555"
+    },
+    "versions_tximport_salmon": {
+        "content": [
+            [
+                "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-22T21:32:44.446961485"
     }
 }

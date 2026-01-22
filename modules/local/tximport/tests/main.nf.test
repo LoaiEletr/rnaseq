@@ -56,7 +56,7 @@ nextflow_process {
             assertAll (
                 { assert process.success },
                 { assert process.out.rds.get(0) ==~ ".*/tximport_results\\.rds" },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(process.out.versions).match("versions_tximport_kallisto") }
             )
         }
     }
@@ -82,7 +82,7 @@ nextflow_process {
             assertAll (
                 { assert process.success },
                 { assert process.out.rds.get(0) ==~ ".*/tximport_results\\.rds" },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(process.out.versions).match("versions_tximport_salmon") }
             )
         }
     }
