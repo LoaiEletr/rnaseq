@@ -1,0 +1,99 @@
+name: tximport
+description: |
+  Imports transcript-level abundance estimates and summarizes to gene-level using tximport.
+keywords:
+  - tximport
+  - quantification
+  - transcript
+  - gene
+tools:
+  - bioconductor_tximport:
+      description: "Import and summarize transcript-level estimates for transcript- and gene-level analysis"
+      homepage: "https://bioconductor.org/packages/tximport/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/tximport.html"
+      tool_dev_url: "https://github.com/mikelove/tximport"
+      licence: ["GPL-2.0-only"]
+      identifier: "tximport"
+
+input:
+  - quant_dirs:
+      type: file
+      description: |
+        Directories containing quantification files (e.g., salmon, kallisto output)
+      pattern: "*"
+
+  - quant_type:
+      type: string
+      description: |
+        Quantification tool type
+        Options: salmon, kallisto
+      pattern: "salmon|kallisto"
+
+  - tx2gene_table:
+      type: file
+      description: |
+        Transcript-to-gene mapping table
+      pattern: "*.tsv"
+      ontologies:
+        - edam: "http://edamontology.org/format_3475"
+
+output:
+  tximport_rds:
+    - tximport_results.rds:
+        type: file
+        description: |
+          RDS file containing tximport results with gene-level counts and abundances
+        pattern: "tximport_results.rds"
+        ontologies: []
+
+  versions_tximport:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_tximport:
+          type: string
+          description: The name of the tximport package
+      - 'Rscript -e "library(tximport); cat(as.character(packageVersion(''tximport'')))"':
+          type: eval
+          description: The expression to obtain the version of tximport
+      - bioconductor_rhdf5:
+          type: string
+          description: The name of the rhdf5 package
+      - 'Rscript -e "library(rhdf5); cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+          description: The expression to obtain the version of rhdf5
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_tximport:
+          type: string
+          description: The name of the tximport package
+      - 'Rscript -e "library(tximport); cat(as.character(packageVersion(''tximport'')))"':
+          type: eval
+          description: The expression to obtain the version of tximport
+      - bioconductor_rhdf5:
+          type: string
+          description: The name of the rhdf5 package
+      - 'Rscript -e "library(rhdf5); cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+          description: The expression to obtain the version of rhdf5
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
