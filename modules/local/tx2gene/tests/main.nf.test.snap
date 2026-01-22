@@ -20,7 +20,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:19:42.598947009"
+        "timestamp": "2026-01-22T19:30:22.81853391"
     },
     "Should generate transcript-to-gene mapping file for chicken species and return TSV file": {
         "content": [
@@ -43,7 +43,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:28:29.868677786"
+        "timestamp": "2026-01-22T19:37:48.734558233"
     },
     "Should stub generate transcript-to-gene mapping file for human species and return mocked TSV file": {
         "content": [
@@ -89,7 +89,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:13:53.156259543"
+        "timestamp": "2026-01-22T19:25:28.881911143"
     },
     "Should generate transcript-to-gene mapping file for monkey species and return TSV file": {
         "content": [
@@ -112,7 +112,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:34:36.428126489"
+        "timestamp": "2026-01-22T19:43:34.526720816"
     },
     "Should generate transcript-to-gene mapping file for pig species and return TSV file": {
         "content": [
@@ -135,7 +135,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:31:41.012580636"
+        "timestamp": "2026-01-22T19:40:36.437994859"
     },
     "Should generate transcript-to-gene mapping file for fruitfly species and return TSV file": {
         "content": [
@@ -158,7 +158,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:38:13.537373729"
+        "timestamp": "2026-01-22T19:31:54.410765075"
     },
     "Should generate transcript-to-gene mapping file for worm species and return TSV file": {
         "content": [
@@ -181,7 +181,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:24:52.928706885"
+        "timestamp": "2026-01-22T19:34:58.70361395"
     },
     "Should generate transcript-to-gene mapping file for arabidopsis species and return TSV file": {
         "content": [
@@ -204,7 +204,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:26:31.383370755"
+        "timestamp": "2026-01-22T19:36:20.843455598"
     },
     "Should generate transcript-to-gene mapping file for cow species and return TSV file": {
         "content": [
@@ -227,7 +227,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:30:09.502883971"
+        "timestamp": "2026-01-22T19:39:12.687195483"
     },
     "Should generate transcript-to-gene mapping file for mouse species and return TSV file": {
         "content": [
@@ -250,7 +250,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:15:36.183706929"
+        "timestamp": "2026-01-22T19:27:36.559364226"
     },
     "Should generate transcript-to-gene mapping file for zebrafish species and return TSV file": {
         "content": [
@@ -273,7 +273,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:23:01.667033969"
+        "timestamp": "2026-01-22T19:33:29.287773019"
     },
     "Should generate transcript-to-gene mapping file for rat species and return TSV file": {
         "content": [
@@ -296,7 +296,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:17:51.7003791"
+        "timestamp": "2026-01-22T19:29:04.156326152"
     },
     "Should generate transcript-to-gene mapping file for dog species and return TSV file": {
         "content": [
@@ -319,6 +319,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T16:33:03.838608237"
+        "timestamp": "2026-01-22T19:42:07.043548683"
     }
 }

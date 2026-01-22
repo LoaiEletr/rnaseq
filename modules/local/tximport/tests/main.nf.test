@@ -1,0 +1,141 @@
+nextflow_process {
+    name "Test Process TXIMPORT"
+    script "modules/local/tximport/main.nf"
+    process "TXIMPORT"
+
+    tag "modules"
+    tag "tximport"
+
+    setup {
+        run("TX2GENE") {
+            script "modules/local/tx2gene/main.nf"
+            process {
+                """
+                input[0] = "yeast"
+                """
+            }
+        }
+
+        run("UNTAR", alias: "UNTAR_KALLISTO") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)
+                """
+            }
+        }
+
+        run("UNTAR", alias: "UNTAR_SALMON") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)
+                """
+            }
+        }
+    }
+
+    test("Should import kallisto quantification with tximport and return RDS results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "kallisto"
+            }
+            process {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = params.pseudo_aligner
+                input[2] = TX2GENE.out.tsv
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.rds.get(0) ==~ ".*/tximport_results\\.rds" },
+                { assert snapshot(process.out.versions).match("versions_tximport_kallisto") }
+            )
+        }
+    }
+
+    test("Should import salmon quantification with tximport and return RDS results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "salmon"
+            }
+            process {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = params.pseudo_aligner
+                input[2] = TX2GENE.out.tsv
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.rds.get(0) ==~ ".*/tximport_results\\.rds" },
+                { assert snapshot(process.out.versions).match("versions_tximport_salmon") }
+            )
+        }
+    }
+
+    test("Should stub import kallisto quantification with tximport and return mocked RDS results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "kallisto"
+            }
+            process {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = params.pseudo_aligner
+                input[2] = TX2GENE.out.tsv
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub import salmon quantification with tximport and return mocked RDS results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "salmon"
+            }
+            process {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = params.pseudo_aligner
+                input[2] = TX2GENE.out.tsv
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

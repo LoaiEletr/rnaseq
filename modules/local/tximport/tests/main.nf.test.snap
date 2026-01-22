@@ -1,0 +1,72 @@
+{
+    "Should stub import kallisto quantification with tximport and return mocked RDS results": {
+        "content": [
+            {
+                "0": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+                ],
+                "rds": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-22T21:34:23.86166052"
+    },
+    "Should stub import salmon quantification with tximport and return mocked RDS results": {
+        "content": [
+            {
+                "0": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+                ],
+                "rds": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-22T21:35:32.556271896"
+    },
+    "versions_tximport_kallisto": {
+        "content": [
+            [
+                "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-22T21:31:11.58210555"
+    },
+    "versions_tximport_salmon": {
+        "content": [
+            [
+                "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-22T21:32:44.446961485"
+    }
+}
