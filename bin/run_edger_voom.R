@@ -39,7 +39,7 @@ samplesheet$condition <- factor(samplesheet$condition)
 ## =============================================================================
 
 ## Handle different input formats (tximport output vs raw count matrix)
-if (!is.null(countData$counts)) {
+if ("counts" %in% names(countData)) {
     ## tximport output format - extract counts matrix
     countData$counts <- countData$counts[, samplesheet$sample_id, drop = FALSE]
     countData$abundance <- countData$abundance[, samplesheet$sample_id, drop = FALSE]
