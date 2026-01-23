@@ -3,13 +3,13 @@
         "content": [
             {
                 "0": [
-                    "merged_counts.rds:md5,640b95b04ab9199bf039a8a1278a5527"
+                    "merged_counts.rds:md5,645b21fc2246f92c7faebdfa4389258d"
                 ],
                 "1": [
                     "versions.yml:md5,a9814794d7b80d2e853b6d619da8dd6d"
                 ],
                 "counts_table": [
-                    "merged_counts.rds:md5,640b95b04ab9199bf039a8a1278a5527"
+                    "merged_counts.rds:md5,645b21fc2246f92c7faebdfa4389258d"
                 ],
                 "versions": [
                     "versions.yml:md5,a9814794d7b80d2e853b6d619da8dd6d"
@@ -20,7 +20,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T02:06:56.455041456"
+        "timestamp": "2026-01-23T18:46:15.613562675"
     },
     "Should stub merge featureCounts files successfully and return mocked merged counts table": {
         "content": [
@@ -43,6 +43,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T02:07:54.735090935"
+        "timestamp": "2026-01-23T18:47:16.064875553"
     }
 }
