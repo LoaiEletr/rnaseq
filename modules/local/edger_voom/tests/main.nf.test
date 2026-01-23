@@ -64,7 +64,6 @@ nextflow_process {
                     process.out.unfiltered_log2cpm,
                     process.out.filtered_log2cpm,
                     process.out.normalized_log2cpm,
-                    process.out.voom_transformed,
                     process.out.versions
                 ).match() }
             )

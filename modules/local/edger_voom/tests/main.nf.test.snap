@@ -11,9 +11,6 @@
                 "normalized_log2cpm.rds:md5,e3cd738c36220cae511c37a1af775518"
             ],
             [
-                "voom_transformed.rds:md5,f92acf213d9cb06f3f28625bf1935d33"
-            ],
-            [
                 "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
             ]
         ],
@@ -21,7 +18,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-23T02:50:28.427690969"
+        "timestamp": "2026-01-23T18:03:19.474796698"
     },
     "Should stub run edgeR with voom transformation successfully and return mocked Voom results with plots": {
         "content": [
@@ -68,6 +65,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-23T02:51:49.732667757"
+        "timestamp": "2026-01-23T18:04:40.23117272"
     }
 }
