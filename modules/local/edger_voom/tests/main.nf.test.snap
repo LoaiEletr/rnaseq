@@ -1,0 +1,73 @@
+{
+    "Should run edgeR with voom transformation successfully and return Voom results with plots": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,d7164a044e491c2542a01ffdd3732471"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,49daec329968baa33ec0a710c652084d"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,e3cd738c36220cae511c37a1af775518"
+            ],
+            [
+                "voom_transformed.rds:md5,f92acf213d9cb06f3f28625bf1935d33"
+            ],
+            [
+                "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-23T02:50:28.427690969"
+    },
+    "Should stub run edgeR with voom transformation successfully and return mocked Voom results with plots": {
+        "content": [
+            {
+                "0": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+                ],
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_transformed": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-23T02:51:49.732667757"
+    }
+}
