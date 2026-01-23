@@ -1,0 +1,120 @@
+nextflow_process {
+    name "Test Process EDGER_VOOM"
+    script "modules/local/edger_voom/main.nf"
+    process "EDGER_VOOM"
+
+    tag "modules"
+    tag "edger_voom"
+
+    test("Should run edgeR with voom transformation on tximport counts and return Voom results with plots") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.unfiltered_log2cpm.get(0) ==~ ".*/unfiltered_log2cpm\\.rds" },
+                { assert process.out.filtered_log2cpm.get(0) ==~ ".*/filtered_log2cpm\\.rds" },
+                { assert process.out.normalized_log2cpm.get(0) ==~ ".*/normalized_log2cpm\\.rds" },
+                { assert process.out.voom_transformed.get(0) ==~ ".*/voom_transformed\\.rds" },
+                { assert process.out.voom_plot.get(0) ==~ ".*/voom_plot\\.pdf" },
+                { assert snapshot(
+                    process.out.unfiltered_log2cpm,
+                    process.out.filtered_log2cpm,
+                    process.out.normalized_log2cpm,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should run edgeR with voom transformation on featureCounts counts and return Voom results with plots") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.unfiltered_log2cpm.get(0) ==~ ".*/unfiltered_log2cpm\\.rds" },
+                { assert process.out.filtered_log2cpm.get(0) ==~ ".*/filtered_log2cpm\\.rds" },
+                { assert process.out.normalized_log2cpm.get(0) ==~ ".*/normalized_log2cpm\\.rds" },
+                { assert process.out.voom_transformed.get(0) ==~ ".*/voom_transformed\\.rds" },
+                { assert process.out.voom_plot.get(0) ==~ ".*/voom_plot\\.pdf" },
+                { assert snapshot(
+                    process.out.unfiltered_log2cpm,
+                    process.out.filtered_log2cpm,
+                    process.out.normalized_log2cpm,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should stub run edgeR with voom transformation on tximport counts and return mocked Voom results with plots") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.unfiltered_log2cpm,
+                    process.out.filtered_log2cpm,
+                    process.out.normalized_log2cpm,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should stub run edgeR with voom transformation on featureCounts counts and return mocked Voom results with plots") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.unfiltered_log2cpm,
+                    process.out.filtered_log2cpm,
+                    process.out.normalized_log2cpm,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "Should run edgeR with voom transformation on tximport counts and return Voom results with plots": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,d7164a044e491c2542a01ffdd3732471"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,49daec329968baa33ec0a710c652084d"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,e3cd738c36220cae511c37a1af775518"
+            ],
+            [
+                "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-23T19:29:31.399962898"
+    },
+    "Should stub run edgeR with voom transformation on tximport counts and return mocked Voom results with plots": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ],
+            [
+                "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-23T19:31:10.612325392"
+    },
+    "Should run edgeR with voom transformation on featureCounts counts and return Voom results with plots": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,b7a96b1d8e57017cbe0209f6ad87a80a"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,e49ff027f9fb8a40e1b64580456c7b40"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,c8c4b75624b47133169a9acc55c8ff9c"
+            ],
+            [
+                "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-23T19:30:22.518689947"
+    },
+    "Should stub run edgeR with voom transformation on featureCounts counts and return mocked Voom results with plots": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ],
+            [
+                "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-23T19:31:59.835924056"
+    }
+}
