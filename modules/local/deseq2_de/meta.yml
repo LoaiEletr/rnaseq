@@ -1,29 +1,29 @@
-name: limma_de
+name: deseq2_de
 description: |
-  Performs differential expression analysis using limma with empirical Bayes moderation.
+  Performs differential expression analysis using DESeq2 with variance stabilizing transformation.
 keywords:
-  - limma
+  - deseq2
   - differential expression
   - rna-seq
   - statistics
 tools:
-  - bioconductor_limma:
-      description: "Linear models for microarray and RNA-seq data analysis"
-      homepage: "https://bioconductor.org/packages/limma/"
-      documentation: "https://bioconductor.org/packages/release/bioc/html/limma.html"
-      tool_dev_url: "https://github.com/LTLA/limma"
-      licence: ["GPL-2.0-only"]
-      identifier: "limma"
+  - bioconductor_deseq2:
+      description: "Differential gene expression analysis based on the negative binomial distribution"
+      homepage: "https://bioconductor.org/packages/DESeq2/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/DESeq2.html"
+      tool_dev_url: "https://github.com/mikelove/DESeq2"
+      licence: ["LGPL-3.0-only"]
+      identifier: "DESeq2"
 
 input:
-  - voom_object:
+  - counts_rds:
       type: file
       description: |
-        RDS file containing voom-transformed expression data
+        RDS file containing raw count matrix
       pattern: "*.rds"
       ontologies: []
 
-  - samplesheet:
+  - samplesheet_csv:
       type: file
       description: |
         CSV file with sample metadata and experimental design
@@ -50,23 +50,47 @@ input:
       pattern: "[0-9]+"
 
 output:
-  ebfit_rds:
-    - ebfit.rds:
+  unfiltered_log2counts:
+    - unfiltered_counts.rds:
         type: file
         description: |
-          RDS file with empirical Bayes fitted model
-        pattern: "ebfit.rds"
+          RDS file with unfiltered log2 count matrix
+        pattern: "unfiltered_counts.rds"
         ontologies: []
 
-  de_expression_rds:
-    - de_expression_values.rds:
+  filtered_log2counts:
+    - filtered_counts.rds:
         type: file
         description: |
-          RDS file with expression values of differentially expressed genes
-        pattern: "de_expression_values.rds"
+          RDS file with filtered log2 count matrix
+        pattern: "filtered_counts.rds"
         ontologies: []
 
-  de_genes_rds:
+  normalized_log2counts:
+    - normalized_counts.rds:
+        type: file
+        description: |
+          RDS file with normalized log2 counts
+        pattern: "normalized_counts.rds"
+        ontologies: []
+
+  diffgenes_matrix:
+    - deseq2_de_genes.rds:
+        type: file
+        description: |
+          RDS file with expression matrix of differentially expressed genes
+        pattern: "deseq2_de_genes.rds"
+        ontologies: []
+
+  vst_object:
+    - vst_transformed.rds:
+        type: file
+        description: |
+          RDS file with variance stabilizing transformed data
+        pattern: "vst_transformed.rds"
+        ontologies: []
+
+  diffgenes_table:
     - de_genes_full_table.rds:
         type: file
         description: |
@@ -74,7 +98,7 @@ output:
         pattern: "de_genes_full_table.rds"
         ontologies: []
 
-  unfiltered_deg_rds:
+  unfiltered_deg:
     - unfiltered_deg_results.rds:
         type: file
         description: |
@@ -99,7 +123,7 @@ output:
         ontologies:
           - edam: "http://edamontology.org/format_3752"
 
-  versions_limma:
+  versions_deseq2:
     - - "${task.process}":
           type: string
           description: The name of the process
@@ -109,12 +133,12 @@ output:
       - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
           type: eval
           description: The expression to obtain the version of R
-      - bioconductor_limma:
+      - bioconductor_deseq2:
           type: string
-          description: The name of the limma package
-      - 'Rscript -e "library(limma); cat(as.character(packageVersion(''limma'')))"':
+          description: The name of the DESeq2 package
+      - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
           type: eval
-          description: The expression to obtain the version of limma
+          description: The expression to obtain the version of DESeq2
 
 topics:
   versions:
@@ -127,12 +151,12 @@ topics:
       - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
           type: eval
           description: The expression to obtain the version of R
-      - bioconductor_limma:
+      - bioconductor_deseq2:
           type: string
-          description: The name of the limma package
-      - 'Rscript -e "library(limma); cat(as.character(packageVersion(''limma'')))"':
+          description: The name of the DESeq2 package
+      - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
           type: eval
-          description: The expression to obtain the version of limma
+          description: The expression to obtain the version of DESeq2
 
 authors:
   - "@Loai3tr"

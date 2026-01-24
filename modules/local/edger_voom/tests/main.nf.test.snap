@@ -18,28 +18,54 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-23T19:29:31.399962898"
+        "timestamp": "2026-01-24T02:45:41.86498609"
     },
     "Should stub run edgeR with voom transformation on tximport counts and return mocked Voom results with plots": {
         "content": [
-            [
-                "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-            ],
-            [
-                "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-            ],
-            [
-                "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-            ],
-            [
-                "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
-            ]
+            {
+                "0": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+                ],
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_transformed": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-23T19:31:10.612325392"
+        "timestamp": "2026-01-24T02:47:19.408566078"
     },
     "Should run edgeR with voom transformation on featureCounts counts and return Voom results with plots": {
         "content": [
@@ -60,27 +86,53 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-23T19:30:22.518689947"
+        "timestamp": "2026-01-24T02:46:32.029192143"
     },
     "Should stub run edgeR with voom transformation on featureCounts counts and return mocked Voom results with plots": {
         "content": [
-            [
-                "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-            ],
-            [
-                "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-            ],
-            [
-                "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-            ],
-            [
-                "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
-            ]
+            {
+                "0": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+                ],
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,dcdcbe50b2ad257c6f1997465542ce94"
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_transformed": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-23T19:31:59.835924056"
+        "timestamp": "2026-01-24T02:48:10.149400214"
     }
 }
