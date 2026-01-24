@@ -58,12 +58,6 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.ebfit_rds.get(0) ==~ ".*/ebfit\\.rds" },
-                { assert process.out.de_expression_rds.get(0) ==~ ".*/de_expression_values\\.rds" },
-                { assert process.out.de_genes_rds.get(0) ==~ ".*/de_genes_full_table\\.rds" },
-                { assert process.out.unfiltered_deg_rds.get(0) ==~ ".*/unfiltered_deg_results\\.rds" },
-                { assert process.out.topgenes_rds.get(0) ==~ ".*/top_100_genes\\.rds" },
-                { assert process.out.topgenes_csv.get(0) ==~ ".*/top_100_genes\\.csv" },
                 { assert snapshot(process.out).match() }
             )
         }

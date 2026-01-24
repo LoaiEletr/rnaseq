@@ -1,4 +1,4 @@
-name: limma_diffexpr
+name: limma_de
 description: |
   Performs differential expression analysis using limma with empirical Bayes moderation.
 keywords:
