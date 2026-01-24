@@ -1,0 +1,274 @@
+{
+    "Should perform timecourse analysis using maSigPro package with hierarchical cluster method and return timecourse results": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,388317ea3896f028237892acb57a0d3c"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,bd1cb820ccb4472b74ae4628b37e5a06"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,adf0bb3faba4714750041d8abfe5e617"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,bd1cb820ccb4472b74ae4628b37e5a06"
+            ],
+            [
+                "cluster_median_expression.csv:md5,2c188c8a904209ac3aabb8dfa02175e2"
+            ],
+            [
+                "summary_statistics.csv:md5,2a88a34430b04eda7a21fcd6adc29e29"
+            ],
+            [
+                "cluster_assignments.csv:md5,3c31fcc93526d34619c47f8753aed490"
+            ],
+            [
+                "clusters_list.rds:md5,c835aede34462cb1b4984869bd44a688"
+            ],
+            [
+                "expression_matrix_siggenes.rds:md5,4d0568af42ab66c837e51f83bdc7d3f9"
+            ],
+            [
+                "versions.yml:md5,fd7c6c6c0f2ef8594e0521d8d33fb339"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-24T14:13:01.975470009"
+    },
+    "Should perform timecourse analysis using maSigPro package with Mclust cluster method and return timecourse results": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,388317ea3896f028237892acb57a0d3c"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,bd1cb820ccb4472b74ae4628b37e5a06"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,adf0bb3faba4714750041d8abfe5e617"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,bd1cb820ccb4472b74ae4628b37e5a06"
+            ],
+            [
+                "cluster_median_expression.csv:md5,f6de5070363304de3d881ddaf8c4d77c"
+            ],
+            [
+                "summary_statistics.csv:md5,1ae620f03654d553de20d3fe953e73ce"
+            ],
+            [
+                "cluster_assignments.csv:md5,b67ba9804f8eb6bf592732cf10312e01"
+            ],
+            [
+                "clusters_list.rds:md5,e77070f386267816ee4ba6058cf4c79d"
+            ],
+            [
+                "expression_matrix_siggenes.rds:md5,4d0568af42ab66c837e51f83bdc7d3f9"
+            ],
+            [
+                "versions.yml:md5,fd7c6c6c0f2ef8594e0521d8d33fb339"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-24T15:36:31.847431541"
+    },
+    "Should stub perform timecourse analysis using maSigPro package with Mclust cluster method and return mocked timecourse results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "10": [
+                    "versions.yml:md5,fd7c6c6c0f2ef8594e0521d8d33fb339"
+                ],
+                "2": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "6": [
+                    "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "7": [
+                    "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "8": [
+                    "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "9": [
+                    "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "cluster_assignments": [
+                    "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "cluster_median_expression": [
+                    "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "cluster_plots": [
+                    "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "clusters_list": [
+                    "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "masigpro_results": [
+                    [
+                        "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "significant_expression": [
+                    "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "summary_statistics": [
+                    "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,fd7c6c6c0f2ef8594e0521d8d33fb339"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-24T14:47:15.111685975"
+    },
+    "Should stub perform timecourse analysis using maSigPro package with hierarchical cluster method and return mocked timecourse results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "10": [
+                    "versions.yml:md5,fd7c6c6c0f2ef8594e0521d8d33fb339"
+                ],
+                "2": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "6": [
+                    "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "7": [
+                    "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "8": [
+                    "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "9": [
+                    "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "cluster_assignments": [
+                    "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "cluster_median_expression": [
+                    "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "cluster_plots": [
+                    "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "clusters_list": [
+                    "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "masigpro_results": [
+                    [
+                        "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "significant_expression": [
+                    "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "summary_statistics": [
+                    "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,fd7c6c6c0f2ef8594e0521d8d33fb339"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-24T14:45:56.651922187"
+    }
+}
