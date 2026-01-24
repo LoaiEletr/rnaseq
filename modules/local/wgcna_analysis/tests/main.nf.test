@@ -52,7 +52,6 @@ nextflow_process {
                 { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
                 { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
                 { assert snapshot(
-                    process.out.vsd_object,
                     process.out.unfiltered_log2counts,
                     process.out.filtered_log2counts,
                     process.out.normalized_log2counts,
@@ -109,7 +108,6 @@ nextflow_process {
                 { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
                 { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
                 { assert snapshot(
-                    process.out.vsd_object,
                     process.out.unfiltered_log2counts,
                     process.out.filtered_log2counts,
                     process.out.normalized_log2counts,

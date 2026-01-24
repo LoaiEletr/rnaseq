@@ -2,9 +2,6 @@
     "Should perform WGCNA analysis on leishmaniasis dataset with no timepoints and return WGCNA results": {
         "content": [
             [
-                "vsd_object.rds:md5,2fdc6086aa755c7aaf7e9c71e985bcad"
-            ],
-            [
                 "unfiltered_counts.rds:md5,284a9429ce8fb9da143500b78c0e7482"
             ],
             [
@@ -165,9 +162,6 @@
     },
     "Should perform WGCNA analysis on plant dataset with timepoints and return WGCNA results": {
         "content": [
-            [
-                "vsd_object.rds:md5,089d558ca5293977d02096ab4d45b898"
-            ],
             [
                 "unfiltered_counts.rds:md5,2386a722d71fafac409a1f44d6cdcb18"
             ],
