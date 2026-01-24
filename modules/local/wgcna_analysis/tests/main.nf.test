@@ -1,0 +1,206 @@
+nextflow_process {
+    name "Test Process WGCNA_ANALYSIS"
+    script "modules/local/wgcna_analysis/main.nf"
+    process "WGCNA_ANALYSIS"
+
+    tag "modules"
+    tag "wgcna_analysis"
+
+    test("Should perform WGCNA analysis on leishmaniasis dataset with no timepoints and return WGCNA results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.5
+                min_mm = 0.8
+                top_n = 10
+                cor_threshold = 0.5
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_n
+                input[5] = params.cor_threshold
+                input[6] = params.pval_threshold
+                input[7] = params.tomtype
+                input[8] = params.networktype
+                input[9] = params.deepsplit
+                input[10] = params.reassignthreshold
+                input[11] = params.mergecutheight
+                input[12] = params.minmodulesize
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.wgcna_results.get(0) ==~ ".*/WGCNA" },
+                { assert process.out.vsd_object.get(0) ==~ ".*/vsd_object\\.rds" },
+                { assert process.out.unfiltered_log2counts.get(0) ==~ ".*/unfiltered_counts\\.rds" },
+                { assert process.out.filtered_log2counts.get(0) ==~ ".*/filtered_counts\\.rds" },
+                { assert process.out.normalized_log2counts.get(0) ==~ ".*/normalized_counts\\.rds" },
+                { assert process.out.modules_hubgenes.get(0) ==~ ".*/all_traits_modules_hubgenes\\.rds" },
+                { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
+                { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
+                { assert snapshot(
+                    process.out.unfiltered_log2counts,
+                    process.out.filtered_log2counts,
+                    process.out.normalized_log2counts,
+                    process.out.modules_hubgenes,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should perform WGCNA analysis on plant dataset with timepoints and return WGCNA results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.5
+                min_mm = 0.8
+                top_n = 10
+                cor_threshold = 0.5
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/plant_timecourse_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_plant_timecourse.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_n
+                input[5] = params.cor_threshold
+                input[6] = params.pval_threshold
+                input[7] = params.tomtype
+                input[8] = params.networktype
+                input[9] = params.deepsplit
+                input[10] = params.reassignthreshold
+                input[11] = params.mergecutheight
+                input[12] = params.minmodulesize
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.wgcna_results.get(0) ==~ ".*/WGCNA" },
+                { assert process.out.vsd_object.get(0) ==~ ".*/vsd_object\\.rds" },
+                { assert process.out.unfiltered_log2counts.get(0) ==~ ".*/unfiltered_counts\\.rds" },
+                { assert process.out.filtered_log2counts.get(0) ==~ ".*/filtered_counts\\.rds" },
+                { assert process.out.normalized_log2counts.get(0) ==~ ".*/normalized_counts\\.rds" },
+                { assert process.out.modules_hubgenes.get(0) ==~ ".*/all_traits_modules_hubgenes\\.rds" },
+                { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
+                { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
+                { assert snapshot(
+                    process.out.unfiltered_log2counts,
+                    process.out.filtered_log2counts,
+                    process.out.normalized_log2counts,
+                    process.out.modules_hubgenes,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should stub perform WGCNA analysis on leishmaniasis dataset with no timepoints and return mocked WGCNA results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.5
+                min_mm = 0.8
+                top_n = 10
+                cor_threshold = 0.5
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_n
+                input[5] = params.cor_threshold
+                input[6] = params.pval_threshold
+                input[7] = params.tomtype
+                input[8] = params.networktype
+                input[9] = params.deepsplit
+                input[10] = params.reassignthreshold
+                input[11] = params.mergecutheight
+                input[12] = params.minmodulesize
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub perform WGCNA analysis on plant dataset with timepoints and return mocked WGCNA results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.5
+                min_mm = 0.8
+                top_n = 10
+                cor_threshold = 0.5
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/plant_timecourse_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_plant_timecourse.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_n
+                input[5] = params.cor_threshold
+                input[6] = params.pval_threshold
+                input[7] = params.tomtype
+                input[8] = params.networktype
+                input[9] = params.deepsplit
+                input[10] = params.reassignthreshold
+                input[11] = params.mergecutheight
+                input[12] = params.minmodulesize
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
