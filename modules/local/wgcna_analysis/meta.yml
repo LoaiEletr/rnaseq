@@ -1,0 +1,264 @@
+name: wgcna_analysis
+description: |
+  Performs Weighted Gene Co-expression Network Analysis (WGCNA) to identify gene modules and their associations with sample traits.
+keywords:
+  - wgcna
+  - co-expression
+  - network
+  - modules
+tools:
+  - r_wgcna:
+      description: "Weighted Correlation Network Analysis"
+      homepage: "https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/"
+      documentation: "https://cran.r-project.org/web/packages/WGCNA/WGCNA.pdf"
+      tool_dev_url: "https://github.com/cran/WGCNA"
+      licence: ["GPL-2.0-only"]
+      identifier: "WGCNA"
+
+input:
+  - count_matrix_rds:
+      type: file
+      description: |
+        RDS file containing raw count matrix
+      pattern: "*.rds"
+      ontologies: []
+
+  - samplesheet_csv:
+      type: file
+      description: |
+        CSV file with sample metadata and traits for correlation analysis
+      pattern: "*.csv"
+      ontologies:
+        - edam: "http://edamontology.org/format_3752"
+
+  - min_gs:
+      type: number
+      description: |
+        Minimum gene significance threshold for module membership
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - min_mm:
+      type: number
+      description: |
+        Minimum module membership threshold
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - top_n:
+      type: integer
+      description: |
+        Number of top hub genes to extract per module
+      pattern: "[0-9]+"
+
+  - cor_threshold:
+      type: number
+      description: |
+        Correlation threshold for network construction
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - pval_threshold:
+      type: number
+      description: |
+        P-value threshold for significance
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - tomtype:
+      type: string
+      description: |
+        Type of Topological Overlap Matrix
+        Options: none, signed, signed 2, unsigned, unsigned 2, signed Nowick, signed Nowick 2
+      pattern: "none|signed|signed 2|unsigned|unsigned 2|signed Nowick|signed Nowick 2"
+
+  - networktype:
+      type: string
+      description: |
+        Network type for correlation calculation
+        Options: signed, unsigned, signed hybrid
+      pattern: "signed|unsigned|signed hybrid"
+
+  - deepsplit:
+      type: integer
+      description: |
+        Deep split parameter for module detection
+      pattern: "[0-4]"
+
+  - reassignthreshold:
+      type: number
+      description: |
+        Module reassignment threshold
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - mergecutheight:
+      type: number
+      description: |
+        Cut height for module merging
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - minmodulesize:
+      type: integer
+      description: |
+        Minimum module size
+      pattern: "[0-9]+"
+
+output:
+  wgcna_results:
+    - WGCNA:
+        type: file
+        description: |
+          Directory containing all WGCNA analysis results
+        pattern: "WGCNA/*"
+
+  vsd_object:
+    - WGCNA/vsd_object.rds:
+        type: file
+        description: |
+          RDS file with variance stabilizing transformed data
+        pattern: "WGCNA/vsd_object.rds"
+        ontologies: []
+        optional: true
+
+  unfiltered_log2counts:
+    - WGCNA/unfiltered_counts.rds:
+        type: file
+        description: |
+          RDS file with unfiltered log2 count matrix
+        pattern: "WGCNA/unfiltered_counts.rds"
+        ontologies: []
+        optional: true
+
+  filtered_log2counts:
+    - WGCNA/filtered_counts.rds:
+        type: file
+        description: |
+          RDS file with filtered log2 count matrix
+        pattern: "WGCNA/filtered_counts.rds"
+        ontologies: []
+        optional: true
+
+  normalized_log2counts:
+    - WGCNA/normalized_counts.rds:
+        type: file
+        description: |
+          RDS file with normalized log2 counts
+        pattern: "WGCNA/normalized_counts.rds"
+        ontologies: []
+        optional: true
+
+  modules_hubgenes:
+    - WGCNA/all_traits_modules_hubgenes.rds:
+        type: file
+        description: |
+          RDS file with all module hub genes across traits
+        pattern: "WGCNA/all_traits_modules_hubgenes.rds"
+        ontologies: []
+
+  soft_threshold_plot:
+    - WGCNA/soft_threshold_selection.pdf:
+        type: file
+        description: |
+          PDF file with soft threshold selection plot
+        pattern: "WGCNA/soft_threshold_selection.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508"
+        optional: true
+
+  module_dendrogram:
+    - WGCNA/module_dendrogram.pdf:
+        type: file
+        description: |
+          PDF file with module dendrogram
+        pattern: "WGCNA/module_dendrogram.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508"
+        optional: true
+
+  module_trait_heatmap:
+    - WGCNA/module_trait_correlation_heatmap.pdf:
+        type: file
+        description: |
+          PDF file with module-trait correlation heatmap
+        pattern: "WGCNA/module_trait_correlation_heatmap.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508"
+        optional: true
+
+  module_eigengenes_heatmap:
+    - WGCNA/module_eigengenes_heatmap.pdf:
+        type: file
+        description: |
+          PDF file with module eigengenes heatmap
+        pattern: "WGCNA/module_eigengenes_heatmap.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508"
+        optional: true
+
+  module_analysis_results:
+    - WGCNA/module_analysis/**:
+        type: file
+        description: |
+          Directory containing detailed module analysis results
+        pattern: "WGCNA/module_analysis/**"
+        optional: true
+
+  versions_wgcna:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - r_wgcna:
+          type: string
+          description: The name of the WGCNA package
+      - 'Rscript -e "library(WGCNA); cat(as.character(packageVersion(''WGCNA'')))"':
+          type: eval
+          description: The expression to obtain the version of WGCNA
+      - bioconductor_deseq2:
+          type: string
+          description: The name of the DESeq2 package
+      - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+          description: The expression to obtain the version of DESeq2
+      - r_pheatmap:
+          type: string
+          description: The name of the pheatmap package
+      - 'Rscript -e "library(pheatmap); cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+          description: The expression to obtain the version of pheatmap
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - r_wgcna:
+          type: string
+          description: The name of the WGCNA package
+      - 'Rscript -e "library(WGCNA); cat(as.character(packageVersion(''WGCNA'')))"':
+          type: eval
+          description: The expression to obtain the version of WGCNA
+      - bioconductor_deseq2:
+          type: string
+          description: The name of the DESeq2 package
+      - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+          description: The expression to obtain the version of DESeq2
+      - r_pheatmap:
+          type: string
+          description: The name of the pheatmap package
+      - 'Rscript -e "library(pheatmap); cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+          description: The expression to obtain the version of pheatmap
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
