@@ -1,0 +1,330 @@
+{
+    "Should run STRING PPI analysis on WGCNA hub genes with no timepoints and return PPI results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "analysis_summary.csv:md5,bba91a274644df643ba57201680255a6",
+                        [
+                            [
+                                "blue_disease_ppi_edges.csv:md5,b238a3e4a927c455da82dace556ed194",
+                                "midnightblue_disease_ppi_edges.csv:md5,794a11c4b491594164308ccd0b1a0edb",
+                                "pink_disease_ppi_edges.csv:md5,e9849cb8b7698806cd59a3fdc06585b6",
+                                "turquoise_disease_ppi_edges.csv:md5,1889e1466949f9ca570b1d426eb0f5b0"
+                            ],
+                            [
+                                "blue_network_summary.csv:md5,4137086cb7a5d12c4bd02a3cc60d2c66",
+                                "midnightblue_network_summary.csv:md5,8dc282d3d6d57661cddc869014550bb6",
+                                "pink_network_summary.csv:md5,db8c1089f09c6813c458c2291e5a7d6e",
+                                "turquoise_network_summary.csv:md5,5887c86a08596e3bae9f7a5475f89bcb"
+                            ]
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ],
+                "string_results": [
+                    [
+                        "analysis_summary.csv:md5,bba91a274644df643ba57201680255a6",
+                        [
+                            [
+                                "blue_disease_ppi_edges.csv:md5,b238a3e4a927c455da82dace556ed194",
+                                "midnightblue_disease_ppi_edges.csv:md5,794a11c4b491594164308ccd0b1a0edb",
+                                "pink_disease_ppi_edges.csv:md5,e9849cb8b7698806cd59a3fdc06585b6",
+                                "turquoise_disease_ppi_edges.csv:md5,1889e1466949f9ca570b1d426eb0f5b0"
+                            ],
+                            [
+                                "blue_network_summary.csv:md5,4137086cb7a5d12c4bd02a3cc60d2c66",
+                                "midnightblue_network_summary.csv:md5,8dc282d3d6d57661cddc869014550bb6",
+                                "pink_network_summary.csv:md5,db8c1089f09c6813c458c2291e5a7d6e",
+                                "turquoise_network_summary.csv:md5,5887c86a08596e3bae9f7a5475f89bcb"
+                            ]
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T15:23:03.685031368"
+    },
+    "Should run STRING PPI analysis on WGCNA hub genes with timepoints and return PPI results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "analysis_summary.csv:md5,d33cd13f1af36dbd682dc255ae2c6505",
+                        [
+                            [
+                                "green_control_12_ppi_edges.csv:md5,4f1a51ecc102fcab821c1bc76aa98272",
+                                "pink_control_12_ppi_edges.csv:md5,c256464166467923d07f897ba29ae3e2",
+                                "purple_control_12_ppi_edges.csv:md5,da77d6f8025e7046d24352743df571b8",
+                                "turquoise_control_12_ppi_edges.csv:md5,e600bbe20de5241aebf59981ec8bab35"
+                            ],
+                            [
+                                "green_network_summary.csv:md5,63260db9236808b1a6d2438a2fa83275",
+                                "pink_network_summary.csv:md5,a158395b7da451319dffe66bfbf9f1c2",
+                                "purple_network_summary.csv:md5,be53795c8233ab32df0c718ff94cdac9",
+                                "turquoise_network_summary.csv:md5,31a6a7760696aaf02e59758349eec307"
+                            ]
+                        ],
+                        [
+                            [
+                                "greenyellow_control_18_ppi_edges.csv:md5,6f076a5c1c1d1e53eaaea686f497b17f",
+                                "salmon_control_18_ppi_edges.csv:md5,bb5f9edf8292c8c9af8ab941928eca3c"
+                            ],
+                            [
+                                "greenyellow_network_summary.csv:md5,4da9497bcf92e47f6ef65eb8dfd76b8a",
+                                "salmon_network_summary.csv:md5,f4ddadcedd6b4a0a4e5fa6636941cdaa"
+                            ]
+                        ],
+                        [
+                            [
+                                "black_control_24_ppi_edges.csv:md5,df812d26d0e363f8eba970fe1d930859",
+                                "tan_control_24_ppi_edges.csv:md5,9047d616c3a47d8f96a256d981298172"
+                            ],
+                            [
+                                "black_network_summary.csv:md5,aaac96b9e6ba1b1462e8e91e9baa5ec6",
+                                "tan_network_summary.csv:md5,431e676e78d978c1fd4a9e719b957837"
+                            ]
+                        ],
+                        [
+                            [
+                                "lightgreen_control_6_ppi_edges.csv:md5,dc22c6d58b4cb37d2ad93b5cd55b44b0",
+                                "magenta_control_6_ppi_edges.csv:md5,d69cf7c8c9339ef317f39bee91e705fc",
+                                "red_control_6_ppi_edges.csv:md5,6acf8dc2347d21cf92a58154e9ca05bf",
+                                "yellow_control_6_ppi_edges.csv:md5,7a40ca647132b9c4541a15ceb3960d8c"
+                            ],
+                            [
+                                "lightgreen_network_summary.csv:md5,9e814a5480c92b39ce9fa2f4ffd2257c",
+                                "magenta_network_summary.csv:md5,370d92cbd6d0e498a7c0c78b7b32f0a7",
+                                "red_network_summary.csv:md5,75ee30a252d4666933f557b4136b3a7e",
+                                "yellow_network_summary.csv:md5,74843ef92c8a2ddf3812728e2f3b4e03"
+                            ]
+                        ],
+                        [
+                            [
+                                "green_mutant_12_ppi_edges.csv:md5,ff70819b886fcd2f2243287dae67d1c8",
+                                "pink_mutant_12_ppi_edges.csv:md5,e4d1e29e5150affbfbf58a07f94884e2",
+                                "purple_mutant_12_ppi_edges.csv:md5,6c0dd66707f817c8387249f8177b513f",
+                                "turquoise_mutant_12_ppi_edges.csv:md5,6adfdd5736499fa61b5df88b96a59e91"
+                            ],
+                            [
+                                "green_network_summary.csv:md5,ce4989d27714408cac84736177252439",
+                                "pink_network_summary.csv:md5,6682fbd9510a6e366762b136e196acfa",
+                                "purple_network_summary.csv:md5,e7c199fff087d29d1c01e7fdc18b910f",
+                                "turquoise_network_summary.csv:md5,df14b85b13b7eca9594824405cde85d1"
+                            ]
+                        ],
+                        [
+                            [
+                                "greenyellow_mutant_18_ppi_edges.csv:md5,e4b610efe59a31050fcb6c5d61266d44",
+                                "salmon_mutant_18_ppi_edges.csv:md5,fa072b1df43377cb3223f68f4cc82693"
+                            ],
+                            [
+                                "greenyellow_network_summary.csv:md5,2b6efd89c235f83550e6173524500a03",
+                                "salmon_network_summary.csv:md5,840adaa829de29827c1bdf10f6b8ce97"
+                            ]
+                        ],
+                        [
+                            [
+                                "black_mutant_24_ppi_edges.csv:md5,21651ba09ffa014f6ff5d80e56516d53",
+                                "midnightblue_mutant_24_ppi_edges.csv:md5,5ddb75355749af0e2d3190e9f556542d",
+                                "tan_mutant_24_ppi_edges.csv:md5,f0ad5a506afe41e8d8f77150ad7d4b8a"
+                            ],
+                            [
+                                "black_network_summary.csv:md5,3d4d69bb9e61214381ec0d25c2f1ffc8",
+                                "midnightblue_network_summary.csv:md5,3e255cf1461d33993351db1e10aa2270",
+                                "tan_network_summary.csv:md5,085a680e34201d0f1348d78096a2bf5c"
+                            ]
+                        ],
+                        [
+                            [
+                                "magenta_mutant_6_ppi_edges.csv:md5,469030c13262baeeba85fa231f782b74",
+                                "red_mutant_6_ppi_edges.csv:md5,c13e530ed7d19d2d2f100ac8764b1a43",
+                                "yellow_mutant_6_ppi_edges.csv:md5,c780d75d58e57e39df87c470a2fab7a5"
+                            ],
+                            [
+                                "magenta_network_summary.csv:md5,fa1118892f1d61407b9893249461e73b",
+                                "red_network_summary.csv:md5,d702d61f8a09a28ad0532d86622beeb0",
+                                "yellow_network_summary.csv:md5,ae1906bdaf726b2e9619b49aa7f1c03e"
+                            ]
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ],
+                "string_results": [
+                    [
+                        "analysis_summary.csv:md5,d33cd13f1af36dbd682dc255ae2c6505",
+                        [
+                            [
+                                "green_control_12_ppi_edges.csv:md5,4f1a51ecc102fcab821c1bc76aa98272",
+                                "pink_control_12_ppi_edges.csv:md5,c256464166467923d07f897ba29ae3e2",
+                                "purple_control_12_ppi_edges.csv:md5,da77d6f8025e7046d24352743df571b8",
+                                "turquoise_control_12_ppi_edges.csv:md5,e600bbe20de5241aebf59981ec8bab35"
+                            ],
+                            [
+                                "green_network_summary.csv:md5,63260db9236808b1a6d2438a2fa83275",
+                                "pink_network_summary.csv:md5,a158395b7da451319dffe66bfbf9f1c2",
+                                "purple_network_summary.csv:md5,be53795c8233ab32df0c718ff94cdac9",
+                                "turquoise_network_summary.csv:md5,31a6a7760696aaf02e59758349eec307"
+                            ]
+                        ],
+                        [
+                            [
+                                "greenyellow_control_18_ppi_edges.csv:md5,6f076a5c1c1d1e53eaaea686f497b17f",
+                                "salmon_control_18_ppi_edges.csv:md5,bb5f9edf8292c8c9af8ab941928eca3c"
+                            ],
+                            [
+                                "greenyellow_network_summary.csv:md5,4da9497bcf92e47f6ef65eb8dfd76b8a",
+                                "salmon_network_summary.csv:md5,f4ddadcedd6b4a0a4e5fa6636941cdaa"
+                            ]
+                        ],
+                        [
+                            [
+                                "black_control_24_ppi_edges.csv:md5,df812d26d0e363f8eba970fe1d930859",
+                                "tan_control_24_ppi_edges.csv:md5,9047d616c3a47d8f96a256d981298172"
+                            ],
+                            [
+                                "black_network_summary.csv:md5,aaac96b9e6ba1b1462e8e91e9baa5ec6",
+                                "tan_network_summary.csv:md5,431e676e78d978c1fd4a9e719b957837"
+                            ]
+                        ],
+                        [
+                            [
+                                "lightgreen_control_6_ppi_edges.csv:md5,dc22c6d58b4cb37d2ad93b5cd55b44b0",
+                                "magenta_control_6_ppi_edges.csv:md5,d69cf7c8c9339ef317f39bee91e705fc",
+                                "red_control_6_ppi_edges.csv:md5,6acf8dc2347d21cf92a58154e9ca05bf",
+                                "yellow_control_6_ppi_edges.csv:md5,7a40ca647132b9c4541a15ceb3960d8c"
+                            ],
+                            [
+                                "lightgreen_network_summary.csv:md5,9e814a5480c92b39ce9fa2f4ffd2257c",
+                                "magenta_network_summary.csv:md5,370d92cbd6d0e498a7c0c78b7b32f0a7",
+                                "red_network_summary.csv:md5,75ee30a252d4666933f557b4136b3a7e",
+                                "yellow_network_summary.csv:md5,74843ef92c8a2ddf3812728e2f3b4e03"
+                            ]
+                        ],
+                        [
+                            [
+                                "green_mutant_12_ppi_edges.csv:md5,ff70819b886fcd2f2243287dae67d1c8",
+                                "pink_mutant_12_ppi_edges.csv:md5,e4d1e29e5150affbfbf58a07f94884e2",
+                                "purple_mutant_12_ppi_edges.csv:md5,6c0dd66707f817c8387249f8177b513f",
+                                "turquoise_mutant_12_ppi_edges.csv:md5,6adfdd5736499fa61b5df88b96a59e91"
+                            ],
+                            [
+                                "green_network_summary.csv:md5,ce4989d27714408cac84736177252439",
+                                "pink_network_summary.csv:md5,6682fbd9510a6e366762b136e196acfa",
+                                "purple_network_summary.csv:md5,e7c199fff087d29d1c01e7fdc18b910f",
+                                "turquoise_network_summary.csv:md5,df14b85b13b7eca9594824405cde85d1"
+                            ]
+                        ],
+                        [
+                            [
+                                "greenyellow_mutant_18_ppi_edges.csv:md5,e4b610efe59a31050fcb6c5d61266d44",
+                                "salmon_mutant_18_ppi_edges.csv:md5,fa072b1df43377cb3223f68f4cc82693"
+                            ],
+                            [
+                                "greenyellow_network_summary.csv:md5,2b6efd89c235f83550e6173524500a03",
+                                "salmon_network_summary.csv:md5,840adaa829de29827c1bdf10f6b8ce97"
+                            ]
+                        ],
+                        [
+                            [
+                                "black_mutant_24_ppi_edges.csv:md5,21651ba09ffa014f6ff5d80e56516d53",
+                                "midnightblue_mutant_24_ppi_edges.csv:md5,5ddb75355749af0e2d3190e9f556542d",
+                                "tan_mutant_24_ppi_edges.csv:md5,f0ad5a506afe41e8d8f77150ad7d4b8a"
+                            ],
+                            [
+                                "black_network_summary.csv:md5,3d4d69bb9e61214381ec0d25c2f1ffc8",
+                                "midnightblue_network_summary.csv:md5,3e255cf1461d33993351db1e10aa2270",
+                                "tan_network_summary.csv:md5,085a680e34201d0f1348d78096a2bf5c"
+                            ]
+                        ],
+                        [
+                            [
+                                "magenta_mutant_6_ppi_edges.csv:md5,469030c13262baeeba85fa231f782b74",
+                                "red_mutant_6_ppi_edges.csv:md5,c13e530ed7d19d2d2f100ac8764b1a43",
+                                "yellow_mutant_6_ppi_edges.csv:md5,c780d75d58e57e39df87c470a2fab7a5"
+                            ],
+                            [
+                                "magenta_network_summary.csv:md5,fa1118892f1d61407b9893249461e73b",
+                                "red_network_summary.csv:md5,d702d61f8a09a28ad0532d86622beeb0",
+                                "yellow_network_summary.csv:md5,ae1906bdaf726b2e9619b49aa7f1c03e"
+                            ]
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T16:15:57.901111656"
+    },
+    "Should stub run STRING PPI analysis on WGCNA hub genes with no timepoints and return mocked PPI results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ],
+                "string_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T16:16:49.032025414"
+    },
+    "Should stub run STRING PPI analysis on WGCNA hub genes with timepoints and return mocked PPI results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ],
+                "string_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T16:17:40.94343423"
+    }
+}

@@ -1,0 +1,102 @@
+nextflow_process {
+    name "Test Process STRING_PPI"
+    script "modules/local/string_ppi/main.nf"
+    process "STRING_PPI"
+
+    tag "modules"
+    tag "string_ppi"
+
+    test("Should run STRING PPI analysis on WGCNA hub genes with no timepoints and return PPI results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                score_threshold = 400
+                species_name = "human"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'wgcna_results/leishmaniasis_wgcna_results.rds', checkIfExists: true)
+                input[1] = params.species_name
+                input[2] = params.score_threshold
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should run STRING PPI analysis on WGCNA hub genes with timepoints and return PPI results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                score_threshold = 400
+                species_name = "arabidopsis"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'wgcna_results/plant_timecourse_wgcna_results.rds', checkIfExists: true)
+                input[1] = params.species_name
+                input[2] = params.score_threshold
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub run STRING PPI analysis on WGCNA hub genes with no timepoints and return mocked PPI results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                score_threshold = 400
+                species_name = "human"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'wgcna_results/leishmaniasis_wgcna_results.rds', checkIfExists: true)
+                input[1] = params.species_name
+                input[2] = params.score_threshold
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub run STRING PPI analysis on WGCNA hub genes with timepoints and return mocked PPI results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                score_threshold = 400
+                species_name = "arabidopsis"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'wgcna_results/plant_timecourse_wgcna_results.rds', checkIfExists: true)
+                input[1] = params.species_name
+                input[2] = params.score_threshold
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
