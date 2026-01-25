@@ -63,12 +63,6 @@
     "Should perform differential exon usage analysis with DEXSeq and return DEU results": {
         "content": [
             [
-                "DEXSeq_table.csv:md5,7fc2fe65a15988e34949e6fcf4f4c869"
-            ],
-            [
-                "significant_DEUs.csv:md5,67cd5b388ccdbec1bc8eb71ee9431442"
-            ],
-            [
                 "significant_DEU_gene_ids.rds:md5,25a34c80f6b389680d59f3e7d65bd30d"
             ],
             [

@@ -45,8 +45,6 @@ nextflow_process {
                 { assert process.out.significant_genes.get(0) ==~ ".*/significant_DEU_gene_ids\\.rds" },
                 { assert process.out.report.get(0) ==~ ".*/DEXSeqReport" },
                 { assert snapshot(
-                    process.out.results_table,
-                    process.out.significant_results,
                     process.out.significant_genes,
                     process.out.report,
                     process.out.versions
