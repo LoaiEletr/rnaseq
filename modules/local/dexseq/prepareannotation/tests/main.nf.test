@@ -1,0 +1,97 @@
+nextflow_process {
+    name "Test Process DEXSEQ_PREPAREANNOTATION"
+    script "modules/local/dexseq/prepareannotation/main.nf"
+    process "DEXSEQ_PREPAREANNOTATION"
+
+    tag "modules"
+    tag "dexseq"
+    tag "dexseq/prepareannotation"
+
+    test("Should prepare DEXSeq annotation with aggregation and return GFF file") {
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = true
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gff.get(0) ==~ ".*/DEXSeq\\.gff" },
+                { assert snapshot(process.out.versions).match("versions_aggregation") }
+            )
+        }
+    }
+
+    test("Should prepare DEXSeq annotation with no aggregation and return GFF file") {
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = false
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gff.get(0) ==~ ".*/DEXSeq\\.gff" },
+                { assert snapshot(process.out.versions).match("versions_no_aggregation") }
+            )
+        }
+    }
+
+    test("Should stub prepare DEXSeq annotation with aggregation and return mocked GFF file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = true
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub prepare DEXSeq annotation with no aggregation and return mocked GFF file") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = false
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

@@ -1,0 +1,72 @@
+{
+    "versions_aggregation": {
+        "content": [
+            [
+                "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:28:16.034436843"
+    },
+    "Should stub prepare DEXSeq annotation with no aggregation and return mocked GFF file": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+                ],
+                "gff": [
+                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:30:44.985793666"
+    },
+    "Should stub prepare DEXSeq annotation with aggregation and return mocked GFF file": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+                ],
+                "gff": [
+                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:29:54.123168894"
+    },
+    "versions_no_aggregation": {
+        "content": [
+            [
+                "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:29:03.667468583"
+    }
+}
