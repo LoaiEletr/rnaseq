@@ -22,7 +22,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ],
                 "string_results": [
                     [
@@ -44,7 +44,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ]
             }
         ],
@@ -159,7 +159,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ],
                 "string_results": [
                     [
@@ -263,7 +263,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ]
             }
         ],
@@ -282,7 +282,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ],
                 "string_results": [
                     [
@@ -290,7 +290,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ]
             }
         ],
@@ -298,7 +298,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T16:16:49.032025414"
+        "timestamp": "2026-01-25T16:50:00.622924384"
     },
     "Should stub run STRING PPI analysis on WGCNA hub genes with timepoints and return mocked PPI results": {
         "content": [
@@ -309,7 +309,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ],
                 "string_results": [
                     [
@@ -317,7 +317,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,07d682dccd84a8a2f3beddf59e6d1597"
+                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
                 ]
             }
         ],

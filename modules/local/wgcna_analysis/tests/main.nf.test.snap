@@ -14,7 +14,7 @@
                 "all_traits_modules_hubgenes.rds:md5,5ebeb2eb3049d5fa9d9d4ffd799896e4"
             ],
             [
-                "versions.yml:md5,b406efe94612eac78560733c3f0688fa"
+                "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
             ]
         ],
         "meta": {
@@ -63,7 +63,7 @@
                     ]
                 ],
                 "11": [
-                    "versions.yml:md5,b406efe94612eac78560733c3f0688fa"
+                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
                 ],
                 "2": [
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -122,7 +122,7 @@
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "versions": [
-                    "versions.yml:md5,b406efe94612eac78560733c3f0688fa"
+                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
                 ],
                 "vsd_object": [
                     "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -158,7 +158,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-24T22:36:06.478880467"
+        "timestamp": "2026-01-25T16:44:44.415981978"
     },
     "Should perform WGCNA analysis on plant dataset with timepoints and return WGCNA results": {
         "content": [
@@ -175,7 +175,7 @@
                 "all_traits_modules_hubgenes.rds:md5,06e0db370c6b88b996f1c6582d4d827c"
             ],
             [
-                "versions.yml:md5,b406efe94612eac78560733c3f0688fa"
+                "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
             ]
         ],
         "meta": {
@@ -224,7 +224,7 @@
                     ]
                 ],
                 "11": [
-                    "versions.yml:md5,b406efe94612eac78560733c3f0688fa"
+                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
                 ],
                 "2": [
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -283,7 +283,7 @@
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "versions": [
-                    "versions.yml:md5,b406efe94612eac78560733c3f0688fa"
+                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
                 ],
                 "vsd_object": [
                     "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
