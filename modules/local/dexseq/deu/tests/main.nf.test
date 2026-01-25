@@ -1,0 +1,94 @@
+nextflow_process {
+    name "Test Process DEXSEQ_DEU"
+    script "modules/local/dexseq/deu/main.nf"
+    process "DEXSEQ_DEU"
+
+    tag "modules"
+    tag "dexseq"
+    tag "dexseq/deu"
+
+    test("Should perform differential exon usage analysis with DEXSeq and return DEU results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 1
+                logfc_threshold = 1
+                top_n = 10
+                min_exonlength = 18
+            }
+            process {
+                """
+                input[0] = input[0] = Channel.of(
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188044.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188104.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188234.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188245.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188257.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188273.counts.txt'
+                ).collect()
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_lymphoblastoid_celllines.csv', checkIfExists: true)
+                input[2] = file(params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/annotations/human_chrX_dexseq_flattened.gff', checkIfExists: true)
+                input[3] = params.pvalue_threshold
+                input[4] = params.logfc_threshold
+                input[5] = params.top_n
+                input[6] = params.min_exonlength
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.results_table.get(0) ==~ ".*/DEXSeq_table\\.csv" },
+                { assert process.out.significant_results.get(0) ==~ ".*/significant_DEUs\\.csv" },
+                { assert process.out.ma_plot.get(0) ==~ ".*/DEXSeq_MA_plot\\.pdf" },
+                { assert process.out.gene_plots.get(0) ==~ ".*/top_DEU_plots" },
+                { assert process.out.significant_genes.get(0) ==~ ".*/significant_DEU_gene_ids\\.rds" },
+                { assert process.out.report.get(0) ==~ ".*/DEXSeqReport" },
+                { assert snapshot(
+                    process.out.results_table,
+                    process.out.significant_results,
+                    process.out.significant_genes,
+                    process.out.report,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should stub perform differential exon usage analysis with DEXSeq and return mocked DEU results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 1
+                logfc_threshold = 1
+                top_n = 10
+                min_exonlength = 18
+            }
+            process {
+                """
+                input[0] = input[0] = Channel.of(
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188044.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188104.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188234.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188245.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188257.counts.txt',
+                    params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188273.counts.txt'
+                ).collect()
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_lymphoblastoid_celllines.csv', checkIfExists: true)
+                input[2] = file(params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/annotations/human_chrX_dexseq_flattened.gff', checkIfExists: true)
+                input[3] = params.pvalue_threshold
+                input[4] = params.logfc_threshold
+                input[5] = params.top_n
+                input[6] = params.min_exonlength
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
