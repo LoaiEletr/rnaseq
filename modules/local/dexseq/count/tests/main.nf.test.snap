@@ -1,0 +1,76 @@
+{
+    "Should stub count exonic reads for DEXSeq analysis and return mocked count files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:50:47.634556276"
+    },
+    "Should count exonic reads for DEXSeq analysis and return count files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,47ad42277f7bf925db993e44663721d0"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,47ad42277f7bf925db993e44663721d0"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:48:04.602997616"
+    }
+}
