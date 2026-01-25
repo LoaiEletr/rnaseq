@@ -1,0 +1,121 @@
+{
+    "Should stub perform differential exon usage analysis with DEXSeq and return mocked DEU results": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "6": [
+                    "versions.yml:md5,e1ec35b3ba7603c811bb379788d487bc"
+                ],
+                "gene_plots": [
+                    [
+                        
+                    ]
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "report": [
+                    [
+                        
+                    ]
+                ],
+                "results_table": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "significant_results": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,e1ec35b3ba7603c811bb379788d487bc"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T20:38:36.579655281"
+    },
+    "Should perform differential exon usage analysis with DEXSeq and return DEU results": {
+        "content": [
+            [
+                "significant_DEU_gene_ids.rds:md5,25a34c80f6b389680d59f3e7d65bd30d"
+            ],
+            [
+                [
+                    [
+                        "ENSG00000147010counts.html:md5,cafc099d76e1efb54f65937b00b47f04",
+                        "ENSG00000147010counts.svg:md5,ad66c80e0cd42a624805f42fc5b80b1b",
+                        "ENSG00000147010expression.html:md5,975958b3cc55174ef42e2d9e5aefde2a",
+                        "ENSG00000147010expression.svg:md5,b203ba19ae117a9ea075755b8e038893",
+                        "ENSG00000147010results.html:md5,86d720847e4f78198395e89a57d1592a",
+                        "ENSG00000147010splicing.html:md5,25e4731a4babdd78f3b3340909a777a8",
+                        "ENSG00000147010splicing.svg:md5,6c176367d00ac1a4c554e259dda30568",
+                        "ENSG00000147010transcripts.html:md5,38af7f773f79f72247a3a7bc2a599793",
+                        "ENSG00000147010transcripts.svg:md5,c1f71e113efd37445c2b09a2761f1e3e",
+                        "ENSG00000180879counts.html:md5,57af2bf5d0051bf570d187dc88f5f622",
+                        "ENSG00000180879counts.svg:md5,498cdd10d344d48d1e034dc866c03a87",
+                        "ENSG00000180879expression.html:md5,cc7d43f29cd513754e0e4d4ee55b60ab",
+                        "ENSG00000180879expression.svg:md5,91680b54168620813313a469f2b7d2d9",
+                        "ENSG00000180879results.html:md5,0a82d38ec624829a58a14484a8fa16e6",
+                        "ENSG00000180879splicing.html:md5,ae7d869642aa4a74e02d25624fa412a5",
+                        "ENSG00000180879splicing.svg:md5,44841e027880448e59c18fa4d7435ca0",
+                        "ENSG00000180879transcripts.html:md5,dc58d53e384717e0e9b9217cf273ee5f",
+                        "ENSG00000180879transcripts.svg:md5,c90c021046e0eb31216901946a1f888b",
+                        "ENSG00000198034counts.html:md5,58a820698943ad06ad5b107c5d71cd8f",
+                        "ENSG00000198034counts.svg:md5,ca9d064e820d1dbf9ca5d15f260cdeb4",
+                        "ENSG00000198034expression.html:md5,27970493622d5dfd11da6daada920d34",
+                        "ENSG00000198034expression.svg:md5,29dfc2a4903805ae5e636535838c79e0",
+                        "ENSG00000198034results.html:md5,b176c9f157b3f9e0f1b4d6da9c62d4be",
+                        "ENSG00000198034splicing.html:md5,6a6cd093159f8b5b2b749d542f236981",
+                        "ENSG00000198034splicing.svg:md5,d42d38dcd0e2db272f49a153c44b8aa9",
+                        "ENSG00000198034transcripts.html:md5,26d7bc69c89900ee5cbdd9489211bd8f",
+                        "ENSG00000198034transcripts.svg:md5,26f75270b5c3c6c005b03fb35a220de6",
+                        "ENSG00000269556counts.html:md5,88b1fd1491dc54bec4cbd2c447b7d2f5",
+                        "ENSG00000269556counts.svg:md5,8727706a6bf18a9c6333dc6c269bd680",
+                        "ENSG00000269556expression.html:md5,7bc0ce380ae55ac198c320daf8811ceb",
+                        "ENSG00000269556expression.svg:md5,d0a9d94589c1d98dc1b9f409039a789f",
+                        "ENSG00000269556results.html:md5,66976897243ff957a928bce63df351d6",
+                        "ENSG00000269556splicing.html:md5,35168c726a10870e8e4b7bc856d0e6a9",
+                        "ENSG00000269556splicing.svg:md5,4e66f83eb795cc85486d15c418bf281b",
+                        "ENSG00000269556transcripts.html:md5,0ccc7543d22b3e5a0ea44294d936b2aa",
+                        "ENSG00000269556transcripts.svg:md5,7f9b625a954d850f9644027b0817e592"
+                    ],
+                    "testForDEU.html:md5,82d03268f788d4435fba8d9aaac3da7f"
+                ]
+            ],
+            [
+                "versions.yml:md5,e1ec35b3ba7603c811bb379788d487bc"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T20:30:40.10582893"
+    }
+}

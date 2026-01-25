@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - conda-forge::r-base=4.4.0
+  - bioconda::bioconductor-dexseq=1.52.0
