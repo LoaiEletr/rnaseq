@@ -28,7 +28,7 @@ process STRING_PPI {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-stringdb: Rscript -e "library(STRINGdb); cat(as.character(packageVersion('STRINGdb')))")
+        bioconductor-stringdb: \$(Rscript -e "library(STRINGdb); cat(as.character(packageVersion('STRINGdb')))")
     END_VERSIONS
     """
 
@@ -39,7 +39,7 @@ process STRING_PPI {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-stringdb: Rscript -e "library(STRINGdb); cat(as.character(packageVersion('STRINGdb')))")
+        bioconductor-stringdb: \$(Rscript -e "library(STRINGdb); cat(as.character(packageVersion('STRINGdb')))")
     END_VERSIONS
     """
 }

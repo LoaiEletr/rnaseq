@@ -52,9 +52,9 @@ process WGCNA_ANALYSIS {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        r-wgcna: Rscript -e "library(WGCNA); cat(as.character(packageVersion('WGCNA')))")
-        bioconductor-deseq2: Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-        r-pheatmap: Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
+        r-wgcna: \$(Rscript -e "library(WGCNA); cat(as.character(packageVersion('WGCNA')))")
+        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
+        r-pheatmap: \$(Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
     END_VERSIONS
     """
 
@@ -83,9 +83,9 @@ process WGCNA_ANALYSIS {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        r-wgcna: Rscript -e "library(WGCNA); cat(as.character(packageVersion('WGCNA')))")
-        bioconductor-deseq2: Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-        r-pheatmap: Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
+        r-wgcna: \$(Rscript -e "library(WGCNA); cat(as.character(packageVersion('WGCNA')))")
+        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
+        r-pheatmap: \$(Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
     END_VERSIONS
     """
 }
