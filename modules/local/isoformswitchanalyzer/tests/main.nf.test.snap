@@ -1,0 +1,92 @@
+{
+    "Should stub perform isoform switch analysis with kallisto data and return mocked isoform switch results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,402debefe58416c9bf155c5cdf5bca3d"
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,402debefe58416c9bf155c5cdf5bca3d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-26T02:15:25.330564506"
+    },
+    "versions_salmon": {
+        "content": [
+            [
+                "versions.yml:md5,402debefe58416c9bf155c5cdf5bca3d"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-26T02:13:30.71536693"
+    },
+    "versions_kallisto": {
+        "content": [
+            [
+                "versions.yml:md5,402debefe58416c9bf155c5cdf5bca3d"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-26T02:10:01.878425436"
+    },
+    "Should stub perform isoform switch analysis with salmon data and return mocked isoform switch results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,402debefe58416c9bf155c5cdf5bca3d"
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,402debefe58416c9bf155c5cdf5bca3d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-26T02:17:25.943967677"
+    }
+}

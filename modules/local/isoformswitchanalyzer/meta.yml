@@ -1,0 +1,174 @@
+name: isoformswitchanalyzer
+description: |
+  Performs differential isoform usage and alternative splicing analysis using IsoformSwitchAnalyzeR.
+keywords:
+  - isoform
+  - isoform switching
+  - differential isoform usage
+  - alternative splicing
+tools:
+  - bioconductor_isoformswitchanalyzer:
+      description: "Identification, visualization and interpretation of isoform switches from functional consequences"
+      homepage: "https://bioconductor.org/packages/IsoformSwitchAnalyzeR/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/IsoformSwitchAnalyzeR.html"
+      tool_dev_url: "https://github.com/kvittingseerup/IsoformSwitchAnalyzeR"
+      licence: ["GPL-2.0-only"]
+      identifier: "IsoformSwitchAnalyzeR"
+
+input:
+  - quant_dir:
+      type: file
+      description: |
+        Quantification directories from salmon or kallisto (one per sample)
+        Multiple directories should be provided
+      pattern: "*"
+
+  - samplesheet:
+      type: file
+      description: |
+        CSV file with sample metadata and experimental design
+      pattern: "*.csv"
+      ontologies:
+        - edam: "http://edamontology.org/format_3752"
+
+  - quant_type:
+      type: string
+      description: |
+        Quantification tool type
+        Options: salmon, kallisto
+      pattern: "salmon|kallisto"
+
+  - gtf:
+      type: file
+      description: |
+        GTF annotation file
+      pattern: "*.{gtf,gtf.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_2305"
+
+  - transcript:
+      type: file
+      description: |
+        Transcript sequences in FASTA format
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_1929"
+
+  - method:
+      type: string
+      description: |
+        Analysis methods to perform
+        Options: DIU (Differential Isoform Usage), AS (Alternative Splicing), or both (DIU,AS)
+      pattern: "DIU|AS|DIU,AS"
+
+  - dif_cutoff:
+      type: number
+      description: |
+        dIF (delta Isoform Fraction) cutoff for significance
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - pval_threshold:
+      type: number
+      description: |
+        P-value threshold for significance
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - ntop_isoforms:
+      type: integer
+      description: |
+        Number of top isoform switches to analyze in detail
+      pattern: "[0-9]+"
+
+output:
+  isoform_results:
+    - isoform_output:
+        type: file
+        description: |
+          Directory containing all isoform switching analysis results
+        pattern: "isoform_output/*"
+        optional: true
+
+  significant_geneids:
+    - isoform_output/significant_DIU_gene_ids.rds:
+        type: file
+        description: |
+          RDS file with gene IDs of significant differential isoform usage
+        pattern: "isoform_output/significant_DIU_gene_ids.rds"
+        ontologies: []
+        optional: true
+
+  versions_isoformswitchanalyzer:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_isoformswitchanalyzer:
+          type: string
+          description: The name of the IsoformSwitchAnalyzeR package
+      - 'Rscript -e "library(IsoformSwitchAnalyzeR); cat(as.character(packageVersion(''IsoformSwitchAnalyzeR'')))"':
+          type: eval
+          description: The expression to obtain the version of IsoformSwitchAnalyzeR
+      - bioconductor_rhdf5:
+          type: string
+          description: The name of the rhdf5 package
+      - 'Rscript -e "library(rhdf5); cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+          description: The expression to obtain the version of rhdf5
+      - r_mass:
+          type: string
+          description: The name of the MASS package
+      - 'Rscript -e "library(MASS); cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+          description: The expression to obtain the version of MASS
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_isoformswitchanalyzer:
+          type: string
+          description: The name of the IsoformSwitchAnalyzeR package
+      - 'Rscript -e "library(IsoformSwitchAnalyzeR); cat(as.character(packageVersion(''IsoformSwitchAnalyzeR'')))"':
+          type: eval
+          description: The expression to obtain the version of IsoformSwitchAnalyzeR
+      - bioconductor_rhdf5:
+          type: string
+          description: The name of the rhdf5 package
+      - 'Rscript -e "library(rhdf5); cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+          description: The expression to obtain the version of rhdf5
+      - r_mass:
+          type: string
+          description: The name of the MASS package
+      - 'Rscript -e "library(MASS); cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+          description: The expression to obtain the version of MASS
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
