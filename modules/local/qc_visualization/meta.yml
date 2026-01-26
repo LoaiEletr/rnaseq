@@ -1,0 +1,192 @@
+name: qc_visualization
+description: |
+  Generates comprehensive quality control plots for RNA-seq data analysis.
+keywords:
+  - qc
+  - visualization
+  - quality control
+  - rna-seq
+tools:
+  - r_ggplot2:
+      description: "Create Elegant Data Visualisations Using the Grammar of Graphics"
+      homepage: "https://ggplot2.tidyverse.org/"
+      documentation: "https://ggplot2.tidyverse.org/reference/"
+      tool_dev_url: "https://github.com/tidyverse/ggplot2"
+      licence: ["MIT"]
+      identifier: "ggplot2"
+
+input:
+  - voom_transformed:
+      type: file
+      description: |
+        RDS file with voom-transformed expression data from edgeR
+      pattern: "*.rds"
+      ontologies: []
+
+  - samplesheet_csv:
+      type: file
+      description: |
+        CSV file with sample metadata for labeling plots
+      pattern: "*.csv"
+      ontologies:
+        - edam: "http://edamontology.org/format_3752"
+
+  - unfiltered_log2counts:
+      type: file
+      description: |
+        RDS file with unfiltered log2 non-normalized counts
+      pattern: "*.rds"
+      ontologies: []
+
+  - filtered_log2counts:
+      type: file
+      description: |
+        RDS file with filtered log2 non-normalized counts
+      pattern: "*.rds"
+      ontologies: []
+
+  - normalized_log2counts:
+      type: file
+      description: |
+        RDS file with filtered log2 normalized counts
+      pattern: "*.rds"
+      ontologies: []
+
+  - vst_object:
+      type: file
+      description: |
+        RDS file with variance stabilizing transformed data from DESeq2
+      pattern: "*.rds"
+      ontologies: []
+
+output:
+  qc_plots:
+    - qc_plots:
+        type: file
+        description: |
+          Directory containing all quality control plots
+        pattern: "qc_plots/*"
+
+  versions_qc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_edger:
+          type: string
+          description: The name of the edgeR package
+      - 'Rscript -e "library(edgeR); cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+          description: The expression to obtain the version of edgeR
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+      - bioconductor_deseq2:
+          type: string
+          description: The name of the DESeq2 package
+      - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+          description: The expression to obtain the version of DESeq2
+      - r_tibble:
+          type: string
+          description: The name of the tibble package
+      - 'Rscript -e "library(tibble); cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+          description: The expression to obtain the version of tibble
+      - r_tidyr:
+          type: string
+          description: The name of the tidyr package
+      - 'Rscript -e "library(tidyr); cat(as.character(packageVersion(''tidyr'')))"':
+          type: eval
+          description: The expression to obtain the version of tidyr
+      - r_dplyr:
+          type: string
+          description: The name of the dplyr package
+      - 'Rscript -e "library(dplyr); cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+          description: The expression to obtain the version of dplyr
+      - r_cowplot:
+          type: string
+          description: The name of the cowplot package
+      - 'Rscript -e "library(cowplot); cat(as.character(packageVersion(''cowplot'')))"':
+          type: eval
+          description: The expression to obtain the version of cowplot
+      - r_mass:
+          type: string
+          description: The name of the MASS package
+      - 'Rscript -e "library(MASS); cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+          description: The expression to obtain the version of MASS
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_edger:
+          type: string
+          description: The name of the edgeR package
+      - 'Rscript -e "library(edgeR); cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+          description: The expression to obtain the version of edgeR
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+      - bioconductor_deseq2:
+          type: string
+          description: The name of the DESeq2 package
+      - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+          description: The expression to obtain the version of DESeq2
+      - r_tibble:
+          type: string
+          description: The name of the tibble package
+      - 'Rscript -e "library(tibble); cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+          description: The expression to obtain the version of tibble
+      - r_tidyr:
+          type: string
+          description: The name of the tidyr package
+      - 'Rscript -e "library(tidyr); cat(as.character(packageVersion(''tidyr'')))"':
+          type: eval
+          description: The expression to obtain the version of tidyr
+      - r_dplyr:
+          type: string
+          description: The name of the dplyr package
+      - 'Rscript -e "library(dplyr); cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+          description: The expression to obtain the version of dplyr
+      - r_cowplot:
+          type: string
+          description: The name of the cowplot package
+      - 'Rscript -e "library(cowplot); cat(as.character(packageVersion(''cowplot'')))"':
+          type: eval
+          description: The expression to obtain the version of cowplot
+      - r_mass:
+          type: string
+          description: The name of the MASS package
+      - 'Rscript -e "library(MASS); cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+          description: The expression to obtain the version of MASS
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

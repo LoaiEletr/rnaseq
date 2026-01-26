@@ -1,0 +1,88 @@
+{
+    "versions_qcplots_deseq2": {
+        "content": [
+            [
+                "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-26T22:19:21.265889765"
+    },
+    "Should stub generate QC plots (MDS, violin, PCA) from edgeR data and return mocked PDF plots": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-26T22:22:01.057751002"
+    },
+    "Should stub generate QC plots (MDS, violin, PCA) from DESeq2 data and return mocked PDF plots": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-27T00:08:29.572891914"
+    },
+    "versions_qcplots_edger": {
+        "content": [
+            [
+                "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-26T22:13:00.535540745"
+    }
+}
