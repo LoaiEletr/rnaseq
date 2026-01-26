@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - conda-forge::r-base=4.4.0
+  - bioconda::bioconductor-isoformswitchanalyzer=2.6.0
+  - bioconda::bioconductor-rhdf5=2.50.0
+  - conda-forge::r-ggplot2=4.0.1
+  - conda-forge::r-mass=7.3_65

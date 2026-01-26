@@ -1,0 +1,172 @@
+nextflow_process {
+    name "Test Process ISOFORMSWITCHANALYZER"
+    script "modules/local/isoformswitchanalyzer/main.nf"
+    process "ISOFORMSWITCHANALYZER"
+
+    tag "modules"
+    tag "isoformswitchanalyzer"
+
+    setup {
+        run("UNTAR", alias: "UNTAR_KALLISTO") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)
+                """
+            }
+        }
+
+        run("UNTAR", alias: "UNTAR_SALMON") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)
+                """
+            }
+        }
+    }
+
+    test("Should perform isoform switch analysis with kallisto data and return isoform switch results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "kallisto"
+                method = "DIU,AS"
+                dif_cutoff = 0.1
+                pval_threshold = 0.05
+                ntop_isoforms = 10
+            }
+            process {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = params.pseudo_aligner
+                input[3] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pval_threshold
+                input[8] = params.ntop_isoforms
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.isoform_results.get(0) ==~ ".*/isoform_output" },
+                { assert snapshot(process.out.versions).match("versions_kallisto") }
+            )
+        }
+    }
+
+    test("Should perform isoform switch analysis with salmon data and return isoform switch results") {
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "salmon"
+                method = "DIU,AS"
+                dif_cutoff = 0.1
+                pval_threshold = 0.05
+                ntop_isoforms = 10
+            }
+            process {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = params.pseudo_aligner
+                input[3] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pval_threshold
+                input[8] = params.ntop_isoforms
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.isoform_results.get(0) ==~ ".*/isoform_output" },
+                { assert snapshot(process.out.versions).match("versions_salmon") }
+            )
+        }
+    }
+
+    test("Should stub perform isoform switch analysis with kallisto data and return mocked isoform switch results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "kallisto"
+                method = "DIU,AS"
+                dif_cutoff = 0.1
+                pval_threshold = 0.05
+                ntop_isoforms = 10
+            }
+            process {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = params.pseudo_aligner
+                input[3] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pval_threshold
+                input[8] = params.ntop_isoforms
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub perform isoform switch analysis with salmon data and return mocked isoform switch results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pseudo_aligner = "salmon"
+                method = "DIU,AS"
+                dif_cutoff = 0.1
+                pval_threshold = 0.05
+                ntop_isoforms = 10
+            }
+            process {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = params.pseudo_aligner
+                input[3] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)
+                input[4] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pval_threshold
+                input[8] = params.ntop_isoforms
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
