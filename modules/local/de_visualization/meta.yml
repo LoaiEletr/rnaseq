@@ -1,0 +1,147 @@
+name: de_visualization
+description: |
+  Generates visualization plots for differential expression analysis including volcano plots and heatmaps for DE genes, MaSigPro clusters, and WGCNA modules.
+keywords:
+  - visualization
+  - volcano plot
+  - heatmap
+  - differential expression
+tools:
+  - bioconductor_enhancedvolcano:
+      description: "Publication-ready volcano plots with enhanced coloring and labeling"
+      homepage: "https://bioconductor.org/packages/EnhancedVolcano/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/EnhancedVolcano.html"
+      tool_dev_url: "https://github.com/kevinblighe/EnhancedVolcano"
+      licence: ["GPL-3.0-only"]
+      identifier: "EnhancedVolcano"
+
+input:
+  - deg_file:
+      type: file
+      description: |
+        RDS file containing differential expression results for volcano plot
+        Can be NULL if no DE results available
+      pattern: "*.rds"
+      ontologies: []
+
+  - samplesheet_csv:
+      type: file
+      description: |
+        CSV file with sample metadata including condition and optional timepoint
+      pattern: "*.csv"
+      ontologies:
+        - edam: "http://edamontology.org/format_3752"
+
+  - cluster_file:
+      type: file
+      description: |
+        RDS file with MaSigPro cluster assignments (for MaSigPro heatmaps)
+        Optional - can be NULL if not available
+      pattern: "*.rds"
+      ontologies: []
+
+  - pval_threshold:
+      type: number
+      description: |
+        P-value threshold for volcano plot significance
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - lfc_threshold:
+      type: number
+      description: |
+        Log2 fold change threshold for volcano plot significance
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - vst_file:
+      type: file
+      description: |
+        RDS file with VST-transformed expression data for heatmaps
+        Can be either regular VST matrix or WGCNA results list
+      pattern: "*.rds"
+      ontologies: []
+
+output:
+  volcano_plot:
+    - de_visualization/volcano_sig_genes.pdf:
+        type: file
+        description: |
+          PDF file with volcano plot of differential expression results
+        pattern: "de_visualization/volcano_sig_genes.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508"
+        optional: true
+
+  heatmaps:
+    - de_visualization/heatmap/**:
+        type: file
+        description: |
+          Directory containing heatmaps for:
+          1. DE genes (regular differential expression)
+          2. MaSigPro clusters (if cluster_file provided)
+          3. WGCNA modules (if vst_file contains WGCNA results)
+        pattern: "de_visualization/heatmap/**"
+        optional: true
+
+  versions_visualization:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_enhancedvolcano:
+          type: string
+          description: The name of the EnhancedVolcano package
+      - 'Rscript -e "library(EnhancedVolcano); cat(as.character(packageVersion(''EnhancedVolcano'')))"':
+          type: eval
+          description: The expression to obtain the version of EnhancedVolcano
+      - r_pheatmap:
+          type: string
+          description: The name of the pheatmap package
+      - 'Rscript -e "library(pheatmap); cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+          description: The expression to obtain the version of pheatmap
+      - r_rcolorbrewer:
+          type: string
+          description: The name of the RColorBrewer package
+      - 'Rscript -e "library(RColorBrewer); cat(as.character(packageVersion(''RColorBrewer'')))"':
+          type: eval
+          description: The expression to obtain the version of RColorBrewer
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_enhancedvolcano:
+          type: string
+          description: The name of the EnhancedVolcano package
+      - 'Rscript -e "library(EnhancedVolcano); cat(as.character(packageVersion(''EnhancedVolcano'')))"':
+          type: eval
+          description: The expression to obtain the version of EnhancedVolcano
+      - r_pheatmap:
+          type: string
+          description: The name of the pheatmap package
+      - 'Rscript -e "library(pheatmap); cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+          description: The expression to obtain the version of pheatmap
+      - r_rcolorbrewer:
+          type: string
+          description: The name of the RColorBrewer package
+      - 'Rscript -e "library(RColorBrewer); cat(as.character(packageVersion(''RColorBrewer'')))"':
+          type: eval
+          description: The expression to obtain the version of RColorBrewer
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
