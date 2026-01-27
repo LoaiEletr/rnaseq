@@ -1,0 +1,140 @@
+{
+    "versions_go_deseq2": {
+        "content": [
+            [
+                "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-27T20:20:35.615336407"
+    },
+    "versions_go_diu": {
+        "content": [
+            [
+                "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-27T21:30:50.625169866"
+    },
+    "versions_go_masigpro": {
+        "content": [
+            [
+                "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-27T22:26:36.938138894"
+    },
+    "Should stub perform GO enrichment analysis on DEGs from DESeq2 and return mocked GO results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+                ],
+                "go_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T01:09:22.305762532"
+    },
+    "Should stub perform GO enrichment analysis on WGCNA module genes for human species and return mocked GO results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+                ],
+                "go_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T01:21:08.309387372"
+    },
+    "versions_go_deu": {
+        "content": [
+            [
+                "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-27T20:49:52.885278091"
+    },
+    "versions_go_limma": {
+        "content": [
+            [
+                "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-27T20:41:21.399400384"
+    },
+    "versions_go_wgcna_human": {
+        "content": [
+            [
+                "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-27T23:17:35.929127812"
+    },
+    "versions_go_wgcna_arabidopsis": {
+        "content": [
+            [
+                "versions.yml:md5,5c42a32d49b1cb669a617c8f40468fd8"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T00:55:48.171391982"
+    }
+}

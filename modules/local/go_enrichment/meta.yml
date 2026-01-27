@@ -1,0 +1,345 @@
+name: "go_enrichment"
+description: |
+  Performs comprehensive Gene Ontology (GO) enrichment analysis for multiple analysis types
+  including differential expression, WGCNA modules, MaSigPro clusters, differential isoform
+  usage, and differential exon usage. Supports multiple species through organism-specific
+  annotation databases.
+keywords:
+  - go enrichment
+  - functional analysis
+  - ontology
+  - genomics
+  - clusterprofiler
+tools:
+  - bioconductor_clusterprofiler:
+      description: "Statistical analysis and visualization of functional profiles for genes and gene clusters"
+      homepage: "https://bioconductor.org/packages/clusterProfiler/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html"
+      tool_dev_url: "https://github.com/YuLab-SMU/clusterProfiler"
+      licence: ["Artistic-2.0"]
+      identifier: "clusterProfiler"
+
+input:
+  - unfiltered_deg:
+      type: file
+      description: |
+        RDS file with unfiltered differential expression results for GO analysis
+      pattern: "*.rds"
+      ontologies: []
+
+  - pvalue_threshold:
+      type: number
+      description: |
+        P-value threshold for significance in GO enrichment analysis
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - logfc_threshold:
+      type: number
+      description: |
+        Log2 fold change threshold for filtering differential expression genes
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - species_name:
+      type: string
+      description: |
+        Species name for organism-specific GO analysis
+      pattern: "[a-zA-Z]+"
+
+  - wgcna_list:
+      type: file
+      description: |
+        RDS file containing WGCNA module results for module-specific GO enrichment
+      pattern: "*.rds"
+      ontologies: []
+
+  - masigpro_list:
+      type: file
+      description: |
+        RDS file containing MaSigPro temporal cluster results for cluster-specific GO enrichment
+      pattern: "*.rds"
+      ontologies: []
+
+  - genes_diu:
+      type: file
+      description: |
+        RDS file containing genes from differential isoform usage analysis for GO enrichment
+      pattern: "*.rds"
+      ontologies: []
+
+  - genes_deu:
+      type: file
+      description: |
+        RDS file containing genes from differential exon usage analysis for GO enrichment
+      pattern: "*.rds"
+      ontologies: []
+
+  - ntop_processes:
+      type: integer
+      description: |
+        Number of top GO processes to display and save in results
+      pattern: "[0-9]+"
+
+output:
+  go_results:
+    - GO_results:
+        type: file
+        description: |
+          Directory containing GO enrichment results including tables and visualization plots
+        pattern: "GO_results/**"
+        optional: true
+
+  versions_go_enrichment:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_clusterprofiler:
+          type: string
+          description: The name of the clusterProfiler package
+      - 'Rscript -e "library(clusterProfiler); cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+          description: The expression to obtain the version of clusterProfiler
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+      - bioconductor_org_hs_eg_db:
+          type: string
+          description: The name of the Human annotation database package
+      - 'Rscript -e "library(org.Hs.eg.db); cat(as.character(packageVersion(''org.Hs.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Hs.eg.db
+      - r_purrr:
+          type: string
+          description: The name of the purrr package
+      - 'Rscript -e "library(purrr); cat(as.character(packageVersion(''purrr'')))"':
+          type: eval
+          description: The expression to obtain the version of purrr
+      - bioconductor_biomart:
+          type: string
+          description: The name of the biomaRt package
+      - 'Rscript -e "library(biomaRt); cat(as.character(packageVersion(''biomaRt'')))"':
+          type: eval
+          description: The expression to obtain the version of biomaRt
+      - bioconductor_org_mm_eg_db:
+          type: string
+          description: The name of the Mouse annotation database package
+      - 'Rscript -e "library(org.Mm.eg.db); cat(as.character(packageVersion(''org.Mm.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Mm.eg.db
+      - bioconductor_org_rn_eg_db:
+          type: string
+          description: The name of the Rat annotation database package
+      - 'Rscript -e "library(org.Rn.eg.db); cat(as.character(packageVersion(''org.Rn.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Rn.eg.db
+      - r_dplyr:
+          type: string
+          description: The name of the dplyr package
+      - 'Rscript -e "library(dplyr); cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+          description: The expression to obtain the version of dplyr
+      - r_tibble:
+          type: string
+          description: The name of the tibble package
+      - 'Rscript -e "library(tibble); cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+          description: The expression to obtain the version of tibble
+      - bioconductor_org_sc_sgd_db:
+          type: string
+          description: The name of the Yeast annotation database package
+      - 'Rscript -e "library(org.Sc.sgd.db); cat(as.character(packageVersion(''org.Sc.sgd.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Sc.sgd.db
+      - bioconductor_org_dm_eg_db:
+          type: string
+          description: The name of the Fruitfly annotation database package
+      - 'Rscript -e "library(org.Dm.eg.db); cat(as.character(packageVersion(''org.Dm.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Dm.eg.db
+      - bioconductor_org_dr_eg_db:
+          type: string
+          description: The name of the Zebrafish annotation database package
+      - 'Rscript -e "library(org.Dr.eg.db); cat(as.character(packageVersion(''org.Dr.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Dr.eg.db
+      - bioconductor_org_ce_eg_db:
+          type: string
+          description: The name of the Worm annotation database package
+      - 'Rscript -e "library(org.Ce.eg.db); cat(as.character(packageVersion(''org.Ce.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Ce.eg.db
+      - bioconductor_org_at_tair_db:
+          type: string
+          description: The name of the Arabidopsis annotation database package
+      - 'Rscript -e "library(org.At.tair.db); cat(as.character(packageVersion(''org.At.tair.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.At.tair.db
+      - bioconductor_org_gg_eg_db:
+          type: string
+          description: The name of the Chicken annotation database package
+      - 'Rscript -e "library(org.Gg.eg.db); cat(as.character(packageVersion(''org.Gg.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Gg.eg.db
+      - bioconductor_org_bt_eg_db:
+          type: string
+          description: The name of the Cow annotation database package
+      - 'Rscript -e "library(org.Bt.eg.db); cat(as.character(packageVersion(''org.Bt.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Bt.eg.db
+      - bioconductor_org_ss_eg_db:
+          type: string
+          description: The name of the Pig annotation database package
+      - 'Rscript -e "library(org.Ss.eg.db); cat(as.character(packageVersion(''org.Ss.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Ss.eg.db
+      - bioconductor_org_cf_eg_db:
+          type: string
+          description: The name of the Dog annotation database package
+      - 'Rscript -e "library(org.Cf.eg.db); cat(as.character(packageVersion(''org.Cf.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Cf.eg.db
+      - bioconductor_org_mmu_eg_db:
+          type: string
+          description: The name of the Monkey annotation database package
+      - 'Rscript -e "library(org.Mmu.eg.db); cat(as.character(packageVersion(''org.Mmu.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Mmu.eg.db
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_clusterprofiler:
+          type: string
+          description: The name of the clusterProfiler package
+      - 'Rscript -e "library(clusterProfiler); cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+          description: The expression to obtain the version of clusterProfiler
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+      - bioconductor_org_hs_eg_db:
+          type: string
+          description: The name of the Human annotation database package
+      - 'Rscript -e "library(org.Hs.eg.db); cat(as.character(packageVersion(''org.Hs.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Hs.eg.db
+      - r_purrr:
+          type: string
+          description: The name of the purrr package
+      - 'Rscript -e "library(purrr); cat(as.character(packageVersion(''purrr'')))"':
+          type: eval
+          description: The expression to obtain the version of purrr
+      - bioconductor_biomart:
+          type: string
+          description: The name of the biomaRt package
+      - 'Rscript -e "library(biomaRt); cat(as.character(packageVersion(''biomaRt'')))"':
+          type: eval
+          description: The expression to obtain the version of biomaRt
+      - bioconductor_org_mm_eg_db:
+          type: string
+          description: The name of the Mouse annotation database package
+      - 'Rscript -e "library(org.Mm.eg.db); cat(as.character(packageVersion(''org.Mm.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Mm.eg.db
+      - bioconductor_org_rn_eg_db:
+          type: string
+          description: The name of the Rat annotation database package
+      - 'Rscript -e "library(org.Rn.eg.db); cat(as.character(packageVersion(''org.Rn.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Rn.eg.db
+      - r_dplyr:
+          type: string
+          description: The name of the dplyr package
+      - 'Rscript -e "library(dplyr); cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+          description: The expression to obtain the version of dplyr
+      - r_tibble:
+          type: string
+          description: The name of the tibble package
+      - 'Rscript -e "library(tibble); cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+          description: The expression to obtain the version of tibble
+      - bioconductor_org_sc_sgd_db:
+          type: string
+          description: The name of the Yeast annotation database package
+      - 'Rscript -e "library(org.Sc.sgd.db); cat(as.character(packageVersion(''org.Sc.sgd.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Sc.sgd.db
+      - bioconductor_org_dm_eg_db:
+          type: string
+          description: The name of the Fruitfly annotation database package
+      - 'Rscript -e "library(org.Dm.eg.db); cat(as.character(packageVersion(''org.Dm.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Dm.eg.db
+      - bioconductor_org_dr_eg_db:
+          type: string
+          description: The name of the Zebrafish annotation database package
+      - 'Rscript -e "library(org.Dr.eg.db); cat(as.character(packageVersion(''org.Dr.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Dr.eg.db
+      - bioconductor_org_ce_eg_db:
+          type: string
+          description: The name of the Worm annotation database package
+      - 'Rscript -e "library(org.Ce.eg.db); cat(as.character(packageVersion(''org.Ce.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Ce.eg.db
+      - bioconductor_org_at_tair_db:
+          type: string
+          description: The name of the Arabidopsis annotation database package
+      - 'Rscript -e "library(org.At.tair.db); cat(as.character(packageVersion(''org.At.tair.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.At.tair.db
+      - bioconductor_org_gg_eg_db:
+          type: string
+          description: The name of the Chicken annotation database package
+      - 'Rscript -e "library(org.Gg.eg.db); cat(as.character(packageVersion(''org.Gg.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Gg.eg.db
+      - bioconductor_org_bt_eg_db:
+          type: string
+          description: The name of the Cow annotation database package
+      - 'Rscript -e "library(org.Bt.eg.db); cat(as.character(packageVersion(''org.Bt.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Bt.eg.db
+      - bioconductor_org_ss_eg_db:
+          type: string
+          description: The name of the Pig annotation database package
+      - 'Rscript -e "library(org.Ss.eg.db); cat(as.character(packageVersion(''org.Ss.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Ss.eg.db
+      - bioconductor_org_cf_eg_db:
+          type: string
+          description: The name of the Dog annotation database package
+      - 'Rscript -e "library(org.Cf.eg.db); cat(as.character(packageVersion(''org.Cf.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Cf.eg.db
+      - bioconductor_org_mmu_eg_db:
+          type: string
+          description: The name of the Monkey annotation database package
+      - 'Rscript -e "library(org.Mmu.eg.db); cat(as.character(packageVersion(''org.Mmu.eg.db'')))"':
+          type: eval
+          description: The expression to obtain the version of org.Mmu.eg.db
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
