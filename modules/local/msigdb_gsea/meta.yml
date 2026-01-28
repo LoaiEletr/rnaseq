@@ -1,0 +1,179 @@
+name: "msigdb_gsea"
+description: |
+  Performs Gene Set Enrichment Analysis (GSEA) using the Molecular Signatures Database (MSigDB).
+  Analyzes pre-ranked gene lists for enrichment in biological pathways and processes across
+  multiple MSigDB collections (H, C1-C8).
+keywords:
+  - gsea
+  - gene set enrichment
+  - msigdb
+  - pathways
+  - functional analysis
+tools:
+  - bioconductor_clusterprofiler:
+      description: "Statistical analysis and visualization of functional profiles for genes and gene clusters"
+      homepage: "https://bioconductor.org/packages/clusterProfiler/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html"
+      tool_dev_url: "https://github.com/YuLab-SMU/clusterProfiler"
+      licence: ["Artistic-2.0"]
+      identifier: "clusterProfiler"
+
+input:
+  - unfiltered_deg:
+      type: file
+      description: |
+        RDS file with unfiltered differential expression results for GSEA analysis
+      pattern: "*.rds"
+      ontologies: []
+
+  - pvalue_threshold:
+      type: number
+      description: |
+        P-value threshold for filtering genes for GSEA analysis
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - species_name:
+      type: string
+      description: |
+        Species name for organism-specific MSigDB gene sets
+      pattern: "[a-zA-Z]+"
+
+  - msigdb_categories:
+      type: string
+      description: |
+        MSigDB collections/categories to use for enrichment analysis
+      pattern: "[a-zA-Z0-9,]+"
+
+  - nes_threshold:
+      type: number
+      description: |
+        Normalized Enrichment Score (NES) threshold for significant enrichment
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - padj_gsea:
+      type: number
+      description: |
+        Adjusted p-value threshold for GSEA significance
+      pattern: "[0-9]+(\\.[0-9]+)?"
+
+  - ntop_processes:
+      type: integer
+      description: |
+        Number of top enriched processes/pathways to display and save in results
+      pattern: "[0-9]+"
+
+  - rank_method:
+      type: string
+      description: |
+        Method for ranking genes (e.g., "logfc", "t_stat", "signed_significance")
+      pattern: "[a-zA-Z]+"
+
+output:
+  gsea_results:
+    - GSEA_results:
+        type: file
+        description: |
+          Directory containing GSEA results including enrichment tables,
+          enrichment plots, dot plots, and visualization outputs
+        pattern: "GSEA_results/**"
+        optional: true
+
+  versions_msigdb_gsea:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_clusterprofiler:
+          type: string
+          description: The name of the clusterProfiler package
+      - 'Rscript -e "library(clusterProfiler); cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+          description: The expression to obtain the version of clusterProfiler
+      - bioconductor_enrichplot:
+          type: string
+          description: The name of the enrichplot package
+      - 'Rscript -e "library(enrichplot); cat(as.character(packageVersion(''enrichplot'')))"':
+          type: eval
+          description: The expression to obtain the version of enrichplot
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+      - r_dplyr:
+          type: string
+          description: The name of the dplyr package
+      - 'Rscript -e "library(dplyr); cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+          description: The expression to obtain the version of dplyr
+      - r_tibble:
+          type: string
+          description: The name of the tibble package
+      - 'Rscript -e "library(tibble); cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+          description: The expression to obtain the version of tibble
+      - r_msigdbr:
+          type: string
+          description: The name of the msigdbr package
+      - 'Rscript -e "library(msigdbr); cat(as.character(packageVersion(''msigdbr'')))"':
+          type: eval
+          description: The expression to obtain the version of msigdbr
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r_base:
+          type: string
+          description: The name of R programming language
+      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+          type: eval
+          description: The expression to obtain the version of R
+      - bioconductor_clusterprofiler:
+          type: string
+          description: The name of the clusterProfiler package
+      - 'Rscript -e "library(clusterProfiler); cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+          description: The expression to obtain the version of clusterProfiler
+      - bioconductor_enrichplot:
+          type: string
+          description: The name of the enrichplot package
+      - 'Rscript -e "library(enrichplot); cat(as.character(packageVersion(''enrichplot'')))"':
+          type: eval
+          description: The expression to obtain the version of enrichplot
+      - r_ggplot2:
+          type: string
+          description: The name of the ggplot2 package
+      - 'Rscript -e "library(ggplot2); cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+          description: The expression to obtain the version of ggplot2
+      - r_dplyr:
+          type: string
+          description: The name of the dplyr package
+      - 'Rscript -e "library(dplyr); cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+          description: The expression to obtain the version of dplyr
+      - r_tibble:
+          type: string
+          description: The name of the tibble package
+      - 'Rscript -e "library(tibble); cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+          description: The expression to obtain the version of tibble
+      - r_msigdbr:
+          type: string
+          description: The name of the msigdbr package
+      - 'Rscript -e "library(msigdbr); cat(as.character(packageVersion(''msigdbr'')))"':
+          type: eval
+          description: The expression to obtain the version of msigdbr
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
