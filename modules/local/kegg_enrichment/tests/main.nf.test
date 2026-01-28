@@ -1,0 +1,298 @@
+nextflow_process {
+    name "Test Process KEGG_ENRICHMENT"
+    script "modules/local/kegg_enrichment/main.nf"
+    process "KEGG_ENRICHMENT"
+
+    tag "modules"
+    tag "kegg_enrichment"
+
+    setup {
+        run("EDGER_VOOM") {
+            script "modules/local/edger_voom/main.nf"
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        run("LIMMA_DE") {
+            script "modules/local/limma_de/main.nf"
+            process {
+                """
+                input[0] = EDGER_VOOM.out.voom_transformed
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = 0.05
+                input[3] = 1
+                input[4] = 100
+                """
+            }
+        }
+
+        run("DESEQ2_DE") {
+            script "modules/local/deseq2_de/main.nf"
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = 0.05
+                input[3] = 1
+                input[4] = 100
+                """
+            }
+        }
+    }
+
+    test("Should perform KEGG enrichment analysis on DEGs from DESeq2 and return KEGG results") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = DESEQ2_DE.out.unfiltered_deg
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "human"
+                input[4] = []
+                input[5] = []
+                input[6] = []
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
+                { assert snapshot(process.out.versions).match("versions_kegg_deseq2") }
+            )
+        }
+    }
+
+    test("Should perform KEGG enrichment analysis on DEGs from limma and return KEGG results") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = LIMMA_DE.out.unfiltered_deg_rds
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "human"
+                input[4] = []
+                input[5] = []
+                input[6] = []
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
+                { assert snapshot(process.out.versions).match("versions_kegg_limma") }
+            )
+        }
+    }
+
+    test("Should perform KEGG enrichment analysis on DEU genes and return KEGG results") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = []
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "human"
+                input[4] = []
+                input[5] = []
+                input[6] = []
+                input[7] = file(params.pipelines_testdata_base_path + 'diu_deu_results/lymphoblastoid_celllines_DEU_gene_ids.rds', checkIfExists: true)
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
+                { assert snapshot(process.out.versions).match("versions_kegg_deu") }
+            )
+        }
+    }
+
+    test("Should perform KEGG enrichment analysis on DIU genes and return KEGG results") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = []
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "human"
+                input[4] = []
+                input[5] = []
+                input[6] = file(params.pipelines_testdata_base_path + 'diu_deu_results/leishmaniasis_DIU_gene_ids.rds', checkIfExists: true)
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
+                { assert snapshot(process.out.versions).match("versions_kegg_diu") }
+            )
+        }
+    }
+
+    test("Should perform KEGG enrichment analysis on maSigPro clusters and return KEGG results") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = []
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "arabidopsis"
+                input[4] = []
+                input[5] = file(params.pipelines_testdata_base_path + 'masigpro_results/plant_timecourse_masigpro_clusters.rds', checkIfExists: true)
+                input[6] = []
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
+                { assert snapshot(process.out.versions).match("versions_kegg_masigpro") }
+            )
+        }
+    }
+
+    test("Should perform KEGG enrichment analysis on WGCNA module genes for human species and return KEGG results") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = []
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "human"
+                input[4] = file(params.pipelines_testdata_base_path + 'wgcna_results/leishmaniasis_wgcna_results.rds', checkIfExists: true)
+                input[5] = []
+                input[6] = []
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
+                { assert snapshot(process.out.versions).match("versions_kegg_wgcna_human") }
+            )
+        }
+    }
+
+    test("Should perform KEGG enrichment analysis on WGCNA module genes for arabidopsis species and return KEGG results") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = []
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "arabidopsis"
+                input[4] = file(params.pipelines_testdata_base_path + 'wgcna_results/plant_timecourse_wgcna_results.rds', checkIfExists: true)
+                input[5] = []
+                input[6] = []
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
+                { assert snapshot(process.out.versions).match("versions_kegg_wgcna_arabidopsis") }
+            )
+        }
+    }
+
+    test("Should stub perform KEGG enrichment analysis on DEGs from DESeq2 and return mocked KEGG results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = DESEQ2_DE.out.unfiltered_deg
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "human"
+                input[4] = []
+                input[5] = []
+                input[6] = []
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("Should stub perform KEGG enrichment analysis on WGCNA module genes for human species and return mocked KEGG results") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = []
+                input[1] = 0.05
+                input[2] = 1
+                input[3] = "human"
+                input[4] = file(params.pipelines_testdata_base_path + 'wgcna_results/leishmaniasis_wgcna_results.rds', checkIfExists: true)
+                input[5] = []
+                input[6] = []
+                input[7] = []
+                input[8] = 10
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
