@@ -1,0 +1,140 @@
+{
+    "versions_kegg_limma": {
+        "content": [
+            [
+                "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T03:01:28.750338387"
+    },
+    "versions_kegg_masigpro": {
+        "content": [
+            [
+                "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T03:37:42.636586336"
+    },
+    "versions_kegg_wgcna_human": {
+        "content": [
+            [
+                "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T03:52:01.00948443"
+    },
+    "versions_kegg_diu": {
+        "content": [
+            [
+                "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T03:24:47.391897618"
+    },
+    "versions_kegg_deu": {
+        "content": [
+            [
+                "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T03:12:59.107657823"
+    },
+    "versions_kegg_deseq2": {
+        "content": [
+            [
+                "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T02:41:18.351799133"
+    },
+    "versions_kegg_wgcna_arabidopsis": {
+        "content": [
+            [
+                "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T04:06:24.55907684"
+    },
+    "Should stub perform KEGG enrichment analysis on WGCNA module genes for human species and return mocked KEGG results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+                ],
+                "kegg_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T04:20:20.666713203"
+    },
+    "Should stub perform KEGG enrichment analysis on DEGs from DESeq2 and return mocked KEGG results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+                ],
+                "kegg_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ffefe26daaef7960323642c9815f2752"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T04:12:06.871073933"
+    }
+}

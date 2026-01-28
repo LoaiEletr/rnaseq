@@ -1,0 +1,77 @@
+{
+    "versions_gsea_tstat": {
+        "content": [
+            [
+                "versions.yml:md5,968957e40e6b88173f3f4a359acb7ac5"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T20:40:47.154697603"
+    },
+    "versions_gsea_signed_significance": {
+        "content": [
+            [
+                "versions.yml:md5,968957e40e6b88173f3f4a359acb7ac5"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T20:48:13.680627328"
+    },
+    "versions_gsea_logfc": {
+        "content": [
+            [
+                "versions.yml:md5,968957e40e6b88173f3f4a359acb7ac5"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T20:33:41.156977996"
+    },
+    "versions_gsea_msigdb_all": {
+        "content": [
+            [
+                "versions.yml:md5,968957e40e6b88173f3f4a359acb7ac5"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T21:05:53.142338463"
+    },
+    "Should stub perform GSEA with entire MSigDB collection and return mocked GSEA results": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,968957e40e6b88173f3f4a359acb7ac5"
+                ],
+                "gsea_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,968957e40e6b88173f3f4a359acb7ac5"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T21:08:04.588846978"
+    }
+}
