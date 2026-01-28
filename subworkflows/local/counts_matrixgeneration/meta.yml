@@ -19,7 +19,7 @@ components:
   - tximport
   - merge/counts
 input:
-  - counts:
+  - ch_counts:
       type: file
       description: |
         Input channel containing quantification results.
@@ -27,12 +27,12 @@ input:
         - For 'salmon'/'kallisto': [ path(quant_dir) ]
         - For 'featurecounts': [ path(counts_file) ]
       pattern: "*"
-  - quant_method:
+  - val_quant_method:
       type: string
       description: |
         Quantification method used. Determines processing pipeline.
         Structure: [ "salmon" | "kallisto" | "featurecounts" ]
-  - species_name:
+  - val_species_name:
       type: string
       description: |
         Species name for transcript-to-gene mapping (required for 'salmon' and 'kallisto' methods).

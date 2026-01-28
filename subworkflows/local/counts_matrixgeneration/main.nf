@@ -9,9 +9,9 @@ include { MERGE_COUNTS } from '../../../modules/local/merge_counts/main.nf'
 
 workflow COUNTS_MATRIXGENERATION {
     take:
-    counts // channel: [ quant_results ]
-    quant_method // string: 'salmon', 'kallisto', or 'featurecounts'
-    species_name // string: Species name for transcript-to-gene mapping
+    ch_counts // channel: [ quant_results ]
+    val_quant_method // string: 'salmon', 'kallisto', or 'featurecounts'
+    val_species_name // string: Species name for transcript-to-gene mapping
 
     main:
 
@@ -20,28 +20,28 @@ workflow COUNTS_MATRIXGENERATION {
     ch_gene_table_rds = channel.empty()
 
     // 1. For Salmon/Kallisto: Transcript-to-gene mapping + tximport
-    if (quant_method == "salmon" || quant_method == "kallisto") {
-        TX2GENE(species_name)
+    if (val_quant_method == "salmon" || val_quant_method == "kallisto") {
+        TX2GENE(val_species_name)
         ch_tx2gene_csv = TX2GENE.out.tsv
         ch_versions = ch_versions.mix(TX2GENE.out.versions)
 
         TXIMPORT(
-            counts,
-            quant_method,
+            ch_counts,
+            val_quant_method,
             TX2GENE.out.tsv,
         )
         ch_gene_table_rds = TXIMPORT.out.rds
         ch_versions = ch_versions.mix(TXIMPORT.out.versions)
     }
-    else if (quant_method == "featurecounts") {
+    else if (val_quant_method == "featurecounts") {
         MERGE_COUNTS(
-            counts
+            ch_counts
         )
         ch_gene_table_rds = MERGE_COUNTS.out.counts_table
         ch_versions = ch_versions.mix(MERGE_COUNTS.out.versions)
     }
     else {
-        error("Invalid quant_method: ${quant_method}. Must be one of: 'salmon', 'kallisto', or 'featurecounts'")
+        error("Invalid quant_method: ${val_quant_method}. Must be one of: 'salmon', 'kallisto', or 'featurecounts'")
     }
 
     emit:
