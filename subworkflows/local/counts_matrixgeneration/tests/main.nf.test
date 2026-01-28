@@ -1,0 +1,222 @@
+nextflow_workflow {
+
+    name "Test Workflow COUNTS_MATRIXGENERATION"
+    script "../main.nf"
+    workflow "COUNTS_MATRIXGENERATION"
+
+    tag "subworkflows"
+    tag "subworkflows/counts_matrixgeneration"
+    tag "tx2gene"
+    tag "tximport"
+    tag "merge_counts"
+
+    setup {
+        run("UNTAR", alias: "UNTAR_KALLISTO") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)
+                """
+            }
+        }
+
+        run("UNTAR", alias: "UNTAR_SALMON") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)
+                """
+            }
+        }
+
+        run("SUBREAD_FEATURECOUNTS") {
+            script "modules/local/subread/featurecounts/main.nf"
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id: 'test1', lib_type: 'reverse', single_end: true ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test2', lib_type: 'reverse', single_end: false ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test3', lib_type: 'reverse', single_end: false ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test4', lib_type: 'reverse', single_end: true ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.unaligned.bam', checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id: 'test5', lib_type: 'reverse', single_end: true ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
+                        ]
+                    ]
+                )
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                """
+            }
+        }
+    }
+
+    test("saccharomyces_cerevisiae - kallisto_results - yeast | kallisto") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = "kallisto"
+                input[2] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_kallisto") }
+            )
+        }
+    }
+
+    test("saccharomyces_cerevisiae - salmon_results - yeast | salmon") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = "salmon"
+                input[2] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_salmon") }
+            )
+        }
+    }
+
+    test("sarscov2 - featurecounts - homo_sapiens | featurecounts") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = SUBREAD_FEATURECOUNTS.out.counts
+                .map { meta, counts ->
+                    counts
+                }
+                .collect()
+                input[1] = "featurecounts"
+                input[2] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_featurecounts") }
+            )
+        }
+    }
+
+    test("saccharomyces_cerevisiae - kallisto_results - yeast | kallisto - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = "kallisto"
+                input[2] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("saccharomyces_cerevisiae - salmon_results - yeast | salmon - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = "salmon"
+                input[2] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - featurecounts - homo_sapiens | featurecounts - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = SUBREAD_FEATURECOUNTS.out.counts
+                .map { meta, counts ->
+                    counts
+                }
+                .collect()
+                input[1] = "featurecounts"
+                input[2] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
