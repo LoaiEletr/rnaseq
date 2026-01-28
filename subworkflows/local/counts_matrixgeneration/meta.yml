@@ -17,7 +17,7 @@ keywords:
 components:
   - tx2gene
   - tximport
-  - merge_counts
+  - merge/counts
 input:
   - counts:
       type: file
