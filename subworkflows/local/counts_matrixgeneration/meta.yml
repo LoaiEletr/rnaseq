@@ -1,0 +1,58 @@
+name: "counts_matrixgeneration"
+description: |
+  Generate gene-level count matrix from quantification results.
+  Supports multiple quantification methods: Salmon/Kallisto (via tximport) or featureCounts (via count merging).
+  For pseudoalignment methods (Salmon/Kallisto), performs transcript-to-gene mapping followed by tximport.
+  For featureCounts, merges individual count files into a unified matrix.
+keywords:
+  - count-matrix
+  - gene-expression
+  - tximport
+  - transcript-to-gene
+  - quantification
+  - salmon
+  - kallisto
+  - featurecounts
+  - rna-seq
+components:
+  - tx2gene
+  - tximport
+  - merge/counts
+input:
+  - counts:
+      type: file
+      description: |
+        Input channel containing quantification results.
+        Structure depends on quant_method:
+        - For 'salmon'/'kallisto': [ path(quant_dir) ]
+        - For 'featurecounts': [ path(counts_file) ]
+      pattern: "*"
+  - quant_method:
+      type: string
+      description: |
+        Quantification method used. Determines processing pipeline.
+        Structure: [ "salmon" | "kallisto" | "featurecounts" ]
+  - species_name:
+      type: string
+      description: |
+        Species name for transcript-to-gene mapping (required for 'salmon' and 'kallisto' methods).
+        Common examples: 'human', 'mouse', 'rat'
+        Structure: string
+output:
+  - gene_table_rds:
+      type: file
+      description: |
+        Gene-level count matrix in RDS format.
+        Contains gene expression counts for all samples.
+        Structure: [ path(rds) ]
+      pattern: "*.rds"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from executed modules.
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

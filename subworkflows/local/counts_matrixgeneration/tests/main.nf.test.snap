@@ -1,0 +1,113 @@
+{
+    "sarscov2 - featurecounts - homo_sapiens | featurecounts - stub": {
+        "content": [
+            {
+                "0": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,220500248514458505296e2503b7d966"
+                ],
+                "gene_table_rds": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,220500248514458505296e2503b7d966"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T22:50:20.781402877"
+    },
+    "saccharomyces_cerevisiae - salmon_results - yeast | salmon - stub": {
+        "content": [
+            {
+                "0": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,39e04dc306e978071c75e20ee932fd56",
+                    "versions.yml:md5,952d24aea19f18fd37034dd8a1792b9e"
+                ],
+                "gene_table_rds": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,39e04dc306e978071c75e20ee932fd56",
+                    "versions.yml:md5,952d24aea19f18fd37034dd8a1792b9e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T22:49:10.245505079"
+    },
+    "versions_salmon": {
+        "content": [
+            [
+                "versions.yml:md5,39e04dc306e978071c75e20ee932fd56",
+                "versions.yml:md5,952d24aea19f18fd37034dd8a1792b9e"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T22:45:15.293772013"
+    },
+    "versions_featurecounts": {
+        "content": [
+            [
+                "versions.yml:md5,220500248514458505296e2503b7d966"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T22:46:21.399921793"
+    },
+    "versions_kallisto": {
+        "content": [
+            [
+                "versions.yml:md5,39e04dc306e978071c75e20ee932fd56",
+                "versions.yml:md5,952d24aea19f18fd37034dd8a1792b9e"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T22:43:14.008719973"
+    },
+    "saccharomyces_cerevisiae - kallisto_results - yeast | kallisto - stub": {
+        "content": [
+            {
+                "0": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,39e04dc306e978071c75e20ee932fd56",
+                    "versions.yml:md5,952d24aea19f18fd37034dd8a1792b9e"
+                ],
+                "gene_table_rds": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,39e04dc306e978071c75e20ee932fd56",
+                    "versions.yml:md5,952d24aea19f18fd37034dd8a1792b9e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-28T22:47:46.920535655"
+    }
+}
