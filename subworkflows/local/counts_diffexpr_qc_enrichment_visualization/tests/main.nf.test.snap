@@ -14,18 +14,6 @@
                 "deseq2_de_genes.rds:md5,921744495a9323f03df45c3d29a74c6c"
             ],
             [
-                "de_genes_full_table.rds:md5,aa08394d7359e7b95043b4161c715006"
-            ],
-            [
-                "unfiltered_deg_results.rds:md5,50421afb827855fe1514e613db7b4f79"
-            ],
-            [
-                "top_100_genes.rds:md5,96422989a349e2c87d7e002d7005c5b0"
-            ],
-            [
-                "top_100_genes.csv:md5,2b23127438b7119fbf9fc348d82a359c"
-            ],
-            [
                 "versions.yml:md5,25b6ea86bfe3564ce1fdc2ea339d09e1",
                 "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
                 "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
