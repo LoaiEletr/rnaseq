@@ -1,0 +1,210 @@
+{
+    "yeast - salmon - samplesheet | DIU - GO enrichment only": {
+        "content": [
+            [
+                
+            ],
+            [
+                "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                "versions.yml:md5,bdc7dce134739e582b2e398188164627"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T23:56:26.379202298"
+    },
+    "yeast - kallisto - samplesheet | DIU,AS - GO,KEGG enrichment - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        
+                    ]
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                    "versions.yml:md5,bdc7dce134739e582b2e398188164627",
+                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                    "versions.yml:md5,bdc7dce134739e582b2e398188164627",
+                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-30T00:14:11.698435097"
+    },
+    "yeast - salmon - samplesheet | DIU - GO enrichment only - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        
+                    ]
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                    "versions.yml:md5,bdc7dce134739e582b2e398188164627"
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                    "versions.yml:md5,bdc7dce134739e582b2e398188164627"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-30T00:20:16.364611722"
+    },
+    "yeast - kallisto - samplesheet | DIU,AS - GO,KEGG enrichment": {
+        "content": [
+            [
+                
+            ],
+            [
+                "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                "versions.yml:md5,bdc7dce134739e582b2e398188164627",
+                "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T23:48:34.76879596"
+    },
+    "yeast - kallisto - samplesheet | AS - KEGG enrichment only - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
+                ],
+                "go_enrichment": [
+                    
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-30T00:26:09.974748401"
+    },
+    "yeast - kallisto - samplesheet | AS - KEGG enrichment only": {
+        "content": [
+            [
+                
+            ],
+            [
+                "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
+                "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-30T00:04:02.055044546"
+    }
+}

@@ -1,0 +1,122 @@
+name: "counts_isoform_switch_enrichment"
+description: |
+  Isoform switch analysis workflow for differential isoform usage and alternative splicing.
+  Performs: IsoformSwitchAnalyzeR analysis to identify switching isoforms between conditions,
+  with support for both differential isoform usage (DIU) and alternative splicing (AS) detection methods,
+  followed by optional GO and KEGG functional enrichment analysis of switching genes.
+keywords:
+  - isoform-switch
+  - alternative-splicing
+  - differential-isoform-usage
+  - isoformswitchanalyzer
+  - transcript-isoforms
+  - rna-seq
+  - functional-enrichment
+  - go
+  - kegg
+components:
+  - isoformswitchanalyzer
+  - go/enrichment
+  - kegg/enrichment
+input:
+  - ch_counts:
+      type: file
+      description: |
+        Input channel containing isoform quantification results from Kallisto or Salmon
+        Structure: [ path(quant_results) ]
+      pattern: "*"
+  - ch_samplesheet:
+      type: file
+      description: |
+        Channel containing sample metadata/samplesheet for switch analysis
+        Structure: [ path(samplesheet) ]
+      pattern: "*.{csv,tsv,txt}"
+  - ch_gtf:
+      type: file
+      description: |
+        Channel containing GTF annotation file for isoform-gene mapping
+        Structure: [ path(gtf) ]
+      pattern: "*.{gtf,gtf.gz}"
+  - ch_transcript:
+      type: file
+      description: |
+        Channel containing transcriptome FASTA file for sequence analysis
+        Structure: [ path(transcript_fasta) ]
+      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+  - val_quant_type:
+      type: string
+      description: |
+        Quantification tool used: 'kallisto' or 'salmon'
+        Structure: [ "kallisto" | "salmon" ]
+  - val_method:
+      type: string
+      description: |
+        Analysis method(s) for isoform switch detection. Can be "DIU", "AS", or combinations like "DIU,AS".
+        DIU: Differential Isoform Usage, AS: Alternative Splicing.
+        Structure: comma-separated string
+  - val_pvalue_threshold:
+      type: float
+      description: |
+        P-value threshold for significant isoform switches
+        Structure: float (e.g., 0.05)
+  - val_dif_cutoff:
+      type: float
+      description: |
+        Log fold change (or dIF) threshold for significant isoform switches
+        Structure: float (e.g., 0.1 for dIF)
+  - val_ntop_isoforms:
+      type: integer
+      description: |
+        Number of top switching isoforms to output
+        Structure: integer
+  - val_species_name:
+      type: string
+      description: |
+        Species name for functional enrichment analyses
+        Common examples: 'human', 'mouse', 'rat'
+        Structure: string
+  - val_ntop_processes:
+      type: integer
+      description: |
+        Number of top biological processes/pathways to output in enrichment results
+        Structure: integer
+  - val_enrichment_method:
+      type: string
+      description: |
+        Functional enrichment method(s) to perform. Can be "GO", "KEGG", or comma-separated combinations.
+        Structure: comma-separated string (e.g., "GO" or "GO,KEGG")
+output:
+  - isoform_results:
+      type: file
+      description: |
+        Comprehensive isoform switch analysis results including switching isoforms and statistics
+        Structure: [ path(isoform_results) ]
+      pattern: "isoform_output"
+  - significant_geneids:
+      type: file
+      description: |
+        List of gene IDs with significant isoform switches
+        Structure: [ path(significant_geneids) ]
+      pattern: "isoform_output/significant_DIU_gene_ids.rds"
+  - go_enrichment:
+      type: file
+      description: |
+        Gene Ontology (GO) enrichment analysis results (only when "GO" in val_enrichment_method)
+        Structure: [ path(go_results) ]
+      pattern: "go_results/*"
+  - kegg_enrichment:
+      type: file
+      description: |
+        KEGG pathway enrichment analysis results (only when "KEGG" in val_enrichment_method)
+        Structure: [ path(kegg_results) ]
+      pattern: "kegg_results/*"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from all executed modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
