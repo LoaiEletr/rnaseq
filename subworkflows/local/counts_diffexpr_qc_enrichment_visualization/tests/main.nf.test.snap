@@ -220,9 +220,6 @@
                 "de_expression_values.rds:md5,c0c5dc9f247339303a5bdb6294d4c46e"
             ],
             [
-                "de_genes_full_table.rds:md5,61811a0833d66ba1d6df62f31761cefb"
-            ],
-            [
                 "versions.yml:md5,0af1a0a1c9daffe0256afe34988e69ad",
                 "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
                 "versions.yml:md5,4470d87f188de0fa43e2c2db9af5e11a",

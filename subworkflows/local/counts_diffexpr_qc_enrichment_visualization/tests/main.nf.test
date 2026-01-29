@@ -122,7 +122,6 @@ nextflow_workflow {
                     workflow.out.filtered_log2counts,
                     workflow.out.normalized_log2counts,
                     workflow.out.diffgenes_expression,
-                    workflow.out.diffgenes_table,
                     workflow.out.versions
                 ).match() }
             )
