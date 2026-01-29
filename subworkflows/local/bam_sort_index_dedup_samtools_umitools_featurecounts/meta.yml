@@ -31,7 +31,7 @@ input:
       type: file
       description: |
         Channel containing GTF annotation file for feature counting
-        Structure: [ val(meta), path(gtf) ]
+        Structure: [ path(gtf) ]
       pattern: "*.{gtf,gtf.gz}"
   - with_umi:
       type: boolean
