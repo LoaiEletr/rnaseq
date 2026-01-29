@@ -1,0 +1,628 @@
+{
+    "leishmaniasis - counts - samplesheet | DESeq2 - GO enrichment": {
+        "content": [
+            [
+                "unfiltered_counts.rds:md5,6785823c4a8f6089b1836079a3f13988"
+            ],
+            [
+                "filtered_counts.rds:md5,1881644ab6ff262eebc29a6283f7dd3b"
+            ],
+            [
+                "normalized_counts.rds:md5,2c9fe82857fdd03fba5c5699d76b3d01"
+            ],
+            [
+                "deseq2_de_genes.rds:md5,921744495a9323f03df45c3d29a74c6c"
+            ],
+            [
+                "de_genes_full_table.rds:md5,aa08394d7359e7b95043b4161c715006"
+            ],
+            [
+                "unfiltered_deg_results.rds:md5,50421afb827855fe1514e613db7b4f79"
+            ],
+            [
+                "top_100_genes.rds:md5,96422989a349e2c87d7e002d7005c5b0"
+            ],
+            [
+                "top_100_genes.csv:md5,2b23127438b7119fbf9fc348d82a359c"
+            ],
+            [
+                "versions.yml:md5,25b6ea86bfe3564ce1fdc2ea339d09e1",
+                "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                "versions.yml:md5,aafdaaadbb36090e6330592a7ee15432"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T16:33:23.686015806"
+    },
+    "leishmaniasis - counts - samplesheet | DESeq2 - GO enrichment - stub": {
+        "content": [
+            {
+                "0": [
+                    "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "10": [
+                    "top_100_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "11": [
+                    
+                ],
+                "12": [
+                    
+                ],
+                "13": [
+                    
+                ],
+                "14": [
+                    
+                ],
+                "15": [
+                    
+                ],
+                "16": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "17": [
+                    "volcano_sig_genes.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "18": [
+                    
+                ],
+                "19": [
+                    [
+                        
+                    ]
+                ],
+                "2": [
+                    "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "20": [
+                    
+                ],
+                "21": [
+                    
+                ],
+                "22": [
+                    "versions.yml:md5,25b6ea86bfe3564ce1fdc2ea339d09e1",
+                    "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                    "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                    "versions.yml:md5,aafdaaadbb36090e6330592a7ee15432"
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    "deseq2_de_genes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "7": [
+                    "de_genes_full_table.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "8": [
+                    "unfiltered_deg_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "9": [
+                    "top_100_genes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "diffgenes_expression": [
+                    "deseq2_de_genes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "diffgenes_table": [
+                    "de_genes_full_table.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "ebfit_rds": [
+                    
+                ],
+                "filtered_log2counts": [
+                    "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "gsea_results": [
+                    
+                ],
+                "heatmap_plots": [
+                    
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "normalized_log2counts": [
+                    "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "timecourse_clusterassignments": [
+                    
+                ],
+                "timecourse_clusterlist": [
+                    
+                ],
+                "timecourse_clustermedian": [
+                    
+                ],
+                "timecourse_clusterplots": [
+                    
+                ],
+                "timecourse_summarystatistics": [
+                    
+                ],
+                "topgenes_csv": [
+                    "top_100_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "topgenes_rds": [
+                    "top_100_genes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_deg": [
+                    "unfiltered_deg_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2counts": [
+                    "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,25b6ea86bfe3564ce1fdc2ea339d09e1",
+                    "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                    "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                    "versions.yml:md5,aafdaaadbb36090e6330592a7ee15432"
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_object": [
+                    
+                ],
+                "voom_plot": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T18:24:17.33867383"
+    },
+    "leishmaniasis - counts - samplesheet | limma - KEGG,GSEA enrichment": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,f2dc88ca8851d06fc86c03da4cc3e35c"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,eb6019823555edb0c9ece86387174a3e"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,b6fb3912d3619289d592c5387eb8d074"
+            ],
+            [
+                "de_expression_values.rds:md5,c0c5dc9f247339303a5bdb6294d4c46e"
+            ],
+            [
+                "de_genes_full_table.rds:md5,61811a0833d66ba1d6df62f31761cefb"
+            ],
+            [
+                "versions.yml:md5,0af1a0a1c9daffe0256afe34988e69ad",
+                "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                "versions.yml:md5,4470d87f188de0fa43e2c2db9af5e11a",
+                "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                "versions.yml:md5,ace69cdcc8d9f6ea94df0a61956daffb",
+                "versions.yml:md5,c8861478f676be7b16091d34f266d24e"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T17:02:00.468651665"
+    },
+    "plant_timecourse - counts - samplesheet | masigpro - GO,KEGG,GSEA enrichment": {
+        "content": [
+            [
+                "unfiltered_log2cpm.rds:md5,388317ea3896f028237892acb57a0d3c"
+            ],
+            [
+                "filtered_log2cpm.rds:md5,bd1cb820ccb4472b74ae4628b37e5a06"
+            ],
+            [
+                "normalized_log2cpm.rds:md5,adf0bb3faba4714750041d8abfe5e617"
+            ],
+            [
+                "expression_matrix_siggenes.rds:md5,0773b0d94168cc846e4d84b76f0d8536"
+            ],
+            [
+                "cluster_median_expression.csv:md5,0220465356df8cec5ccf3979259db725"
+            ],
+            [
+                "summary_statistics.csv:md5,347c3dd1340407822df5dc12e6a13921"
+            ],
+            [
+                "cluster_assignments.csv:md5,8897093a5da3e73749d518e2adb2f8ea"
+            ],
+            [
+                "clusters_list.rds:md5,103b00f76c6899e452d71920a54b33b0"
+            ],
+            [
+                "versions.yml:md5,2421a396d8d5a9d0ec18728f4828546d",
+                "versions.yml:md5,25b6ea86bfe3564ce1fdc2ea339d09e1",
+                "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                "versions.yml:md5,ace69cdcc8d9f6ea94df0a61956daffb"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T17:54:20.148853282"
+    },
+    "plant_timecourse - counts - samplesheet | masigpro - GO,KEGG,GSEA enrichment - stub": {
+        "content": [
+            {
+                "0": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "10": [
+                    
+                ],
+                "11": [
+                    "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "12": [
+                    "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "13": [
+                    "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "14": [
+                    "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "15": [
+                    "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "16": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "17": [
+                    "volcano_sig_genes.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "18": [
+                    
+                ],
+                "19": [
+                    [
+                        
+                    ]
+                ],
+                "2": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "20": [
+                    [
+                        
+                    ]
+                ],
+                "21": [
+                    
+                ],
+                "22": [
+                    "versions.yml:md5,2421a396d8d5a9d0ec18728f4828546d",
+                    "versions.yml:md5,25b6ea86bfe3564ce1fdc2ea339d09e1",
+                    "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                    "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                    "versions.yml:md5,ace69cdcc8d9f6ea94df0a61956daffb"
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "7": [
+                    
+                ],
+                "8": [
+                    
+                ],
+                "9": [
+                    
+                ],
+                "diffgenes_expression": [
+                    "expression_matrix_siggenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "diffgenes_table": [
+                    
+                ],
+                "ebfit_rds": [
+                    
+                ],
+                "filtered_log2counts": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "gsea_results": [
+                    
+                ],
+                "heatmap_plots": [
+                    
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "normalized_log2counts": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "timecourse_clusterassignments": [
+                    "cluster_assignments.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "timecourse_clusterlist": [
+                    "clusters_list.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "timecourse_clustermedian": [
+                    "cluster_median_expression.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "timecourse_clusterplots": [
+                    "masigpro_clusterplots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "timecourse_summarystatistics": [
+                    "summary_statistics.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "topgenes_csv": [
+                    
+                ],
+                "topgenes_rds": [
+                    
+                ],
+                "unfiltered_deg": [
+                    
+                ],
+                "unfiltered_log2counts": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,2421a396d8d5a9d0ec18728f4828546d",
+                    "versions.yml:md5,25b6ea86bfe3564ce1fdc2ea339d09e1",
+                    "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                    "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                    "versions.yml:md5,ace69cdcc8d9f6ea94df0a61956daffb"
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_object": [
+                    
+                ],
+                "voom_plot": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T18:44:15.470410851"
+    },
+    "leishmaniasis - counts - samplesheet | limma - KEGG,GSEA enrichment - stub": {
+        "content": [
+            {
+                "0": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "10": [
+                    "top_100_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "11": [
+                    
+                ],
+                "12": [
+                    
+                ],
+                "13": [
+                    
+                ],
+                "14": [
+                    
+                ],
+                "15": [
+                    
+                ],
+                "16": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "17": [
+                    "volcano_sig_genes.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "18": [
+                    
+                ],
+                "19": [
+                    
+                ],
+                "2": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "20": [
+                    [
+                        
+                    ]
+                ],
+                "21": [
+                    [
+                        
+                    ]
+                ],
+                "22": [
+                    "versions.yml:md5,0af1a0a1c9daffe0256afe34988e69ad",
+                    "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                    "versions.yml:md5,4470d87f188de0fa43e2c2db9af5e11a",
+                    "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                    "versions.yml:md5,ace69cdcc8d9f6ea94df0a61956daffb",
+                    "versions.yml:md5,c8861478f676be7b16091d34f266d24e"
+                ],
+                "3": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "ebfit.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "6": [
+                    "de_expression_values.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "7": [
+                    "de_genes_full_table.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "8": [
+                    "unfiltered_deg_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "9": [
+                    "top_100_genes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "diffgenes_expression": [
+                    "de_expression_values.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "diffgenes_table": [
+                    "de_genes_full_table.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "ebfit_rds": [
+                    "ebfit.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "filtered_log2counts": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    
+                ],
+                "gsea_results": [
+                    [
+                        
+                    ]
+                ],
+                "heatmap_plots": [
+                    
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "normalized_log2counts": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "timecourse_clusterassignments": [
+                    
+                ],
+                "timecourse_clusterlist": [
+                    
+                ],
+                "timecourse_clustermedian": [
+                    
+                ],
+                "timecourse_clusterplots": [
+                    
+                ],
+                "timecourse_summarystatistics": [
+                    
+                ],
+                "topgenes_csv": [
+                    "top_100_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "topgenes_rds": [
+                    "top_100_genes.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_deg": [
+                    "unfiltered_deg_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2counts": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,0af1a0a1c9daffe0256afe34988e69ad",
+                    "versions.yml:md5,272d81a319dc10f834c5bb92454a171a",
+                    "versions.yml:md5,4470d87f188de0fa43e2c2db9af5e11a",
+                    "versions.yml:md5,7502fc46af7b3326f67cf4d8a2486435",
+                    "versions.yml:md5,ace69cdcc8d9f6ea94df0a61956daffb",
+                    "versions.yml:md5,c8861478f676be7b16091d34f266d24e"
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_object": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-29T18:33:22.968085575"
+    }
+}

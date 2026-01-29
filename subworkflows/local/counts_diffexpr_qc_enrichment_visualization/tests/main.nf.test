@@ -1,0 +1,333 @@
+nextflow_workflow {
+
+    name "Test Workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION"
+    script "../main.nf"
+    workflow "COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION"
+
+    tag "subworkflows"
+    tag "subworkflows/counts_diffexpr_qc_enrichment_visualization"
+    tag "edger_voom"
+    tag "limma_de"
+    tag "deseq2_de"
+    tag "masigpro_timecourse"
+    tag "qc_visualization"
+    tag "de_visualization"
+    tag "go_enrichment"
+    tag "kegg_enrichment"
+    tag "msigdb_gsea"
+
+    test("leishmaniasis - counts - samplesheet | DESeq2 - GO enrichment") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 0.05
+                logfc_threshold = 1
+                ntop_genes = 100
+                diffexpr_method = "deseq2"
+                species_name = "human"
+                nes_threshold = 1
+                msigdb_categories = "C1,C2,H"
+                padj_gsea = 0.05
+                ntop_processes = 10
+                rank_method = "logfc"
+                rsq_threshold = 0.7
+                cluster_method = "hclust"
+                enrichment_method = "GO"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.pvalue_threshold
+                input[3] = params.logfc_threshold
+                input[4] = params.ntop_genes
+                input[5] = params.diffexpr_method
+                input[6] = params.species_name
+                input[7] = params.nes_threshold
+                input[8] = params.msigdb_categories
+                input[9] = params.padj_gsea
+                input[10] = params.ntop_processes
+                input[11] = params.rank_method
+                input[12] = params.rsq_threshold
+                input[13] = params.cluster_method
+                input[14] = params.enrichment_method.split(",")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.unfiltered_log2counts,
+                    workflow.out.filtered_log2counts,
+                    workflow.out.normalized_log2counts,
+                    workflow.out.diffgenes_expression,
+                    workflow.out.diffgenes_table,
+                    workflow.out.unfiltered_deg,
+                    workflow.out.topgenes_rds,
+                    workflow.out.topgenes_csv,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | limma - KEGG,GSEA enrichment") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 0.05
+                logfc_threshold = 1
+                ntop_genes = 100
+                diffexpr_method = "limma"
+                species_name = "human"
+                nes_threshold = 1
+                msigdb_categories = "C1,C2,C5,C7,H"
+                padj_gsea = 0.01
+                ntop_processes = 15
+                rank_method = "logfc"
+                rsq_threshold = 0.7
+                cluster_method = "hclust"
+                enrichment_method = "KEGG,GSEA"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.pvalue_threshold
+                input[3] = params.logfc_threshold
+                input[4] = params.ntop_genes
+                input[5] = params.diffexpr_method
+                input[6] = params.species_name
+                input[7] = params.nes_threshold
+                input[8] = params.msigdb_categories
+                input[9] = params.padj_gsea
+                input[10] = params.ntop_processes
+                input[11] = params.rank_method
+                input[12] = params.rsq_threshold
+                input[13] = params.cluster_method
+                input[14] = params.enrichment_method.split(",")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.unfiltered_log2counts,
+                    workflow.out.filtered_log2counts,
+                    workflow.out.normalized_log2counts,
+                    workflow.out.diffgenes_expression,
+                    workflow.out.diffgenes_table,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("plant_timecourse - counts - samplesheet | masigpro - GO,KEGG,GSEA enrichment") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 0.05
+                logfc_threshold = 1
+                ntop_genes = 100
+                diffexpr_method = "masigpro"
+                species_name = "arabidopsis"
+                nes_threshold = 1
+                msigdb_categories = "C1,C2,C3,C4,C5,C6,C7,C8,H"
+                padj_gsea = 0.05
+                ntop_processes = 20
+                rank_method = "logfc"
+                rsq_threshold = 0.6
+                cluster_method = "hclust"
+                enrichment_method = "GO,KEGG,GSEA"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/plant_timecourse_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_plant_timecourse.csv', checkIfExists: true)
+                input[2] = params.pvalue_threshold
+                input[3] = params.logfc_threshold
+                input[4] = params.ntop_genes
+                input[5] = params.diffexpr_method
+                input[6] = params.species_name
+                input[7] = params.nes_threshold
+                input[8] = params.msigdb_categories
+                input[9] = params.padj_gsea
+                input[10] = params.ntop_processes
+                input[11] = params.rank_method
+                input[12] = params.rsq_threshold
+                input[13] = params.cluster_method
+                input[14] = params.enrichment_method.split(",")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.unfiltered_log2counts,
+                    workflow.out.filtered_log2counts,
+                    workflow.out.normalized_log2counts,
+                    workflow.out.diffgenes_expression,
+                    workflow.out.timecourse_clustermedian,
+                    workflow.out.timecourse_summarystatistics,
+                    workflow.out.timecourse_clusterassignments,
+                    workflow.out.timecourse_clusterlist,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | DESeq2 - GO enrichment - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 0.05
+                logfc_threshold = 1
+                ntop_genes = 100
+                diffexpr_method = "deseq2"
+                species_name = "human"
+                nes_threshold = 1
+                msigdb_categories = "C1,C2,H"
+                padj_gsea = 0.05
+                ntop_processes = 10
+                rank_method = "logfc"
+                rsq_threshold = 0.7
+                cluster_method = "hclust"
+                enrichment_method = "GO"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.pvalue_threshold
+                input[3] = params.logfc_threshold
+                input[4] = params.ntop_genes
+                input[5] = params.diffexpr_method
+                input[6] = params.species_name
+                input[7] = params.nes_threshold
+                input[8] = params.msigdb_categories
+                input[9] = params.padj_gsea
+                input[10] = params.ntop_processes
+                input[11] = params.rank_method
+                input[12] = params.rsq_threshold
+                input[13] = params.cluster_method
+                input[14] = params.enrichment_method.split(",")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | limma - KEGG,GSEA enrichment - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 0.05
+                logfc_threshold = 1
+                ntop_genes = 100
+                diffexpr_method = "limma"
+                species_name = "human"
+                nes_threshold = 1
+                msigdb_categories = "C1,C2,C5,C7,H"
+                padj_gsea = 0.01
+                ntop_processes = 15
+                rank_method = "logfc"
+                rsq_threshold = 0.7
+                cluster_method = "hclust"
+                enrichment_method = "KEGG,GSEA"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.pvalue_threshold
+                input[3] = params.logfc_threshold
+                input[4] = params.ntop_genes
+                input[5] = params.diffexpr_method
+                input[6] = params.species_name
+                input[7] = params.nes_threshold
+                input[8] = params.msigdb_categories
+                input[9] = params.padj_gsea
+                input[10] = params.ntop_processes
+                input[11] = params.rank_method
+                input[12] = params.rsq_threshold
+                input[13] = params.cluster_method
+                input[14] = params.enrichment_method.split(",")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("plant_timecourse - counts - samplesheet | masigpro - GO,KEGG,GSEA enrichment - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                pvalue_threshold = 0.05
+                logfc_threshold = 1
+                ntop_genes = 100
+                diffexpr_method = "masigpro"
+                species_name = "arabidopsis"
+                nes_threshold = 1
+                msigdb_categories = "C1,C2,C3,C4,C5,C6,C7,C8,H"
+                padj_gsea = 0.05
+                ntop_processes = 20
+                rank_method = "logfc"
+                rsq_threshold = 0.6
+                cluster_method = "kmeans"
+                enrichment_method = "GO,KEGG,GSEA"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/plant_timecourse_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_plant_timecourse.csv', checkIfExists: true)
+                input[2] = params.pvalue_threshold
+                input[3] = params.logfc_threshold
+                input[4] = params.ntop_genes
+                input[5] = params.diffexpr_method
+                input[6] = params.species_name
+                input[7] = params.nes_threshold
+                input[8] = params.msigdb_categories
+                input[9] = params.padj_gsea
+                input[10] = params.ntop_processes
+                input[11] = params.rank_method
+                input[12] = params.rsq_threshold
+                input[13] = params.cluster_method
+                input[14] = params.enrichment_method.split(",")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
