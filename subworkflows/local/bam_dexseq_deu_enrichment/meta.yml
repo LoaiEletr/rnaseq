@@ -1,0 +1,147 @@
+name: "bam_dexseq_deu_enrichment"
+description: |
+  Differential exon usage analysis workflow using DEXSeq with functional enrichment.
+  Performs: DEXSeq annotation preparation from GTF, exon-level read counting,
+  differential exon usage analysis, visualization plots (MA/gene plots),
+  and optional GO/KEGG functional enrichment analysis of significant genes.
+keywords:
+  - dexseq
+  - differential-exon-usage
+  - alternative-splicing
+  - exon-level
+  - rna-seq
+  - functional-enrichment
+  - go
+  - kegg
+  - transcriptomics
+components:
+  - dexseq/prepareannotation
+  - dexseq/count
+  - dexseq/deu
+  - go/enrichment
+  - kegg/enrichment
+input:
+  - ch_bam:
+      type: file
+      description: |
+        Input channel containing BAM files with read alignments
+        Structure: [ val(meta), path(bam) ]
+      pattern: "*.{bam,bam.gz}"
+  - ch_gtf:
+      type: file
+      description: |
+        Channel containing GTF annotation file for DEXSeq analysis
+        Structure: [ path(gtf) ]
+      pattern: "*.{gtf,gtf.gz}"
+  - ch_samplesheet:
+      type: file
+      description: |
+        Channel containing sample metadata/samplesheet for DEU analysis
+        Structure: [ path(samplesheet) ]
+      pattern: "*.{csv,tsv,txt}"
+  - val_aggregation:
+      type: string
+      description: |
+        Aggregation method for exon counting in DEXSeq
+        Common values: 'sum', 'union', 'overlap'
+        Structure: string
+  - val_alignment_quality:
+      type: integer
+      description: |
+        Minimum alignment quality (MAPQ) score for counting reads
+        Structure: integer (e.g., 10)
+  - val_pval_threshold:
+      type: float
+      description: |
+        P-value threshold for significant differential exon usage
+        Structure: float (e.g., 0.05)
+  - val_logfc_threshold:
+      type: float
+      description: |
+        Log fold change threshold for significant exon usage changes
+        Structure: float (e.g., 1.0 for 2-fold change)
+  - val_top_n:
+      type: integer
+      description: |
+        Number of top significant exons to output in results
+        Structure: integer
+  - val_min_exonlength:
+      type: integer
+      description: |
+        Minimum exon length to consider in analysis (bp)
+        Structure: integer (e.g., 20)
+  - val_species_name:
+      type: string
+      description: |
+        Species name for functional enrichment analyses
+        Common examples: 'human', 'mouse', 'rat'
+        Structure: string
+  - val_ntop_processes:
+      type: integer
+      description: |
+        Number of top biological processes/pathways to output
+        Structure: integer
+  - val_enrichment_method:
+      type: string
+      description: |
+        Functional enrichment method(s) to perform. Can be "GO", "KEGG", or "GO,KEGG".
+        Structure: [ "GO" | "KEGG" | "GO,KEGG" ]
+output:
+  - dexseq_table:
+      type: file
+      description: |
+        Complete DEXSeq differential exon usage results table
+        Structure: [ path(results_table) ]
+      pattern: "DEXSeq_table.csv"
+  - dexseq_sigtable:
+      type: file
+      description: |
+        Significant differential exon usage results (filtered by p-value and logFC)
+        Structure: [ path(significant_results) ]
+      pattern: "significant_DEUs.csv"
+  - ma_plot:
+      type: file
+      description: |
+        MA plot visualizing differential exon usage results
+        Structure: [ path(ma_plot) ]
+      pattern: "DEXSeq_MA_plot.pdf"
+  - deu_plots:
+      type: file
+      description: |
+        Gene-level differential exon usage visualization plots
+        Structure: [ path(gene_plots) ]
+      pattern: "top_DEU_plots"
+  - significant_genes:
+      type: file
+      description: |
+        List of genes with significant differential exon usage
+        Structure: [ path(significant_genes) ]
+      pattern: "significant_DEU_gene_ids.rds"
+  - report:
+      type: file
+      description: |
+        DEXSeq analysis report with summary statistics
+        Structure: [ path(report) ]
+      pattern: "DEXSeqReport"
+  - go_enrichment:
+      type: file
+      description: |
+        Gene Ontology (GO) enrichment analysis results (only when "GO" in val_enrichment_method)
+        Structure: [ path(go_results) ]
+      pattern: "go_results/*"
+  - kegg_enrichment:
+      type: file
+      description: |
+        KEGG pathway enrichment analysis results (only when "KEGG" in val_enrichment_method)
+        Structure: [ path(kegg_results) ]
+      pattern: "kegg_results/*"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from all executed modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
