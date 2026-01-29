@@ -105,12 +105,24 @@ countFilePattern <- paste0(samplesheet$sample_id, ".counts.txt")
 cleanedCountFiles <- sapply(countFilePattern, cleanDexseqCountFile)
 
 ## Create DEXSeq dataset -------------------------------------------------------
-dexseqDataset <- DEXSeqDataSetFromHTSeq(
-    countfiles = cleanedCountFiles,
-    sampleData = samplesheet,
-    design = ~ sample + exon + condition:exon,
-    flattenedfile = flattenedGffFile
-)
+tryCatch({
+    dexseqDataset <- DEXSeqDataSetFromHTSeq(
+        countfiles = cleanedCountFiles,
+        sampleData = samplesheet,
+        design = ~ sample + exon + condition:exon,
+        flattenedfile = flattenedGffFile
+    )
+}, error = function(e) {
+    # Save NULL to significant_DEU_gene_ids.rds
+    saveRDS(NULL, file = "significant_DEU_gene_ids.rds")
+
+    # Also save the fail message to a text file
+    writeLines(paste("DEXSeq dataset creation failed:", e$message),
+               "dexseq_failed.txt")
+
+    # Exit with status 0
+    quit(save = "no", status = 0)
+})
 
 ## =============================================================================
 ## Filter exons and run analysis
