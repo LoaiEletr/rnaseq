@@ -18,7 +18,7 @@ include { SUBREAD_FEATURECOUNTS } from '../../../modules/local/subread/featureco
 workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
     take:
     ch_bam // channel: [ val(meta), bam ]
-    ch_gtf // channel: [ val(meta), gtf ]
+    ch_gtf // channel: [ gtf ]
     with_umi // boolean: true/false
 
     main:
