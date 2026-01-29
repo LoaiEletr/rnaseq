@@ -1,0 +1,320 @@
+nextflow_workflow {
+
+    name "Test Workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT"
+    script "subworkflows/local/counts_coexpression_network_ppi_enrichment/main.nf"
+    workflow "COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT"
+
+    tag "subworkflows"
+    tag "subworkflows/counts_coexpression_network_ppi_enrichment"
+    tag "wgcna_analysis"
+    tag "qc_visualization"
+    tag "de_visualization"
+    tag "string_ppi"
+    tag "go_enrichment"
+    tag "kegg_enrichment"
+
+    test("leishmaniasis - counts - samplesheet | GO,KEGG enrichment") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.6
+                min_mm = 0.85
+                top_hubgenes = 10
+                top_processes = 10
+                cor_threshold = 0.6
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+                species_name = "human"
+                score_threshold = 500
+                enrichment_method = "GO,KEGG"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_hubgenes
+                input[5] = params.top_processes
+                input[6] = params.cor_threshold
+                input[7] = params.pval_threshold
+                input[8] = params.tomtype
+                input[9] = params.networktype
+                input[10] = params.deepsplit
+                input[11] = params.reassignthreshold
+                input[12] = params.mergecutheight
+                input[13] = params.minmodulesize
+                input[14] = params.species_name
+                input[15] = params.score_threshold
+                input[16] = params.enrichment_method.split(',')
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_go_kegg") }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | GO enrichment only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.6
+                min_mm = 0.85
+                top_hubgenes = 10
+                top_processes = 10
+                cor_threshold = 0.6
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+                species_name = "human"
+                score_threshold = 500
+                enrichment_method = "GO"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_hubgenes
+                input[5] = params.top_processes
+                input[6] = params.cor_threshold
+                input[7] = params.pval_threshold
+                input[8] = params.tomtype
+                input[9] = params.networktype
+                input[10] = params.deepsplit
+                input[11] = params.reassignthreshold
+                input[12] = params.mergecutheight
+                input[13] = params.minmodulesize
+                input[14] = params.species_name
+                input[15] = params.score_threshold
+                input[16] = params.enrichment_method.split(',')
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_go") }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | KEGG enrichment only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.6
+                min_mm = 0.85
+                top_hubgenes = 10
+                top_processes = 10
+                cor_threshold = 0.6
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+                species_name = "human"
+                score_threshold = 500
+                enrichment_method = "KEGG"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_hubgenes
+                input[5] = params.top_processes
+                input[6] = params.cor_threshold
+                input[7] = params.pval_threshold
+                input[8] = params.tomtype
+                input[9] = params.networktype
+                input[10] = params.deepsplit
+                input[11] = params.reassignthreshold
+                input[12] = params.mergecutheight
+                input[13] = params.minmodulesize
+                input[14] = params.species_name
+                input[15] = params.score_threshold
+                input[16] = params.enrichment_method.split(',')
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.versions).match("versions_kegg") }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | GO,KEGG enrichment - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.6
+                min_mm = 0.85
+                top_hubgenes = 10
+                top_processes = 10
+                cor_threshold = 0.6
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+                species_name = "human"
+                score_threshold = 500
+                enrichment_method = "GO,KEGG"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_hubgenes
+                input[5] = params.top_processes
+                input[6] = params.cor_threshold
+                input[7] = params.pval_threshold
+                input[8] = params.tomtype
+                input[9] = params.networktype
+                input[10] = params.deepsplit
+                input[11] = params.reassignthreshold
+                input[12] = params.mergecutheight
+                input[13] = params.minmodulesize
+                input[14] = params.species_name
+                input[15] = params.score_threshold
+                input[16] = params.enrichment_method.split(',')
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | GO enrichment only - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.6
+                min_mm = 0.85
+                top_hubgenes = 10
+                top_processes = 10
+                cor_threshold = 0.6
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+                species_name = "human"
+                score_threshold = 500
+                enrichment_method = "GO"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_hubgenes
+                input[5] = params.top_processes
+                input[6] = params.cor_threshold
+                input[7] = params.pval_threshold
+                input[8] = params.tomtype
+                input[9] = params.networktype
+                input[10] = params.deepsplit
+                input[11] = params.reassignthreshold
+                input[12] = params.mergecutheight
+                input[13] = params.minmodulesize
+                input[14] = params.species_name
+                input[15] = params.score_threshold
+                input[16] = params.enrichment_method.split(',')
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - counts - samplesheet | KEGG enrichment only - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                min_gs = 0.6
+                min_mm = 0.85
+                top_hubgenes = 10
+                top_processes = 10
+                cor_threshold = 0.6
+                pval_threshold = 0.05
+                tomtype = "signed"
+                networktype = "signed"
+                deepsplit = 2
+                reassignthreshold = 0
+                mergecutheight = 0.25
+                minmodulesize = 30
+                species_name = "human"
+                score_threshold = 500
+                enrichment_method = "KEGG"
+            }
+            workflow {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = params.min_gs
+                input[3] = params.min_mm
+                input[4] = params.top_hubgenes
+                input[5] = params.top_processes
+                input[6] = params.cor_threshold
+                input[7] = params.pval_threshold
+                input[8] = params.tomtype
+                input[9] = params.networktype
+                input[10] = params.deepsplit
+                input[11] = params.reassignthreshold
+                input[12] = params.mergecutheight
+                input[13] = params.minmodulesize
+                input[14] = params.species_name
+                input[15] = params.score_threshold
+                input[16] = params.enrichment_method.split(',')
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
