@@ -1,0 +1,47 @@
+nextflow_process {
+    name "Test Process MULTIQC"
+    script "modules/local/multiqc/main.nf"
+    process "MULTIQC"
+
+    tag "modules"
+    tag "multiqc"
+
+    test("Should generate MultiQC report from FastQC files and return HTML and data files") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastqc/test_fastqc.zip', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out.versions).match("versions_multiqc") }
+            )
+        }
+    }
+
+    test("Should stub generate MultiQC report from FastQC files and return mocked HTML and data files") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastqc/test_fastqc.zip', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
