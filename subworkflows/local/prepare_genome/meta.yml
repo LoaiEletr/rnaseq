@@ -1,0 +1,115 @@
+name: "prepare_genome"
+description: |
+  Reference genome preparation workflow for RNA-seq analysis pipelines.
+  Decompresses and prepares various reference files including genome FASTA, transcriptome FASTA,
+  gene annotation GTF, and optional files for specific analyses:
+  - Extended GTF for isoform analysis (DIU)
+  - rRNA database for SortMeRNA rRNA filtering
+  - Contaminant genomes for BBMap bbsplit contamination removal
+  Handles conditional file preparation based on analysis parameters.
+keywords:
+  - genome-preparation
+  - reference-genome
+  - decompression
+  - gtf
+  - fasta
+  - transcriptome
+  - rrna-database
+  - contaminant-genome
+components:
+  - gunzip
+  - untar
+input:
+  - val_fasta:
+      type: string
+      description: |
+        Path to reference genome FASTA file (.gz compressed)
+        Structure: string path
+  - val_transcriptome:
+      type: string
+      description: |
+        Path to transcriptome FASTA file (.gz compressed) for pseudoalignment methods
+        Structure: string path
+  - val_gtf:
+      type: string
+      description: |
+        Path to standard gene annotation GTF file (.gz compressed)
+        Structure: string path
+  - val_gtf_isoform:
+      type: string
+      description: |
+        Path to extended GTF file with patches/alternate sequences (.gz compressed) for isoform analysis
+        Only used when "DIU" is included in analysis_method parameter
+        Structure: string path
+  - val_contaminant_fasta:
+      type: string
+      description: |
+        Path to contaminant genome FASTA file (.gz compressed) for BBMap bbsplit
+        Structure: string path
+  - val_rrna_db:
+      type: string
+      description: |
+        Path to rRNA database file (.tar.gz compressed) for SortMeRNA
+        Only used when skip_sortmerna parameter is false
+        Structure: string path
+output:
+  - fasta_compressed:
+      type: file
+      description: |
+        Original compressed genome FASTA file (.gz)
+        Structure: [ path(genome.fasta.gz) ]
+      pattern: "*.fasta.gz"
+  - fasta_uncompressed:
+      type: file
+      description: |
+        Decompressed genome FASTA file
+        Structure: [ path(genome.fasta) ]
+      pattern: "*.fasta"
+  - transcriptome:
+      type: file
+      description: |
+        Compressed transcriptome FASTA file (.gz)
+        Structure: [ path(transcriptome.fasta.gz) ]
+      pattern: "*.fasta.gz"
+  - gtf_compressed:
+      type: file
+      description: |
+        Original compressed gene annotation GTF file (.gz)
+        Structure: [ path(genes.gtf.gz) ]
+      pattern: "*.gtf.gz"
+  - gtf_uncompressed:
+      type: file
+      description: |
+        Decompressed gene annotation GTF file
+        Structure: [ path(genes.gtf) ]
+      pattern: "*.gtf"
+  - gtf_isoform:
+      type: file
+      description: |
+        Extended GTF file for isoform analysis (.gz compressed)
+        Only emitted when "DIU" is in analysis_method parameter
+        Structure: [ path(genes_with_patches.gtf.gz) ]
+      pattern: "*.gtf.gz"
+  - contaminant_fasta:
+      type: file
+      description: |
+        Compressed contaminant genome FASTA file (.gz)
+        Structure: [ path(contaminant.fasta.gz) ]
+      pattern: "*.fasta.gz"
+  - rrna_db_fasta:
+      type: file
+      description: |
+        Decompressed rRNA database FASTA file(s)
+        Only emitted when skip_sortmerna parameter is false
+        Structure: [ path(rrna.fasta) ]
+      pattern: "*.fasta"
+  - versions:
+      type: file
+      description: |
+        File containing software versions from executed modules
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
