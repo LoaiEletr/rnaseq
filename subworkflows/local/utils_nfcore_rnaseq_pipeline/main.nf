@@ -208,6 +208,7 @@ workflow PIPELINE_COMPLETION {
 //
 def validateInputParameters() {
     genomeExistsError()
+    contaminantExistsError()
 
     // Validate aligner selection
     if (!["hisat2"].contains(params.aligner) && !["salmon", "kallisto"].contains(params.pseudo_aligner)) {
