@@ -305,10 +305,22 @@ def validateInputSamplesheet(input) {
 // Get attribute from genome config file e.g. fasta, gtf
 //
 def getGenomeAttribute(attribute) {
-    if (params.genomes && params.genome && params.genomes.containsKey(params.genome)) {
-        if (params.genomes[params.genome].containsKey(attribute)) {
-            return params.genomes[params.genome][attribute]
+    if (params.species && params.genome && params.genomes.containsKey(params.species) && params.genomes[params.species].containsKey(params.genome)) {
+
+        if (params.genomes[params.species][params.genome].containsKey(attribute)) {
+            return params.genomes[params.species][params.genome][attribute]
         }
+    }
+    log.warn("Genome attribute '${attribute}' not found for species=${params.species}, genome=${params.genome}")
+    return null
+}
+
+//
+// Get contaminant genome from contaminant config
+//
+def getContaminantGenome() {
+    if (params.contaminant_species && params.contaminants && params.contaminants.containsKey(params.contaminant_species)) {
+        return params.contaminants[params.contaminant_species].genome
     }
     return null
 }
@@ -317,9 +329,70 @@ def getGenomeAttribute(attribute) {
 // Exit pipeline if incorrect --genome key provided
 //
 def genomeExistsError() {
-    if (params.genomes && params.genome && !params.genomes.containsKey(params.genome)) {
-        def error_string = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + "  Genome '${params.genome}' not found in any config files provided to the pipeline.\n" + "  Currently, the available genome keys are:\n" + "  ${params.genomes.keySet().join(", ")}\n" + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        error(error_string)
+    if (params.species && params.genome) {
+        // Check if species exists in genomes config
+        if (!params.genomes.containsKey(params.species)) {
+            def error_string = """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Species '${params.species}' not found in genome config.
+  Available species: ${params.genomes.keySet().join(", ")}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
+            error(error_string)
+        }
+
+        // Check if genome exists for that species
+        if (params.genomes.containsKey(params.species) && !params.genomes[params.species].containsKey(params.genome)) {
+
+            def available_genomes = params.genomes[params.species].keySet().join(", ")
+            def error_string = """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Genome '${params.genome}' not found for species '${params.species}'.
+
+  Available genomes for ${params.species}:
+  ${available_genomes}
+
+  Usage: --species ${params.species} --genome <one_of_the_above>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
+            error(error_string)
+        }
+    }
+}
+
+//
+// Exit pipeline if incorrect --contaminant_species provided
+//
+def contaminantExistsError() {
+    if (params.contaminant_species) {
+        // Check if contaminants config was loaded
+        if (!params.contaminants) {
+            def error_string = """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Contaminants config not loaded!
+
+  Ensure contaminants.config is included in nextflow.config:
+  includeConfig 'conf/contaminants.config'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
+            error(error_string)
+        }
+
+        // Check if contaminant species exists in config
+        if (!params.contaminants.containsKey(params.contaminant_species)) {
+            def available_contaminants = params.contaminants.keySet().join(", ")
+            def error_string = """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Contaminant species '${params.contaminant_species}' not found in config.
+
+  Available contaminant species:
+  ${available_contaminants}
+
+  Usage: --contaminant_species <one_of_the_above>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
+            error(error_string)
+        }
     }
 }
 //
