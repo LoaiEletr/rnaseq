@@ -6,15 +6,32 @@ nextflow_workflow {
 
     tag "subworkflows"
     tag "subworkflows/PREPARE_GENOME"
-    tag "untar"
     tag "gunzip"
+    tag "untar"
+    tag "gxf2bed"
+    tag "hisat2"
+    tag "hisat2/extractexons"
+    tag "hisat2/extractsplicesites"
+    tag "hisat2/build"
+    tag "kallisto"
+    tag "kallisto/index"
+    tag "salmon"
+    tag "salmon/index"
+    tag "sortmerna"
+    tag "bbmap"
+    tag "bbmap/bbsplit"
 
-    test("sarscov2 - fasta - gtf - contaminant") {
+    test("sarscov2 - fasta - gtf - contaminant | with_sortmerna - with_DIU - hisat2 - with_rseqc") {
         when {
             params {
                 outdir = "$outputDir"
                 analysis_method = "DIU"
                 skip_sortmerna = false
+                aligner = "hisat2"
+                pseudo_aligner = "none"
+                skip_bbsplit = false
+                rrna_db_type = "fast"
+                rseqc_modules = "tin,bamstat,readdistribution"
             }
             workflow {
                 """
@@ -22,78 +39,40 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
                 input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
+                { assert snapshot(
+                    workflow.out.fasta_compressed,
+                    workflow.out.fasta_uncompressed,
+                    workflow.out.gtf_compressed,
+                    workflow.out.gtf_uncompressed,
+                    workflow.out.gtf_isoform,
+                    workflow.out.contaminant_fasta,
+                    workflow.out.rrna_db_fasta,
+                    workflow.out.versions
+                ).match() }
             )
         }
     }
 
-    test("sarscov2 - fasta - gtf - contaminant | skip_sortmerna") {
-        when {
-            params {
-                outdir = "$outputDir"
-                analysis_method = "DIU"
-                skip_sortmerna = true
-            }
-            workflow {
-                """
-                input[0] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz'
-                input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
-                input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                """
-            }
-        }
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
-            )
-        }
-    }
-
-    test("sarscov2 - fasta - gtf - contaminant | skip_DIU") {
-        when {
-            params {
-                outdir = "$outputDir"
-                analysis_method = "DEG,AS"
-                skip_sortmerna = false
-            }
-            workflow {
-                """
-                input[0] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz'
-                input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
-                input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                """
-            }
-        }
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
-            )
-        }
-    }
-
-    test("sarscov2 - fasta - gtf - contaminant - stub") {
-        options "-stub"
+    test("sarscov2 - fasta - gtf - contaminant | with_sortmerna - with_DIU - hisat2 - no_rseqc") {
         when {
             params {
                 outdir = "$outputDir"
                 analysis_method = "DIU"
                 skip_sortmerna = false
+                aligner = "hisat2"
+                pseudo_aligner = "none"
+                skip_bbsplit = false
+                rrna_db_type = "fast"
+                rseqc_modules = null
             }
             workflow {
                 """
@@ -101,26 +80,40 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
                 input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
+                { assert snapshot(
+                    workflow.out.fasta_compressed,
+                    workflow.out.fasta_uncompressed,
+                    workflow.out.gtf_compressed,
+                    workflow.out.gtf_uncompressed,
+                    workflow.out.gtf_isoform,
+                    workflow.out.contaminant_fasta,
+                    workflow.out.rrna_db_fasta,
+                    workflow.out.versions
+                ).match() }
             )
         }
     }
 
-    test("sarscov2 - fasta - gtf - contaminant - stub | skip_sortmerna") {
-        options "-stub"
+    test("sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - hisat2 - with_rseqc") {
         when {
             params {
                 outdir = "$outputDir"
                 analysis_method = "DIU"
                 skip_sortmerna = true
+                aligner = "hisat2"
+                pseudo_aligner = "none"
+                skip_bbsplit = false
+                rrna_db_type = "fast"
+                rseqc_modules = "tin"
             }
             workflow {
                 """
@@ -128,8 +121,163 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
                 input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.fasta_compressed,
+                    workflow.out.fasta_uncompressed,
+                    workflow.out.gtf_compressed,
+                    workflow.out.gtf_uncompressed,
+                    workflow.out.gtf_isoform,
+                    workflow.out.contaminant_fasta,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fasta - gtf - contaminant | skip_DIU - skip_sortmerna - hisat2 - no_rseqc") {
+        when {
+            params {
+                outdir = "$outputDir"
+                analysis_method = "DEG,AS"
+                skip_sortmerna = true
+                aligner = "hisat2"
+                pseudo_aligner = "none"
+                skip_bbsplit = false
+                rrna_db_type = "fast"
+                rseqc_modules = null
+            }
+            workflow {
+                """
+                input[0] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz'
+                input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
+                input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.fasta_compressed,
+                    workflow.out.fasta_uncompressed,
+                    workflow.out.gtf_compressed,
+                    workflow.out.gtf_uncompressed,
+                    workflow.out.contaminant_fasta,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - kallisto - no_rseqc") {
+        when {
+            params {
+                outdir = "$outputDir"
+                analysis_method = "DIU"
+                skip_sortmerna = true
+                aligner = "none"
+                pseudo_aligner = "kallisto"
+                skip_bbsplit = true
+                rrna_db_type = "fast"
+                rseqc_modules = null
+            }
+            workflow {
+                """
+                input[0] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz'
+                input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
+                input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.transcriptome,
+                    workflow.out.gtf_compressed,
+                    workflow.out.gtf_isoform,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - salmon - no_rseqc") {
+        when {
+            params {
+                outdir = "$outputDir"
+                analysis_method = "DIU"
+                skip_sortmerna = true
+                aligner = "none"
+                pseudo_aligner = "salmon"
+                skip_bbsplit = true
+                rrna_db_type = "sensitive"
+                rseqc_modules = null
+            }
+            workflow {
+                """
+                input[0] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz'
+                input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
+                input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.transcriptome,
+                    workflow.out.gtf_compressed,
+                    workflow.out.gtf_isoform,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fasta - gtf - contaminant | with_sortmerna - with_DIU - hisat2 - with_rseqc - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                analysis_method = "DIU"
+                skip_sortmerna = false
+                aligner = "hisat2"
+                pseudo_aligner = "none"
+                skip_bbsplit = false
+                rrna_db_type = "fast"
+                rseqc_modules = "tin,bamstat"
+            }
+            workflow {
+                """
+                input[0] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz'
+                input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
+                input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
                 """
             }
         }
@@ -141,13 +289,18 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - fasta - gtf - contaminant - stub | skip_DIU") {
+    test("sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - hisat2 - no_rseqc - stub") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
-                analysis_method = "DEG,AS"
-                skip_sortmerna = false
+                analysis_method = "DIU"
+                skip_sortmerna = true
+                aligner = "hisat2"
+                pseudo_aligner = "none"
+                skip_bbsplit = false
+                rrna_db_type = "fast"
+                rseqc_modules = null
             }
             workflow {
                 """
@@ -155,8 +308,42 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
                 input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fasta - gtf - contaminant | skip_DIU - with_sortmerna - hisat2 - with_rseqc - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                analysis_method = "DEG,AS"
+                skip_sortmerna = false
+                aligner = "hisat2"
+                pseudo_aligner = "none"
+                skip_bbsplit = false
+                rrna_db_type = "fast"
+                rseqc_modules = "readdistribution"
+            }
+            workflow {
+                """
+                input[0] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz'
+                input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
+                input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
+                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[6] = params.rrna_db_type
                 """
             }
         }

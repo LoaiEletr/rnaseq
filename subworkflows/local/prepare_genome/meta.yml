@@ -1,39 +1,52 @@
 name: "prepare_genome"
 description: |
-  Reference genome preparation workflow for RNA-seq analysis pipelines.
-  Decompresses and prepares various reference files including genome FASTA, transcriptome FASTA,
-  gene annotation GTF, and optional files for specific analyses:
-  - Extended GTF for isoform analysis (DIU)
-  - rRNA database for SortMeRNA rRNA filtering
-  - Contaminant genomes for BBMap bbsplit contamination removal
-  Handles conditional file preparation based on analysis parameters.
+  Comprehensive reference genome preparation and index building workflow for RNA-seq analysis.
+  Decompresses reference files, converts GTF to BED format, and builds alignment indices for multiple tools.
+  Conditional execution based on workflow configuration parameters.
+  Builds indices for: HISAT2 (genome alignment), Kallisto/Salmon (pseudo-alignment),
+  SortMeRNA (rRNA filtering), BBMap bbsplit (contaminant removal), and BED annotation for RSeQC.
 keywords:
   - genome-preparation
+  - index-building
+  - alignment-index
+  - hisat2
+  - kallisto
+  - salmon
+  - sortmerna
+  - bbsplit
+  - gxf2bed
+  - rseqc
   - reference-genome
-  - decompression
-  - gtf
-  - fasta
   - transcriptome
-  - rrna-database
-  - contaminant-genome
 components:
   - gunzip
   - untar
+  - gxf2bed
+  - kallisto/index
+  - salmon/index
+  - hisat2/extractexons
+  - hisat2/extractsplicesites
+  - hisat2/build
+  - sortmerna
+  - bbmap/bbsplit
 input:
   - val_fasta:
       type: string
       description: |
         Path to reference genome FASTA file (.gz compressed)
+        Required when aligner="hisat2" or skip_bbsplit=false
         Structure: string path
   - val_transcriptome:
       type: string
       description: |
-        Path to transcriptome FASTA file (.gz compressed) for pseudoalignment methods
+        Path to transcriptome FASTA file (.gz compressed) for pseudoalignment
+        Required when pseudo_aligner is "kallisto" or "salmon"
         Structure: string path
   - val_gtf:
       type: string
       description: |
         Path to standard gene annotation GTF file (.gz compressed)
+        Required for HISAT2 splice-aware indexing and BED conversion
         Structure: string path
   - val_gtf_isoform:
       type: string
@@ -45,42 +58,53 @@ input:
       type: string
       description: |
         Path to contaminant genome FASTA file (.gz compressed) for BBMap bbsplit
+        Required when skip_bbsplit=false
         Structure: string path
   - val_rrna_db:
       type: string
       description: |
         Path to rRNA database file (.tar.gz compressed) for SortMeRNA
-        Only used when skip_sortmerna parameter is false
+        Required when skip_sortmerna=false
         Structure: string path
+  - val_rrna_db_type:
+      type: string
+      description: |
+        SortMeRNA database type for index building
+        Structure: [ "default" | "fast" | "sensitive" ]
 output:
   - fasta_compressed:
       type: file
       description: |
         Original compressed genome FASTA file (.gz)
+        Only emitted when aligner="hisat2" or skip_bbsplit=false
         Structure: [ path(genome.fasta.gz) ]
       pattern: "*.fasta.gz"
   - fasta_uncompressed:
       type: file
       description: |
         Decompressed genome FASTA file
+        Only emitted when aligner="hisat2"
         Structure: [ path(genome.fasta) ]
       pattern: "*.fasta"
   - transcriptome:
       type: file
       description: |
         Compressed transcriptome FASTA file (.gz)
+        Only emitted when pseudo_aligner is "kallisto" or "salmon"
         Structure: [ path(transcriptome.fasta.gz) ]
       pattern: "*.fasta.gz"
   - gtf_compressed:
       type: file
       description: |
         Original compressed gene annotation GTF file (.gz)
+        Only emitted when aligner="hisat2"
         Structure: [ path(genes.gtf.gz) ]
       pattern: "*.gtf.gz"
   - gtf_uncompressed:
       type: file
       description: |
         Decompressed gene annotation GTF file
+        Only emitted when aligner="hisat2"
         Structure: [ path(genes.gtf) ]
       pattern: "*.gtf"
   - gtf_isoform:
@@ -94,19 +118,61 @@ output:
       type: file
       description: |
         Compressed contaminant genome FASTA file (.gz)
+        Only emitted when skip_bbsplit=false
         Structure: [ path(contaminant.fasta.gz) ]
       pattern: "*.fasta.gz"
   - rrna_db_fasta:
       type: file
       description: |
         Decompressed rRNA database FASTA file(s)
-        Only emitted when skip_sortmerna parameter is false
+        Only emitted when skip_sortmerna=false
         Structure: [ path(rrna.fasta) ]
       pattern: "*.fasta"
+  - bed:
+      type: file
+      description: |
+        BED format annotation file converted from GTF
+        Only emitted when aligner="hisat2" and rseqc_modules is set
+        Structure: [ path(genes.bed) ]
+      pattern: "*.bed"
+  - hisat2_index:
+      type: file
+      description: |
+        HISAT2 genome alignment index files
+        Only emitted when aligner="hisat2"
+        Structure: [ path(hisat2_index_files) ]
+      pattern: "*"
+  - kallisto_index:
+      type: file
+      description: |
+        Kallisto transcriptome pseudoalignment index files
+        Only emitted when pseudo_aligner="kallisto"
+        Structure: [ path(kallisto_index_files) ]
+      pattern: "*"
+  - salmon_index:
+      type: file
+      description: |
+        Salmon transcriptome pseudoalignment index files
+        Structure: [ path(salmon_index_files) ]
+      pattern: "*"
+  - sortmerna_index:
+      type: file
+      description: |
+        SortMeRNA rRNA database index files
+        Only emitted when skip_sortmerna=false
+        Structure: [ path(sortmerna_index_files) ]
+      pattern: "*"
+  - bbsplit_index:
+      type: file
+      description: |
+        BBMap bbsplit contamination index files
+        Only emitted when skip_bbsplit=false
+        Structure: [ path(bbsplit_index_files) ]
+      pattern: "*"
   - versions:
       type: file
       description: |
-        File containing software versions from executed modules
+        File containing software versions from all executed modules
         Structure: [ path(versions.yml) ]
       pattern: "versions.yml"
 authors:
