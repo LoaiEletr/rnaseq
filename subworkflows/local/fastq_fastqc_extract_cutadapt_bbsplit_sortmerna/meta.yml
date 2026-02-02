@@ -42,18 +42,20 @@ input:
       description: |
         Channel containing ribosomal RNA database files for SortMeRNA
         Structure: [ path(rrna_db) ]
-  - ch_primary_ref:
+  - ch_bbsplit_index:
       type: file
       description: |
-        Channel containing primary reference genome for BBMap bbsplit
-        Structure: [ path(primary_ref) ]
-      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
-  - ch_other_ref:
+        Channel containing pre-built BBMap bbsplit index files for contamination removal
+        Required when val_skip_bbsplit is false
+        Structure: [ path(bbsplit_index) ]
+      pattern: "*"
+  - ch_sortmerna_index:
       type: file
       description: |
-        Channel containing other reference genomes for contamination detection
-        Structure: [ path(other_ref) ]
-      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+        Channel containing pre-built SortMeRNA index files for rRNA filtering
+        Required when val_skip_sortmerna is false
+        Structure: [ path(sortmerna_index) ]
+      pattern: "*"
   - val_rrna_db_type:
       type: string
       description: |
@@ -131,24 +133,12 @@ output:
         ZIP archives from trimmed reads quality control (if both val_skip_fastqc and val_skip_cutadapt are false)
         Structure: [ val(meta), path(zip) ]
       pattern: "*.zip"
-  - bbsplit_index:
-      type: file
-      description: |
-        BBMap bbsplit index files for contamination detection (if val_skip_bbsplit is false)
-        Structure: [ path(index) ]
-      pattern: "*"
   - bbsplit_stats:
       type: file
       description: |
         Statistics from BBMap bbsplit contamination removal (if val_skip_bbsplit is false)
         Structure: [ path(stats) ]
       pattern: "*.stats.txt"
-  - sortmerna_index:
-      type: file
-      description: |
-        SortMeRNA rRNA database index files (if val_skip_sortmerna is false)
-        Structure: [ path(index) ]
-      pattern: "*"
   - reads:
       type: file
       description: |

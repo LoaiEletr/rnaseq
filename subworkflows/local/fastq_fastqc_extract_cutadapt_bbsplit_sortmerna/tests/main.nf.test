@@ -25,6 +25,35 @@ nextflow_workflow {
                 """
             }
         }
+
+        run("BBMAP_BBSPLIT") {
+            script "modules/local/bbmap/bbsplit/main.nf"
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'index' ],
+                    []
+                ])
+                input[1] = []
+                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[3] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[4] = true
+                """
+            }
+        }
+
+        run("SORTMERNA") {
+            script "modules/local/sortmerna/main.nf"
+            process {
+                """
+                input[0] = [[],[]]
+                input[1] = []
+                input[2] = UNTAR.out.untar
+                input[3] = "fast"
+                input[4] = true
+                """
+            }
+        }
     }
 
     // Base test: All steps enabled
@@ -53,8 +82,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -104,8 +133,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -158,8 +187,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -209,8 +238,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -260,8 +289,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -311,8 +340,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = []
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -362,8 +391,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = []
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -414,8 +443,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -467,8 +496,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
@@ -513,8 +542,8 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.adapter)
                 input[2] = UNTAR.out.untar
-                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[4] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
                 input[6] = params.lib_kit
                 input[7] = params.with_umi
