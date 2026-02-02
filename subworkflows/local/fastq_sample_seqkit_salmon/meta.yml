@@ -1,7 +1,7 @@
 name: "fastq_sample_seqkit_salmon"
 description: |
   Subsample FASTQ reads and perform RNA-seq quantification with strandness detection.
-  Performs: SeqKit subsampling of reads, Salmon transcriptome indexing, and Salmon quantification
+  Performs: SeqKit subsampling of reads and Salmon quantification
   with automatic library strandness determination.
 keywords:
   - fastq
@@ -14,7 +14,6 @@ keywords:
   - transcriptomics
 components:
   - seqkit/sample
-  - salmon/index
   - salmon/quant
 input:
   - ch_reads:
@@ -23,18 +22,18 @@ input:
         Input channel containing FASTQ files (single or paired-end)
         Structure: [ val(meta), path(reads) ]
       pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
-  - ch_transcriptome:
-      type: file
-      description: |
-        Channel containing transcriptome FASTA file for Salmon indexing
-        Structure: [ path(transcriptome) ]
-      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
   - ch_gtf:
       type: file
       description: |
         Channel containing GTF annotation file for Salmon quantification
         Structure: [ path(gtf) ]
       pattern: "*.{gtf,gtf.gz}"
+  - ch_salmon_index:
+      type: file
+      description: |
+        Channel containing salmon transcriptome index files
+        Structure: [ path(salmon_index) ]
+      pattern: "*"
 output:
   - reads:
       type: file
@@ -42,12 +41,6 @@ output:
         Subsampled FASTQ files from SeqKit
         Structure: [ val(meta), path(reads) ]
       pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
-  - index:
-      type: file
-      description: |
-        Salmon transcriptome index files
-        Structure: [ path(index) ]
-      pattern: "transcripts_index"
   - quant_dir:
       type: file
       description: |

@@ -10,10 +10,20 @@ nextflow_workflow {
     tag "seqkit"
     tag "seqkit/sample"
     tag "salmon"
-    tag "salmon/index"
     tag "salmon/quant"
 
-    test("sarscov2 - fastq - fasta - gtf") {
+    setup {
+        run("SALMON_INDEX") {
+            script "modules/local/salmon/index/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                """
+            }
+        }
+    }
+
+    test("sarscov2 - fastq - index - gtf") {
         when {
             params {
                 outdir = "$outputDir"
@@ -26,8 +36,8 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[2] = SALMON_INDEX.out.index
                 """
             }
         }
@@ -43,7 +53,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - [fastq1, fastq2] - fasta - gtf") {
+    test("sarscov2 - [fastq1, fastq2] - index - gtf") {
         when {
             params {
                 outdir = "$outputDir"
@@ -57,8 +67,8 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[2] = SALMON_INDEX.out.index
                 """
             }
         }
@@ -75,7 +85,7 @@ nextflow_workflow {
     }
 
     // Stub tests
-    test("sarscov2 - fastq - fasta - gtf - stub") {
+    test("sarscov2 - fastq - index - gtf - stub") {
         options "-stub"
         when {
             params {
@@ -89,8 +99,8 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[2] = SALMON_INDEX.out.index
                 """
             }
         }
@@ -102,7 +112,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - [fastq1, fastq2] - fasta - gtf - stub") {
+    test("sarscov2 - [fastq1, fastq2] - index - gtf - stub") {
         options "-stub"
         when {
             params {
@@ -117,8 +127,8 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[2] = SALMON_INDEX.out.index
                 """
             }
         }
