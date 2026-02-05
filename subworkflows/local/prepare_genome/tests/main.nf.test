@@ -39,9 +39,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -80,9 +86,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -121,9 +133,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -161,9 +179,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -200,9 +224,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -237,9 +267,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -275,9 +311,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -308,9 +350,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }
@@ -341,9 +389,15 @@ nextflow_workflow {
                 input[1] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta'
                 input[2] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
                 input[3] = params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.filtered.gtf.gz'
-                input[4] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
-                input[5] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
-                input[6] = params.rrna_db_type
+                input[4] = null
+                input[5] = params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta'
+                input[6] = 'https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz'
+                input[7] = params.rrna_db_type
+                input[8] = null
+                input[9] = null
+                input[10] = null
+                input[11] = null
+                input[12] = null
                 """
             }
         }

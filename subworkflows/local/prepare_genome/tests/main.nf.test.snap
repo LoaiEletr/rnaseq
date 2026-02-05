@@ -63,8 +63,8 @@
                     "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
                     "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
                     "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
+                    "versions.yml:md5,9a57298745e2538f275553382d65a1fc",
                     "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                    "versions.yml:md5,f2083baa6f6a723b73b10e75a5366aa8",
                     "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
                     "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
                 ],
@@ -195,8 +195,8 @@
                     "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
                     "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
                     "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
+                    "versions.yml:md5,9a57298745e2538f275553382d65a1fc",
                     "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                    "versions.yml:md5,f2083baa6f6a723b73b10e75a5366aa8",
                     "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
                     "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
                 ]
@@ -206,7 +206,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:53:05.452184207"
+        "timestamp": "2026-02-05T20:38:02.819729391"
     },
     "sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - hisat2 - no_rseqc - stub": {
         "content": [
@@ -405,7 +405,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:54:25.634447748"
+        "timestamp": "2026-02-05T20:39:34.470804571"
     },
     "sarscov2 - fasta - gtf - contaminant | skip_DIU - with_sortmerna - hisat2 - with_rseqc - stub": {
         "content": [
@@ -471,8 +471,8 @@
                     "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
                     "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
                     "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
+                    "versions.yml:md5,9a57298745e2538f275553382d65a1fc",
                     "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                    "versions.yml:md5,f2083baa6f6a723b73b10e75a5366aa8",
                     "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
                     "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
                 ],
@@ -603,8 +603,8 @@
                     "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
                     "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
                     "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
+                    "versions.yml:md5,9a57298745e2538f275553382d65a1fc",
                     "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                    "versions.yml:md5,f2083baa6f6a723b73b10e75a5366aa8",
                     "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
                     "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
                 ]
@@ -614,7 +614,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:57:23.376491982"
+        "timestamp": "2026-02-05T20:42:27.874094832"
     },
     "sarscov2 - fasta - gtf - contaminant | with_sortmerna - with_DIU - hisat2 - with_rseqc": {
         "content": [
@@ -651,8 +651,8 @@
                 "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
                 "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
                 "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
+                "versions.yml:md5,9a57298745e2538f275553382d65a1fc",
                 "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                "versions.yml:md5,f2083baa6f6a723b73b10e75a5366aa8",
                 "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
                 "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
             ]
@@ -661,7 +661,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:28:18.790487726"
+        "timestamp": "2026-02-05T20:14:17.785590685"
     },
     "sarscov2 - fasta - gtf - contaminant | with_sortmerna - with_DIU - hisat2 - no_rseqc": {
         "content": [
@@ -698,8 +698,8 @@
                 "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
                 "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
                 "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
+                "versions.yml:md5,9a57298745e2538f275553382d65a1fc",
                 "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                "versions.yml:md5,f2083baa6f6a723b73b10e75a5366aa8",
                 "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b"
             ]
         ],
@@ -707,7 +707,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:42:22.871975555"
+        "timestamp": "2026-02-05T20:27:55.935116608"
     },
     "sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - salmon - no_rseqc": {
         "content": [
@@ -728,7 +728,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:49:53.787006643"
+        "timestamp": "2026-02-05T20:35:00.112044514"
     },
     "sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - kallisto - no_rseqc": {
         "content": [
@@ -750,7 +750,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:48:43.014352602"
+        "timestamp": "2026-02-05T20:33:53.340858088"
     },
     "sarscov2 - fasta - gtf - contaminant | skip_sortmerna - with_DIU - hisat2 - with_rseqc": {
         "content": [
@@ -787,7 +787,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:45:04.949446265"
+        "timestamp": "2026-02-05T20:30:42.359902934"
     },
     "sarscov2 - fasta - gtf - contaminant | skip_DIU - skip_sortmerna - hisat2 - no_rseqc": {
         "content": [
@@ -820,6 +820,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T02:47:22.722240264"
+        "timestamp": "2026-02-05T20:32:40.071272073"
     }
 }

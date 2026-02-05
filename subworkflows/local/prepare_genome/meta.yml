@@ -1,13 +1,15 @@
 name: "prepare_genome"
 description: |
-  Comprehensive reference genome preparation and index building workflow for RNA-seq analysis.
-  Decompresses reference files, converts GTF to BED format, and builds alignment indices for multiple tools.
-  Conditional execution based on workflow configuration parameters.
-  Builds indices for: HISAT2 (genome alignment), Kallisto/Salmon (pseudo-alignment),
-  SortMeRNA (rRNA filtering), BBMap bbsplit (contaminant removal), and BED annotation for RSeQC.
+  Flexible reference genome preparation and index management workflow for RNA-seq analysis.
+  Supports both building indices from scratch or using pre-built indices from compressed archives.
+  Handles: Genome/GTF decompression, GTF to BED conversion, and index management for multiple tools.
+  Manages indices for: HISAT2 (genome alignment), Kallisto/Salmon (pseudo-alignment),
+  SortMeRNA (rRNA filtering), and BBMap bbsplit (contamination removal).
+  Automatically detects and handles compressed (.tar.gz, .gz) pre-built indices.
 keywords:
   - genome-preparation
   - index-building
+  - index-management
   - alignment-index
   - hisat2
   - kallisto
@@ -33,139 +35,176 @@ input:
   - val_fasta:
       type: string
       description: |
-        Path to reference genome FASTA file (.gz compressed)
-        Required when aligner="hisat2" or skip_bbsplit=false
+        Path to reference genome FASTA file (.fasta, .fa, optionally .gz)
+        Required when building HISAT2 index from scratch
         Structure: string path
   - val_transcriptome:
       type: string
       description: |
-        Path to transcriptome FASTA file (.gz compressed) for pseudoalignment
-        Required when pseudo_aligner is "kallisto" or "salmon"
+        Path to transcriptome FASTA file for pseudo-alignment (.fasta, .fa, optionally .gz)
+        Required when building Kallisto/Salmon indices from scratch
         Structure: string path
   - val_gtf:
       type: string
       description: |
-        Path to standard gene annotation GTF file (.gz compressed)
+        Path to gene annotation GTF file (.gtf, optionally .gz)
         Required for HISAT2 splice-aware indexing and BED conversion
         Structure: string path
   - val_gtf_isoform:
       type: string
       description: |
-        Path to extended GTF file with patches/alternate sequences (.gz compressed) for isoform analysis
+        Path to extended GTF file for isoform analysis (.gtf, optionally .gz)
         Only used when "DIU" is included in analysis_method parameter
+        Structure: string path
+  - val_bed:
+      type: string
+      description: |
+        Path to BED annotation file (.bed)
+        If provided, uses pre-existing BED file instead of converting from GTF
         Structure: string path
   - val_contaminant_fasta:
       type: string
       description: |
-        Path to contaminant genome FASTA file (.gz compressed) for BBMap bbsplit
-        Required when skip_bbsplit=false
+        Path to contaminant genome FASTA file for BBSplit (.fasta, .fa, optionally .gz)
+        Required when building bbsplit index from scratch
         Structure: string path
   - val_rrna_db:
       type: string
       description: |
-        Path to rRNA database file (.tar.gz compressed) for SortMeRNA
-        Required when skip_sortmerna=false
+        Path to rRNA database file (.tar.gz) for SortMeRNA
+        Required when building sortmerna index from scratch
         Structure: string path
   - val_rrna_db_type:
       type: string
       description: |
-        SortMeRNA database type for index building
+        Runtime mode for SortMeRNA: 'default', 'fast', or 'sensitive'
         Structure: [ "default" | "fast" | "sensitive" ]
+  - val_bbsplit_index:
+      type: string
+      description: |
+        Path to BBSplit index folder or tar archive (.tar, .tar.gz)
+        If provided, uses pre-built index instead of building from scratch
+        Structure: string path
+  - val_sortmerna_index:
+      type: string
+      description: |
+        Path to SortMeRNA index folder or tar archive (.tar, .tar.gz)
+        If provided, uses pre-built index instead of building from scratch
+        Structure: string path
+  - val_hisat2_index:
+      type: string
+      description: |
+        Path to HISAT2 index folder or tar archive (.tar, .tar.gz)
+        If provided, uses pre-built index instead of building from scratch
+        Structure: string path
+  - val_kallisto_index:
+      type: string
+      description: |
+        Path to kallisto index file (.idx) - note: kallisto index is a single file, not a folder
+        Can be provided as .idx or .idx.gz
+        If provided, uses pre-built index instead of building from scratch
+        Structure: string path
+  - val_salmon_index:
+      type: string
+      description: |
+        Path to salmon index folder or tar archive (.tar, .tar.gz)
+        If provided, uses pre-built index instead of building from scratch
+        Structure: string path
 output:
   - fasta_compressed:
       type: file
       description: |
-        Original compressed genome FASTA file (.gz)
+        Original genome FASTA file (.fasta, .fa, or .gz)
         Only emitted when aligner="hisat2" or skip_bbsplit=false
         Structure: [ path(genome.fasta.gz) ]
-      pattern: "*.fasta.gz"
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
   - fasta_uncompressed:
       type: file
       description: |
-        Decompressed genome FASTA file
+        Decompressed genome FASTA file (.fasta, .fa)
         Only emitted when aligner="hisat2"
         Structure: [ path(genome.fasta) ]
-      pattern: "*.fasta"
+      pattern: "*.{fasta,fa}"
   - transcriptome:
       type: file
       description: |
-        Compressed transcriptome FASTA file (.gz)
-        Only emitted when pseudo_aligner is "kallisto" or "salmon"
+        Transcriptome FASTA file (.fasta, .fa, or .gz)
+        Only emitted when pseudo_aligner is "kallisto" or "salmon" and no pre-built index provided
         Structure: [ path(transcriptome.fasta.gz) ]
-      pattern: "*.fasta.gz"
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
   - gtf_compressed:
       type: file
       description: |
-        Original compressed gene annotation GTF file (.gz)
+        Original gene annotation GTF file (.gtf or .gz)
         Only emitted when aligner="hisat2"
         Structure: [ path(genes.gtf.gz) ]
-      pattern: "*.gtf.gz"
+      pattern: "*.{gtf,gtf.gz}"
   - gtf_uncompressed:
       type: file
       description: |
-        Decompressed gene annotation GTF file
+        Decompressed gene annotation GTF file (.gtf)
         Only emitted when aligner="hisat2"
         Structure: [ path(genes.gtf) ]
       pattern: "*.gtf"
   - gtf_isoform:
       type: file
       description: |
-        Extended GTF file for isoform analysis (.gz compressed)
+        Extended GTF file for isoform analysis (.gtf or .gz)
         Only emitted when "DIU" is in analysis_method parameter
         Structure: [ path(genes_with_patches.gtf.gz) ]
-      pattern: "*.gtf.gz"
+      pattern: "*.{gtf,gtf.gz}"
   - contaminant_fasta:
       type: file
       description: |
-        Compressed contaminant genome FASTA file (.gz)
-        Only emitted when skip_bbsplit=false
+        Contaminant genome FASTA file (.fasta, .fa, or .gz)
+        Only emitted when skip_bbsplit=false and building index from scratch
         Structure: [ path(contaminant.fasta.gz) ]
-      pattern: "*.fasta.gz"
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
   - rrna_db_fasta:
       type: file
       description: |
-        Decompressed rRNA database FASTA file(s)
-        Only emitted when skip_sortmerna=false
+        Decompressed rRNA database FASTA file(s) from .tar.gz archive
+        Only emitted when building sortmerna index from scratch
         Structure: [ path(rrna.fasta) ]
-      pattern: "*.fasta"
+      pattern: "*.{fasta,fa}"
   - bed:
       type: file
       description: |
-        BED format annotation file converted from GTF
+        BED format annotation file (.bed) - either provided or converted from GTF
         Only emitted when aligner="hisat2" and rseqc_modules is set
         Structure: [ path(genes.bed) ]
       pattern: "*.bed"
   - hisat2_index:
       type: file
       description: |
-        HISAT2 genome alignment index files
+        HISAT2 genome alignment index files (built or provided)
         Only emitted when aligner="hisat2"
         Structure: [ path(hisat2_index_files) ]
       pattern: "*"
   - kallisto_index:
       type: file
       description: |
-        Kallisto transcriptome pseudoalignment index files
-        Only emitted when pseudo_aligner="kallisto"
-        Structure: [ path(kallisto_index_files) ]
-      pattern: "*"
+        Kallisto transcriptome pseudoalignment index file (.idx)
+        Only emitted when pseudo_aligner="kallisto" or val_kallisto_index is provided
+        Structure: [ path(kallisto.idx) ]
+      pattern: "*.idx"
   - salmon_index:
       type: file
       description: |
-        Salmon transcriptome pseudoalignment index files
+        Salmon transcriptome pseudoalignment index files (folder)
         Structure: [ path(salmon_index_files) ]
       pattern: "*"
   - sortmerna_index:
       type: file
       description: |
-        SortMeRNA rRNA database index files
+        SortMeRNA rRNA database index files (folder)
         Only emitted when skip_sortmerna=false
         Structure: [ path(sortmerna_index_files) ]
       pattern: "*"
   - bbsplit_index:
       type: file
       description: |
-        BBMap bbsplit contamination index files
+        BBMap bbsplit contamination index files (folder)
         Only emitted when skip_bbsplit=false
         Structure: [ path(bbsplit_index_files) ]
       pattern: "*"
