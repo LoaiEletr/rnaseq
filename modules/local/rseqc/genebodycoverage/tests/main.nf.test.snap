@@ -9,13 +9,19 @@
                     "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "2": [
-                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "3": [
-                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "4": [
+                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
                     "versions.yml:md5,676786893fba326ad9e153fe37535cb2"
+                ],
+                "heatmap": [
+                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "log": [
                     "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -38,7 +44,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T02:28:54.59207695"
+        "timestamp": "2026-02-05T17:13:46.224937535"
     },
     "Should calculate gene body coverage for multiple BAM files with RSeQC and return coverage files with log": {
         "content": [
@@ -56,6 +62,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T02:26:18.173248586"
+        "timestamp": "2026-02-05T17:12:41.59879977"
     }
 }

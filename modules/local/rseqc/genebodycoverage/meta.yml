@@ -1,11 +1,13 @@
 name: rseqc_genebodycoverage
 description: |
   Calculates gene body coverage statistics from BAM files using RSeQC geneBody_coverage.py.
+  Generates coverage curves and heatmaps to assess 5'-3' bias in RNA-seq data.
 keywords:
   - rseqc
   - gene body coverage
   - rna-seq
   - quality control
+  - 5-3 bias
 tools:
   - rseqc:
       description: "RNA-seq quality control package"
@@ -21,12 +23,16 @@ input:
       description: |
         BAM files for gene body coverage analysis
       pattern: "*.{bam,bam.gz}"
+      ontologies:
+        - edam: "http://edamontology.org/format_2572"
 
   - bai_files:
       type: file
       description: |
         BAM index files
       pattern: "*.{bai}"
+      ontologies:
+        - edam: "http://edamontology.org/format_3591"
 
   - bed:
       type: file
@@ -50,10 +56,20 @@ output:
     - "*.geneBodyCoverage.curves.pdf":
         type: file
         description: |
-          PDF file with gene body coverage curves
+          PDF file with gene body coverage curves showing 5' to 3' coverage
         pattern: "*.geneBodyCoverage.curves.pdf"
         ontologies:
           - edam: "http://edamontology.org/format_3508"
+
+  heatmap:
+    - "*.geneBodyCoverage.heatMap.pdf":
+        type: file
+        description: |
+          PDF file with gene body coverage heatmap
+        pattern: "*.geneBodyCoverage.heatMap.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508"
+        optional: true
 
   txt:
     - "*.geneBodyCoverage.txt":
@@ -65,7 +81,7 @@ output:
           - edam: "http://edamontology.org/format_2330"
 
   log:
-    - log.txt:
+    - "log.txt":
         type: file
         description: |
           Log file from gene body coverage analysis
