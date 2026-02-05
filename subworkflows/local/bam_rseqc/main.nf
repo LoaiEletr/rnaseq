@@ -31,7 +31,8 @@ workflow BAM_RSEQC {
     }
 
     ch_genebodycoverage_r = channel.empty()
-    ch_genebodycoverage_pdf = channel.empty()
+    ch_genebodycoverage_curves = channel.empty()
+    ch_genebodycoverage_heatmap = channel.empty()
     ch_genebodycoverage_txt = channel.empty()
     ch_genebodycoverage_log = channel.empty()
 
@@ -42,7 +43,8 @@ workflow BAM_RSEQC {
             ch_bed,
         )
         ch_genebodycoverage_r = RSEQC_GENEBODYCOVERAGE.out.rscript
-        ch_genebodycoverage_pdf = RSEQC_GENEBODYCOVERAGE.out.pdf
+        ch_genebodycoverage_curves = RSEQC_GENEBODYCOVERAGE.out.pdf
+        ch_genebodycoverage_heatmap = RSEQC_GENEBODYCOVERAGE.out.heatmap
         ch_genebodycoverage_txt = RSEQC_GENEBODYCOVERAGE.out.txt
         ch_genebodycoverage_log = RSEQC_GENEBODYCOVERAGE.out.log
         ch_versions = ch_versions.mix(RSEQC_GENEBODYCOVERAGE.out.versions)
@@ -71,6 +73,7 @@ workflow BAM_RSEQC {
     }
 
     ch_junctionannotation_xls = channel.empty()
+    ch_junctionannotation_log = channel.empty()
     ch_junctionannotation_r = channel.empty()
     ch_junctionannotation_bed = channel.empty()
     ch_junctionannotation_interact = channel.empty()
@@ -80,6 +83,7 @@ workflow BAM_RSEQC {
     if ("junction_annotation" in rseqc_modules) {
         RSEQC_JUNCTIONANNOTATION(ch_bam, ch_bed)
         ch_junctionannotation_xls = RSEQC_JUNCTIONANNOTATION.out.xls
+        ch_junctionannotation_log = RSEQC_JUNCTIONANNOTATION.out.log
         ch_junctionannotation_r = RSEQC_JUNCTIONANNOTATION.out.rscript
         ch_junctionannotation_bed = RSEQC_JUNCTIONANNOTATION.out.junction_bed
         ch_junctionannotation_interact = RSEQC_JUNCTIONANNOTATION.out.interact_bed
@@ -124,7 +128,8 @@ workflow BAM_RSEQC {
     emit:
     bamstat = ch_bamstat // channel: [ val(meta), txt ]
     genebodycoverage_r = ch_genebodycoverage_r // channel: [ rscript ]
-    genebodycoverage_pdf = ch_genebodycoverage_pdf // channel: [ pdf ]
+    genebodycoverage_curves = ch_genebodycoverage_curves // channel: [ pdf ]
+    genebodycoverage_heatmap = ch_genebodycoverage_heatmap // channel: [ pdf ]
     genebodycoverage_txt = ch_genebodycoverage_txt // channel: [ txt ]
     genebodycoverage_log = ch_genebodycoverage_log // channel: [ log ]
     inferexperiment = ch_inferexperiment // channel: [ val(meta), [ txt ] ]
@@ -133,6 +138,7 @@ workflow BAM_RSEQC {
     innerdistance_pdf = ch_innerdistance_pdf // channel: [ val(meta), [ pdf ] ]
     innerdistance_r = ch_innerdistance_r // channel: [ val(meta), [ rscript ] ]
     junctionannotation_xls = ch_junctionannotation_xls // channel: [ val(meta), [ xls ] ]
+    junctionannotation_log = ch_junctionannotation_log // channel: [ val(meta), [ log ] ]
     junctionannotation_r = ch_junctionannotation_r // channel: [ val(meta), [ rscript ] ]
     junctionannotation_bed = ch_junctionannotation_bed // channel: [ val(meta), [ junction_bed ] ]
     junctionannotation_interact = ch_junctionannotation_interact // channel: [ val(meta), [ interact_bed ] ]
