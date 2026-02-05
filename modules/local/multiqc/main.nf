@@ -10,6 +10,7 @@ process MULTIQC {
 
     input:
     path multiqc_files
+    path multiqc_config
 
     output:
     path "*.html", emit: report
@@ -22,10 +23,12 @@ process MULTIQC {
 
     script:
     def args = task.ext.args ?: ''
+    def config = multiqc_config ? "--config ${multiqc_config}" : ''
     """
     multiqc \\
+        --force \\
         ${args} \\
-        --export \\
+        ${config} \\
         ${multiqc_files} \\
 
     cat <<-END_VERSIONS > versions.yml
