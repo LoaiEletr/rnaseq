@@ -1,13 +1,14 @@
-name: rseqc_junctionannotation
+name: "rseqc_junctionannotation"
 description: |
   Annotates splice junctions from RNA-seq BAM files using RSeQC junction_annotation.py.
+  Identifies and classifies splicing events and generates visualization plots.
 keywords:
   - rseqc
   - splice junctions
   - annotation
   - rna-seq
 tools:
-  - rseqc:
+  - "rseqc":
       description: "RNA-seq quality control package"
       homepage: "http://rseqc.sourceforge.net/"
       documentation: "http://rseqc.sourceforge.net/"
@@ -32,7 +33,7 @@ input:
   - bed:
       type: file
       description: |
-        BED file with gene annotations
+        BED file with gene annotations for junction mapping
       pattern: "*.{bed,bed.gz}"
       ontologies:
         - edam: "http://edamontology.org/format_3003"
@@ -47,7 +48,7 @@ output:
       - "*.xls":
           type: file
           description: |
-            Excel file with junction annotation results
+            Excel file with junction annotation results including splice junction statistics
           pattern: "*.xls"
           ontologies:
             - edam: "http://edamontology.org/format_3468"
@@ -61,12 +62,26 @@ output:
       - "*.r":
           type: file
           description: |
-            R script for generating junction plots
+            R script for generating junction plots and visualizations
           pattern: "*.r"
           ontologies:
             - edam: "http://edamontology.org/format_3999"
 
-  bed:
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.log":
+          type: file
+          description: |
+            Log file from junction annotation analysis
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678"
+
+  junction_bed:
     - - meta:
           type: map
           description: |
@@ -75,7 +90,7 @@ output:
       - "*.junction.bed":
           type: file
           description: |
-            BED file with junction annotations
+            BED file with annotated splice junctions
           pattern: "*.junction.bed"
           ontologies:
             - edam: "http://edamontology.org/format_3003"
@@ -90,13 +105,13 @@ output:
       - "*.Interact.bed":
           type: file
           description: |
-            BED file with interaction annotations
+            BED file with interaction annotations for visualization
           pattern: "*.Interact.bed"
           ontologies:
             - edam: "http://edamontology.org/format_3003"
         optional: true
 
-  pdf:
+  junction_pdf:
     - - meta:
           type: map
           description: |
@@ -105,7 +120,7 @@ output:
       - "*junction.pdf":
           type: file
           description: |
-            PDF plot of junction annotations
+            PDF plot showing annotated splice junctions
           pattern: "*junction.pdf"
           ontologies:
             - edam: "http://edamontology.org/format_3508"
@@ -120,7 +135,7 @@ output:
       - "*events.pdf":
           type: file
           description: |
-            PDF plot of splicing events
+            PDF plot showing splicing events classification
           pattern: "*events.pdf"
           ontologies:
             - edam: "http://edamontology.org/format_3508"
@@ -130,7 +145,7 @@ output:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - rseqc:
+      - "rseqc":
           type: string
           description: The name of the tool
       - "junction_annotation.py --version | sed 's/.*.py //'":
@@ -142,7 +157,7 @@ topics:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - rseqc:
+      - "rseqc":
           type: string
           description: The name of the tool
       - "junction_annotation.py --version | sed 's/.*.py //'":
