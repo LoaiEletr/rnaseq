@@ -1,14 +1,18 @@
 //
 // Prepare reference genome and build alignment indices for RNA-seq analysis
-// Processes: Genome decompression, GTF annotation processing, alignment index construction
+// Processes: Genome/GTF decompression, GTF to BED conversion (RSeQC), GTF to GFF conversion (DEXSeq),
+// and comprehensive index management for multiple analysis tools.
 // Builds indices for: HISAT2 (genome alignment), Kallisto/Salmon (pseudo-alignment),
-// SortMeRNA (rRNA filtering), BBMap bbsplit (contaminant removal), GXF2BED for RSeQC
-// Conditional execution based on workflow configuration parameters
+// SortMeRNA (rRNA filtering), BBMap bbsplit (contaminant removal).
+// Supports both building indices from scratch or using pre-built indices from compressed archives.
+// Conditional execution based on workflow configuration parameters and analysis requirements.
 //
 
 include {
     GUNZIP as GUNZIP_GENOME ;
     GUNZIP as GUNZIP_GTF ;
+    GUNZIP as GUNZIP_GFF ;
+    GUNZIP as GUNZIP_BED ;
     GUNZIP as GUNZIP_KALLISTO_INDEX
 } from '../../../modules/local/gunzip'
 include {
@@ -26,6 +30,7 @@ include { HISAT2_EXTRACTSPLICESITES } from '../../../modules/local/hisat2/extrac
 include { HISAT2_BUILD } from '../../../modules/local/hisat2/build'
 include { SORTMERNA as SORTMERNA_INDEX } from '../../../modules/local/sortmerna'
 include { BBMAP_BBSPLIT as BBMAP_BBSPLIT_INDEX } from '../../../modules/local/bbmap/bbsplit'
+include { DEXSEQ_PREPAREANNOTATION } from '../../../modules/local/dexseq/prepareannotation/main.nf'
 
 workflow PREPARE_GENOME {
     take:
@@ -34,9 +39,11 @@ workflow PREPARE_GENOME {
     val_gtf // string: Path to gene annotation GTF file (.gtf, optionally .gz)
     val_gtf_isoform // string: Path to extended GTF file for isoform analysis (.gtf, optionally .gz)
     val_bed // string: Path to BED annotation file (.bed)
+    val_gff // string: Path to GFF annotation file (.gff)
     val_contaminant_fasta // string: Path to contaminant genome FASTA file for BBSplit (.fasta, .fa, optionally .gz)
     val_rrna_db // string: Path to rRNA database file (.tar.gz) for SortMeRNA
     val_rrna_db_type // string: Runtime mode for SortMeRNA: 'default', 'fast', or 'sensitive'
+    val_aggregation // boolean: aggregation method for exon counting
     val_bbsplit_index // string: Path to BBSplit index folder or tar archive (.tar, .tar.gz)
     val_sortmerna_index // string: Path to SortMeRNA index folder or tar archive (.tar, .tar.gz)
     val_hisat2_index // string: Path to HISAT2 index folder or tar archive (.tar, .tar.gz)
@@ -54,12 +61,13 @@ workflow PREPARE_GENOME {
     ch_sortmerna_index = channel.empty()
     ch_bbsplit_index = channel.empty()
     ch_bed = channel.empty()
+    ch_gff = channel.empty()
 
     // Convert string paths to file channels (handle null values)
     ch_fasta = val_fasta ? channel.value(file(val_fasta, checkIfExists: true)) : channel.empty()
     ch_transcriptome = val_transcriptome ? channel.value(file(val_transcriptome, checkIfExists: true)) : channel.empty()
     ch_gtf = val_gtf ? channel.value(file(val_gtf, checkIfExists: true)) : channel.empty()
-    ch_gtf_isoform = val_gtf_isoform && "DIU" in params.analysis_method.split(",") ? channel.value(file(val_gtf_isoform, checkIfExists: true)) : channel.empty()
+    ch_gtf_isoform = val_gtf_isoform && ("DIU" in params.analysis_method.split(",") || "AS" in params.analysis_method.split(",")) && params.pseudo_aligner in ["kallisto", "salmon"] ? channel.value(file(val_gtf_isoform, checkIfExists: true)) : channel.empty()
     ch_contaminant_fasta = val_contaminant_fasta && !params.skip_bbsplit ? channel.value(file(val_contaminant_fasta, checkIfExists: true)) : channel.empty()
     ch_rrna_db = val_rrna_db && !params.skip_sortmerna ? channel.value(file(val_rrna_db, checkIfExists: true)) : channel.empty()
 
@@ -114,14 +122,42 @@ workflow PREPARE_GENOME {
     }
 
     // Convert GTF to BED for RSeQC
-    if (params.rseqc_modules && params.aligner == "hisat2") {
+    if ((params.rseqc_modules ? params.rseqc_modules.split(",").any { it in ["bam_stat", "genebody_coverage", "infer_experiment", "inner_distance", "junction_annotation", "read_distribution", "read_duplication", "tin"] } : null) && params.aligner == "hisat2") {
         if (val_bed) {
-            ch_bed = channel.value(file(val_bed, checkIfExists: true))
+            if (val_bed.endsWith('.gz')) {
+                GUNZIP_BED(channel.value(file(val_bed, checkIfExists: true)).map { it -> [[id: it.baseName], it] }.collect())
+                ch_bed = GUNZIP_BED.out.gunzip.map { basename, bed -> bed }
+                ch_versions = ch_versions.mix(GUNZIP_BED.out.versions)
+            }
+            else {
+                ch_bed = channel.value(file(val_bed, checkIfExists: true))
+            }
         }
         else {
             GXF2BED(ch_gtf)
             ch_bed = GXF2BED.out.bed
             ch_versions = ch_versions.mix(GXF2BED.out.versions)
+        }
+    }
+
+    // Convert GTF to GFF for exon counting
+    if ("DEU" in params.analysis_method.split(",") && params.aligner == "hisat2") {
+        // Use provided gff
+        if (val_gff) {
+            if (val_gff.endsWith('.gz')) {
+                GUNZIP_GFF(channel.value(file(val_gff, checkIfExists: true)).map { it -> [[id: it.baseName], it] }.collect())
+                ch_gff = GUNZIP_GFF.out.gunzip.map { basename, gff -> gff }
+                ch_versions = ch_versions.mix(GUNZIP_GFF.out.versions)
+            }
+            else {
+                ch_gff = channel.value(file(val_gff, checkIfExists: true))
+            }
+        }
+        else {
+            // Prepare DEXSeq annotation from GTF
+            DEXSEQ_PREPAREANNOTATION(ch_gtf, val_aggregation)
+            ch_gff = DEXSEQ_PREPAREANNOTATION.out.gff
+            ch_versions = ch_versions.mix(DEXSEQ_PREPAREANNOTATION.out.versions)
         }
     }
 
@@ -148,8 +184,8 @@ workflow PREPARE_GENOME {
     if (val_kallisto_index) {
         // Use provided index
         if (val_kallisto_index.endsWith('.gz')) {
-            GUNZIP_KALLISTO_INDEX(channel.value(file(val_kallisto_index, checkIfExists: true)))
-            ch_kallisto_index = GUNZIP_KALLISTO_INDEX.out.gunzip
+            GUNZIP_KALLISTO_INDEX(channel.value(file(val_kallisto_index, checkIfExists: true)).map { it -> [[id: it.baseName], it] }.collect())
+            ch_kallisto_index = GUNZIP_KALLISTO_INDEX.out.gunzip.map { basename, index -> index }
             ch_versions = ch_versions.mix(GUNZIP_KALLISTO_INDEX.out.versions)
         }
         else {
@@ -231,6 +267,7 @@ workflow PREPARE_GENOME {
     contaminant_fasta = ch_contaminant_fasta // channel: [ contaminant.fasta.gz ]
     rrna_db_fasta = ch_rrna_db_fasta // channel: [ rrna.fasta ]
     bed = ch_bed // channel: [ genes.bed ]
+    gff = ch_gff // channel: [ genes.gff ]
     hisat2_index = ch_hisat2_index // channel: [ hisat2_index_files ]
     kallisto_index = ch_kallisto_index // channel: [ kallisto_index_files ]
     salmon_index = ch_salmon_index // channel: [ salmon_index_files ]

@@ -1,11 +1,13 @@
 name: "prepare_genome"
 description: |
-  Flexible reference genome preparation and index management workflow for RNA-seq analysis.
+  Comprehensive reference genome preparation and index management workflow for RNA-seq analysis.
   Supports both building indices from scratch or using pre-built indices from compressed archives.
-  Handles: Genome/GTF decompression, GTF to BED conversion, and index management for multiple tools.
+  Handles: Genome/GTF decompression, GTF to BED conversion for RSeQC, GTF to GFF conversion for DEXSeq,
+  and index management for multiple alignment tools.
   Manages indices for: HISAT2 (genome alignment), Kallisto/Salmon (pseudo-alignment),
   SortMeRNA (rRNA filtering), and BBMap bbsplit (contamination removal).
   Automatically detects and handles compressed (.tar.gz, .gz) pre-built indices.
+  Includes DEXSeq GFF preparation for differential exon usage analysis.
 keywords:
   - genome-preparation
   - index-building
@@ -17,6 +19,7 @@ keywords:
   - sortmerna
   - bbsplit
   - gxf2bed
+  - dexseq
   - rseqc
   - reference-genome
   - transcriptome
@@ -24,6 +27,7 @@ components:
   - gunzip
   - untar
   - gxf2bed
+  - dexseq/prepareannotation
   - kallisto/index
   - salmon/index
   - hisat2/extractexons
@@ -48,19 +52,25 @@ input:
       type: string
       description: |
         Path to gene annotation GTF file (.gtf, optionally .gz)
-        Required for HISAT2 splice-aware indexing and BED conversion
+        Required for HISAT2 splice-aware indexing, BED conversion, and GFF conversion
         Structure: string path
   - val_gtf_isoform:
       type: string
       description: |
         Path to extended GTF file for isoform analysis (.gtf, optionally .gz)
-        Only used when "DIU" is included in analysis_method parameter
+        Used when "DIU" or "AS" is in analysis_method parameter AND pseudo_aligner is "kallisto" or "salmon"
         Structure: string path
   - val_bed:
       type: string
       description: |
         Path to BED annotation file (.bed)
         If provided, uses pre-existing BED file instead of converting from GTF
+        Structure: string path
+  - val_gff:
+      type: string
+      description: |
+        Path to GFF annotation file (.gff)
+        If provided, uses pre-existing GFF file instead of converting from GTF
         Structure: string path
   - val_contaminant_fasta:
       type: string
@@ -79,6 +89,12 @@ input:
       description: |
         Runtime mode for SortMeRNA: 'default', 'fast', or 'sensitive'
         Structure: [ "default" | "fast" | "sensitive" ]
+  - val_aggregation:
+      type: boolean
+      description: |
+        Boolean flag for aggregation method in DEXSeq GFF preparation
+        Controls whether to aggregate exons in DEXSeq annotation
+        Structure: true/false
   - val_bbsplit_index:
       type: string
       description: |
@@ -129,7 +145,7 @@ output:
       type: file
       description: |
         Transcriptome FASTA file (.fasta, .fa, or .gz)
-        Only emitted when pseudo_aligner is "kallisto" or "salmon" and no pre-built index provided
+        Emitted when transcriptome is provided
         Structure: [ path(transcriptome.fasta.gz) ]
       pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
   - gtf_compressed:
@@ -150,7 +166,7 @@ output:
       type: file
       description: |
         Extended GTF file for isoform analysis (.gtf or .gz)
-        Only emitted when "DIU" is in analysis_method parameter
+        Only emitted when "DIU" or "AS" in analysis_method AND pseudo_aligner is "kallisto" or "salmon"
         Structure: [ path(genes_with_patches.gtf.gz) ]
       pattern: "*.{gtf,gtf.gz}"
   - contaminant_fasta:
@@ -174,6 +190,13 @@ output:
         Only emitted when aligner="hisat2" and rseqc_modules is set
         Structure: [ path(genes.bed) ]
       pattern: "*.bed"
+  - gff:
+      type: file
+      description: |
+        GFF format annotation file for DEXSeq exon counting
+        Only emitted when "DEU" in analysis_method parameter and aligner="hisat2"
+        Structure: [ path(genes.gff) ]
+      pattern: "*.gff"
   - hisat2_index:
       type: file
       description: |
