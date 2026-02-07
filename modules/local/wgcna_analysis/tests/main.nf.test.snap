@@ -21,7 +21,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-24T21:50:17.792157802"
+        "timestamp": "2026-02-07T23:01:59.283377614"
     },
     "Should stub perform WGCNA analysis on leishmaniasis dataset with no timepoints and return mocked WGCNA results": {
         "content": [
@@ -158,7 +158,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T16:44:44.415981978"
+        "timestamp": "2026-02-07T23:19:35.42952746"
     },
     "Should perform WGCNA analysis on plant dataset with timepoints and return WGCNA results": {
         "content": [
@@ -182,7 +182,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-24T22:30:35.310827397"
+        "timestamp": "2026-02-08T00:42:50.002356404"
     },
     "Should stub perform WGCNA analysis on plant dataset with timepoints and return mocked WGCNA results": {
         "content": [
@@ -319,6 +319,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-24T22:43:57.808435611"
+        "timestamp": "2026-02-07T23:21:16.157410326"
     }
 }
