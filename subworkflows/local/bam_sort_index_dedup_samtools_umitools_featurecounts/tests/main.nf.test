@@ -27,6 +27,7 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
                 input[2] = true
+                input[3] = "DEG"
                 """
             }
         }
@@ -59,6 +60,7 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
                 input[2] = false
+                input[3] = "DEG"
                 """
             }
         }
@@ -92,6 +94,7 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
                 input[2] = true
+                input[3] = "DEG"
                 """
             }
         }
@@ -117,6 +120,7 @@ nextflow_workflow {
                 ])
                 input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
                 input[2] = false
+                input[3] = "DEG"
                 """
             }
         }
