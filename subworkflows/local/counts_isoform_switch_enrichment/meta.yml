@@ -73,7 +73,7 @@ input:
       type: string
       description: |
         Species name for functional enrichment analyses
-        Common examples: 'human', 'mouse', 'rat'
+        Supported species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey
         Structure: string
   - val_ntop_processes:
       type: integer

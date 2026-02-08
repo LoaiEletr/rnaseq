@@ -67,7 +67,7 @@ input:
       type: string
       description: |
         Species name for functional enrichment analyses
-        Common examples: 'human', 'mouse', 'rat'
+        Supported species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey
         Structure: string
   - val_nes_threshold:
       type: float
@@ -78,7 +78,7 @@ input:
       type: string
       description: |
         MSigDB gene set categories for GSEA (comma-separated)
-        Common categories: 'H', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8'
+        Common categories: 'H', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9'
         Structure: comma-separated string
   - val_padj_gsea:
       type: float
