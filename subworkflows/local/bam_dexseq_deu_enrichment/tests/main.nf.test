@@ -7,18 +7,28 @@ nextflow_workflow {
     tag "subworkflows"
     tag "subworkflows/bam_dexseq_deu_enrichment"
     tag "dexseq"
-    tag "dexseq/prepareannotation"
     tag "dexseq/count"
     tag "dexseq/deu"
     tag "go_enrichment"
     tag "kegg_enrichment"
 
-    test("sarscov2 - bam - gtf - samplesheet | GO,KEGG enrichment") {
+    setup {
+        run("DEXSEQ_PREPAREANNOTATION") {
+            script "modules/local/dexseq/prepareannotation/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = true
+                """
+            }
+        }
+    }
+
+    test("sarscov2 - bam - gff - samplesheet | GO,KEGG enrichment") {
 
         when {
             params {
                 outdir = "$outputDir"
-                aggregation = true
                 alignment_quality = 10
                 pvalue_threshold = 0.05
                 species_name = "human"
@@ -52,17 +62,16 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = DEXSEQ_PREPAREANNOTATION.out.gff
                 input[2] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
-                input[3] = params.aggregation
-                input[4] = params.alignment_quality
-                input[5] = params.pvalue_threshold
-                input[6] = params.logfc_threshold
-                input[7] = params.top_n
-                input[8] = params.min_exonlength
-                input[9] = params.species_name
-                input[10] = params.ntop_processes
-                input[11] = params.enrichment_method.split(",")
+                input[3] = params.alignment_quality
+                input[4] = params.pvalue_threshold
+                input[5] = params.logfc_threshold
+                input[6] = params.top_n
+                input[7] = params.min_exonlength
+                input[8] = params.species_name
+                input[9] = params.ntop_processes
+                input[10] = params.enrichment_method.split(",")
                 """
             }
         }
@@ -78,11 +87,10 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - bam - gtf - samplesheet | GO enrichment only") {
+    test("sarscov2 - bam - gff - samplesheet | GO enrichment only") {
         when {
             params {
                 outdir = "$outputDir"
-                aggregation = true
                 alignment_quality = 10
                 pvalue_threshold = 0.05
                 species_name = "human"
@@ -116,17 +124,16 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = DEXSEQ_PREPAREANNOTATION.out.gff
                 input[2] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
-                input[3] = params.aggregation
-                input[4] = params.alignment_quality
-                input[5] = params.pvalue_threshold
-                input[6] = params.logfc_threshold
-                input[7] = params.top_n
-                input[8] = params.min_exonlength
-                input[9] = params.species_name
-                input[10] = params.ntop_processes
-                input[11] = params.enrichment_method.split(",")
+                input[3] = params.alignment_quality
+                input[4] = params.pvalue_threshold
+                input[5] = params.logfc_threshold
+                input[6] = params.top_n
+                input[7] = params.min_exonlength
+                input[8] = params.species_name
+                input[9] = params.ntop_processes
+                input[10] = params.enrichment_method.split(",")
                 """
             }
         }
@@ -141,11 +148,10 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - bam - gtf - samplesheet | KEGG enrichment only") {
+    test("sarscov2 - bam - gff - samplesheet | KEGG enrichment only") {
         when {
             params {
                 outdir = "$outputDir"
-                aggregation = true
                 alignment_quality = 10
                 pvalue_threshold = 0.05
                 species_name = "human"
@@ -179,17 +185,16 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = DEXSEQ_PREPAREANNOTATION.out.gff
                 input[2] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
-                input[3] = params.aggregation
-                input[4] = params.alignment_quality
-                input[5] = params.pvalue_threshold
-                input[6] = params.logfc_threshold
-                input[7] = params.top_n
-                input[8] = params.min_exonlength
-                input[9] = params.species_name
-                input[10] = params.ntop_processes
-                input[11] = params.enrichment_method.split(",")
+                input[3] = params.alignment_quality
+                input[4] = params.pvalue_threshold
+                input[5] = params.logfc_threshold
+                input[6] = params.top_n
+                input[7] = params.min_exonlength
+                input[8] = params.species_name
+                input[9] = params.ntop_processes
+                input[10] = params.enrichment_method.split(",")
                 """
             }
         }
@@ -204,12 +209,11 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - bam - gtf - samplesheet | GO,KEGG enrichment - stub") {
+    test("sarscov2 - bam - gff - samplesheet | GO,KEGG enrichment - stub") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
-                aggregation = true
                 alignment_quality = 10
                 pvalue_threshold = 0.05
                 species_name = "human"
@@ -243,17 +247,16 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = DEXSEQ_PREPAREANNOTATION.out.gff
                 input[2] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
-                input[3] = params.aggregation
-                input[4] = params.alignment_quality
-                input[5] = params.pvalue_threshold
-                input[6] = params.logfc_threshold
-                input[7] = params.top_n
-                input[8] = params.min_exonlength
-                input[9] = params.species_name
-                input[10] = params.ntop_processes
-                input[11] = params.enrichment_method.split(",")
+                input[3] = params.alignment_quality
+                input[4] = params.pvalue_threshold
+                input[5] = params.logfc_threshold
+                input[6] = params.top_n
+                input[7] = params.min_exonlength
+                input[8] = params.species_name
+                input[9] = params.ntop_processes
+                input[10] = params.enrichment_method.split(",")
                 """
             }
         }
@@ -265,12 +268,11 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - bam - gtf - samplesheet | GO enrichment only - stub") {
+    test("sarscov2 - bam - gff - samplesheet | GO enrichment only - stub") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
-                aggregation = true
                 alignment_quality = 10
                 pvalue_threshold = 0.05
                 species_name = "human"
@@ -304,17 +306,16 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = DEXSEQ_PREPAREANNOTATION.out.gff
                 input[2] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
-                input[3] = params.aggregation
-                input[4] = params.alignment_quality
-                input[5] = params.pvalue_threshold
-                input[6] = params.logfc_threshold
-                input[7] = params.top_n
-                input[8] = params.min_exonlength
-                input[9] = params.species_name
-                input[10] = params.ntop_processes
-                input[11] = params.enrichment_method.split(",")
+                input[3] = params.alignment_quality
+                input[4] = params.pvalue_threshold
+                input[5] = params.logfc_threshold
+                input[6] = params.top_n
+                input[7] = params.min_exonlength
+                input[8] = params.species_name
+                input[9] = params.ntop_processes
+                input[10] = params.enrichment_method.split(",")
                 """
             }
         }
@@ -326,12 +327,11 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - bam - gtf - samplesheet | KEGG enrichment only - stub") {
+    test("sarscov2 - bam - gff - samplesheet | KEGG enrichment only - stub") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
-                aggregation = true
                 alignment_quality = 10
                 pvalue_threshold = 0.05
                 species_name = "human"
@@ -365,17 +365,16 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = DEXSEQ_PREPAREANNOTATION.out.gff
                 input[2] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
-                input[3] = params.aggregation
-                input[4] = params.alignment_quality
-                input[5] = params.pvalue_threshold
-                input[6] = params.logfc_threshold
-                input[7] = params.top_n
-                input[8] = params.min_exonlength
-                input[9] = params.species_name
-                input[10] = params.ntop_processes
-                input[11] = params.enrichment_method.split(",")
+                input[3] = params.alignment_quality
+                input[4] = params.pvalue_threshold
+                input[5] = params.logfc_threshold
+                input[6] = params.top_n
+                input[7] = params.min_exonlength
+                input[8] = params.species_name
+                input[9] = params.ntop_processes
+                input[10] = params.enrichment_method
                 """
             }
         }

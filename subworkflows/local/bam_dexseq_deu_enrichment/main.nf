@@ -1,10 +1,9 @@
 //
 // DEXSeq differential exon usage analysis with functional enrichment
-// Performs: DEXSeq annotation preparation, exon-level counting, differential exon usage analysis,
+// Performs: exon-level counting, differential exon usage analysis,
 // MA plots and gene plots, GO enrichment, KEGG enrichment
 //
 
-include { DEXSEQ_PREPAREANNOTATION } from '../../../modules/local/dexseq/prepareannotation/main.nf'
 include { DEXSEQ_COUNT } from '../../../modules/local/dexseq/count/main.nf'
 include { DEXSEQ_DEU } from '../../../modules/local/dexseq/deu/main.nf'
 include { GO_ENRICHMENT } from '../../../modules/local/go_enrichment/main.nf'
@@ -13,9 +12,8 @@ include { KEGG_ENRICHMENT } from '../../../modules/local/kegg_enrichment/main.nf
 workflow BAM_DEXSEQ_DEU_ENRICHMENT {
     take:
     ch_bam // channel: [ val(meta), bam ]
-    ch_gtf // channel: [ gtf ]
+    ch_gff // channel: [ gff ]
     ch_samplesheet // channel: [ samplesheet ]
-    val_aggregation // string: aggregation method for exon counting
     val_alignment_quality // integer: minimum alignment quality score
     val_pval_threshold // float: p-value threshold for significance
     val_logfc_threshold // float: log fold change threshold
@@ -30,12 +28,7 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
     ch_go_enrichment = channel.empty()
     ch_kegg_enrichment = channel.empty()
 
-    // 1. Prepare DEXSeq annotation from GTF
-    DEXSEQ_PREPAREANNOTATION(ch_gtf, val_aggregation)
-    ch_gff = DEXSEQ_PREPAREANNOTATION.out.gff
-    ch_versions = ch_versions.mix(DEXSEQ_PREPAREANNOTATION.out.versions)
-
-    // 2. Count exon-level reads from BAM files
+    // 1. Count exon-level reads from BAM files
     DEXSEQ_COUNT(
         ch_bam,
         ch_gff,
@@ -44,7 +37,7 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
     ch_counts = DEXSEQ_COUNT.out.counts
     ch_versions = ch_versions.mix(DEXSEQ_COUNT.out.versions.first())
 
-    // 3. Differential exon usage analysis
+    // 2. Differential exon usage analysis
     DEXSEQ_DEU(
         ch_counts.map { meta, counts ->
             counts
@@ -58,7 +51,7 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
     )
     ch_versions = ch_versions.mix(DEXSEQ_DEU.out.versions)
 
-    // 4. GO enrichment analysis (optional)
+    // 3. GO enrichment analysis (optional)
     if ("GO" in val_enrichment_method) {
         GO_ENRICHMENT(
             [],
@@ -75,7 +68,7 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
         ch_versions = ch_versions.mix(GO_ENRICHMENT.out.versions)
     }
 
-    // 5. KEGG pathway enrichment analysis (optional)
+    // 4. KEGG pathway enrichment analysis (optional)
     if ("KEGG" in val_enrichment_method) {
         KEGG_ENRICHMENT(
             [],

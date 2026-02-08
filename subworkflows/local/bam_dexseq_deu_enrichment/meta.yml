@@ -1,9 +1,9 @@
 name: "bam_dexseq_deu_enrichment"
 description: |
   Differential exon usage analysis workflow using DEXSeq with functional enrichment.
-  Performs: DEXSeq annotation preparation from GTF, exon-level read counting,
-  differential exon usage analysis, visualization plots (MA/gene plots),
-  and optional GO/KEGG functional enrichment analysis of significant genes.
+  Performs: Exon-level read counting from BAM files, differential exon usage analysis,
+  visualization plots (MA/gene plots), and optional GO/KEGG functional enrichment analysis
+  of genes with significant differential exon usage.
 keywords:
   - dexseq
   - differential-exon-usage
@@ -15,7 +15,6 @@ keywords:
   - kegg
   - transcriptomics
 components:
-  - dexseq/prepareannotation
   - dexseq/count
   - dexseq/deu
   - go/enrichment
@@ -27,24 +26,18 @@ input:
         Input channel containing BAM files with read alignments
         Structure: [ val(meta), path(bam) ]
       pattern: "*.{bam,bam.gz}"
-  - ch_gtf:
+  - ch_gff:
       type: file
       description: |
-        Channel containing GTF annotation file for DEXSeq analysis
-        Structure: [ path(gtf) ]
-      pattern: "*.{gtf,gtf.gz}"
+        Channel containing GFF annotation file for DEXSeq analysis (prepared separately)
+        Structure: [ path(gff) ]
+      pattern: "*.gff"
   - ch_samplesheet:
       type: file
       description: |
         Channel containing sample metadata/samplesheet for DEU analysis
         Structure: [ path(samplesheet) ]
       pattern: "*.{csv,tsv,txt}"
-  - val_aggregation:
-      type: string
-      description: |
-        Aggregation method for exon counting in DEXSeq
-        Common values: 'sum', 'union', 'overlap'
-        Structure: string
   - val_alignment_quality:
       type: integer
       description: |
@@ -74,7 +67,7 @@ input:
       type: string
       description: |
         Species name for functional enrichment analyses
-        Common examples: 'human', 'mouse', 'rat'
+        Supported species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey
         Structure: string
   - val_ntop_processes:
       type: integer

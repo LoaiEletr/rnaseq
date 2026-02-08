@@ -1,11 +1,213 @@
 {
-    "sarscov2 - bam - gtf - samplesheet | KEGG enrichment only": {
+    "sarscov2 - bam - gff - samplesheet | GO enrichment only": {
         "content": [
             [
                 "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
             ],
             [
-                "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
+                "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
+                "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
+                "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-08T01:18:33.240732412"
+    },
+    "sarscov2 - bam - gff - samplesheet | GO,KEGG enrichment - stub": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "6": [
+                    [
+                        
+                    ]
+                ],
+                "7": [
+                    [
+                        
+                    ]
+                ],
+                "8": [
+                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
+                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
+                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
+                    "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
+                ],
+                "deu_plots": [
+                    [
+                        
+                    ]
+                ],
+                "dexseq_sigtable": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "dexseq_table": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "report": [
+                    [
+                        
+                    ]
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
+                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
+                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
+                    "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-08T01:35:01.30741453"
+    },
+    "sarscov2 - bam - gff - samplesheet | GO,KEGG enrichment": {
+        "content": [
+            [
+                "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
+            ],
+            [
+                "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
+                "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
+                "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
+                "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-08T01:11:47.335677899"
+    },
+    "sarscov2 - bam - gff - samplesheet | KEGG enrichment only - stub": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "6": [
+                    
+                ],
+                "7": [
+                    [
+                        
+                    ]
+                ],
+                "8": [
+                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
+                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
+                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1"
+                ],
+                "deu_plots": [
+                    [
+                        
+                    ]
+                ],
+                "dexseq_sigtable": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "dexseq_table": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "report": [
+                    [
+                        
+                    ]
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
+                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
+                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-08T01:46:30.465491402"
+    },
+    "sarscov2 - bam - gff - samplesheet | KEGG enrichment only": {
+        "content": [
+            [
+                "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
+            ],
+            [
                 "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
                 "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
                 "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1"
@@ -15,218 +217,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T21:49:46.60370376"
+        "timestamp": "2026-02-08T01:25:24.519170575"
     },
-    "sarscov2 - bam - gtf - samplesheet | GO,KEGG enrichment - stub": {
-        "content": [
-            {
-                "0": [
-                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "1": [
-                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "2": [
-                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "3": [
-                    [
-                        
-                    ]
-                ],
-                "4": [
-                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "5": [
-                    [
-                        
-                    ]
-                ],
-                "6": [
-                    [
-                        
-                    ]
-                ],
-                "7": [
-                    [
-                        
-                    ]
-                ],
-                "8": [
-                    "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
-                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
-                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
-                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
-                    "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
-                ],
-                "deu_plots": [
-                    [
-                        
-                    ]
-                ],
-                "dexseq_sigtable": [
-                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "dexseq_table": [
-                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "go_enrichment": [
-                    [
-                        
-                    ]
-                ],
-                "kegg_enrichment": [
-                    [
-                        
-                    ]
-                ],
-                "ma_plot": [
-                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "report": [
-                    [
-                        
-                    ]
-                ],
-                "significant_genes": [
-                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "versions": [
-                    "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
-                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
-                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
-                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
-                    "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-29T21:59:29.397759608"
-    },
-    "sarscov2 - bam - gtf - samplesheet | KEGG enrichment only - stub": {
-        "content": [
-            {
-                "0": [
-                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "1": [
-                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "2": [
-                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "3": [
-                    [
-                        
-                    ]
-                ],
-                "4": [
-                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "5": [
-                    [
-                        
-                    ]
-                ],
-                "6": [
-                    
-                ],
-                "7": [
-                    [
-                        
-                    ]
-                ],
-                "8": [
-                    "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
-                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
-                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
-                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1"
-                ],
-                "deu_plots": [
-                    [
-                        
-                    ]
-                ],
-                "dexseq_sigtable": [
-                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "dexseq_table": [
-                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "go_enrichment": [
-                    
-                ],
-                "kegg_enrichment": [
-                    [
-                        
-                    ]
-                ],
-                "ma_plot": [
-                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "report": [
-                    [
-                        
-                    ]
-                ],
-                "significant_genes": [
-                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "versions": [
-                    "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
-                    "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
-                    "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
-                    "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-29T22:10:48.548371468"
-    },
-    "sarscov2 - bam - gtf - samplesheet | GO,KEGG enrichment": {
-        "content": [
-            [
-                "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
-            ],
-            [
-                "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
-                "versions.yml:md5,678f1abbeebc19fb2685535c04b53f1e",
-                "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
-                "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
-                "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-29T21:35:02.114517957"
-    },
-    "sarscov2 - bam - gtf - samplesheet | GO enrichment only": {
-        "content": [
-            [
-                "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
-            ],
-            [
-                "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
-                "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
-                "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
-                "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-29T21:42:15.780154459"
-    },
-    "sarscov2 - bam - gtf - samplesheet | GO enrichment only - stub": {
+    "sarscov2 - bam - gff - samplesheet | GO enrichment only - stub": {
         "content": [
             {
                 "0": [
@@ -260,7 +253,6 @@
                     
                 ],
                 "8": [
-                    "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
                     "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
                     "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
                     "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
@@ -296,7 +288,6 @@
                     "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "versions": [
-                    "versions.yml:md5,274eafdec0fc2ebb5bb1da3166013518",
                     "versions.yml:md5,9ea1db587911bc0ab467864a1c3bb9e9",
                     "versions.yml:md5,f293e5f46c538e77927a9407ff78aec1",
                     "versions.yml:md5,f352ad63459d3f90821e5a633f6d1557"
@@ -307,6 +298,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T22:05:03.291660291"
+        "timestamp": "2026-02-08T01:40:43.640760924"
     }
 }
