@@ -14,7 +14,7 @@ include { RSEQC_TIN } from '../../../modules/local/rseqc/tin/main.nf'
 
 workflow BAM_RSEQC {
     take:
-    rseqc_modules // channel: [ modules ] or list of module names
+    val_rseqc_modules // list: rseqc modules to be executed
     ch_bam // channel: [ val(meta), bam ]
     ch_bed // channel: [ bed ]
     ch_bai // channel: [ val(meta), bai ]
@@ -24,7 +24,7 @@ workflow BAM_RSEQC {
     ch_versions = channel.empty()
     ch_bamstat = channel.empty()
 
-    if ("bam_stat" in rseqc_modules) {
+    if ("bam_stat" in val_rseqc_modules) {
         RSEQC_BAMSTAT(ch_bam)
         ch_bamstat = RSEQC_BAMSTAT.out.txt
         ch_versions = ch_versions.mix(RSEQC_BAMSTAT.out.versions.first())
@@ -36,7 +36,7 @@ workflow BAM_RSEQC {
     ch_genebodycoverage_txt = channel.empty()
     ch_genebodycoverage_log = channel.empty()
 
-    if ("genebody_coverage" in rseqc_modules) {
+    if ("genebody_coverage" in val_rseqc_modules) {
         RSEQC_GENEBODYCOVERAGE(
             ch_bam.map { meta, bams -> bams }.collect(),
             ch_bai.map { meta, bais -> bais }.collect(),
@@ -52,7 +52,7 @@ workflow BAM_RSEQC {
 
     ch_inferexperiment = channel.empty()
 
-    if ("infer_experiment" in rseqc_modules) {
+    if ("infer_experiment" in val_rseqc_modules) {
         RSEQC_INFEREXPERIMENT(ch_bam, ch_bed)
         ch_inferexperiment = RSEQC_INFEREXPERIMENT.out.txt
         ch_versions = ch_versions.mix(RSEQC_INFEREXPERIMENT.out.versions.first())
@@ -63,7 +63,7 @@ workflow BAM_RSEQC {
     ch_innerdistance_pdf = channel.empty()
     ch_innerdistance_r = channel.empty()
 
-    if ("inner_distance" in rseqc_modules) {
+    if ("inner_distance" in val_rseqc_modules) {
         RSEQC_INNERDISTANCE(ch_bam, ch_bed)
         ch_innerdistance_distance = RSEQC_INNERDISTANCE.out.distance
         ch_innerdistance_freq = RSEQC_INNERDISTANCE.out.freq
@@ -80,7 +80,7 @@ workflow BAM_RSEQC {
     ch_junctionannotation_pdf = channel.empty()
     ch_junctionannotation_events_pdf = channel.empty()
 
-    if ("junction_annotation" in rseqc_modules) {
+    if ("junction_annotation" in val_rseqc_modules) {
         RSEQC_JUNCTIONANNOTATION(ch_bam, ch_bed)
         ch_junctionannotation_xls = RSEQC_JUNCTIONANNOTATION.out.xls
         ch_junctionannotation_log = RSEQC_JUNCTIONANNOTATION.out.log
@@ -94,7 +94,7 @@ workflow BAM_RSEQC {
 
     ch_readdistribution = channel.empty()
 
-    if ("read_distribution" in rseqc_modules) {
+    if ("read_distribution" in val_rseqc_modules) {
         RSEQC_READDISTRIBUTION(ch_bam, ch_bed)
         ch_readdistribution = RSEQC_READDISTRIBUTION.out.txt
         // Assumed output name
@@ -106,7 +106,7 @@ workflow BAM_RSEQC {
     ch_readduplication_seq = channel.empty()
     ch_readduplication_pos = channel.empty()
 
-    if ("read_duplication" in rseqc_modules) {
+    if ("read_duplication" in val_rseqc_modules) {
         RSEQC_READDUPLICATION(ch_bam)
         ch_readduplication_pdf = RSEQC_READDUPLICATION.out.pdf
         ch_readduplication_r = RSEQC_READDUPLICATION.out.rscript
@@ -118,7 +118,7 @@ workflow BAM_RSEQC {
     ch_tin_txt = channel.empty()
     ch_tin_xls = channel.empty()
 
-    if ("tin" in rseqc_modules) {
+    if ("tin" in val_rseqc_modules) {
         RSEQC_TIN(ch_bam.join(ch_bai), ch_bed)
         ch_tin_txt = RSEQC_TIN.out.txt
         ch_tin_xls = RSEQC_TIN.out.xls

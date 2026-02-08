@@ -24,7 +24,7 @@ components:
   - rseqc/readduplication
   - rseqc/tin
 input:
-  - rseqc_modules:
+  - val_rseqc_modules:
       type: list
       description: |
         List of RSeQC module names to execute. Available modules:
