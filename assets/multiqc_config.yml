@@ -4,12 +4,12 @@ report_comment: >
   to interpret these results, please see the <a href="https://github.com/Loai3tr/comprehensive-rnaseq-pipeline/blob/main/docs/output.md"
   target="_blank">documentation</a>.
 
-report_header_info:
-  - Contact E-mail: "Loai.eletr65@yahoo.com"
-  - Application Type: "RNA-seq"
-  - Project Type: "Application"
-  - Sequencing Platform: "HiSeq 2500 High Output V4"
-  - Sequencing Setup: "2x125"
+#report_header_info:
+#  - Contact E-mail: ""           # Enter your email to be displayed on the report header
+#  - Application Type: "RNA-seq"                        # Describe the analysis (e.g., RNA-seq, miRNA, etc.)
+#  - Project Type: "Application"                        # Internal category (e.g., Research, Clinical, or Application)
+#  - Sequencing Platform: "HiSeq 2500 High Output V4"   # Specify the machine used (e.g., NovaSeq 6000, MiSeq)
+#  - Sequencing Setup: "2x125"                          # Indicate read type and length (e.g., 2x150 for Paired-End 150bp)
 
 report_section_order:
   # Preprocessing and pre-alignment QC
