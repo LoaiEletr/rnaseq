@@ -7,7 +7,7 @@
     "items": {
         "type": "object",
         "properties": {
-            "sample": {
+            "sample_id": {
                 "type": "string",
                 "pattern": "^\\S+$",
                 "errorMessage": "Sample name must be provided and cannot contain spaces",
@@ -26,8 +26,26 @@
                 "exists": true,
                 "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
                 "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+            },
+            "condition": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Condition must be provided and cannot contain spaces",
+                "meta": ["condition"]
+            },
+            "lib_type": {
+                "type": "string",
+                "enum": ["forward", "reverse", "auto"],
+                "errorMessage": "lib_type must be one of: forward, reverse, auto",
+                "meta": ["lib_type"]
+            },
+            "sequencer": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sequencer name must be provided and cannot contain spaces",
+                "meta": ["sequencer"]
             }
         },
-        "required": ["sample", "fastq_1"]
+        "required": ["sample_id", "fastq_1", "condition", "lib_type", "sequencer"]
     }
 }
