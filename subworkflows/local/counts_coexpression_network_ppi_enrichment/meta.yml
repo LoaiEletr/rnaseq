@@ -95,11 +95,16 @@ input:
       description: |
         Minimum module size for WGCNA
         Structure: integer (e.g., 30)
+  - val_sft_r2_threshold:
+      type: integer
+      description: |
+        R² threshold for scale-free topology fit during soft-threshold selection for WGCNA
+        Structure: float (e.g., 0.80)
   - val_species_name:
       type: string
       description: |
         Species name for PPI network and enrichment analyses
-        Common examples: 'human', 'mouse', 'rat'
+        Supported species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey
         Structure: string
   - val_score_threshold:
       type: integer

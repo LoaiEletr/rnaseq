@@ -30,6 +30,7 @@ nextflow_workflow {
                 reassignthreshold = 0
                 mergecutheight = 0.25
                 minmodulesize = 30
+                sft_r2_threshold = 0.80
                 species_name = "human"
                 score_threshold = 500
                 enrichment_method = "GO,KEGG"
@@ -50,9 +51,10 @@ nextflow_workflow {
                 input[11] = params.reassignthreshold
                 input[12] = params.mergecutheight
                 input[13] = params.minmodulesize
-                input[14] = params.species_name
-                input[15] = params.score_threshold
-                input[16] = params.enrichment_method.split(',')
+                input[14] = params.sft_r2_threshold
+                input[15] = params.species_name
+                input[16] = params.score_threshold
+                input[17] = params.enrichment_method.split(',')
                 """
             }
         }
@@ -81,6 +83,7 @@ nextflow_workflow {
                 reassignthreshold = 0
                 mergecutheight = 0.25
                 minmodulesize = 30
+                sft_r2_threshold = 0.80
                 species_name = "human"
                 score_threshold = 500
                 enrichment_method = "GO"
@@ -101,9 +104,10 @@ nextflow_workflow {
                 input[11] = params.reassignthreshold
                 input[12] = params.mergecutheight
                 input[13] = params.minmodulesize
-                input[14] = params.species_name
-                input[15] = params.score_threshold
-                input[16] = params.enrichment_method.split(',')
+                input[14] = params.sft_r2_threshold
+                input[15] = params.species_name
+                input[16] = params.score_threshold
+                input[17] = params.enrichment_method.split(',')
                 """
             }
         }
@@ -131,6 +135,7 @@ nextflow_workflow {
                 reassignthreshold = 0
                 mergecutheight = 0.25
                 minmodulesize = 30
+                sft_r2_threshold = 0.80
                 species_name = "human"
                 score_threshold = 500
                 enrichment_method = "KEGG"
@@ -151,9 +156,10 @@ nextflow_workflow {
                 input[11] = params.reassignthreshold
                 input[12] = params.mergecutheight
                 input[13] = params.minmodulesize
-                input[14] = params.species_name
-                input[15] = params.score_threshold
-                input[16] = params.enrichment_method.split(',')
+                input[14] = params.sft_r2_threshold
+                input[15] = params.species_name
+                input[16] = params.score_threshold
+                input[17] = params.enrichment_method.split(',')
                 """
             }
         }
@@ -182,6 +188,7 @@ nextflow_workflow {
                 reassignthreshold = 0
                 mergecutheight = 0.25
                 minmodulesize = 30
+                sft_r2_threshold = 0.80
                 species_name = "human"
                 score_threshold = 500
                 enrichment_method = "GO,KEGG"
@@ -202,9 +209,10 @@ nextflow_workflow {
                 input[11] = params.reassignthreshold
                 input[12] = params.mergecutheight
                 input[13] = params.minmodulesize
-                input[14] = params.species_name
-                input[15] = params.score_threshold
-                input[16] = params.enrichment_method.split(',')
+                input[14] = params.sft_r2_threshold
+                input[15] = params.species_name
+                input[16] = params.score_threshold
+                input[17] = params.enrichment_method.split(',')
                 """
             }
         }
@@ -233,6 +241,7 @@ nextflow_workflow {
                 reassignthreshold = 0
                 mergecutheight = 0.25
                 minmodulesize = 30
+                sft_r2_threshold = 0.80
                 species_name = "human"
                 score_threshold = 500
                 enrichment_method = "GO"
@@ -253,9 +262,10 @@ nextflow_workflow {
                 input[11] = params.reassignthreshold
                 input[12] = params.mergecutheight
                 input[13] = params.minmodulesize
-                input[14] = params.species_name
-                input[15] = params.score_threshold
-                input[16] = params.enrichment_method.split(',')
+                input[14] = params.sft_r2_threshold
+                input[15] = params.species_name
+                input[16] = params.score_threshold
+                input[17] = params.enrichment_method.split(',')
                 """
             }
         }
@@ -284,6 +294,7 @@ nextflow_workflow {
                 reassignthreshold = 0
                 mergecutheight = 0.25
                 minmodulesize = 30
+                sft_r2_threshold = 0.80
                 species_name = "human"
                 score_threshold = 500
                 enrichment_method = "KEGG"
@@ -304,9 +315,10 @@ nextflow_workflow {
                 input[11] = params.reassignthreshold
                 input[12] = params.mergecutheight
                 input[13] = params.minmodulesize
-                input[14] = params.species_name
-                input[15] = params.score_threshold
-                input[16] = params.enrichment_method.split(',')
+                input[14] = params.sft_r2_threshold
+                input[15] = params.species_name
+                input[16] = params.score_threshold
+                input[17] = params.enrichment_method.split(',')
                 """
             }
         }
