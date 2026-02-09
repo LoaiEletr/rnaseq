@@ -32,9 +32,6 @@ workflow PIPELINE_INITIALISATION {
     nextflow_cli_args //   array: List of positional nextflow CLI args
     outdir //  string: The output directory where the results will be saved
     input //  string: Path to input samplesheet
-    aligner //  string: Aligner to use (hisat2/salmon/kallisto)
-    pseudo_aligner //  string: Pseudo-aligner to use (salmon/kallisto)
-    analysis_method //  string: Analysis methods to run (DEG,WGCNA,DIU,AS)
     help // boolean: Display help message and exit
     help_full // boolean: Show the full help message
     show_hidden // boolean: Show hidden parameters in the help message
@@ -63,7 +60,7 @@ workflow PIPELINE_INITIALISATION {
 \033[0;34m  |\\ | |__  __ /  ` /  \\ |__) |__         \033[0;33m}  {\033[0m
 \033[0;34m  | \\| |       \\__, \\__/ |  \\ |___     \033[0;32m\\`-._,-`-,\033[0m
                                         \033[0;32m`._,._,\'\033[0m
-\033[0;35m  LoaiEletr/rnaseq ${workflow.manifest.version}\033[0m
+\033[0;35m  Loai3tr/comprehensive-rnaseq-pipeline ${workflow.manifest.version}\033[0m
 -\033[2m----------------------------------------------------\033[0m-
 """
     after_text = """${workflow.manifest.doi ? "\n* The pipeline\n" : ""}${workflow.manifest.doi.tokenize(",").collect { doi -> "    https://doi.org/${doi.trim().replace('https://doi.org/', '')}" }.join("\n")}${workflow.manifest.doi ? "\n" : ""}
@@ -72,9 +69,9 @@ workflow PIPELINE_INITIALISATION {
     https://doi.org/10.1038/s41587-020-0439-x
 
 * Software dependencies
-    https://github.com/LoaiEletr/rnaseq/blob/master/CITATIONS.md
+    https://github.com/Loai3tr/comprehensive-rnaseq-pipeline/blob/master/CITATIONS.md
 """
-    command = "nextflow run ${workflow.manifest.name} -profile <docker/singularity/.../institute> --input samplesheet.csv --genome GRCh38 --outdir <OUTDIR>"
+    command = "nextflow run ${workflow.manifest.name} -profile <docker/singularity/.../institute> --input samplesheet.csv --species human --genome GRCh38 --contaminant_species mouse --outdir <OUTDIR>"
 
     UTILS_NFSCHEMA_PLUGIN(
         workflow,
@@ -104,47 +101,21 @@ workflow PIPELINE_INITIALISATION {
     // Create channel from YOUR CUSTOM input samplesheet format
     // MATCHING YOUR WORKFLOW'S EXPECTATIONS EXACTLY
     //
-    ch_samplesheet = channel.fromPath(params.input)
-        .splitCsv(header: true)
-        .map { row ->
-            // Extract all columns from YOUR custom samplesheet
-            def meta = row.sample_id
-            def fastq_1 = row.fastq_1
-            def fastq_2 = row.fastq_2
-            def condition = row.condition
-            def lib_type = row.lib_type
-            def sequencer = row.sequencer
-
-            // Create the complete meta map matching your workflow
-            def meta_map = [
-                id: meta,
-                condition: condition,
-                lib_type: lib_type,
-                sequencer: sequencer,
-            ]
-
-            // Handle single-end vs paired-end
-            def fastqs
-            if (!fastq_2 || fastq_2.trim().isEmpty()) {
-                meta_map.single_end = true
-                fastqs = [fastq_1]
+    ch_samplesheet = channel.fromList(samplesheetToList(params.input, "${projectDir}/assets/schema_input.json"))
+        .map { meta, fastq_1, fastq_2 ->
+            if (!fastq_2) {
+                return [meta + [single_end: true], [fastq_1]]
             }
             else {
-                meta_map.single_end = false
-                fastqs = [fastq_1, fastq_2]
+                return [meta + [single_end: false], [fastq_1, fastq_2]]
             }
-
-            // Return exactly what your workflow expects
-            return [meta_map, fastqs]
         }
-        .groupTuple()
-        .map { samplesheet ->
+    ch_samplesheet
+        .map { meta, fastq_list -> meta }
+        .collect()
+        .subscribe { samplesheet ->
             validateInputSamplesheet(samplesheet)
         }
-        .map { meta, fastqs ->
-            return [meta, fastqs.flatten()]
-        }
-        .set { ch_samplesheet }
 
     emit:
     samplesheet = ch_samplesheet // channel: sample fastqs parsed from --input
@@ -210,24 +181,32 @@ def validateInputParameters() {
     genomeExistsError()
     contaminantExistsError()
 
-    // Validate aligner selection
-    if (!["hisat2"].contains(params.aligner) && !["salmon", "kallisto"].contains(params.pseudo_aligner)) {
+    // Validate aligner selection: exactly one must be provided and valid
+    def has_aligner = ["hisat2"].contains(params.aligner)
+    def has_pseudo = ["salmon", "kallisto"].contains(params.pseudo_aligner)
+
+    if (has_aligner && has_pseudo) {
+        error("❌ CONFLICTING ALIGNERS: Please specify either --aligner OR --pseudo_aligner, not both.")
+    }
+
+    if (!has_aligner && !has_pseudo) {
         error(
             """
-        ❌ INVALID ALIGNER SELECTION
+    ❌ INVALID OR MISSING ALIGNER SELECTION
 
-        Valid aligners are:
-          --aligner 'hisat2'            (for HISAT2 alignment)
-          --pseudo_aligner 'salmon'     (for Salmon quantification)
-          --pseudo_aligner 'kallisto'   (for Kallisto quantification)
+    You must specify exactly one valid method:
+      --aligner 'hisat2'
+      OR
+      --pseudo_aligner 'salmon'
+      --pseudo_aligner 'kallisto'
 
-        You specified: --aligner '${params.aligner}' --pseudo_aligner '${params.pseudo_aligner}'
-        """
+    Current selection: --aligner '${params.aligner}' --pseudo_aligner '${params.pseudo_aligner}'
+    """
         )
     }
 
     // Validate analysis methods
-    def valid_methods = ["DEG", "WGCNA", "DIU", "AS"]
+    def valid_methods = ["DEG", "WGCNA", "DIU", "AS", "DEU"]
     def requested_methods = params.analysis_method ? params.analysis_method.split(",").collect { it.trim() } : []
     def invalid_methods = requested_methods.findAll { !valid_methods.contains(it) }
 
@@ -237,10 +216,11 @@ def validateInputParameters() {
         ❌ INVALID ANALYSIS METHOD(S): ${invalid_methods.join(", ")}
 
         Valid analysis methods are:
-          • DEG   - Differential Expression (limma/DESeq2/edgeR)
+          • DEG   - Differential Expression (limma/DESeq2/maSigPro)
           • WGCNA - Co-expression Network Analysis
-          • DIU   - Differential Isoform Usage
-          • AS    - Alternative Splicing (rMATS)
+          • DIU   - Differential Isoform Usage (ISoformSwitchAnalyzeR)
+          • DEU   - Differential Exon Usage (DEXSeq)
+          • AS    - Alternative Splicing (rMATS, ISoformSwitchAnalyzeR)
 
         Example usage:
           --analysis_method DEG,WGCNA   # Run DE and co-expression
@@ -249,58 +229,203 @@ def validateInputParameters() {
         )
     }
 
-    // Validate combination of aligner and analysis methods
-    if (params.aligner == "hisat2" && "DIU" in requested_methods) {
-        log.warn("⚠️  DIU analysis requires pseudo-aligner (salmon/kallisto), but HISAT2 is selected. Consider using --pseudo_aligner instead.")
+    // Validate RSeQC modules
+    def valid_rseqc = ['bam_stat', 'genebody_coverage', 'infer_experiment', 'inner_distance', 'junction_annotation', 'read_distribution', 'read_duplication', 'tin']
+    def requestedRseqc = params.rseqc_modules ? params.rseqc_modules.split(',').collect { it.trim() } : []
+    def invalid_rseqc = requestedRseqc.findAll { !valid_rseqc.contains(it) }
+
+    if (invalid_rseqc) {
+        error("❌ INVALID RSeQC MODULE(S): ${invalid_rseqc.join(', ')}\nValid modules are: ${valid_rseqc.join(', ')}")
     }
 
-    // Check for required files based on analysis methods
-    if (["DEG", "WGCNA"].any { it in requested_methods } && !params.genome) {
-        log.warn("⚠️  DEG/WGCNA analysis recommended with genome annotation. Consider providing --genome parameter.")
+    // Validate MSigDB categories
+    def valid_msigdb = ['H', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
+    def requested_msigdb = params.msigdb_categories ? params.msigdb_categories.split(',').collect { it.trim() } : []
+    def invalid_msigdb = requested_msigdb.findAll { !valid_msigdb.contains(it) }
+
+    if (invalid_msigdb) {
+        error(
+            """
+        ❌ INVALID MSigDB CATEGORY: ${invalid_msigdb.join(', ')}
+
+        Valid categories are:
+          ${valid_msigdb.join(', ')}
+        """
+        )
+    }
+
+    // Validate WGCNA parameters
+    def valid_tom_types = ["none", "signed", "signed 2", "unsigned", "unsigned 2", "signed Nowick", "signed Nowick 2"]
+    def valid_network_types = ["signed", "unsigned", "signed hybrid"]
+
+    if ("WGCNA" in requested_methods) {
+        if (!valid_tom_types.contains(params.tomtype)) {
+            error(
+                """
+            ❌ INVALID WGCNA TOM TYPE: ${params.tomtype}
+
+            Valid types are:
+              ${valid_tom_types.join(', ')}
+            """
+            )
+        }
+        if (!valid_network_types.contains(params.networktype)) {
+            error(
+                """
+            ❌ INVALID WGCNA NETWORK TYPE: ${params.networktype}
+
+            Valid types are:
+              ${valid_network_types.join(', ')}
+            """
+            )
+        }
+    }
+
+    // Validate Alternative Splicing (AS) event types
+    def valid_events = ["SE", "RI", "MXE", "A5SS", "A3SS"]
+    def requested_events = params.event_types ? params.event_types.split(',').collect { it.trim() } : []
+    def invalid_events = requested_events.findAll { !valid_events.contains(it) }
+
+    if ("AS" in requested_methods && invalid_events) {
+        error(
+            """
+        ❌ INVALID AS EVENT TYPE(S): ${invalid_events.join(', ')}
+
+        Valid event types are:
+          ${valid_events.join(', ')}
+        """
+        )
+    }
+
+    // Validate Differential Expression and Clustering methods
+    def valid_diff_methods = ["limma", "deseq2", "masigpro"]
+    def valid_cluster_methods = ["hclust", "Mclust", "kmeans"]
+    def valid_rank_methods = ["t_stat", "logfc", "signed_significance"]
+
+    if (!valid_diff_methods.contains(params.diffexpr_method)) {
+        error("❌ INVALID DIFFEXPR METHOD: ${params.diffexpr_method}\nValid: ${valid_diff_methods.join(', ')}")
+    }
+    if (!valid_rank_methods.contains(params.rank_method)) {
+        error("❌ INVALID RANK METHOD: ${params.rank_method}\nValid: ${valid_rank_methods.join(', ')}")
+    }
+    if (!valid_cluster_methods.contains(params.cluster_method)) {
+        error("❌ INVALID CLUSTER METHOD: ${params.cluster_method}\nValid: ${valid_cluster_methods.join(', ')}")
+    }
+
+    // Validate Library and rRNA parameters
+    def valid_kits = ["quantseq", "corall", "takara"]
+    def valid_rrnas = ["fast", "default", "sensitive", "sensitive_rfam"]
+
+    if (!valid_kits.contains(params.lib_kit)) {
+        error("❌ INVALID LIB KIT: ${params.lib_kit}\nOptions: ${valid_kits.join(', ')}")
+    }
+    if (!valid_rrnas.contains(params.rrna_db_type)) {
+        error("❌ INVALID rRNA DB TYPE: ${params.rrna_db_type}\nOptions: ${valid_rrnas.join(', ')}")
+    }
+
+    // Validate Species
+    def valid_species = ["human", "mouse", "rat", "yeast", "fruitfly", "zebrafish", "worm", "arabidopsis", "chicken", "cow", "pig", "dog", "monkey"]
+    if (!valid_species.contains(params.species)) {
+        error(
+            """
+        ❌ INVALID SPECIES: ${params.species}
+
+        Supported species are:
+          ${valid_species.join(', ')}
+        """
+        )
+    }
+    else if (params.contaminant_species) {
+        if (!valid_species.contains(params.contaminant_species)) {
+            error(
+                """
+        ❌ INVALID SPECIES: ${params.contaminant_species}
+
+        Supported species are:
+          ${valid_species.join(', ')}
+        """
+            )
+        }
+    }
+
+    // Validate Enrichment methods
+    def valid_enrichment = ["GO", "KEGG", "GSEA"]
+    def requested_enrichment = params.enrichment_method ? params.enrichment_method.split(",").collect { it.trim() } : []
+    def invalid_enrichment = requested_enrichment.findAll { !valid_enrichment.contains(it) }
+
+    if (invalid_enrichment) {
+        error(
+            """
+        ❌ INVALID ENRICHMENT METHOD(S): ${invalid_enrichment.join(", ")}
+
+        Valid enrichment methods are:
+          • GO   - Gene Ontology Enrichment
+          • KEGG - Kyoto Encyclopedia of Genes and Genomes
+          • GSEA - Gene Set Enrichment Analysis
+
+        Example usage:
+          --enrichment_method GO,KEGG
+        """
+        )
+    }
+
+    // Validate combination of aligner and analysis methods
+    if (params.aligner == "hisat2" && "DIU" in requested_methods) {
+        error("❌  DIU analysis requires pseudo-aligner (salmon/kallisto), but HISAT2 is selected. Consider using --pseudo_aligner instead.")
     }
 }
 
 //
-// Validate channels from input samplesheet - UPDATED FOR YOUR FORMAT
+// Validate channels from input samplesheet
 //
-def validateInputSamplesheet(input) {
-    def (metas, fastqs) = input[1..2]
-
+def validateInputSamplesheet(metas) {
     // Check that multiple runs of the same sample are of the same datatype i.e. single-end / paired-end
     def endedness_ok = metas.collect { meta -> meta.single_end }.unique().size == 1
     if (!endedness_ok) {
-        error("Please check input samplesheet -> Multiple runs of a sample must be of the same datatype i.e. single-end or paired-end: ${metas[0].id}")
+        error("❌  INVALID INPUT: All samples must be of the same datatype (Single-End or Paired-End). Mixed endedness detected.")
     }
 
-    // Additional validation for YOUR custom columns
-    if (metas.size() > 1) {
-        // Check condition for differential expression
-        def conditions = metas.collect { it.condition }.unique()
-        if (conditions.size() < 2 && "DEG" in params.analysis_method?.split(",")) {
-            log.warn("⚠️  Differential expression analysis requires at least 2 conditions. Found: ${conditions}")
-        }
-
-        // Check lib_type consistency
-        def lib_types = metas.collect { it.lib_type }.unique()
-        if (lib_types.size() > 1) {
-            log.warn("⚠️  Multiple library types detected: ${lib_types}. Ensure this is intentional.")
-        }
-
-        // Validate lib_type values
-        def valid_lib_types = ["forward", "reverse", "auto"]
-        def invalid_lib_types = lib_types.findAll { !valid_lib_types.contains(it) }
-        if (invalid_lib_types) {
-            error("Invalid lib_type values: ${invalid_lib_types}. Valid values are: forward, reverse, auto")
-        }
-
-        // Check sequencer information
-        def sequencers = metas.collect { it.sequencer }.unique()
-        if (sequencers.size() > 1) {
-            log.info("Multiple sequencers detected: ${sequencers}. Batch effects may need consideration.")
-        }
+    // Validate that exactly 2 conditions are present
+    def conditions = metas.collect { it.condition }.unique()
+    if (conditions.size() != 2) {
+        error("❌  INSUFFICIENT CONDITIONS: Comparative analysis requires at least 2 distinct conditions. Found: ${conditions}.")
     }
 
-    return [metas[0], fastqs]
+    // Check that each condition has sufficient replicates for robust statistical analysis
+    def invalid_groups = metas.countBy { it.condition }.findAll { condition, count -> count < 3 }
+    if (invalid_groups) {
+        error(
+            "❌ INSUFFICIENT REPLICATES: The following groups have less than 3 samples:\n" + invalid_groups.collect { condition, count -> "  • ${condition}: ${count} sample(s)" }.join("\n") + "\nStatistical analysis requires at least 3 replicates per condition for reliable results."
+        )
+    }
+
+    // Check lib_type consistency
+    def lib_types = metas.collect { it.lib_type }.unique()
+    if (lib_types.size() > 1) {
+        error("❌  INCONSISTENT LIBRARY TYPES: Detected multiple types: ${lib_types}. All samples in a single run must use the same orientation.")
+    }
+
+    // Validate lib_type values
+    def valid_lib_types = ["forward", "reverse", "auto"]
+    def invalid_lib_types = lib_types.findAll { !valid_lib_types.contains(it) }
+    if (invalid_lib_types) {
+        error("❌ INVALID LIBRARY STRANDEDNESS: '${invalid_lib_types.join(', ')}' is not supported. Please use: forward, reverse, or auto.")
+    }
+
+    // Check sequencer information
+    def valid_sequencers = ["HiSeq", "MiSeq", "NovaSeq", "NextSeq"]
+    def sequencers = metas.collect { it.sequencer }.unique()
+
+    // Check for unsupported platforms
+    def invalid_sequencers = sequencers.findAll { !valid_sequencers.contains(it) }
+    if (invalid_sequencers) {
+        error("❌  UNSUPPORTED SEQUENCER: '${invalid_sequencers.join(', ')}' is not in the supported list. Valid options: ${valid_sequencers.join(', ')}.")
+    }
+
+    // Check for mixed platforms
+    if (sequencers.size() > 1) {
+        error("❌  MIXED SEQUENCING PLATFORMS: Detected multiple sequencers: ${sequencers}. To avoid significant batch effects, please process data from different sequencers in separate runs.")
+    }
 }
 //
 // Get attribute from genome config file e.g. fasta, gtf
@@ -366,19 +491,6 @@ def genomeExistsError() {
 //
 def contaminantExistsError() {
     if (params.contaminant_species) {
-        // Check if contaminants config was loaded
-        if (!params.contaminants) {
-            def error_string = """
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  Contaminants config not loaded!
-
-  Ensure contaminants.config is included in nextflow.config:
-  includeConfig 'conf/contaminants.config'
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-"""
-            error(error_string)
-        }
-
         // Check if contaminant species exists in config
         if (!params.contaminants.containsKey(params.contaminant_species)) {
             def available_contaminants = params.contaminants.keySet().join(", ")
@@ -402,24 +514,58 @@ def contaminantExistsError() {
 def toolCitationText() {
     def citation_text = [
         "Tools used in the workflow included:",
-        !params.skip_fastqc ? "FastQC (Andrews 2010)," : "",
-        !params.skip_multiqc ? "MultiQC (Ewels et al. 2016)," : "",
-        params.aligner == "hisat2" ? "HISAT2 (Kim et al. 2019)," : "",
-        params.pseudo_aligner == "salmon" ? "Salmon (Patro et al. 2017)," : "",
-        params.pseudo_aligner == "kallisto" ? "Kallisto (Bray et al. 2016)," : "",
-        params.with_umi ? "UMI-tools (Smith et al. 2017)," : "",
-        !params.skip_trimming ? "Cutadapt (Martin 2011)," : "",
-        "SAMtools (Li et al. 2009),",
-        "featureCounts (Liao et al. 2014),",
-        "RSeQC (Wang et al. 2012),",
-        "DEXSeq (Anders et al. 2012),",
-        "rMATS (Shen et al. 2014),",
-        "limma (Ritchie et al. 2015),",
-        "DESeq2 (Love et al. 2014),",
-        "edgeR (Robinson et al. 2010),",
-        "WGCNA (Langfelder and Horvath 2008),",
-        "IsoformSwitchAnalyzeR (Vitting-Seerup et al. 2019),",
-        "SeqKit (Shen et al. 2016)",
+        !params.skip_fastqc ? "FastQC (<a href=\"https://www.bioinformatics.babraham.ac.uk/projects/fastqc/\" target=\"_blank\">Andrews, 2010</a>)," : "",
+        !params.skip_multiqc ? "MultiQC (<a href=\"https://doi.org/10.1093/bioinformatics/btw354\" target=\"_blank\">Ewels <em>et al.</em>, 2016</a>)," : "",
+        "SeqKit (<a href=\"https://doi.org/10.1371/journal.pone.0163962\" target=\"_blank\">Shen <em>et al.</em>, 2016</a>),",
+        params.aligner == "hisat2" ? "HISAT2 (<a href=\"https://doi.org/10.1038/s41587-019-0201-4\" target=\"_blank\">Kim <em>et al.</em>, 2019</a>)," : "",
+        params.pseudo_aligner == "salmon" ? "Salmon (<a href=\"https://doi.org/10.1038/nmeth.4197\" target=\"_blank\">Patro <em>et al.</em>, 2017</a>)," : "",
+        params.pseudo_aligner == "kallisto" ? "Kallisto (<a href=\"https://doi.org/10.1038/nbt.3519\" target=\"_blank\">Bray <em>et al.</em>, 2016</a>)," : "",
+        params.with_umi ? "UMI-tools (<a href=\"https://doi.org/10.1101/gr.209601.116\" target=\"_blank\">Smith <em>et al.</em>, 2017</a>)," : "",
+        !params.skip_trimming ? "Cutadapt (<a href=\"https://doi.org/10.14806/ej.17.1.200\" target=\"_blank\">Martin, 2011</a>)," : "",
+        params.aligner == "hisat2" ? "SAMtools (<a href=\"https://doi.org/10.1093/bioinformatics/btp352\" target=\"_blank\">Li <em>et al.</em>, 2009</a>)," : "",
+        params.aligner == "hisat2" && "DEG" in params.analysis_method.split(",") ? "featureCounts (<a href=\"https://doi.org/10.1093/bioinformatics/btt656\" target=\"_blank\">Liao <em>et al.</em>, 2014</a>)," : "",
+        "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "rMATS-turbo (<a href=\"https://doi.org/10.1038/s41596-023-00944-2\" target=\"_blank\">Wang <em>et al.</em>, 2024</a>)," : "",
+        "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "rMATS2SashimiPlot (<a href=\"https://doi.org/10.5281/ZENODO.10008656\" target=\"_blank\">Shieh <em>et al.</em>, 2023</a>)," : "",
+        params.aligner == "hisat2" && (params.rseqc_modules ? params.rseqc_modules.split(",").any { it in ["bam_stat", "genebody_coverage", "infer_experiment", "inner_distance", "junction_annotation", "read_distribution", "read_duplication", "tin"] } : null) ? "RSeQC (<a href=\"https://doi.org/10.1093/bioinformatics/bts356\" target=\"_blank\">Wang <em>et al.</em>, 2012</a>)," : "",
+        "DEU" in params.analysis_method.split(",") ? "DEXSeq (<a href=\"https://doi.org/10.1101/gr.133744.111\" target=\"_blank\">Anders <em>et al.</em>, 2012</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && (params.diffexpr_method == "limma" || params.diffexpr_method == "masigpro") ? "edgeR (<a href=\"https://doi.org/10.1093/nar/gkaf018\" target=\"_blank\">Chen <em>et al.</em>, 2025</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "limma" ? "limma (<a href=\"https://doi.org/10.1093/nar/gkv007\" target=\"_blank\">Ritchie <em>et al.</em>, 2015</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") && params.diffexpr_method == "deseq2") || "WGCNA" in params.analysis_method.split(",") ? "DESeq2 (<a href=\"https://doi.org/10.1186/s13059-014-0550-8\" target=\"_blank\">Love <em>et al.</em>, 2014</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "masigpro" ? "reshape (<a href=\"https://doi.org/10.18637/jss.v021.i12\" target=\"_blank\">Wickham, 2007</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "masigpro" ? "patchwork (<a href=\"https://doi.org/10.32614/cran.package.patchwork\" target=\"_blank\">Pedersen, 2019</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "masigpro" ? "mclust (<a href=\"https://doi.org/10.1201/9781003277965\" target=\"_blank\">Scrucca <em>et al.</em>, 2023</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && params.pseudo_aligner in ["kallisto", "salmon"] ? "tximport (<a href=\"https://doi.org/10.12688/f1000research.7563.2\" target=\"_blank\">Soneson <em>et al.</em>, 2015</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && params.pseudo_aligner in ["kallisto", "salmon"] ? "rhdf5 (<a href=\"https://bioconductor.org/packages/rhdf5\" target=\"_blank\">Fischer <em>et al.</em>, 2025</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && params.pseudo_aligner in ["kallisto", "salmon"] ? "jsonlite (<a href=\"https://doi.org/10.48550/ARXIV.1403.2805\" target=\"_blank\">Ooms, 2014</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || (("DIU" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) ? "biomaRt (<a href=\"https://doi.org/10.1038/nprot.2009.97\" target=\"_blank\">Durinck <em>et al.</em>, 2009</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "pheatmap (<a href=\"https://github.com/raivokolde/pheatmap\" target=\"_blank\">Kolde, 2025</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "EnhancedVolcano (<a href=\"https://github.com/kevinblighe/EnhancedVolcano\" target=\"_blank\">Blighe <em>et al.</em>, 2019</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "RColorBrewer (<a href=\"https://doi.org/10.32614/cran.package.rcolorbrewer\" target=\"_blank\">Neuwirth, 2002</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || ("AS" in params.analysis_method.split(",") && params.pseudo_aligner in ["salmon", "kallisto"]) ? "ggplot2 (<a href=\"https://ggplot2.tidyverse.org\" target=\"_blank\">Wickham, 2016</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || (("DIU" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) ? "tibble (<a href=\"https://doi.org/10.32614/cran.package.tibble\" target=\"_blank\">Müller &amp; Wickham, 2016</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "tidyr (<a href=\"https://doi.org/10.32614/cran.package.tidyr\" target=\"_blank\">Wickham <em>et al.</em>, 2014</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || (("DIU" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) ? "dplyr (<a href=\"https://doi.org/10.32614/cran.package.dplyr\" target=\"_blank\">Wickham <em>et al.</em>, 2014</a>)," : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "cowplot (<a href=\"https://doi.org/10.32614/cran.package.cowplot\" target=\"_blank\">Wilke, 2025</a>)," : "",
+        "WGCNA" in params.analysis_method.split(",") ? "WGCNA (<a href=\"https://doi.org/10.1186/1471-2105-9-559\" target=\"_blank\">Langfelder &amp; Horvath, 2008</a>)," : "",
+        "WGCNA" in params.analysis_method.split(",") ? "STRINGdb (<a href=\"https://doi.org/10.1093/nar/gkac1000\" target=\"_blank\">Szklarczyk <em>et al.</em>, 2023</a>)," : "",
+        ("DIU" in params.analysis_method.split(",") || "AS" in params.analysis_method.split(",")) && params.pseudo_aligner in ["salmon", "kallisto"] ? "IsoformSwitchAnalyzeR (<a href=\"https://doi.org/10.1093/bioinformatics/btz247\" target=\"_blank\">Vitting-Seerup &amp; Sandelin, 2019</a>)," : "",
+        (("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) || ("DEG" in params.analysis_method.split(",") && (params.msigdb_categories ? params.msigdb_categories.split(",").any { it in ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "H"] } : null)) ? "clusterProfiler (<a href=\"https://doi.org/10.1016/j.xinn.2024.100722\" target=\"_blank\">Yu, 2024</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && (params.enrichment_method ? "GSEA" in params.enrichment_method.split(",") : null) && (params.msigdb_categories ? params.msigdb_categories.split(",").any { it in ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "H"] } : null) ? "enrichplot (<a href=\"https://bioconductor.org/packages/enrichplot\" target=\"_blank\">Yu, 2025</a>)," : "",
+        "DEG" in params.analysis_method.split(",") && (params.enrichment_method ? "GSEA" in params.enrichment_method.split(",") : null) && (params.msigdb_categories ? params.msigdb_categories.split(",").any { it in ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "H"] } : null) ? "msigdbr (<a href=\"https://doi.org/10.32614/cran.package.msigdbr\" target=\"_blank\">Dolgalev, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) ? "purrr (<a href=\"https://doi.org/10.32614/cran.package.purrr\" target=\"_blank\">Wickham &amp; Henry, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "human" ? "org.Hs.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.HS.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "mouse" ? "org.Mm.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.MM.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "rat" ? "org.Rn.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.RN.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "yeast" ? "org.Sc.sgd.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.SC.SGD.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "fruitfly" ? "org.Dm.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.DM.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "zebrafish" ? "org.Dr.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.DR.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "worm" ? "org.Ce.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.CE.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "arabidopsis" ? "org.At.tair.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.AT.TAIR.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "chicken" ? "org.Gg.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.GG.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "cow" ? "org.Bt.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.BT.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "pig" ? "org.Ss.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.SS.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "dog" ? "org.Cf.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.CF.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "monkey" ? "org.Mmu.eg.db (<a href=\"https://doi.org/10.18129/B9.BIOC.ORG.MMU.EG.DB\" target=\"_blank\">Carlson, 2025</a>)," : "",
     ].findAll { it }.join(' ').trim()
 
     return citation_text.replaceAll(", \\.", ".").replaceAll("\\. \\.", ".")
@@ -427,24 +573,58 @@ def toolCitationText() {
 
 def toolBibliographyText() {
     def reference_text = [
-        "<li>Andrews S. (2010). FastQC: a quality control tool for high throughput sequence data. https://www.bioinformatics.babraham.ac.uk/projects/fastqc/</li>",
-        "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics, 32(19), 3047-3048.</li>",
-        params.aligner == "hisat2" ? "<li>Kim, D., Paggi, J. M., Park, C., Bennett, C., & Salzberg, S. L. (2019). Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype. Nature Biotechnology, 37(8), 907-915.</li>" : "",
-        params.pseudo_aligner == "salmon" ? "<li>Patro, R., Duggal, G., Love, M. I., Irizarry, R. A., & Kingsford, C. (2017). Salmon provides fast and bias-aware quantification of transcript expression. Nature Methods, 14(4), 417-419.</li>" : "",
-        params.pseudo_aligner == "kallisto" ? "<li>Bray, N. L., Pimentel, H., Melsted, P., & Pachter, L. (2016). Near-optimal probabilistic RNA-seq quantification. Nature Biotechnology, 34(5), 525-527.</li>" : "",
-        params.with_umi ? "<li>Smith, T., Heger, A., & Sudbery, I. (2017). UMI-tools: modelling sequencing errors in Unique Molecular Identifiers to improve quantification accuracy. PeerJ, 5, e8275.</li>" : "",
-        !params.skip_trimming ? "<li>Martin, M. (2011). Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet.journal, 17(1), 10-12.</li>" : "",
-        "<li>Li, H., Handsaker, B., Wysoker, A., et al. (2009). The Sequence Alignment/Map format and SAMtools. Bioinformatics, 25(16), 2078-2079.</li>",
-        "<li>Liao, Y., Smyth, G. K., & Shi, W. (2014). featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. Bioinformatics, 30(7), 923-930.</li>",
-        "<li>Wang, L., Wang, S., & Li, W. (2012). RSeQC: quality control of RNA-seq experiments. Bioinformatics, 28(16), 2184-2185.</li>",
-        "<li>Anders, S., Reyes, A., & Huber, W. (2012). Detecting differential usage of exons from RNA-seq data. Genome Research, 22(10), 2008-2017.</li>",
-        "<li>Shen, S., Park, J. W., Lu, Z. X., et al. (2014). rMATS: robust and flexible detection of differential alternative splicing from replicate RNA-Seq data. Proceedings of the National Academy of Sciences, 111(51), E5593-E5601.</li>",
-        "<li>Ritchie, M. E., Phipson, B., Wu, D., et al. (2015). limma powers differential expression analyses for RNA-sequencing and microarray studies. Nucleic Acids Research, 43(7), e47.</li>",
-        "<li>Love, M. I., Huber, W., & Anders, S. (2014). Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biology, 15(12), 550.</li>",
-        "<li>Robinson, M. D., McCarthy, D. J., & Smyth, G. K. (2010). edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics, 26(1), 139-140.</li>",
-        "<li>Langfelder, P., & Horvath, S. (2008). WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics, 9, 559.</li>",
-        "<li>Vitting-Seerup, K., Sandelin, A., & Waage, J. (2019). IsoformSwitchAnalyzeR: analysis of changes in genome-wide patterns of alternative splicing and its functional consequences. Bioinformatics, 35(21), 4469-4471.</li>",
-        "<li>Shen, W., Le, S., Li, Y., & Hu, F. (2016). SeqKit: a cross-platform and ultrafast toolkit for FASTA/Q file manipulation. PLoS ONE, 11(10), e0163962.</li>",
+        !params.skip_fastqc ? "<li>Andrews, S. (2010). FastQC: a quality control tool for high throughput sequence data. Retrieved from <a href=\"https://www.bioinformatics.babraham.ac.uk/projects/fastqc/\" target=\"_blank\">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/</a></li>" : "",
+        !params.skip_multiqc ? "<li>Ewels, P., Magnusson, M., Lundin, S., &amp; Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. <em>Bioinformatics</em>, <em>32</em>(19), 3047–3048. doi: <a href=\"https://doi.org/10.1093/bioinformatics/btw354\" target=\"_blank\">10.1093/bioinformatics/btw354</a></li>" : "",
+        "<li>Shen, W., Le, S., Li, Y., &amp; Hu, F. (2016). SeqKit: A cross-platform and ultrafast toolkit for FASTA/Q file manipulation. <em>PloS One</em>, <em>11</em>(10), e0163962. doi: <a href=\"https://doi.org/10.1371/journal.pone.0163962\" target=\"_blank\">10.1371/journal.pone.0163962</a></li>",
+        params.aligner == "hisat2" ? "<li>Kim, D., Paggi, J. M., Park, C., Bennett, C., &amp; Salzberg, S. L. (2019). Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype. <em>Nature Biotechnology</em>, <em>37</em>(8), 907–915. doi: <a href=\"https://doi.org/10.1038/s41587-019-0201-4\" target=\"_blank\">10.1038/s41587-019-0201-4</a></li>" : "",
+        params.pseudo_aligner == "salmon" ? "<li>Patro, R., Duggal, G., Love, M. I., Irizarry, R. A., &amp; Kingsford, C. (2017). Salmon provides fast and bias-aware quantification of transcript expression. <em>Nature Methods</em>, <em>14</em>(4), 417–419. doi: <a href=\"https://doi.org/10.1038/nmeth.4197\" target=\"_blank\">10.1038/nmeth.4197</a></li>" : "",
+        params.pseudo_aligner == "kallisto" ? "<li>Bray, N. L., Pimentel, H., Melsted, P., &amp; Pachter, L. (2016). Near-optimal probabilistic RNA-seq quantification. <em>Nature Biotechnology</em>, <em>34</em>(5), 525–527. doi: <a href=\"https://doi.org/10.1038/nbt.3519\" target=\"_blank\">10.1038/nbt.3519</a></li>" : "",
+        params.with_umi ? "<li>Smith, T., Heger, A., &amp; Sudbery, I. (2017). UMI-tools: modeling sequencing errors in Unique Molecular Identifiers to improve quantification accuracy. <em>Genome Research</em>, <em>27</em>(3), 491–499. doi: <a href=\"https://doi.org/10.1101/gr.209601.116\" target=\"_blank\">10.1101/gr.209601.116</a></li>" : "",
+        !params.skip_trimming ? "<li>Martin, M. (2011). Cutadapt removes adapter sequences from high-throughput sequencing reads. <em>EMBnet.Journal</em>, <em>17</em>(1), 10. doi: <a href=\"https://doi.org/10.14806/ej.17.1.200\" target=\"_blank\">10.14806/ej.17.1.200</a></li>" : "",
+        params.aligner == "hisat2" ? "<li>Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., … 1000 Genome Project Data Processing Subgroup. (2009). The Sequence Alignment/Map format and SAMtools. <em>Bioinformatics (Oxford, England)</em>, <em>25</em>(16), 2078–2079. doi: <a href=\"https://doi.org/10.1093/bioinformatics/btp352\" target=\"_blank\">10.1093/bioinformatics/btp352</a></li>" : "",
+        params.aligner == "hisat2" && "DEG" in params.analysis_method.split(",") ? "<li>Liao, Y., Smyth, G. K., &amp; Shi, W. (2014). featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. <em>Bioinformatics (Oxford, England)</em>, <em>30</em>(7), 923–930. doi: <a href=\"https://doi.org/10.1093/bioinformatics/btt656\" target=\"_blank\">10.1093/bioinformatics/btt656</a></li>" : "",
+        "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "<li>Wang, Y., Xie, Z., Kutschera, E., Adams, J. I., Kadash-Edmondson, K. E., &amp; Xing, Y. (2024). rMATS-turbo: an efficient and flexible computational tool for alternative splicing analysis of large-scale RNA-seq data. <em>Nature Protocols</em>, <em>19</em>(4), 1083–1104. doi: <a href=\"https://doi.org/10.1038/s41596-023-00944-2\" target=\"_blank\">10.1038/s41596-023-00944-2</a></li>" : "",
+        "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "<li>Shieh, Kutschera, E., Tseng, Y.-T., DM_, Lin, I.-H., &amp; Samani, E. (2023). <em>Xinglab/rmats2sashimiplot: v3.0.0</em>. doi: <a href=\"https://doi.org/10.5281/ZENODO.10008656\" target=\"_blank\">10.5281/ZENODO.10008656</a></li>" : "",
+        params.aligner == "hisat2" && (params.rseqc_modules ? params.rseqc_modules.split(",").any { it in ["bam_stat", "genebody_coverage", "infer_experiment", "inner_distance", "junction_annotation", "read_distribution", "read_duplication", "tin"] } : null) ? "<li>Wang, L., Wang, S., &amp; Li, W. (2012). RSeQC: quality control of RNA-seq experiments. <em>Bioinformatics (Oxford, England)</em>, <em>28</em>(16), 2184–2185. doi: <a href=\"https://doi.org/10.1093/bioinformatics/bts356\" target=\"_blank\">10.1093/bioinformatics/bts356</a></li>" : "",
+        "DEU" in params.analysis_method.split(",") ? "<li>Anders, S., Reyes, A., &amp; Huber, W. (2012). Detecting differential usage of exons from RNA-seq data. <em>Genome Research</em>, <em>22</em>(10), 2008–2017. doi: <a href=\"https://doi.org/10.1101/gr.133744.111\" target=\"_blank\">10.1101/gr.133744.111</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && (params.diffexpr_method == "limma" || params.diffexpr_method == "masigpro") ? "<li>Chen, Y., Chen, L., Lun, A. T. L., Baldoni, P. L., &amp; Smyth, G. K. (2025). edgeR v4: powerful differential analysis of sequencing data with expanded functionality and improved support for small counts and larger datasets. <em>Nucleic Acids Research</em>, <em>53</em>(2). doi: <a href=\"https://doi.org/10.1093/nar/gkaf018\" target=\"_blank\">10.1093/nar/gkaf018</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "limma" ? "<li>Ritchie, M. E., Phipson, B., Wu, D., Hu, Y., Law, C. W., Shi, W., &amp; Smyth, G. K. (2015). limma powers differential expression analyses for RNA-sequencing and microarray studies. <em>Nucleic Acids Research</em>, <em>43</em>(7), e47. doi: <a href=\"https://doi.org/10.1093/nar/gkv007\" target=\"_blank\">10.1093/nar/gkv007</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") && params.diffexpr_method == "deseq2") || "WGCNA" in params.analysis_method.split(",") ? "<li>Love, M. I., Huber, W., &amp; Anders, S. (2014). Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. <em>Genome Biology</em>, <em>15</em>(12), 550. doi: <a href=\"https://doi.org/10.1186/s13059-014-0550-8\" target=\"_blank\">10.1186/s13059-014-0550-8</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "masigpro" ? "<li>Wickham, H. (2007). Reshaping Data with the reshape Package. <em>Journal of Statistical Software</em>, <em>21</em>(12). doi: <a href=\"https://doi.org/10.18637/jss.v021.i12\" target=\"_blank\">10.18637/jss.v021.i12</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "masigpro" ? "<li>Pedersen, T. L. (2019). patchwork: The Composer of Plots [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.patchwork\" target=\"_blank\">10.32614/cran.package.patchwork</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && params.diffexpr_method == "masigpro" ? "<li>Scrucca, L., Fraley, C., Murphy, T. B., &amp; Raftery, A. E. (2023). Model-based clustering, classification, and density estimation using mclust in R. doi: <a href=\"https://doi.org/10.1201/9781003277965\" target=\"_blank\">10.1201/9781003277965</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && params.pseudo_aligner in ["kallisto", "salmon"] ? "<li>Soneson, C., Love, M. I., &amp; Robinson, M. D. (2015). Differential analyses for RNA-seq: transcript-level estimates improve gene-level inferences. <em>F1000Research</em>, <em>4</em>, 1521. doi: <a href=\"https://doi.org/10.12688/f1000research.7563.2\" target=\"_blank\">10.12688/f1000research.7563.2</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && params.pseudo_aligner in ["kallisto", "salmon"] ? "<li>Fischer, B., Smith, M., &amp; Pau, G. (2025). <em>rhdf5: R Interface to HDF5</em>. Retrieved from <a href=\"https://bioconductor.org/packages/rhdf5\" target=\"_blank\">https://bioconductor.org/packages/rhdf5</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && params.pseudo_aligner in ["kallisto", "salmon"] ? "<li>Ooms, J. (2014). The jsonlite package: A practical and consistent mapping between JSON data and R objects. doi: <a href=\"https://doi.org/10.48550/ARXIV.1403.2805\" target=\"_blank\">10.48550/ARXIV.1403.2805</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || (("DIU" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) ? "<li>Durinck, S., Spellman, P. T., Birney, E., &amp; Huber, W. (2009). Mapping identifiers for the integration of genomic datasets with the R/Bioconductor package biomaRt. <em>Nature Protocols</em>, <em>4</em>(8), 1184–1191. doi: <a href=\"https://doi.org/10.1038/nprot.2009.97\" target=\"_blank\">10.1038/nprot.2009.97</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "<li>Kolde, R. (2025). <em>pheatmap: Pretty Heatmaps</em>. Retrieved from <a href=\"https://github.com/raivokolde/pheatmap\" target=\"_blank\">https://github.com/raivokolde/pheatmap</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "<li>Blighe, K., Rana, S., &amp; Lewis, M. (2019). <em>EnhancedVolcano: Publication-ready volcano plots with enhanced colouring and labeling</em> (R package version 1.0). Retrieved from <a href=\"https://github.com/kevinblighe/EnhancedVolcano\" target=\"_blank\">https://github.com/kevinblighe/EnhancedVolcano</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "<li>Neuwirth, E. (2002). RColorBrewer: ColorBrewer Palettes [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.rcolorbrewer\" target=\"_blank\">10.32614/cran.package.rcolorbrewer</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || ("AS" in params.analysis_method.split(",") && params.pseudo_aligner in ["salmon", "kallisto"]) ? "<li>Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Retrieved from <a href=\"https://ggplot2.tidyverse.org\" target=\"_blank\">https://ggplot2.tidyverse.org</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || (("DIU" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) ? "<li>Müller, K., &amp; Wickham, H. (2016). tibble: Simple Data Frames [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.tibble\" target=\"_blank\">10.32614/cran.package.tibble</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "<li>Wickham, H., Vaughan, D., &amp; Girlich, M. (2014). tidyr: Tidy Messy Data [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.tidyr\" target=\"_blank\">10.32614/cran.package.tidyr</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || (("DIU" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) ? "<li>Wickham, H., François, R., Henry, L., Müller, K., &amp; Vaughan, D. (2014). dplyr: A Grammar of Data Manipulation [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.dplyr\" target=\"_blank\">10.32614/cran.package.dplyr</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") ? "<li>Wilke, C. (2025). cowplot: Streamlined Plot Theme and Plot Annotations for 'ggplot2' [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.cowplot\" target=\"_blank\">10.32614/cran.package.cowplot</a></li>" : "",
+        "WGCNA" in params.analysis_method.split(",") ? "<li>Langfelder, P., &amp; Horvath, S. (2008). WGCNA: an R package for weighted correlation network analysis. <em>BMC Bioinformatics</em>, <em>9</em>(1), 559. doi: <a href=\"https://doi.org/10.1186/1471-2105-9-559\" target=\"_blank\">10.1186/1471-2105-9-559</a></li>" : "",
+        "WGCNA" in params.analysis_method.split(",") ? "<li>Szklarczyk, D., Kirsch, R., Koutrouli, M., Nastou, K., Mehryary, F., Hachilif, R., … von Mering, C. (2023). The STRING database in 2023: protein-protein association networks and functional enrichment analyses for any sequenced genome of interest. <em>Nucleic Acids Research</em>, <em>51</em>(D1), D638–D646. doi: <a href=\"https://doi.org/10.1093/nar/gkac1000\" target=\"_blank\">10.1093/nar/gkac1000</a></li>" : "",
+        ("DIU" in params.analysis_method.split(",") || "AS" in params.analysis_method.split(",")) && params.pseudo_aligner in ["salmon", "kallisto"] ? "<li>Vitting-Seerup, K., &amp; Sandelin, A. (2019). IsoformSwitchAnalyzeR: analysis of changes in genome-wide patterns of alternative splicing and its functional consequences. <em>Bioinformatics (Oxford, England)</em>, <em>35</em>(21), 4469–4471. doi: <a href=\"https://doi.org/10.1093/bioinformatics/btz247\" target=\"_blank\">10.1093/bioinformatics/btz247</a></li>" : "",
+        (("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null)) || ("DEG" in params.analysis_method.split(",") && (params.msigdb_categories ? params.msigdb_categories.split(",").any { it in ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "H"] } : null)) ? "<li>Yu, G. (2024). Thirteen years of clusterProfiler. <em>Innovation (Cambridge (Mass.))</em>, <em>5</em>(6), 100722. doi: <a href=\"https://doi.org/10.1016/j.xinn.2024.100722\" target=\"_blank\">10.1016/j.xinn.2024.100722</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && (params.enrichment_method ? "GSEA" in params.enrichment_method.split(",") : null) && (params.msigdb_categories ? params.msigdb_categories.split(",").any { it in ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "H"] } : null) ? "<li>Yu, G. (2025). <em>enrichplot: Visualization of Functional Enrichment Result</em> (R package version 1.30.4). Retrieved from <a href=\"https://bioconductor.org/packages/enrichplot\" target=\"_blank\">https://bioconductor.org/packages/enrichplot</a></li>" : "",
+        "DEG" in params.analysis_method.split(",") && (params.enrichment_method ? "GSEA" in params.enrichment_method.split(",") : null) && (params.msigdb_categories ? params.msigdb_categories.split(",").any { it in ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "H"] } : null) ? "<li>Dolgalev, I. (2025). Msigdbr: MSigDB gene sets for multiple organisms in a tidy data format [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.msigdbr\" target=\"_blank\">10.32614/cran.package.msigdbr</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) ? "<li>Wickham, H., &amp; Henry, L. (2025). purrr: Functional Programming Tools [Data set]. <em>CRAN: Contributed Packages</em>. doi: <a href=\"https://doi.org/10.32614/cran.package.purrr\" target=\"_blank\">10.32614/cran.package.purrr</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "human" ? "<li>Carlson, M. (2025). <em>org.Hs.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.HS.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.HS.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "mouse" ? "<li>Carlson, M. (2025). <em>org.Mm.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.MM.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.MM.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "rat" ? "<li>Carlson, M. (2025). <em>org.Rn.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.RN.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.RN.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "yeast" ? "<li>Carlson, M. (2025). <em>org.Sc.sgd.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.SC.SGD.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.SC.SGD.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "fruitfly" ? "<li>Carlson, M. (2025). <em>org.Dm.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.DM.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.DM.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "zebrafish" ? "<li>Carlson, M. (2025). <em>org.Dr.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.DR.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.DR.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "worm" ? "<li>Carlson, M. (2025). <em>org.Ce.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.CE.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.CE.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "arabidopsis" ? "<li>Carlson, M. (2025). <em>org.at.tair.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.AT.TAIR.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.AT.TAIR.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "chicken" ? "<li>Carlson, M. (2025). <em>org.Gg.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.GG.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.GG.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "cow" ? "<li>Carlson, M. (2025). <em>org.Bt.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.BT.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.BT.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "pig" ? "<li>Carlson, M. (2025). <em>org.Ss.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.SS.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.SS.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "dog" ? "<li>Carlson, M. (2025). <em>org.Cf.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.CF.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.CF.EG.DB</a></li>" : "",
+        ("DEG" in params.analysis_method.split(",") || "DIU" in params.analysis_method.split(",") || "WGCNA" in params.analysis_method.split(",") || "DEU" in params.analysis_method.split(",")) && (params.enrichment_method ? params.enrichment_method.split(",").any { it in ["KEGG", "GO"] } : null) && params.species == "monkey" ? "<li>Carlson, M. (2025). <em>org.Mmu.eg.db</em>. doi: <a href=\"https://doi.org/10.18129/B9.BIOC.ORG.MMU.EG.DB\" target=\"_blank\">10.18129/B9.BIOC.ORG.MMU.EG.DB</a></li>" : "",
     ].findAll { it }.join(' ')
 
     return reference_text
