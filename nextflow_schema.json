@@ -206,9 +206,9 @@
                 "analysis_method": {
                     "type": "string",
                     "description": "Analysis methods to run.",
-                    "default": "DEG",
                     "help_text": "Comma-separated methods: 'DEG', 'DEU', 'DIU', 'WGCNA', 'AS'. Example: --analysis_method DEG,WGCNA.",
-                    "fa_icon": "fas fa-tasks"
+                    "fa_icon": "fas fa-tasks",
+                    "default": "DEG"
                 },
                 "with_umi": {
                     "type": "boolean",
@@ -259,7 +259,8 @@
                     "fa_icon": "fas fa-toolbox"
                 }
             },
-            "fa_icon": "fas fa-sliders-h"
+            "fa_icon": "fas fa-sliders-h",
+            "required": ["analysis_method"]
         },
         "alignment_quantification": {
             "title": "Alignment & Quantification",
@@ -270,9 +271,9 @@
                 "pseudo_aligner": {
                     "type": "string",
                     "description": "Pseudo-alignment tool.",
-                    "default": "kallisto",
                     "help_text": "This parameter is mandatory for transcript quantification. Options: 'kallisto' or 'salmon'.",
-                    "fa_icon": "fas fa-bullseye"
+                    "fa_icon": "fas fa-bullseye",
+                    "default": "kallisto"
                 },
                 "aligner": {
                     "type": "string",
@@ -283,9 +284,9 @@
                 "lib_kit": {
                     "type": "string",
                     "description": "Library preparation kit.",
-                    "default": "quantseq",
                     "help_text": "This parameter is mandatory if with_umi true. Kit type: 'quantseq', 'corall', 'takara'.",
-                    "fa_icon": "fas fa-vials"
+                    "fa_icon": "fas fa-vials",
+                    "default": "quantseq"
                 },
                 "rrna_db_type": {
                     "type": "string",
@@ -733,13 +734,6 @@
                     "description": "Boolean whether to validate parameters against the schema at runtime",
                     "default": true,
                     "fa_icon": "fas fa-check-square",
-                    "hidden": true
-                },
-                "modules_testdata_base_path": {
-                    "type": "string",
-                    "fa_icon": "far fa-check-circle",
-                    "description": "Base URL or local path to location of modules test dataset files",
-                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/",
                     "hidden": true
                 },
                 "pipelines_testdata_base_path": {
