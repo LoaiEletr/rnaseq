@@ -87,7 +87,7 @@
             },
             "mentions": [
                 {
-                    "@id": "#46de907c-820a-48a2-9a51-a2d257299537"
+                    "@id": "#4e2b1008-9ed9-4e75-bf2d-93baa76fb9c9"
                 }
             ],
             "name": "LoaiEletr/rnaseq"
@@ -115,7 +115,7 @@
                 "ComputationalWorkflow"
             ],
             "dateCreated": "",
-            "dateModified": "2026-01-14T16:30:16Z",
+            "dateModified": "2026-02-11T11:40:35Z",
             "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
             "keywords": [
                 "nf-core",
@@ -156,11 +156,11 @@
             "version": "!>=25.04.0"
         },
         {
-            "@id": "#46de907c-820a-48a2-9a51-a2d257299537",
+            "@id": "#4e2b1008-9ed9-4e75-bf2d-93baa76fb9c9",
             "@type": "TestSuite",
             "instance": [
                 {
-                    "@id": "#18e903c4-fcff-4a81-9726-96902fe8293c"
+                    "@id": "#8bc23a11-d717-4d94-b8ce-a886b5c72d61"
                 }
             ],
             "mainEntity": {
@@ -169,7 +169,7 @@
             "name": "Test suite for LoaiEletr/rnaseq"
         },
         {
-            "@id": "#18e903c4-fcff-4a81-9726-96902fe8293c",
+            "@id": "#8bc23a11-d717-4d94-b8ce-a886b5c72d61",
             "@type": "TestInstance",
             "name": "GitHub Actions workflow for testing LoaiEletr/rnaseq",
             "resource": "repos/LoaiEletr/rnaseq/actions/workflows/nf-test.yml",
