@@ -26,6 +26,7 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
     val_reassignthreshold // float: reassignment threshold for module merging
     val_mergecutheight // float: merge cut height for dendrogram
     val_minmodulesize // integer: minimum module size
+    val_sft_r2_threshold // float: R² threshold for scale-free topology fit
     val_species_name // string: species name for PPI/enrichment
     val_score_threshold // integer: STRING PPI score threshold
     val_enrichment_method // string: enrichment method(s) - "GO", "KEGG", or "GO,KEGG"
@@ -49,6 +50,7 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
         val_reassignthreshold,
         val_mergecutheight,
         val_minmodulesize,
+        val_sft_r2_threshold,
     )
     ch_versions = ch_versions.mix(WGCNA_ANALYSIS.out.versions)
 

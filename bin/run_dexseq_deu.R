@@ -257,9 +257,11 @@ for (geneId in geneIds) {
 ## Generate HTML report
 ## =============================================================================
 
-DEXSeqHTML(
-    resultsList$all,
-    genes = unique(resultsList$significant$groupID),
-    FDR = pvalueThreshold,
-    color = c("#FF000080", "#0000FF80")
-)
+if (length(unique(resultsList$significant$groupID)) > 0) {
+    DEXSeqHTML(
+        resultsList$all,
+        genes = unique(resultsList$significant$groupID),
+        FDR   = pvalueThreshold,
+        color = c("#FF000080", "#0000FF80")
+    )
+}

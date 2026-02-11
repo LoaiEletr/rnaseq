@@ -24,6 +24,13 @@ input:
         Directory or files containing analysis outputs from various tools for MultiQC to parse
       pattern: "**/*"
       ontologies: []
+  - multiqc_config:
+      type: file
+      description: |
+        Optional config yml for MultiQC
+      pattern: "*.{yml,yaml}"
+      ontologies:
+        - edam: http://edamontology.org/format_3750
 
 output:
   report:

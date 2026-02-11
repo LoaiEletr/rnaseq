@@ -1,4 +1,4 @@
-#!/usr/bi/env nextflow
+#!/usr/bin/env nextflow
 
 process RSEQC_GENEBODYCOVERAGE {
     tag "${bam_files.size()} samples"
@@ -17,6 +17,7 @@ process RSEQC_GENEBODYCOVERAGE {
     output:
     path "*.geneBodyCoverage.r", emit: rscript
     path "*.geneBodyCoverage.curves.pdf", emit: pdf
+    path "*.geneBodyCoverage.heatMap.pdf", optional: true, emit: heatmap
     path "*.geneBodyCoverage.txt", emit: txt
     path "log.txt", emit: log
     path "versions.yml", emit: versions
@@ -43,6 +44,7 @@ process RSEQC_GENEBODYCOVERAGE {
     """
     touch ${prefix}.geneBodyCoverage.r
     touch ${prefix}.geneBodyCoverage.curves.pdf
+    touch ${prefix}.geneBodyCoverage.heatMap.pdf
     touch ${prefix}.geneBodyCoverage.txt
     touch log.txt
 

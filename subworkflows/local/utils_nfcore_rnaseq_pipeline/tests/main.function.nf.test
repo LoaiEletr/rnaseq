@@ -1,0 +1,409 @@
+nextflow_function {
+
+    name "Test Functions"
+    script "../main.nf"
+
+    test("Test Function validateInputSamplesheet - Success Case") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test3', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test4', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test5', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test6', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'HiSeq' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.success },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputSamplesheet - Fails with mixed endedness") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: true,  condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputSamplesheet - Fails for insufficient conditions") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: true, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: true, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test3', single_end: true, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputSamplesheet - Fails for insufficient replicates") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: true, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: true, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test3', single_end: true, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test4', single_end: true, condition: 'treatment', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test5', single_end: true, condition: 'treatment', lib_type: 'forward', sequencer: 'HiSeq' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputSamplesheet - Fails with mixed library types") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: false, condition: 'control', lib_type: 'reverse', sequencer: 'HiSeq' ],
+                [ id: 'test3', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test4', single_end: false, condition: 'treatment', lib_type: 'reverse', sequencer: 'HiSeq' ],
+                [ id: 'test5', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test6', single_end: false, condition: 'treatment', lib_type: 'reverse', sequencer: 'HiSeq' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputSamplesheet - Fails with invalid strandedness") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: false, condition: 'control', lib_type: 'unstranded', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: false, condition: 'control', lib_type: 'reverse', sequencer: 'HiSeq' ],
+                [ id: 'test3', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test4', single_end: false, condition: 'treatment', lib_type: 'reverse', sequencer: 'HiSeq' ],
+                [ id: 'test5', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test6', single_end: false, condition: 'treatment', lib_type: 'unstranded', sequencer: 'HiSeq' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputSamplesheet - Fails with mixed sequencers") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test3', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test4', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'NovaSeq' ],
+                [ id: 'test5', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'NovaSeq' ],
+                [ id: 'test6', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'NovaSeq' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputSamplesheet - Fails with unsupported sequencer") {
+        function "validateInputSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = [
+                [ id: 'test1', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test2', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test3', single_end: false, condition: 'control', lib_type: 'forward', sequencer: 'HiSeq' ],
+                [ id: 'test4', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'Nanopore' ],
+                [ id: 'test5', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'Nanopore' ],
+                [ id: 'test6', single_end: false, condition: 'treatment', lib_type: 'forward', sequencer: 'Nanopore' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function validateInputParameters success") {
+        function "validateInputParameters"
+
+        when {
+            params {
+                // Core Aligner Logic
+                aligner                = null
+                pseudo_aligner         = "salmon"
+
+                // Analysis Methods
+                analysis_method        = "DEG,WGCNA"
+
+                // Genome Config
+                species                = "human"
+                fasta                  = "genome.fasta"
+                gtf                    = "genome.gtf"
+                gff                    = "genome.gff"
+                transcriptome          = "transcripts.fasta"
+                gtf_isoform            = "genome_haplotypes.gtf"
+                bed                    = "genome.bed"
+
+                // WGCNA Parameters
+                tomtype                = "signed"
+                networktype            = "signed"
+
+                // Other Tool Params
+                diffexpr_method        = "deseq2"
+                rank_method            = "t_stat"
+                cluster_method         = "hclust"
+                lib_kit                = "takara"
+                rrna_db_type           = "default"
+
+                // Optional splits
+                rseqc_modules          = "bam_stat,tin"
+                msigdb_categories      = "H,C5"
+                enrichment_method      = "GO,KEGG"
+                event_types            = "SE,RI"
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.success },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function genomeExistsError finds genome") {
+        function "genomeExistsError"
+
+        when {
+            params {
+                species = "Test"
+                genome  = "myTest"
+                genomes {
+                    'Test' {
+                        'myTest' {
+                             myAttribute = "myValue"
+                        }
+                    }
+                }
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.success },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function genomeExistsError missing species") {
+        function "genomeExistsError"
+
+        when {
+            params {
+                species = "missingTest"
+                genome  = "myTest"
+                genomes {
+                    'Test' {
+                        'myTest' {
+                             myAttribute = "myValue"
+                        }
+                    }
+                }
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function genomeExistsError missing genome for valid species") {
+        function "genomeExistsError"
+
+        when {
+            params {
+                species = "Test"
+                genome  = "missingTest"
+                genomes {
+                    'Test' {
+                        'myTest' {
+                            myAttribute = "myValue"
+                        }
+                    }
+                }
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function contaminantExistsError success") {
+        function "contaminantExistsError"
+
+        when {
+            params {
+                contaminant_species  = "myTest"
+                contaminants {
+                    'myTest' {
+                        myAttribute = "myValue"
+                    }
+                }
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.success },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function contaminantExistsError missing species") {
+        function "contaminantExistsError"
+
+        when {
+            params {
+                contaminant_species  = "missingTest"
+                contaminants {
+                    'myTest' {
+                        myAttribute = "myValue"
+                    }
+                }
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.failed },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+
+    test("Test Function toolCitationText") {
+
+        function "toolCitationText"
+
+        when {
+            params {
+                species = 'human'
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.success },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+
+    test("Test Function toolBibliographyText") {
+
+        function "toolBibliographyText"
+
+        when {
+            params {
+                species = 'human'
+            }
+        }
+
+        then {
+            assertAll(
+                { assert function.success },
+                { assert snapshot(function.result).match() }
+            )
+        }
+    }
+}

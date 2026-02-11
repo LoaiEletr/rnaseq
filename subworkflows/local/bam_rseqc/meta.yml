@@ -24,7 +24,7 @@ components:
   - rseqc/readduplication
   - rseqc/tin
 input:
-  - rseqc_modules:
+  - val_rseqc_modules:
       type: list
       description: |
         List of RSeQC module names to execute. Available modules:
@@ -46,7 +46,7 @@ input:
   - ch_bai:
       type: file
       description: |
-        Channel containing BAM index files (required for some modules)
+        Channel containing BAM index files (required for TIN and gene body coverage modules)
         Structure: [ val(meta), path(bai) ]
       pattern: "*.bai"
 output:
@@ -62,18 +62,24 @@ output:
         R scripts for gene body coverage plots (only when 'genebody_coverage' in rseqc_modules)
         Structure: [ path(rscript) ]
       pattern: "*.r"
-  - genebodycoverage_pdf:
+  - genebodycoverage_curves:
       type: file
       description: |
-        PDF plots of gene body coverage (only when 'genebody_coverage' in rseqc_modules)
+        Gene body coverage curve PDF plots (only when 'genebody_coverage' in rseqc_modules)
         Structure: [ path(pdf) ]
-      pattern: "*.pdf"
+      pattern: "*.geneBodyCoverage.curves.pdf"
+  - genebodycoverage_heatmap:
+      type: file
+      description: |
+        Gene body coverage heatmap PDF plots (only when 'genebody_coverage' in rseqc_modules)
+        Structure: [ path(pdf) ]
+      pattern: "*.geneBodyCoverage.heatmap.pdf"
   - genebodycoverage_txt:
       type: file
       description: |
         Text files with gene body coverage data (only when 'genebody_coverage' in rseqc_modules)
         Structure: [ path(txt) ]
-      pattern: "*.txt"
+      pattern: "*.geneBodyCoverage.txt"
   - genebodycoverage_log:
       type: file
       description: |
@@ -116,6 +122,12 @@ output:
         Junction annotation Excel files (only when 'junction_annotation' in rseqc_modules)
         Structure: [ val(meta), path(xls) ]
       pattern: "*.xls"
+  - junctionannotation_log:
+      type: file
+      description: |
+        Junction annotation log files (only when 'junction_annotation' in rseqc_modules)
+        Structure: [ val(meta), path(log) ]
+      pattern: "*.junction_annotation.log"
   - junctionannotation_r:
       type: file
       description: |

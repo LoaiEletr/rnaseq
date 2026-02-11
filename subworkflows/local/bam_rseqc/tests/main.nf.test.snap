@@ -15,7 +15,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:19:15.156602563"
+        "timestamp": "2026-02-05T17:55:25.728523479"
     },
     "sarscov2 - bam - bed - bai | junction_annotation_only": {
         "content": [
@@ -27,6 +27,9 @@
                     
                 ],
                 "10": [
+                    
+                ],
+                "11": [
                     [
                         {
                             "id": "test",
@@ -35,7 +38,16 @@
                         "test.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "11": [
+                "12": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.junction_annotation.log:md5,d75e0f5d62fada8aa9449991b209554c"
+                    ]
+                ],
+                "13": [
                     [
                         {
                             "id": "test",
@@ -43,12 +55,6 @@
                         },
                         "test.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "12": [
-                    
-                ],
-                "13": [
-                    
                 ],
                 "14": [
                     
@@ -81,6 +87,12 @@
                     
                 ],
                 "23": [
+                    
+                ],
+                "24": [
+                    
+                ],
+                "25": [
                     "versions.yml:md5,497bfd7a0ca772f3e0f94c15f00cbf48"
                 ],
                 "3": [
@@ -107,10 +119,13 @@
                 "bamstat": [
                     
                 ],
-                "genebodycoverage_log": [
+                "genebodycoverage_curves": [
                     
                 ],
-                "genebodycoverage_pdf": [
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
                     
                 ],
                 "genebodycoverage_r": [
@@ -142,6 +157,15 @@
                 ],
                 "junctionannotation_interact": [
                     
+                ],
+                "junctionannotation_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.junction_annotation.log:md5,d75e0f5d62fada8aa9449991b209554c"
+                    ]
                 ],
                 "junctionannotation_pdf": [
                     
@@ -194,7 +218,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:22:30.473305376"
+        "timestamp": "2026-02-05T17:57:50.650657864"
     },
     "sarscov2 - bam - bed - bai | tin_only": {
         "content": [
@@ -242,6 +266,12 @@
                     
                 ],
                 "21": [
+                    
+                ],
+                "22": [
+                    
+                ],
+                "23": [
                     [
                         {
                             "id": "test",
@@ -250,7 +280,7 @@
                         "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
                     ]
                 ],
-                "22": [
+                "24": [
                     [
                         {
                             "id": "test",
@@ -259,7 +289,7 @@
                         "test.paired_end.sorted.tin.xls:md5,abdbb6d51a5cd7038cd862ce241ecef1"
                     ]
                 ],
-                "23": [
+                "25": [
                     "versions.yml:md5,55bb098a2568f941ae2c8a376a7286a5"
                 ],
                 "3": [
@@ -286,10 +316,13 @@
                 "bamstat": [
                     
                 ],
-                "genebodycoverage_log": [
+                "genebodycoverage_curves": [
                     
                 ],
-                "genebodycoverage_pdf": [
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
                     
                 ],
                 "genebodycoverage_r": [
@@ -320,6 +353,9 @@
                     
                 ],
                 "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
                     
                 ],
                 "junctionannotation_pdf": [
@@ -373,7 +409,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:28:17.134160134"
+        "timestamp": "2026-02-05T18:00:18.335482999"
     },
     "sarscov2 - bam - bed - bai | read_duplication_only": {
         "content": [
@@ -412,7 +448,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:26:59.572936794"
+        "timestamp": "2026-02-05T17:59:27.765992581"
     },
     "sarscov2 - bam - bed - bai - stub": {
         "content": [
@@ -442,6 +478,22 @@
                             "id": "test1",
                             "single_end": false
                         },
+                        "test1.inner_distance_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.inner_distance_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "11": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
                         "test1.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -452,7 +504,23 @@
                         "test2.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "11": [
+                "12": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "13": [
                     [
                         {
                             "id": "test1",
@@ -468,7 +536,7 @@
                         "test2.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "12": [
+                "14": [
                     [
                         {
                             "id": "test1",
@@ -484,7 +552,7 @@
                         "test2.junction.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "13": [
+                "15": [
                     [
                         {
                             "id": "test1",
@@ -500,7 +568,7 @@
                         "test2.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "14": [
+                "16": [
                     [
                         {
                             "id": "test1",
@@ -516,7 +584,7 @@
                         "test2.junction.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "15": [
+                "17": [
                     [
                         {
                             "id": "test1",
@@ -532,7 +600,7 @@
                         "test2.events.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "16": [
+                "18": [
                     [
                         {
                             "id": "test1",
@@ -548,7 +616,7 @@
                         "test2.read_distribution.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "17": [
+                "19": [
                     [
                         {
                             "id": "test1",
@@ -564,7 +632,10 @@
                         "test2.DupRate_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "18": [
+                "2": [
+                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "20": [
                     [
                         {
                             "id": "test1",
@@ -580,7 +651,7 @@
                         "test2.DupRate_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "19": [
+                "21": [
                     [
                         {
                             "id": "test1",
@@ -596,10 +667,7 @@
                         "test2.seq.DupRate.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "2": [
-                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "20": [
+                "22": [
                     [
                         {
                             "id": "test1",
@@ -615,7 +683,7 @@
                         "test2.pos.DupRate.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "21": [
+                "23": [
                     [
                         {
                             "id": "test1",
@@ -631,7 +699,7 @@
                         "test.paired_end.methylated.sorted.summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "22": [
+                "24": [
                     [
                         {
                             "id": "test1",
@@ -647,7 +715,7 @@
                         "test.paired_end.methylated.sorted.tin.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "23": [
+                "25": [
                     "versions.yml:md5,06f01970db8f497c0c58ff9d1a99792f",
                     "versions.yml:md5,36d44ac04fbebd880a708416d1977b13",
                     "versions.yml:md5,497bfd7a0ca772f3e0f94c15f00cbf48",
@@ -658,12 +726,15 @@
                     "versions.yml:md5,ca7dd6bc18f0ccc5f293900719b1d8c5"
                 ],
                 "3": [
-                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "4": [
-                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "5": [
+                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "6": [
                     [
                         {
                             "id": "test1",
@@ -679,7 +750,7 @@
                         "test2.infer_experiment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "6": [
+                "7": [
                     [
                         {
                             "id": "test1",
@@ -695,7 +766,7 @@
                         "test2.inner_distance.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "7": [
+                "8": [
                     [
                         {
                             "id": "test1",
@@ -711,7 +782,7 @@
                         "test2.inner_distance_freq.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "8": [
+                "9": [
                     [
                         {
                             "id": "test1",
@@ -725,22 +796,6 @@
                             "single_end": false
                         },
                         "test2.inner_distance_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "9": [
-                    [
-                        {
-                            "id": "test1",
-                            "single_end": false
-                        },
-                        "test1.inner_distance_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "test2",
-                            "single_end": false
-                        },
-                        "test2.inner_distance_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "bamstat": [
@@ -759,11 +814,14 @@
                         "test2_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
+                "genebodycoverage_curves": [
+                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "genebodycoverage_heatmap": [
+                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
                 "genebodycoverage_log": [
                     "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "genebodycoverage_pdf": [
-                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "genebodycoverage_r": [
                     "genebody_coverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -897,6 +955,22 @@
                             "single_end": false
                         },
                         "test2.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "junctionannotation_log": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "junctionannotation_pdf": [
@@ -1075,7 +1149,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:31:03.902949062"
+        "timestamp": "2026-02-05T18:02:03.003123332"
     },
     "sarscov2 - bam - bed - bai | inner_distance_only": {
         "content": [
@@ -1114,7 +1188,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:21:05.107876475"
+        "timestamp": "2026-02-05T17:57:03.123225762"
     },
     "sarscov2 - bam - bed - bai | infer_experiment_only": {
         "content": [
@@ -1168,6 +1242,12 @@
                     
                 ],
                 "23": [
+                    
+                ],
+                "24": [
+                    
+                ],
+                "25": [
                     "versions.yml:md5,93efe9464c94ed39e3c4af87a4c1e46f"
                 ],
                 "3": [
@@ -1177,6 +1257,9 @@
                     
                 ],
                 "5": [
+                    
+                ],
+                "6": [
                     [
                         {
                             "id": "test",
@@ -1184,9 +1267,6 @@
                         },
                         "test.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
                     ]
-                ],
-                "6": [
-                    
                 ],
                 "7": [
                     
@@ -1200,10 +1280,13 @@
                 "bamstat": [
                     
                 ],
-                "genebodycoverage_log": [
+                "genebodycoverage_curves": [
                     
                 ],
-                "genebodycoverage_pdf": [
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
                     
                 ],
                 "genebodycoverage_r": [
@@ -1240,6 +1323,9 @@
                     
                 ],
                 "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
                     
                 ],
                 "junctionannotation_pdf": [
@@ -1281,7 +1367,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:20:08.573180876"
+        "timestamp": "2026-02-05T17:56:14.657697531"
     },
     "sarscov2 - bam - bed - bai": {
         "content": [
@@ -1526,7 +1612,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:17:31.50573764"
+        "timestamp": "2026-02-05T17:53:27.612273711"
     },
     "sarscov2 - bam - bed - bai | read_distribution_only": {
         "content": [
@@ -1556,6 +1642,12 @@
                     
                 ],
                 "16": [
+                    
+                ],
+                "17": [
+                    
+                ],
+                "18": [
                     [
                         {
                             "id": "test",
@@ -1563,12 +1655,6 @@
                         },
                         "test.read_distribution.txt:md5,56893fdc0809d968629a363551a1655f"
                     ]
-                ],
-                "17": [
-                    
-                ],
-                "18": [
-                    
                 ],
                 "19": [
                     
@@ -1586,6 +1672,12 @@
                     
                 ],
                 "23": [
+                    
+                ],
+                "24": [
+                    
+                ],
+                "25": [
                     "versions.yml:md5,06f01970db8f497c0c58ff9d1a99792f"
                 ],
                 "3": [
@@ -1612,10 +1704,13 @@
                 "bamstat": [
                     
                 ],
-                "genebodycoverage_log": [
+                "genebodycoverage_curves": [
                     
                 ],
-                "genebodycoverage_pdf": [
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
                     
                 ],
                 "genebodycoverage_r": [
@@ -1646,6 +1741,9 @@
                     
                 ],
                 "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
                     
                 ],
                 "junctionannotation_pdf": [
@@ -1693,7 +1791,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:23:21.517188506"
+        "timestamp": "2026-02-05T17:58:39.233772259"
     },
     "sarscov2 - bam - bed - bai | bam_stat_only": {
         "content": [
@@ -1753,6 +1851,12 @@
                     
                 ],
                 "23": [
+                    
+                ],
+                "24": [
+                    
+                ],
+                "25": [
                     "versions.yml:md5,36d44ac04fbebd880a708416d1977b13"
                 ],
                 "3": [
@@ -1785,10 +1889,13 @@
                         "test_bam_stat.txt:md5,2675857864c1d1139b2a19d25dc36b09"
                     ]
                 ],
-                "genebodycoverage_log": [
+                "genebodycoverage_curves": [
                     
                 ],
-                "genebodycoverage_pdf": [
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
                     
                 ],
                 "genebodycoverage_r": [
@@ -1819,6 +1926,9 @@
                     
                 ],
                 "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
                     
                 ],
                 "junctionannotation_pdf": [
@@ -1860,6 +1970,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T22:18:21.035161168"
+        "timestamp": "2026-02-05T17:54:15.045803336"
     }
 }

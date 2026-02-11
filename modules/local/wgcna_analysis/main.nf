@@ -23,6 +23,7 @@ process WGCNA_ANALYSIS {
     val reassignthreshold
     val mergecutheight
     val minmodulesize
+    val sft_r2_threshold
 
     output:
     path "WGCNA", emit: wgcna_results
@@ -47,7 +48,7 @@ process WGCNA_ANALYSIS {
     run_wgcna_analysis.R ${count_matrix_rds} ${samplesheet_csv} ${min_gs} \\
     ${min_mm} ${top_n} ${cor_threshold} ${pval_threshold} ${maxblocksize} \\
     ${tomtype} ${networktype} ${deepsplit} ${reassignthreshold} \\
-    ${mergecutheight} ${minmodulesize}
+    ${mergecutheight} ${minmodulesize} ${sft_r2_threshold}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

@@ -348,7 +348,7 @@ if ("DIU" %in% analysisMethods) {
         alpha = pvalueThreshold,
         dIFcutoff = dIfCutoff,
         )
-        saveTableCsv(switchSummaryData, "switch_summary_data.csv", asDir)
+        saveTableCsv(switchSummaryData, "switch_summary_data.csv", diuDir)
     }, error = function(error) {
         message("Failed to extract switch summary data: ", error$message)
     })

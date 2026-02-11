@@ -33,11 +33,16 @@ input:
         Channel containing GTF annotation file for feature counting
         Structure: [ path(gtf) ]
       pattern: "*.{gtf,gtf.gz}"
-  - with_umi:
+  - val_with_umi:
       type: boolean
       description: |
         Whether to perform UMI deduplication (true) or skip it (false)
         Structure: true/false
+  - val_analysis_method:
+      type: list
+      description: |
+        A list of statistical analysis methods to be performed.
+        Structure: [ "DEG", "WGCNA", "DIU", "DEU", "AS" ]
 output:
   - bam:
       type: file

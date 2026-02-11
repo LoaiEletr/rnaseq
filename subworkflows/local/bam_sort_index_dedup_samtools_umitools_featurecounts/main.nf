@@ -19,7 +19,8 @@ workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
     take:
     ch_bam // channel: [ val(meta), bam ]
     ch_gtf // channel: [ gtf ]
-    with_umi // boolean: true/false
+    val_with_umi // boolean: true/false
+    val_analysis_method // list: user-selected methods to be executed
 
     main:
 
@@ -35,13 +36,12 @@ workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
     ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
     ch_bai = SAMTOOLS_INDEX.out.bai
 
+    // 3. UMI deduplication (optional)
     ch_edit_distance = channel.empty()
     ch_per_umi = channel.empty()
     ch_per_position = channel.empty()
     ch_umi_log = channel.empty()
-
-    // 3. UMI deduplication (optional)
-    if (with_umi) {
+    if (val_with_umi) {
         UMITOOLS_DEDUP(ch_umi_bam.join(ch_bai))
         ch_versions = ch_versions.mix(UMITOOLS_DEDUP.out.versions.first())
         ch_edit_distance = UMITOOLS_DEDUP.out.tsv_edit_distance
@@ -61,10 +61,14 @@ workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
     }
 
     // 6. Feature counting with Subread
-    SUBREAD_FEATURECOUNTS(ch_umi_bam, ch_gtf)
-    ch_counts = SUBREAD_FEATURECOUNTS.out.counts
-    ch_summary = SUBREAD_FEATURECOUNTS.out.summary
-    ch_versions = ch_versions.mix(SUBREAD_FEATURECOUNTS.out.versions.first())
+    ch_counts = channel.empty()
+    ch_summary = channel.empty()
+    if ("DEG" in val_analysis_method) {
+        SUBREAD_FEATURECOUNTS(ch_umi_bam, ch_gtf)
+        ch_counts = SUBREAD_FEATURECOUNTS.out.counts
+        ch_summary = SUBREAD_FEATURECOUNTS.out.summary
+        ch_versions = ch_versions.mix(SUBREAD_FEATURECOUNTS.out.versions.first())
+    }
 
     emit:
     bam = ch_umi_bam // channel: [ val(meta), [ bam ] ]

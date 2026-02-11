@@ -1,19 +1,37 @@
 nextflow_workflow {
 
-    name "Test Workflow FASTQ_INDEX_QUANT_PSEUDOALIGNMENT"
+    name "Test Workflow FASTQ_QUANT_PSEUDOALIGNMENT"
     script "../main.nf"
-    workflow "FASTQ_INDEX_QUANT_PSEUDOALIGNMENT"
+    workflow "FASTQ_QUANT_PSEUDOALIGNMENT"
 
     tag "subworkflows"
-    tag "subworkflows/fastq_index_quant_pseudoalignment"
+    tag "subworkflows/fastq_quant_pseudoalignment"
     tag "kallisto"
-    tag "kallisto/index"
     tag "kallisto/quant"
     tag "salmon"
-    tag "salmon/index"
     tag "salmon/quant"
 
-    test("sarscov2 - fastq - fasta - gtf | kallisto") {
+    setup {
+        run("SALMON_INDEX") {
+            script "modules/local/salmon/index/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                """
+            }
+        }
+
+        run("KALLISTO_INDEX") {
+            script "modules/local/kallisto/index/main.nf"
+            process {
+                """
+                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                """
+            }
+        }
+    }
+
+    test("sarscov2 - fastq - index - gtf | kallisto") {
         when {
             params {
                 outdir = "$outputDir"
@@ -30,12 +48,13 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.bootstrap_count
-                input[4] = params.fragment_length
-                input[5] = params.fragment_length_sd
-                input[6] = params.pseudoaligner_method
+                input[1] = KALLISTO_INDEX.out.index
+                input[2] = []
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[4] = params.bootstrap_count
+                input[5] = params.fragment_length
+                input[6] = params.fragment_length_sd
+                input[7] = params.pseudoaligner_method
                 """
             }
         }
@@ -47,7 +66,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - [fastq1, fastq2] - fasta - gtf | kallisto") {
+    test("sarscov2 - [fastq1, fastq2] - index - gtf | kallisto") {
         when {
             params {
                 outdir = "$outputDir"
@@ -65,12 +84,13 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.bootstrap_count
-                input[4] = params.fragment_length
-                input[5] = params.fragment_length_sd
-                input[6] = params.pseudoaligner_method
+                input[1] = KALLISTO_INDEX.out.index
+                input[2] = []
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[4] = params.bootstrap_count
+                input[5] = params.fragment_length
+                input[6] = params.fragment_length_sd
+                input[7] = params.pseudoaligner_method
                 """
             }
         }
@@ -82,7 +102,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - fastq - fasta - gtf | salmon") {
+    test("sarscov2 - fastq - index - gtf | salmon") {
         when {
             params {
                 outdir = "$outputDir"
@@ -99,12 +119,13 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.bootstrap_count
-                input[4] = params.fragment_length
-                input[5] = params.fragment_length_sd
-                input[6] = params.pseudoaligner_method
+                input[1] = []
+                input[2] = SALMON_INDEX.out.index
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[4] = params.bootstrap_count
+                input[5] = params.fragment_length
+                input[6] = params.fragment_length_sd
+                input[7] = params.pseudoaligner_method
                 """
             }
         }
@@ -116,7 +137,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - [fastq1, fastq2] - fasta - gtf | salmon") {
+    test("sarscov2 - [fastq1, fastq2] - index - gtf | salmon") {
         when {
             params {
                 outdir = "$outputDir"
@@ -134,12 +155,13 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.bootstrap_count
-                input[4] = params.fragment_length
-                input[5] = params.fragment_length_sd
-                input[6] = params.pseudoaligner_method
+                input[1] = []
+                input[2] = SALMON_INDEX.out.index
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[4] = params.bootstrap_count
+                input[5] = params.fragment_length
+                input[6] = params.fragment_length_sd
+                input[7] = params.pseudoaligner_method
                 """
             }
         }
@@ -152,7 +174,7 @@ nextflow_workflow {
     }
 
     // Stub tests
-    test("sarscov2 - fastq - fasta - gtf | kallisto - stub") {
+    test("sarscov2 - fastq - index - gtf | kallisto - stub") {
         options "-stub"
         when {
             params {
@@ -170,12 +192,13 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.bootstrap_count
-                input[4] = params.fragment_length
-                input[5] = params.fragment_length_sd
-                input[6] = params.pseudoaligner_method
+                input[1] = KALLISTO_INDEX.out.index
+                input[2] = []
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[4] = params.bootstrap_count
+                input[5] = params.fragment_length
+                input[6] = params.fragment_length_sd
+                input[7] = params.pseudoaligner_method
                 """
             }
         }
@@ -187,7 +210,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - [fastq1, fastq2] - fasta - gtf | salmon - stub") {
+    test("sarscov2 - [fastq1, fastq2] - index - gtf | salmon - stub") {
         options "-stub"
         when {
             params {
@@ -206,12 +229,13 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.bootstrap_count
-                input[4] = params.fragment_length
-                input[5] = params.fragment_length_sd
-                input[6] = params.pseudoaligner_method
+                input[1] = []
+                input[2] = SALMON_INDEX.out.index
+                input[3] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[4] = params.bootstrap_count
+                input[5] = params.fragment_length
+                input[6] = params.fragment_length_sd
+                input[7] = params.pseudoaligner_method
                 """
             }
         }

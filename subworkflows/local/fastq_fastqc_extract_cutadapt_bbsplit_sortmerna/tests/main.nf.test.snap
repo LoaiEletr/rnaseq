@@ -28,20 +28,18 @@
                 ]
             ],
             [
-                "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
                 "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
                 "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
+                "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T04:57:35.688508715"
+        "timestamp": "2026-02-02T07:24:45.69431927"
     },
     "sarscov2 paired-end [fastq] | skip_sortmerna": {
         "content": [
@@ -75,18 +73,17 @@
                 
             ],
             [
-                "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
                 "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
                 "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
+                "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T05:25:50.085796544"
+        "timestamp": "2026-02-02T08:11:49.711524287"
     },
     "sarscov2 paired-end [fastq] | skip_fastqc": {
         "content": [
@@ -119,18 +116,16 @@
                 
             ],
             [
-                "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
-                "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
+                "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T00:44:36.605189302"
+        "timestamp": "2026-02-02T06:50:25.661369455"
     },
     "sarscov2 paired-end [fastq] | skip_cutadapt": {
         "content": [
@@ -154,18 +149,16 @@
                 
             ],
             [
-                "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
                 "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
-                "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43"
+                "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T01:41:39.986755656"
+        "timestamp": "2026-02-02T07:40:38.697171259"
     },
     "sarscov2 single-end [fastq] - stub": {
         "content": [
@@ -189,25 +182,6 @@
                         },
                         "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "10": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
-                        },
-                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "11": [
-                    "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
-                    "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
-                    "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                    "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                    "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                    "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
                 ],
                 "2": [
                     
@@ -244,23 +218,12 @@
                 ],
                 "6": [
                     [
-                        [
-                            [
-                                "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ]
-                        ],
-                        [
-                            [
-                                "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ]
-                        ]
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "7": [
@@ -270,44 +233,25 @@
                             "single_end": true,
                             "sequencer": "HiSeq"
                         },
-                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "8": [
-                    [
-                        
-                    ]
-                ],
-                "9": [
                     [
                         {
                             "id": "test",
                             "single_end": true,
                             "sequencer": "HiSeq"
                         },
-                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "bbsplit_index": [
-                    [
-                        [
-                            [
-                                "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ]
-                        ],
-                        [
-                            [
-                                "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ]
-                        ]
-                    ]
+                "9": [
+                    "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
+                    "versions.yml:md5,756265015336a223feb31fc97a43800e",
+                    "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                    "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
                 ],
                 "bbsplit_stats": [
                     [
@@ -379,11 +323,6 @@
                         "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
-                "sortmerna_index": [
-                    [
-                        
-                    ]
-                ],
                 "trim_json": [
                     [
                         {
@@ -398,13 +337,11 @@
                     
                 ],
                 "versions": [
-                    "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
                     "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
                     "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                    "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                    "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                    "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
+                    "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                    "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
                 ]
             }
         ],
@@ -412,7 +349,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T03:22:43.857757059"
+        "timestamp": "2026-02-02T08:36:03.096338652"
     },
     "sarscov2 paired-end [fastq] | with_umi": {
         "content": [
@@ -453,21 +390,19 @@
                 ]
             ],
             [
-                "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
                 "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
                 "versions.yml:md5,457f72ecb510c802f148f15db146ffce",
                 "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
+                "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T04:40:58.505384028"
+        "timestamp": "2026-02-02T07:07:37.50381995"
     },
     "sarscov2 paired-end [fastq]": {
         "content": [
@@ -498,20 +433,18 @@
                 ]
             ],
             [
-                "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
                 "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
                 "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
+                "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T04:07:48.228962017"
+        "timestamp": "2026-02-02T06:35:12.574263123"
     },
     "sarscov2 paired-end [fastq] - stub": {
         "content": [
@@ -541,25 +474,6 @@
                             "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
                         ]
                     ]
-                ],
-                "10": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
-                        },
-                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "11": [
-                    "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
-                    "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
-                    "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                    "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                    "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                    "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
                 ],
                 "2": [
                     
@@ -602,27 +516,6 @@
                 ],
                 "6": [
                     [
-                        [
-                            [
-                                "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ]
-                        ],
-                        [
-                            [
-                                "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ]
-                        ]
-                    ]
-                ],
-                "7": [
-                    [
                         {
                             "id": "test",
                             "single_end": false,
@@ -631,12 +524,7 @@
                         "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "8": [
-                    [
-                        
-                    ]
-                ],
-                "9": [
+                "7": [
                     [
                         {
                             "id": "test",
@@ -649,26 +537,22 @@
                         ]
                     ]
                 ],
-                "bbsplit_index": [
+                "8": [
                     [
-                        [
-                            [
-                                "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ]
-                        ],
-                        [
-                            [
-                                "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ]
-                        ]
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
+                ],
+                "9": [
+                    "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
+                    "versions.yml:md5,756265015336a223feb31fc97a43800e",
+                    "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                    "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
                 ],
                 "bbsplit_stats": [
                     [
@@ -755,11 +639,6 @@
                         ]
                     ]
                 ],
-                "sortmerna_index": [
-                    [
-                        
-                    ]
-                ],
                 "trim_json": [
                     [
                         {
@@ -774,13 +653,11 @@
                     
                 ],
                 "versions": [
-                    "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
                     "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
                     "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                    "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                    "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                    "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
+                    "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                    "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                    "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
                 ]
             }
         ],
@@ -788,48 +665,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T03:19:28.491185554"
-    },
-    "sarscov2 single-end [fastq]": {
-        "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true,
-                        "sequencer": "HiSeq"
-                    },
-                    "test_non_rRNA_reads.fq.gz:md5,469527e34a570fe874129057bda2366f"
-                ]
-            ],
-            [
-                
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true,
-                        "sequencer": "HiSeq"
-                    },
-                    "test.cutadapt.json:md5,90344431cad4c05e40091663e561246e"
-                ]
-            ],
-            [
-                "versions.yml:md5,14aaa88ce53803c4f8594f53bb71a702",
-                "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
-                "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
-                "versions.yml:md5,c707d0ade20ee78fc6bf02032c007a43",
-                "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-22T05:42:05.915340892"
+        "timestamp": "2026-02-02T08:33:01.805562621"
     },
     "sarscov2 paired-end [fastq] | skip_bbsplit": {
         "content": [
@@ -862,8 +698,7 @@
             [
                 "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
                 "versions.yml:md5,756265015336a223feb31fc97a43800e",
-                "versions.yml:md5,7eb7ed5079ee252389cd6f4faba4ab60",
-                "versions.yml:md5,8110ceb417bfc16166ee3ee1f9231f2b",
+                "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
                 "versions.yml:md5,e5c942449128d38da53e355b863a19d6"
             ]
         ],
@@ -871,6 +706,45 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T05:20:06.479829945"
+        "timestamp": "2026-02-02T07:56:51.252589069"
+    },
+    "sarscov2 single-end [fastq]": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "sequencer": "HiSeq"
+                    },
+                    "test_non_rRNA_reads.fq.gz:md5,469527e34a570fe874129057bda2366f"
+                ]
+            ],
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true,
+                        "sequencer": "HiSeq"
+                    },
+                    "test.cutadapt.json:md5,90344431cad4c05e40091663e561246e"
+                ]
+            ],
+            [
+                "versions.yml:md5,445e5f89013fb21a9bda7a3733d50a6c",
+                "versions.yml:md5,756265015336a223feb31fc97a43800e",
+                "versions.yml:md5,d1ba6aa36cc7a6a804e5acab17a0b20e",
+                "versions.yml:md5,e5c942449128d38da53e355b863a19d6",
+                "versions.yml:md5,eeefc31a2da70534a34a5684e5f04e29"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-02T08:28:43.120172577"
     }
 }

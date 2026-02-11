@@ -14,6 +14,7 @@ nextflow_process {
             process {
                 """
                 input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastqc/test_fastqc.zip', checkIfExists: true)
+                input[1] = []
                 """
             }
         }
@@ -34,6 +35,7 @@ nextflow_process {
             process {
                 """
                 input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastqc/test_fastqc.zip', checkIfExists: true)
+                input[1] = []
                 """
             }
         }

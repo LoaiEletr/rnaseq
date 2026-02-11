@@ -2,7 +2,7 @@ name: "msigdb_gsea"
 description: |
   Performs Gene Set Enrichment Analysis (GSEA) using the Molecular Signatures Database (MSigDB).
   Analyzes pre-ranked gene lists for enrichment in biological pathways and processes across
-  multiple MSigDB collections (H, C1-C8).
+  multiple MSigDB collections (H, C1-C9).
 keywords:
   - gsea
   - gene set enrichment

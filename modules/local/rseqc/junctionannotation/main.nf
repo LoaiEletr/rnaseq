@@ -16,6 +16,7 @@ process RSEQC_JUNCTIONANNOTATION {
     output:
     tuple val(meta), path("*.xls"), emit: xls
     tuple val(meta), path("*.r"), emit: rscript
+    tuple val(meta), path("*.log"), emit: log
     tuple val(meta), path("*.junction.bed"), optional: true, emit: junction_bed
     tuple val(meta), path("*.Interact.bed"), optional: true, emit: interact_bed
     tuple val(meta), path("*junction.pdf"), optional: true, emit: junction_pdf
@@ -33,7 +34,8 @@ process RSEQC_JUNCTIONANNOTATION {
         -i ${bam} \\
         ${args} \\
         -o ${prefix} \\
-        -r ${bed}
+        -r ${bed} \\
+        2>| >(tee ${prefix}.junction_annotation.log >&2)
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -50,6 +52,7 @@ process RSEQC_JUNCTIONANNOTATION {
     touch ${prefix}.Interact.bed
     touch ${prefix}.junction.pdf
     touch ${prefix}.events.pdf
+    touch ${prefix}.junction_annotation.log
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

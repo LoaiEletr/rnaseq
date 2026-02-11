@@ -6,9 +6,9 @@
 ## Usage:   Rscript run_wgcna_analysis.R <counts_file> <samplesheet_file> <min_gene_significance>
 ##          <min_module_membership> <top_n_genes> <correlation_threshold> <pvalue_threshold>
 ##          <max_block_size> <tom_type> <network_type> <deep_split> <reassign_threshold>
-##          <merge_cut_height> <min_module_size>
+##          <merge_cut_height> <min_module_size> <scale_free_r2_threshold>
 ## Example: Rscript run_wgcna_analysis.R counts.rds samples.csv 0.2 0.5 50 0.5 0.05 5000 signed
-##          signed 2 0.05 0.25 30
+##          signed 2 0.05 0.25 30 0.8
 ## =============================================================================
 
 ## Load required packages ------------------------------------------------------
@@ -25,12 +25,12 @@ enableWGCNAThreads()
 
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) < 14) {
+if (length(args) < 15) {
     stop(
         "Usage: run_wgcna_analysis.R <counts_file> <samplesheet_file> <min_gene_significance> ",
         "<min_module_membership> <top_n_genes> <correlation_threshold> <pvalue_threshold> ",
         "<max_block_size> <tom_type> <network_type> <deep_split> <reassign_threshold> ",
-        "<merge_cut_height> <min_module_size>",
+        "<merge_cut_height> <min_module_size> <scale_free_r2_threshold>",
         call. = FALSE
     )
 }
@@ -50,6 +50,7 @@ deepSplit <- as.numeric(args[11])
 reassignThreshold <- as.numeric(args[12])
 mergeCutHeight <- as.numeric(args[13])
 minModuleSize <- as.numeric(args[14])
+rSquaredThreshold = as.numeric(args[15])
 
 ## =============================================================================
 ## Load and prepare data
@@ -185,7 +186,7 @@ saveRDS(
 ## =============================================================================
 
 ## Soft threshold selection ----------------------------------------------------
-powerValues <- c(1:10, seq(from = 12, to = 50, by = 2))
+powerValues <- c(1:10, seq(from = 12, to = 20, by = 2))
 softThresholdResult <- pickSoftThreshold(
     normalizedCounts,
     powerVector = powerValues,
@@ -194,8 +195,7 @@ softThresholdResult <- pickSoftThreshold(
 )
 
 ## Function to select optimal power --------------------------------------------
-selectOptimalPower <- function(fitIndices) {
-    rSquaredThreshold <- 0.80
+selectOptimalPower <- function(fitIndices, rSquaredThreshold = 0.80) {
 
     for (i in seq_len(nrow(fitIndices))) {
         if (fitIndices$SFT.R.sq[i] >= rSquaredThreshold) {
@@ -207,7 +207,7 @@ selectOptimalPower <- function(fitIndices) {
     return(selectedPower)
 }
 
-softPower <- selectOptimalPower(softThresholdResult$fitIndices)
+softPower <- selectOptimalPower(softThresholdResult$fitIndices, rSquaredThreshold)
 
 ## Plot soft threshold selection -----------------------------------------------
 pdf(file.path(outputDir, "soft_threshold_selection.pdf"), width = 10, height = 5)
