@@ -375,6 +375,12 @@ nextflow_function {
 
         function "toolCitationText"
 
+        when {
+            params {
+                species = 'human'
+            }
+        }
+
         then {
             assertAll(
                 { assert function.success },
@@ -386,6 +392,12 @@ nextflow_function {
     test("Test Function toolBibliographyText") {
 
         function "toolBibliographyText"
+
+        when {
+            params {
+                species = 'human'
+            }
+        }
 
         then {
             assertAll(
