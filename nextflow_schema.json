@@ -286,7 +286,7 @@
                     "description": "Library preparation kit.",
                     "help_text": "This parameter is mandatory if with_umi true. Kit type: 'quantseq', 'corall', 'takara'.",
                     "fa_icon": "fas fa-vials",
-                    "default": "quantseq"
+                    "default": "takara"
                 },
                 "rrna_db_type": {
                     "type": "string",
