@@ -4,17 +4,21 @@ nextflow_process {
     process "GATK4_CREATESEQUENCEDICTIONARY"
 
     tag "modules"
+    tag "modules_local"
     tag "gatk4"
     tag "gatk4/createsequencedictionary"
 
-    test("Should create a sequence dictionary from a zipped fasta file and return a .dict file") {
+    test("sarscov2 - fasta") {
         when {
             params {
                 outdir = "$outputDir"
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[0] = Channel.value([
+                    [id: 'fasta' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                ])
                 """
             }
         }
@@ -26,7 +30,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub create a sequence dictionary from a zipped fasta file and return a mocked .dict file") {
+    test("sarscov2 - fasta - stub") {
         options "-stub"
         when {
             params {
@@ -34,7 +38,10 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                input[0] = Channel.value([
+                    [id: 'fasta' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                ])
                 """
             }
         }

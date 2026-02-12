@@ -2,79 +2,76 @@ name: "picard_markduplicates"
 description: Identifies and flags biological (PCR) and technical (optical) duplicate reads to improve variant calling accuracy.
 keywords:
   - markduplicates
-  - pcr
+  - picard
   - duplicates
-  - bam
-  - sam
-  - deduplication
+  - genomics
 tools:
-  - picard:
-      description: |
-        A versatile Java-based suite for high-throughput sequencing data manipulation.
-        The MarkDuplicates tool specifically handles the identification of identical
-        DNA fragments produced during library preparation.
-      homepage: https://broadinstitute.github.io/picard/
-      documentation: https://broadinstitute.github.io/picard/
+  - "picard":
+      description: "A set of command line tools (in Java) for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF."
+      homepage: "https://broadinstitute.github.io/picard/"
+      documentation: "https://broadinstitute.github.io/picard/"
+      tool_dev_url: "https://github.com/broadinstitute/picard"
       licence: ["MIT"]
       identifier: biotools:picard_tools
+
 input:
   - - meta:
         type: map
         description: |
           Groovy Map containing sample information
-          e.g. [ id:'test', single_end:false ]
+          e.g. `[ id:'sample1' ]`
     - bam:
         type: file
-        description: Aligned sequence file (BAM) in coordinate-sorted order.
-        pattern: "*.bam"
+        description: BAM/SAM file
+        pattern: "*.{bam,sam}"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
+          - edam: "http://edamontology.org/format_2572" # BAM
+
 output:
-  - bam:
-      - - meta:
-            type: map
-            description: |
-              Groovy Map containing sample information
-              e.g. [ id:'test', single_end:false ]
-        - "*.bam":
-            type: file
-            description: Processed BAM file containing updated 0x400 (duplicate) flags in the SAM header.
-            pattern: "*.bam"
-            ontologies:
-              - edam: "http://edamontology.org/format_2572"
-  - metrics:
-      - - meta:
-            type: map
-            description: |
-              Groovy Map containing sample information
-              e.g. [ id:'test', single_end:false ]
-        - "*.metrics.txt":
-            type: file
-            description: Detailed report on duplication rates and estimated library complexity.
-            pattern: "*.metrics.txt"
-            ontologies: []
-  - versions_picard:
-      - - ${task.process}:
-            type: string
-            description: Nextflow process scope that generated the version metadata.
-        - picard:
-            type: string
-            description: The tool name
-        - "picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p'":
-            type: string
-            description: Specific command-line execution used to extract the version number.
+  bam:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.bam":
+          type: file
+          description: MarkDuplicates BAM file
+          pattern: "*.bam"
+          ontologies:
+            - edam: "http://edamontology.org/format_2572" # BAM
+  metrics:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.metrics.txt":
+          type: file
+          description: Picard MarkDuplicates metrics file
+          pattern: "*.metrics.txt"
+  versions_picard:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "picard":
+          type: string
+          description: The name of the tool
+      - "picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
 
 topics:
   versions:
-    - - ${task.process}:
+    - - "${task.process}":
           type: string
-          description: Nextflow process scope that generated the version metadata.
-      - picard:
+          description: The name of the process
+      - "picard":
           type: string
-          description: The tool name
+          description: The name of the tool
       - "picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p'":
-          type: string
-          description: Specific command-line execution used to extract the version number.
+          type: eval
+          description: The expression to obtain the version of the tool
 
 authors:
   - "@Loai3tr"
