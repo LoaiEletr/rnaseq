@@ -1,0 +1,60 @@
+name: "gatk4_createsequencedictionary"
+description: Creates a sequence dictionary for a reference FASTA file using GATK4 CreateSequenceDictionary
+keywords:
+  - gatk4
+  - createsequencedictionary
+  - sequence dictionary
+  - reference
+  - fasta
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK4) - Variant Discovery in High-Throughput Sequencing Data"
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360057439931-CreateSequenceDictionary"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      doi: "10.1158/1538-7445.AM2017-3590"
+      licence: ["BSD-3-Clause", "Apache-2.0"]
+      identifier: biotools:gatk
+
+input:
+  - fasta:
+      type: file
+      description: Reference FASTA file
+      pattern: "*.{fasta,fa}"
+      ontologies:
+        - edam: "http://edamontology.org/format_1929"
+
+output:
+  dict:
+    - "*.dict":
+        type: file
+        description: GATK Sequence dictionary file
+        pattern: "*.dict"
+        ontologies: []
+  versions_gatk4:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk4 --version":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk4 --version":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

@@ -1,0 +1,48 @@
+{
+    "Should stub create a sequence dictionary from a zipped fasta file and return a mocked .dict file": {
+        "content": [
+            {
+                "0": [
+                    "genome.fasta.dict:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "versions.yml:md5,79ec5fe1dee65295ff1753ec7e2d2293"
+                ],
+                "dict": [
+                    "genome.fasta.dict:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,79ec5fe1dee65295ff1753ec7e2d2293"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-12T22:27:00.859637145"
+    },
+    "Should create a sequence dictionary from a zipped fasta file and return a .dict file": {
+        "content": [
+            {
+                "0": [
+                    "genome.dict:md5,5e732a4f0bf5e72698900622ef8e5206"
+                ],
+                "1": [
+                    "versions.yml:md5,79ec5fe1dee65295ff1753ec7e2d2293"
+                ],
+                "dict": [
+                    "genome.dict:md5,5e732a4f0bf5e72698900622ef8e5206"
+                ],
+                "versions": [
+                    "versions.yml:md5,79ec5fe1dee65295ff1753ec7e2d2293"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-12T22:25:48.598595605"
+    }
+}
