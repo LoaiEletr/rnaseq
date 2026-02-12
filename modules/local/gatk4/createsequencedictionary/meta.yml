@@ -1,46 +1,56 @@
 name: "gatk4_createsequencedictionary"
-description: Creates a sequence dictionary for a reference FASTA file using GATK4 CreateSequenceDictionary
+description: Create a sequence dictionary for a reference FASTA file
 keywords:
   - gatk4
   - createsequencedictionary
-  - sequence dictionary
-  - reference
+  - dictionary
+  - genomics
   - fasta
 tools:
   - "gatk4":
-      description: "Genome Analysis Toolkit (GATK4) - Variant Discovery in High-Throughput Sequencing Data"
+      description: "Genome Analysis Toolkit (GATK4)"
       homepage: "https://gatk.broadinstitute.org/hc/en-us"
-      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360057439931-CreateSequenceDictionary"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360037060912-CreateSequenceDictionary-Picard-"
       tool_dev_url: "https://github.com/broadinstitute/gatk"
-      doi: "10.1158/1538-7445.AM2017-3590"
-      licence: ["BSD-3-Clause", "Apache-2.0"]
-      identifier: biotools:gatk
+      doi: ""
+      licence: "['BSD-3-Clause']"
+      identifier: ""
 
 input:
-  - fasta:
-      type: file
-      description: Reference FASTA file
-      pattern: "*.{fasta,fa}"
-      ontologies:
-        - edam: "http://edamontology.org/format_1929"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'fasta' ]`
+    - fasta:
+        type: file
+        description: Reference FASTA file
+        pattern: "*.{fasta,fa}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
 
 output:
-  dict:
-    - "*.dict":
-        type: file
-        description: GATK Sequence dictionary file
-        pattern: "*.dict"
-        ontologies: []
-  versions_gatk4:
-    - - "${task.process}":
-          type: string
-          description: The name of the process
-      - "gatk4":
-          type: string
-          description: The name of the tool
-      - "gatk4 --version":
-          type: eval
-          description: The expression to obtain the version of the tool
+  - dict:
+      - - meta:
+            type: map
+            description: |
+              Groovy Map containing reference information
+              e.g. `[ id:'fasta' ]`
+        - "*.dict":
+            type: file
+            description: Sequence dictionary file
+            pattern: "*.dict"
+            ontologies: []
+  - versions_gatk4:
+      - - "${task.process}":
+            type: string
+            description: The name of the process
+        - "gatk4":
+            type: string
+            description: The name of the tool
+        - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+            type: eval
+            description: The expression to obtain the version of the tool
 
 topics:
   versions:
@@ -50,7 +60,7 @@ topics:
       - "gatk4":
           type: string
           description: The name of the tool
-      - "gatk4 --version":
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
           type: eval
           description: The expression to obtain the version of the tool
 

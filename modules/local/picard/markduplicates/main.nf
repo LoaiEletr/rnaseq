@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process PICARD_MARKDUPLICATES {
     tag "${meta.id}"
     label 'process_low'
@@ -15,7 +13,7 @@ process PICARD_MARKDUPLICATES {
     output:
     tuple val(meta), path("*.bam"), emit: bam
     tuple val(meta), path("*.metrics.txt"), emit: metrics
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('picard'), eval("picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p'"), topic: versions, emit: versions_picard
 
     when:
     task.ext.when == null || task.ext.when
@@ -32,11 +30,6 @@ process PICARD_MARKDUPLICATES {
         --INPUT ${bam} \\
         --OUTPUT ${prefix}.bam \\
         --METRICS_FILE ${prefix}.MarkDuplicates.metrics.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        picard: \$( picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p' )
-    END_VERSIONS
     """
 
     stub:
@@ -44,10 +37,5 @@ process PICARD_MARKDUPLICATES {
     """
     touch ${prefix}.bam
     touch ${prefix}.MarkDuplicates.metrics.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        picard: \$( picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p' )
-    END_VERSIONS
     """
 }

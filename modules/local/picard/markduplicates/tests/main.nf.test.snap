@@ -1,5 +1,33 @@
 {
-    "Should run a stub version of the duplicate marking process and return dummy output files": {
+    "homo_sapiens - bam": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "lib_type": "reverse",
+                        "single_end": false
+                    },
+                    "test.bam:md5,6d21bfdf3070b45e802e428f6ddb4411"
+                ]
+            ],
+            {
+                "versions_picard": [
+                    [
+                        "PICARD_MARKDUPLICATES",
+                        "picard",
+                        "3.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-13T00:52:54.471149842"
+    },
+    "homo_sapiens - bam - stub": {
         "content": [
             {
                 "0": [
@@ -23,7 +51,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,8c1f1d135a968adbfd14679b93b50bd0"
+                    [
+                        "PICARD_MARKDUPLICATES",
+                        "picard",
+                        "3.4.0"
+                    ]
                 ],
                 "bam": [
                     [
@@ -45,8 +77,12 @@
                         "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,8c1f1d135a968adbfd14679b93b50bd0"
+                "versions_picard": [
+                    [
+                        "PICARD_MARKDUPLICATES",
+                        "picard",
+                        "3.4.0"
+                    ]
                 ]
             }
         ],
@@ -54,28 +90,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-12T07:27:26.739620487"
-    },
-    "Should identify and mark duplicates in a coordinate-sorted BAM using a reference genome and return a deduplicated BAM": {
-        "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "lib_type": "reverse",
-                        "single_end": false
-                    },
-                    "test.bam:md5,6d21bfdf3070b45e802e428f6ddb4411"
-                ]
-            ],
-            [
-                "versions.yml:md5,8c1f1d135a968adbfd14679b93b50bd0"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-12T07:26:32.677431886"
+        "timestamp": "2026-02-13T00:53:54.372364528"
     }
 }

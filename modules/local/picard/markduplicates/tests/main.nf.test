@@ -4,24 +4,21 @@ nextflow_process {
     process "PICARD_MARKDUPLICATES"
 
     tag "modules"
+    tag "modules_local"
     tag "picard"
     tag "picard/markduplicates"
 
-    test("Should identify and mark duplicates in a coordinate-sorted BAM using a reference genome and return a deduplicated BAM") {
+    test("homo_sapiens - bam") {
         when {
             params {
                 outdir = "$outputDir"
             }
             process {
                 """
-                input[0] = Channel.of(
-                    [
-                        [ id: 'test', lib_type: 'reverse', single_end: false ],
-                        [
-                            file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
-                        ]
-                    ]
-                )
+                input[0] = Channel.value([
+                    [ id: 'test', lib_type: 'reverse', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
                 """
             }
         }
@@ -30,13 +27,13 @@ nextflow_process {
                 { assert process.success },
                 { assert snapshot(
                     process.out.bam,
-                    process.out.versions
+                    process.out.findAll { key, val -> key.startsWith("versions")}
                 ).match() }
             )
         }
     }
 
-    test("Should run a stub version of the duplicate marking process and return dummy output files") {
+    test("homo_sapiens - bam - stub") {
         options "-stub"
         when {
             params {
@@ -44,14 +41,10 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of(
-                    [
-                        [ id: 'test', lib_type: 'reverse', single_end: false ],
-                        [
-                            file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
-                        ]
-                    ]
-                )
+                input[0] = Channel.value([
+                    [ id: 'test', lib_type: 'reverse', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
                 """
             }
         }

@@ -1,4 +1,4 @@
-process GATK4_CREATESEQUENCEDICTIONARY {
+process GATK4_BEDTOINTERVALLIST {
     tag "${meta.id}"
     label 'process_low'
 
@@ -8,10 +8,11 @@ process GATK4_CREATESEQUENCEDICTIONARY {
         : 'community.wave.seqera.io/library/gatk4_gcnvkernel:edb12e4f0bf02cd3'}"
 
     input:
-    tuple val(meta), path(fasta)
+    tuple val(meta), path(bed)
+    tuple val(meta2), path(dict)
 
     output:
-    tuple val(meta), path("*.dict"), emit: dict
+    tuple val(meta), path("*.interval_list"), emit: interval_list
     tuple val("${task.process}"), val('gatk4'), eval("gatk --version | sed -n '/GATK.*v/s/.*v//p'"), topic: versions, emit: versions_gatk4
 
     when:
@@ -19,18 +20,21 @@ process GATK4_CREATESEQUENCEDICTIONARY {
 
     script:
     def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
     def avail_mem = task.memory.mega
     """
     gatk --java-options "-Xmx${avail_mem}M -XX:-UsePerfData" \\
-        CreateSequenceDictionary \\
+        BedToIntervalList \\
         ${args} \\
-        --REFERENCE ${fasta} \\
-        --URI ${fasta} \\
+        --INPUT ${bed} \\
+        --OUTPUT ${prefix}.interval_list \\
+        --SEQUENCE_DICTIONARY ${dict} \\
         --TMP_DIR .
     """
 
     stub:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${fasta.baseName}.dict
+    touch ${prefix}.interval_list
     """
 }
