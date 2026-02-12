@@ -45,6 +45,9 @@ process HISAT2_ALIGN {
         ${fastq_in} \\
         ${strand_flag} \\
         ${args} \\
+        --rg-id ${meta.id} \\
+        --rg "SM:${meta.id}" \\
+        --rg "PL:Illumina" \\
         --summary-file ${prefix}.hisat2.summary \\
         | samtools view -bS - > ${prefix}.bam
 
