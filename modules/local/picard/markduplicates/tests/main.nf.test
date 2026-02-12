@@ -1,0 +1,65 @@
+nextflow_process {
+    name "Test Process PICARD_MARKDUPLICATES"
+    script "modules/local/picard/markduplicates/main.nf"
+    process "PICARD_MARKDUPLICATES"
+
+    tag "modules"
+    tag "picard"
+    tag "picard/markduplicates"
+
+    test("Should identify and mark duplicates in a coordinate-sorted BAM using a reference genome and return a deduplicated BAM") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id: 'test', lib_type: 'reverse', single_end: false ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                        ]
+                    ]
+                )
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(
+                    process.out.bam,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("Should run a stub version of the duplicate marking process and return dummy output files") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id: 'test', lib_type: 'reverse', single_end: false ],
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                        ]
+                    ]
+                )
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
