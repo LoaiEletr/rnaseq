@@ -1,0 +1,65 @@
+name: "gatk4_intervallisttools"
+description: A tool for performing various operations on interval lists, including merging, scattering, and logical operations.
+keywords:
+  - gatk4
+  - intervallisttools
+  - intervals
+  - scatter
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK) is a structured software package for analysis of high-throughput sequencing data."
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360036882431-IntervalListTools-Picard-"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:gatk
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - intervals:
+        type: file
+        description: One or more Picard-style interval lists.
+        pattern: "*.interval_list"
+
+output:
+  interval_list:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*_split/*/*.interval_list":
+          type: file
+          description: Scattered or modified interval list files.
+          pattern: "*_split/*/*.interval_list"
+  versions_gatk4:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"

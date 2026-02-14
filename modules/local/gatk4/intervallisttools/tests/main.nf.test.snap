@@ -1,0 +1,104 @@
+{
+    "homo_sapiens - intervals - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "intervals"
+                        },
+                        [
+                            "1scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "2scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "3scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "4scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_INTERVALLISTTOOLS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "interval_list": [
+                    [
+                        {
+                            "id": "intervals"
+                        },
+                        [
+                            "1scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "2scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "3scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "4scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_INTERVALLISTTOOLS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-14T23:40:58.206246602"
+    },
+    "homo_sapiens - intervals": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "intervals"
+                        },
+                        [
+                            "1scattered.interval_list:md5,c7e9ad55ed6d326350b711c93acf9f54",
+                            "2scattered.interval_list:md5,c74a0dc480e46d01dd407bdbc457652b",
+                            "3scattered.interval_list:md5,cf592e5e7d98453e6154678995432cdc",
+                            "4scattered.interval_list:md5,356d9fe6a124c3cb1f13af496687f8f9"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_INTERVALLISTTOOLS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "interval_list": [
+                    [
+                        {
+                            "id": "intervals"
+                        },
+                        [
+                            "1scattered.interval_list:md5,c7e9ad55ed6d326350b711c93acf9f54",
+                            "2scattered.interval_list:md5,c74a0dc480e46d01dd407bdbc457652b",
+                            "3scattered.interval_list:md5,cf592e5e7d98453e6154678995432cdc",
+                            "4scattered.interval_list:md5,356d9fe6a124c3cb1f13af496687f8f9"
+                        ]
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_INTERVALLISTTOOLS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-14T23:39:58.89923602"
+    }
+}

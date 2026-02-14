@@ -18,7 +18,8 @@ nextflow_process {
                 input[0] = [
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'genome' ],
@@ -29,10 +30,6 @@ nextflow_process {
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
                 ]
                 input[3] = [
-                    [ id:'bed' ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
-                ]
-                input[4] = [
                     [ id:'genome' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.dict', checkIfExists: true)
                 ]
@@ -58,7 +55,8 @@ nextflow_process {
                 input[0] = [
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'genome' ],
@@ -69,10 +67,6 @@ nextflow_process {
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
                 ]
                 input[3] = [
-                    [ id:'bed' ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
-                ]
-                input[4] = [
                     [ id:'genome' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.dict', checkIfExists: true)
                 ]
