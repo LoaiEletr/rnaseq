@@ -1,0 +1,84 @@
+{
+    "homo_sapiens - [bam, bai, intervals] - fasta - fai - dict - known_sites - known_sites_tbi - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_BASERECALIBRATOR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "table": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_BASERECALIBRATOR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-15T01:28:21.316191682"
+    },
+    "homo_sapiens - [bam, bai, intervals] - fasta - fai - dict - known_sites - known_sites_tbi": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.table:md5,5f83b290047b18d5de34c71421badae5"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_BASERECALIBRATOR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "table": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.table:md5,5f83b290047b18d5de34c71421badae5"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_BASERECALIBRATOR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-15T01:26:54.773972838"
+    }
+}
