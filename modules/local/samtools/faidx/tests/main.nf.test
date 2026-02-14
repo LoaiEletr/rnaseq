@@ -1,0 +1,55 @@
+nextflow_process {
+    name "Test Process SAMTOOLS_FAIDX"
+    script "modules/local/samtools/faidx/main.nf"
+    process "SAMTOOLS_FAIDX"
+
+    tag "modules"
+    tag "modules_local"
+    tag "samtools"
+    tag "samtools/faidx"
+
+    test("sarscov2 - fasta") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.value([
+                    [ id: 'genome'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fasta - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.value([
+                    [ id: 'genome'],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
