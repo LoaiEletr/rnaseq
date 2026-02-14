@@ -8,11 +8,10 @@ process GATK4_SPLITNCIGARREADS {
         : 'community.wave.seqera.io/library/gatk4_gcnvkernel:edb12e4f0bf02cd3'}"
 
     input:
-    tuple val(meta), path(bam), path(bai)
+    tuple val(meta), path(bam), path(bai), path(intervals)
     tuple val(meta2), path(fasta)
     tuple val(meta3), path(fai)
-    tuple val(meta4), path(intervals)
-    tuple val(meta5), path(dict)
+    tuple val(meta4), path(dict)
 
     output:
     tuple val(meta), path('*.bam'), emit: bam
