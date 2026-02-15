@@ -1,5 +1,5 @@
 {
-    "homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi - stub": {
+    "homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi - confidence_threshold - stub": {
         "content": [
             {
                 "0": [
@@ -56,7 +56,7 @@
         },
         "timestamp": "2026-02-15T03:29:56.203327232"
     },
-    "homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi": {
+    "homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi - confidence_threshold": {
         "content": [
             {
                 "versions_gatk4": [
