@@ -1,0 +1,63 @@
+{
+    "homo_sapiens - vcfs - indexes - bed": {
+        "content": [
+            {
+                "versions_bcftools": [
+                    [
+                        "BCFTOOLS_MERGE",
+                        "bcftools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-15T08:11:19.80385074"
+    },
+    "homo_sapiens - vcfs - indexes - bed - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_vcfs",
+                            "condition": "control"
+                        },
+                        "control.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        "BCFTOOLS_MERGE",
+                        "bcftools",
+                        "1.23"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_vcfs",
+                            "condition": "control"
+                        },
+                        "control.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions_bcftools": [
+                    [
+                        "BCFTOOLS_MERGE",
+                        "bcftools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-15T08:12:14.457195769"
+    }
+}

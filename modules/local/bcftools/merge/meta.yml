@@ -1,0 +1,83 @@
+name: "bcftools_merge"
+description: Merge multiple VCF/BCF files from the same sample or different samples.
+keywords:
+  - bcftools
+  - merge
+  - vcf
+  - bcf
+  - variants
+tools:
+  - "bcftools":
+      description: "BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF."
+      homepage: "http://samtools.github.io/bcftools/bcftools.html"
+      documentation: "http://samtools.github.io/bcftools/bcftools.html#merge"
+      tool_dev_url: "https://github.com/samtools/bcftools"
+      doi: "10.1093/bioinformatics/btp352"
+      licence: ["MIT", "BSD-3-Clause"]
+      identifier: biotools:bcftools
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', condition:'control' ]`
+    - vcfs:
+        type: list
+        description: List of VCF files to be merged
+        pattern: "*.{vcf,vcf.gz}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'test_index', condition:'control' ]`
+    - indexes:
+        type: list
+        description: List of index files for the input VCFs
+        pattern: "*.{tbi,csi}"
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing region information
+          e.g. `[ id:'test_region', condition:'control' ]`
+    - bed:
+        type: file
+        description: Optional BED file to limit merging to specific regions
+        pattern: "*.bed"
+
+output:
+  vcf:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*.vcf.gz":
+          type: file
+          description: The merged VCF file
+          pattern: "*.vcf.gz"
+  versions_bcftools:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "bcftools":
+          type: string
+          description: The name of the tool
+      - "bcftools --version | sed '1!d; s/^.*bcftools //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "bcftools":
+          type: string
+          description: The name of the tool
+      - "bcftools --version | sed '1!d; s/^.*bcftools //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
