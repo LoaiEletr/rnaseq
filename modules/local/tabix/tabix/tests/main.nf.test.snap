@@ -1,0 +1,84 @@
+{
+    "homo_sapiens - vcfs": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_vcfs"
+                        },
+                        "test.rnaseq.vcf.gz.tbi:md5,94343174c18f22b10529fcb4d176fe0a"
+                    ]
+                ],
+                "1": [
+                    [
+                        "TABIX_TABIX",
+                        "tabix",
+                        "1.23"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "test_vcfs"
+                        },
+                        "test.rnaseq.vcf.gz.tbi:md5,94343174c18f22b10529fcb4d176fe0a"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "TABIX_TABIX",
+                        "tabix",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T20:27:35.782695165"
+    },
+    "homo_sapiens - vcfs - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_vcfs"
+                        },
+                        "test.rnaseq.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "TABIX_TABIX",
+                        "tabix",
+                        "1.23"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "test_vcfs"
+                        },
+                        "test.rnaseq.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "TABIX_TABIX",
+                        "tabix",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T20:28:50.585447174"
+    }
+}
