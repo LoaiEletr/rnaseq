@@ -28,7 +28,6 @@ process GATK4_INTERVALLISTTOOLS {
         ${args} \\
         --INPUT ${intervals} \\
         --OUTPUT ${prefix}_split \\
-        --SCATTER_COUNT 4 \\
         --TMP_DIR .
 
     COUNT=1

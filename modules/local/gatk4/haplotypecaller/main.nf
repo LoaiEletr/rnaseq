@@ -14,7 +14,6 @@ process GATK4_HAPLOTYPECALLER {
     tuple val(meta4), path(dict)
     tuple val(meta5), path(dbsnp)
     tuple val(meta6), path(dbsnp_tbi)
-    val calling_threshold
 
     output:
     tuple val(meta), path("*.vcf.gz"), emit: vcf
@@ -27,7 +26,6 @@ process GATK4_HAPLOTYPECALLER {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def confidence_threshold = calling_threshold ? "--standard-min-confidence-threshold-for-calling ${calling_threshold}" : "--standard-min-confidence-threshold-for-calling 20"
     def avail_mem = task.memory.mega
     """
     gatk --java-options "-Xmx${avail_mem}M -XX:-UsePerfData" \\
@@ -37,7 +35,6 @@ process GATK4_HAPLOTYPECALLER {
         --output ${prefix}.vcf.gz \\
         --reference ${fasta} \\
         --native-pair-hmm-threads ${task.cpus} \\
-        ${confidence_threshold} \\
         --dbsnp ${dbsnp} \\
         --intervals ${intervals} \\
         --tmp-dir .
