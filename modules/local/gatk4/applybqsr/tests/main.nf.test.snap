@@ -7,7 +7,7 @@
                         {
                             "id": "test"
                         },
-                        "test.bam:md5,d68f08ab72c7f6bed43115266ee1d0ef"
+                        "test.bam:md5,d48b550b92be11bc37076ff7c225513a"
                     ]
                 ],
                 "1": [
@@ -15,7 +15,7 @@
                         {
                             "id": "test"
                         },
-                        "test.bai:md5,75fb19f64366ceec20fed1ccba0ea84b"
+                        "test.bai:md5,a549d09ccc4bf59bf5f832c31e51e440"
                     ]
                 ],
                 "2": [
@@ -30,7 +30,7 @@
                         {
                             "id": "test"
                         },
-                        "test.bai:md5,75fb19f64366ceec20fed1ccba0ea84b"
+                        "test.bai:md5,a549d09ccc4bf59bf5f832c31e51e440"
                     ]
                 ],
                 "bam": [
@@ -38,7 +38,7 @@
                         {
                             "id": "test"
                         },
-                        "test.bam:md5,d68f08ab72c7f6bed43115266ee1d0ef"
+                        "test.bam:md5,d48b550b92be11bc37076ff7c225513a"
                     ]
                 ],
                 "versions_gatk4": [
@@ -54,7 +54,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-15T02:34:24.207767125"
+        "timestamp": "2026-02-16T22:16:49.864114363"
     },
     "homo_sapiens - [bam, bai, baserecalibrator.table, intervals] - fasta - fai - dict - stub": {
         "content": [

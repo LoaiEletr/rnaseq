@@ -48,7 +48,7 @@
                         {
                             "id": "test"
                         },
-                        "test.bam:md5,a46176dad1f54ae1d7b7e6f79794c019"
+                        "test.bam:md5,92c5290ca730cc1caebffcc6507f0885"
                     ]
                 ],
                 "1": [
@@ -63,7 +63,7 @@
                         {
                             "id": "test"
                         },
-                        "test.bam:md5,a46176dad1f54ae1d7b7e6f79794c019"
+                        "test.bam:md5,92c5290ca730cc1caebffcc6507f0885"
                     ]
                 ],
                 "versions_gatk4": [
@@ -79,6 +79,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-13T02:42:04.926341172"
+        "timestamp": "2026-02-16T22:44:52.672139753"
     }
 }

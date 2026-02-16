@@ -2,16 +2,18 @@ nextflow_process {
     name "Test Process GATK4_HAPLOTYPECALLER"
     script "modules/local/gatk4/haplotypecaller/main.nf"
     process "GATK4_HAPLOTYPECALLER"
+    config './nextflow.config'
 
     tag "modules"
     tag "modules_local"
     tag "gatk4"
     tag "gatk4/haplotypecaller"
 
-    test("homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi - confidence_threshold") {
+    test("homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi") {
         when {
             params {
                 outdir = "$outputDir"
+                gatk_hc_call_conf = 30
             }
             process {
                 """
@@ -41,7 +43,6 @@ nextflow_process {
                     [ id:'genome' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/vcf/dbsnp_146.hg38.vcf.gz.tbi', checkIfExists: true)
                 ]
-                input[6] = 30
                 """
             }
         }
@@ -53,11 +54,12 @@ nextflow_process {
         }
     }
 
-    test("homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi - confidence_threshold - stub") {
+    test("homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi - stub") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
+                gatk_hc_call_conf = 30
             }
             process {
                 """
@@ -87,7 +89,6 @@ nextflow_process {
                     [ id:'genome' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/vcf/dbsnp_146.hg38.vcf.gz.tbi', checkIfExists: true)
                 ]
-                input[6] = 30
                 """
             }
         }

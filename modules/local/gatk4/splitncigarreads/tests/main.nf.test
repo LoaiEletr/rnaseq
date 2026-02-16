@@ -2,6 +2,7 @@ nextflow_process {
     name "Test Process GATK4_SPLITNCIGARREADS"
     script "modules/local/gatk4/splitncigarreads/main.nf"
     process "GATK4_SPLITNCIGARREADS"
+    config './nextflow.config'
 
     tag "modules"
     tag "modules_local"

@@ -2,6 +2,7 @@ nextflow_process {
     name "Test Process GATK4_APPLYBQSR"
     script "modules/local/gatk4/applybqsr/main.nf"
     process "GATK4_APPLYBQSR"
+    config './nextflow.config'
 
     tag "modules"
     tag "modules_local"

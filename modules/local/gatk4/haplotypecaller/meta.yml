@@ -80,11 +80,6 @@ input:
         type: file
         description: Index for the dbSNP VCF file
         pattern: "*.{tbi,csi}"
-  - - calling_threshold:
-        type: integer
-        description: |
-          The minimum confidence threshold for calling variants.
-          Standard GATK default is 30, but this module defaults to 20 if not provided.
 
 output:
   vcf:
