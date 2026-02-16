@@ -1,0 +1,107 @@
+name: "gatk4_variantfiltration"
+description: Filter variants based on INFO or FORMAT annotations using JEXL expressions.
+keywords:
+  - gatk4
+  - variantfiltration
+  - filter
+  - vcf
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK) is a structured software package for analysis of high-throughput sequencing data."
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      doi: ""
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:gatk
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - vcf:
+        type: file
+        description: VCF file containing variants to be filtered
+        pattern: "*.{vcf,vcf.gz}"
+    - tbi:
+        type: file
+        description: Index file for the input VCF
+        pattern: "*.{tbi,csi}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'test_genome' ]`
+    - fasta:
+        type: file
+        description: Reference FASTA file
+        pattern: "*.{fasta,fa}"
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'test_index' ]`
+    - fai:
+        type: file
+        description: Reference FASTA index file
+        pattern: "*.fai"
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing dictionary information
+          e.g. `[ id:'test_dict' ]`
+    - dict:
+        type: file
+        description: Sequence dictionary file
+        pattern: "*.dict"
+
+output:
+  vcf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.vcf.gz":
+          type: file
+          description: The filtered VCF file
+          pattern: "*.vcf.gz"
+  tbi:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.tbi":
+          type: file
+          description: Index file for the filtered VCF
+          pattern: "*.tbi"
+  versions_gatk4:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
