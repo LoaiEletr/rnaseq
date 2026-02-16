@@ -54,18 +54,10 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-16T21:04:50.19716046"
+        "timestamp": "2026-02-16T21:57:26.520869536"
     },
     "sarscov2 - [vcf, tbi] - fasta - fai - dict": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test.vcf.gz.tbi:md5,bab7d13f44bc72133308f5eef94a5fe2"
-                ]
-            ],
             {
                 "versions_gatk4": [
                     [
@@ -80,6 +72,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-16T21:37:15.892973468"
+        "timestamp": "2026-02-16T21:55:59.531113302"
     }
 }
