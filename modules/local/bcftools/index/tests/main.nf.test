@@ -1,0 +1,55 @@
+nextflow_process {
+    name "Test Process BCFTOOLS_INDEX"
+    script "modules/local/bcftools/index/main.nf"
+    process "BCFTOOLS_INDEX"
+
+    tag "modules"
+    tag "modules_local"
+    tag "bcftools"
+    tag "bcftools/index"
+
+    test("homo_sapiens - vcfs") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test_vcfs' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz', checkIfExists: true)
+                ]
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out.findAll { key, val -> key.startsWith("versions")}).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - vcfs - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test_vcfs', condition: 'control' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz', checkIfExists: true)
+                ]
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

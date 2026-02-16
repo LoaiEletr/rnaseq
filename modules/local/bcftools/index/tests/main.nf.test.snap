@@ -1,0 +1,63 @@
+{
+    "homo_sapiens - vcfs": {
+        "content": [
+            {
+                "versions_bcftools": [
+                    [
+                        "BCFTOOLS_INDEX",
+                        "bcftools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T20:08:14.753191348"
+    },
+    "homo_sapiens - vcfs - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_vcfs",
+                            "condition": "control"
+                        },
+                        "test.rnaseq.vcf.gz.csi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "BCFTOOLS_INDEX",
+                        "bcftools",
+                        "1.23"
+                    ]
+                ],
+                "csi": [
+                    [
+                        {
+                            "id": "test_vcfs",
+                            "condition": "control"
+                        },
+                        "test.rnaseq.vcf.gz.csi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_bcftools": [
+                    [
+                        "BCFTOOLS_INDEX",
+                        "bcftools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T20:09:27.015064819"
+    }
+}
