@@ -1,0 +1,139 @@
+{
+    "homo_sapiens - vcf - snpeff_db - cache": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.ann.vcf:md5,75ca0f5287912bdb3f63e4919e0df846"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "SNPEFF_SNPEFF",
+                    "snpeff",
+                    "test.genes.txt:md5,6a12c0664e8b109002b841af0f368b51"
+                ]
+            ],
+            {
+                "versions_snpeff": [
+                    [
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "5.4a"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-17T04:00:43.365260726"
+    },
+    "homo_sapiens - vcf - snpeff_db - cache - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.ann.vcf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "test.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "test.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "test.genes.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "5.4a"
+                    ]
+                ],
+                "genes_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "test.genes.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "report": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "test.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary_html": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "test.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.ann.vcf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_snpeff": [
+                    [
+                        "SNPEFF_SNPEFF",
+                        "snpeff",
+                        "5.4a"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-17T01:53:09.300192931"
+    }
+}
