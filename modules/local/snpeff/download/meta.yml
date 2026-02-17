@@ -1,0 +1,66 @@
+name: "snpeff_download"
+description: Download a snpEff database for use in variant annotation.
+keywords:
+  - snpeff
+  - download
+  - database
+  - annotation
+  - genomics
+tools:
+  - "snpeff":
+      description: "Genetic variant annotation and functional effect prediction toolbox."
+      homepage: "https://pcingola.github.io/SnpEff/"
+      documentation: "https://pcingola.github.io/SnpEff/se_download/"
+      tool_dev_url: "https://github.com/pcingola/SnpEff"
+      doi: "10.4161/fly.19695"
+      licence: ["LGPL-3.0-only"]
+      identifier: biotools:snpeff
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test' ]`
+    - snpeff_db:
+        type: string
+        description: Name of the snpEff database to download (e.g., 'GRCh38.105')
+
+output:
+  cache:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test' ]`
+      - snpeff_cache:
+          type: directory
+          description: Directory containing the downloaded snpEff database
+          pattern: "snpeff_cache"
+  versions_snpeff:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "snpeff":
+          type: string
+          description: The name of the tool
+      - "snpEff -version 2>&1 | cut -f 2 -d '\t'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "snpeff":
+          type: string
+          description: The name of the tool
+      - "snpEff -version 2>&1 | cut -f 2 -d '\t'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
