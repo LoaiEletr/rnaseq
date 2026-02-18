@@ -1,0 +1,185 @@
+{
+    "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi | skip_baserecalibration": {
+        "content": [
+            {
+                "bai": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam.bai"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam"
+                    ]
+                ],
+                "picard_metrics": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-19T00:02:29.86614181"
+    },
+    "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi | skip_picard_markduplicates": {
+        "content": [
+            {
+                "bai": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam.bai"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam"
+                    ]
+                ],
+                "picard_metrics": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-18T23:58:49.773117518"
+    },
+    "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi": {
+        "content": [
+            {
+                "bai": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam.bai"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam"
+                    ]
+                ],
+                "picard_metrics": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-18T23:49:09.38558374"
+    },
+    "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bai": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.recal.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "picard_metrics": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-19T00:06:17.007058127"
+    }
+}
