@@ -1,0 +1,163 @@
+{
+    "homo_sapiens - bam - bai - fasta - fai - dict - intervals - bed - dbsnp - dbsnp_tbi": {
+        "content": [
+            {
+                "tbi": [
+                    [
+                        {
+                            "condition": "control",
+                            "id": "control"
+                        },
+                        "control.vcf.gz.tbi"
+                    ],
+                    [
+                        {
+                            "condition": "treat",
+                            "id": "treat"
+                        },
+                        "treat.vcf.gz.tbi"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "condition": "control",
+                            "id": "control"
+                        },
+                        "control.haplotypecaller.filtered.vcf.gz"
+                    ],
+                    [
+                        {
+                            "condition": "treat",
+                            "id": "treat"
+                        },
+                        "treat.haplotypecaller.filtered.vcf.gz"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-19T06:29:25.876402312"
+    },
+    "homo_sapiens - bam - bai - fasta - fai - dict - intervals - bed - dbsnp - dbsnp_tbi | skip_variantfiltration": {
+        "content": [
+            {
+                "tbi": [
+                    [
+                        {
+                            "condition": "control",
+                            "id": "control"
+                        },
+                        "control.vcf.gz.tbi"
+                    ],
+                    [
+                        {
+                            "condition": "treat",
+                            "id": "treat"
+                        },
+                        "treat.vcf.gz.tbi"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "condition": "control",
+                            "id": "control"
+                        },
+                        "control.vcf.gz"
+                    ],
+                    [
+                        {
+                            "condition": "treat",
+                            "id": "treat"
+                        },
+                        "treat.vcf.gz"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-19T06:35:05.101575668"
+    },
+    "homo_sapiens - bam - bai - fasta - fai - dict - intervals - bed - dbsnp - dbsnp_tbi - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "control",
+                            "condition": "control"
+                        },
+                        "control.haplotypecaller.filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ],
+                    [
+                        {
+                            "id": "treat",
+                            "condition": "treat"
+                        },
+                        "treat.haplotypecaller.filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "control",
+                            "condition": "control"
+                        },
+                        "control.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "treat",
+                            "condition": "treat"
+                        },
+                        "treat.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "control",
+                            "condition": "control"
+                        },
+                        "control.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "treat",
+                            "condition": "treat"
+                        },
+                        "treat.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "control",
+                            "condition": "control"
+                        },
+                        "control.haplotypecaller.filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ],
+                    [
+                        {
+                            "id": "treat",
+                            "condition": "treat"
+                        },
+                        "treat.haplotypecaller.filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-19T06:41:19.786063027"
+    }
+}
