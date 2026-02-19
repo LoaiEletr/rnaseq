@@ -31,6 +31,9 @@
                         },
                         "test.MarkDuplicates.metrics.txt"
                     ]
+                ],
+                "recalibrate_table": [
+                    
                 ]
             }
         ],
@@ -38,7 +41,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-19T00:02:29.86614181"
+        "timestamp": "2026-02-19T07:20:03.561097595"
     },
     "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi | skip_picard_markduplicates": {
         "content": [
@@ -61,6 +64,14 @@
                 ],
                 "picard_metrics": [
                     
+                ],
+                "recalibrate_table": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,b0df9f97745352ce56e570cb1ce6b249"
+                    ]
                 ]
             }
         ],
@@ -68,7 +79,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-18T23:58:49.773117518"
+        "timestamp": "2026-02-19T07:16:14.31210298"
     },
     "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi": {
         "content": [
@@ -102,6 +113,14 @@
                         },
                         "test.MarkDuplicates.metrics.txt"
                     ]
+                ],
+                "recalibrate_table": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,ce7ef8753205558e437102a2569fe757"
+                    ]
                 ]
             }
         ],
@@ -109,7 +128,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-18T23:49:09.38558374"
+        "timestamp": "2026-02-19T07:12:05.941699986"
     },
     "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi - stub": {
         "content": [
@@ -144,6 +163,14 @@
                         "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
+                "3": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
                 "bai": [
                     [
                         {
@@ -173,6 +200,14 @@
                         },
                         "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
+                ],
+                "recalibrate_table": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ]
             }
         ],
@@ -180,6 +215,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-19T00:06:17.007058127"
+        "timestamp": "2026-02-19T07:23:17.743577698"
     }
 }
