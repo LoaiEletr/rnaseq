@@ -1,0 +1,91 @@
+name: "vcf_call_filter_gatk"
+description: |
+  Perform germline variant calling on RNA-seq data, including per-interval discovery,
+  condition-based merging, and hard filtration.
+keywords:
+  - variant calling
+  - haplotypecaller
+  - gatk4
+  - filter
+  - rnaseq
+components:
+  - gatk4/haplotypecaller
+  - bcftools/merge
+  - gatk4/variantfiltration
+  - tabix/tabix
+input:
+  - ch_bam:
+      type: file
+      description: |
+        The input channel containing the BAM files.
+        Structure: [ val(meta), [ bam ] ]
+      pattern: "*.{bam}"
+  - ch_bai:
+      type: file
+      description: |
+        The input channel containing the BAM index files.
+        Structure: [ val(meta), [ bai ] ]
+      pattern: "*.{bai}"
+  - ch_fasta:
+      type: file
+      description: |
+        The input channel containing the genome reference FASTA file.
+        Structure: [ val(meta), [ fasta ] ]
+      pattern: "*.{fasta,fa}"
+  - ch_fai:
+      type: file
+      description: |
+        The input channel containing the genome reference index file.
+        Structure: [ val(meta), [ fai ] ]
+      pattern: "*.{fai}"
+  - ch_dict:
+      type: file
+      description: |
+        The input channel containing the genome reference dictionary file.
+        Structure: [ val(meta), [ dict ] ]
+      pattern: "*.{dict}"
+  - ch_intervals:
+      type: file
+      description: |
+        The input channel containing genomic intervals for parallel variant calling.
+        Structure: [ val(meta), [ intervals ] ]
+      pattern: "*.{intervals,list,bed}"
+  - ch_bed:
+      type: file
+      description: |
+        The input channel containing the BED file for merging regions.
+        Structure: [ val(meta), [ bed ] ]
+      pattern: "*.{bed}"
+  - ch_dbsnp:
+      type: file
+      description: |
+        The input channel containing the dbSNP VCF file.
+        Structure: [ val(meta), [ dbsnp ] ]
+      pattern: "*.{vcf.gz,vcf}"
+  - ch_dbsnp_tbi:
+      type: file
+      description: |
+        The input channel containing the index for the dbSNP VCF.
+        Structure: [ val(meta), [ dbsnp_tbi ] ]
+      pattern: "*.{tbi}"
+  - skip_variantfiltration:
+      type: boolean
+      description: |
+        A boolean to determine if GATK VariantFiltration should be skipped.
+output:
+  - vcf:
+      type: file
+      description: |
+        Channel containing the merged VCF files (filtered if skip_variantfiltration is false).
+        Structure: [ val(meta), [ vcf ] ]
+      pattern: "*.{vcf.gz}"
+  - tbi:
+      type: file
+      description: |
+        Channel containing the TBI index files for the output VCFs.
+        Structure: [ val(meta), [ tbi ] ]
+      pattern: "*.{tbi}"
+authors:
+  - "@Loai3tr"
+maintainers:
+  - "@Loai3tr"
