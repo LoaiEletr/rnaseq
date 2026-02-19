@@ -8,7 +8,7 @@ process SAMTOOLS_MERGE {
         : 'biocontainers/samtools:1.23--h96c455f_0'}"
 
     input:
-    tuple val(meta), path(bams)
+    tuple val(meta), path(bams, stageAs: "?/*")
 
     output:
     tuple val(meta), path("*.bam"), emit: bam
