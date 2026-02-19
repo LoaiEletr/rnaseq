@@ -62,6 +62,7 @@ workflow BAM_DEDUP_RECALIBRATE_PICARD_GATK {
     // 4. Generate BQSR recalibration table
     ch_recalibrate_bam = ch_merged_bam
     ch_recalibrate_bai = ch_merged_bai
+    ch_recalibrate_table = channel.empty()
 
     if (!skip_baserecalibration) {
         GATK4_BASERECALIBRATOR(
@@ -72,10 +73,11 @@ workflow BAM_DEDUP_RECALIBRATE_PICARD_GATK {
             ch_known_sites,
             ch_known_sites_tbi,
         )
+        ch_recalibrate_table = GATK4_BASERECALIBRATOR.out.table
 
         // 5. Apply base quality score recalibration
         GATK4_APPLYBQSR(
-            ch_recalibrate_bam.join(ch_recalibrate_bai).join(GATK4_BASERECALIBRATOR.out.table).combine(ch_intervals.map { it[1] }),
+            ch_recalibrate_bam.join(ch_recalibrate_bai).join(ch_recalibrate_table).combine(ch_intervals.map { it[1] }),
             ch_fasta,
             ch_fai,
             ch_dict,
@@ -90,4 +92,5 @@ workflow BAM_DEDUP_RECALIBRATE_PICARD_GATK {
     bam = ch_recalibrate_bam // channel: [ val(meta), [ bam ] ]
     bai = ch_recalibrate_bai // channel: [ val(meta), [ bai ] ]
     picard_metrics = ch_picard_metrics // channel: [ val(meta), [ metrics ] ]
+    recalibrate_table = ch_recalibrate_table // channel: [ val(meta), [ table ] ]
 }
