@@ -1,9 +1,11 @@
 nextflow_process {
     name "Test Process KALLISTO_QUANT"
-    script "modules/local/kallisto/quant/main.nf"
+    script "../main.nf"
     process "KALLISTO_QUANT"
+    config './nextflow.config'
 
     tag "modules"
+    tag "modules_local"
     tag "kallisto"
     tag "kallisto/quant"
 
@@ -12,16 +14,17 @@ nextflow_process {
             script "modules/local/kallisto/index/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[0] = [[id: 'transcriptome'], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
                 """
             }
         }
     }
 
-    test("Should quantify single-end reads with Kallisto and return quantification results with JSON and log") {
+    test("sarcov2 - fastq1 - index - gtf - fragment_length - fragment_length_sd") {
         when {
             params {
                 outdir = "$outputDir"
+                bootstrap_count = 1
             }
             process {
                 """
@@ -32,10 +35,9 @@ nextflow_process {
                     ]
                 ])
                 input[1] = KALLISTO_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = 0
-                input[4] = 200
-                input[5] = 30
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = 200
+                input[4] = 30
                 """
             }
         }
@@ -43,17 +45,17 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.quant_dir.get(0).get(1) ==~ ".*/test" },
-                { assert process.out.json_info.get(0).get(1) ==~ ".*/*.json" },
                 { assert process.out.log.get(0).get(1) ==~ ".*/*.log" },
-                { assert snapshot(process.out.versions).match("versions_single_end") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["quant_dir","log"])).match() }
             )
         }
     }
 
-    test("Should quantify paired-end reads with Kallisto and return quantification results with JSON and log") {
+    test("sarcov2 - [fastq1, fastq2] - index - gtf - fragment_length - fragment_length_sd") {
         when {
             params {
                 outdir = "$outputDir"
+                bootstrap_count = 1
             }
             process {
                 """
@@ -65,10 +67,9 @@ nextflow_process {
                     ]
                 ])
                 input[1] = KALLISTO_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = 0
-                input[4] = 200
-                input[5] = 30
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = 200
+                input[4] = 30
                 """
             }
         }
@@ -76,18 +77,18 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.quant_dir.get(0).get(1) ==~ ".*/test" },
-                { assert process.out.json_info.get(0).get(1) ==~ ".*/*.json" },
                 { assert process.out.log.get(0).get(1) ==~ ".*/*.log" },
-                { assert snapshot(process.out.versions).match("versions_paired_end") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["quant_dir","log"])).match() }
             )
         }
     }
 
-    test("Should stub quantify single-end reads with Kallisto and return mocked quantification results with JSON and log") {
+    test("sarcov2 - fastq1 - index - gtf - fragment_length - fragment_length_sd - stub") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
+                bootstrap_count = 1
             }
             process {
                 """
@@ -98,10 +99,9 @@ nextflow_process {
                     ]
                 ])
                 input[1] = KALLISTO_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = 0
-                input[4] = 200
-                input[5] = 30
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = 200
+                input[4] = 30
                 """
             }
         }
@@ -113,11 +113,12 @@ nextflow_process {
         }
     }
 
-    test("Should stub quantify paired-end reads with Kallisto and return mocked quantification results with JSON and log") {
+    test("sarcov2 - [fastq1, fastq2] - index - gtf - fragment_length - fragment_length_sd - stub") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
+                bootstrap_count = 1
             }
             process {
                 """
@@ -129,10 +130,9 @@ nextflow_process {
                     ]
                 ])
                 input[1] = KALLISTO_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = 0
-                input[4] = 200
-                input[5] = 30
+                input[2] = [[:],file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = 200
+                input[4] = 30
                 """
             }
         }

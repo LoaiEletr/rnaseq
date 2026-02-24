@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process EDGER_VOOM {
     tag "${count_matrix_rds}"
     label 'process_low'
@@ -19,7 +17,8 @@ process EDGER_VOOM {
     path "normalized_log2cpm.rds", emit: normalized_log2cpm
     path "voom_transformed.rds", emit: voom_transformed
     path "voom_plot.pdf", emit: voom_plot
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-edger'), eval("Rscript -e \"library(edgeR); cat(as.character(packageVersion('edgeR')))\""), topic: versions, emit: versions_edger
 
     when:
     task.ext.when == null || task.ext.when
@@ -27,12 +26,6 @@ process EDGER_VOOM {
     script:
     """
     run_edger_voom.R ${count_matrix_rds} ${samplesheet_csv}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-edger: \$(Rscript -e "library(edgeR); cat(as.character(packageVersion('edgeR')))")
-    END_VERSIONS
     """
 
     stub:
@@ -42,11 +35,5 @@ process EDGER_VOOM {
     touch normalized_log2cpm.rds
     touch voom_transformed.rds
     touch voom_plot.pdf
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-edger: \$(Rscript -e "library(edgeR); cat(as.character(packageVersion('edgeR')))")
-    END_VERSIONS
     """
 }

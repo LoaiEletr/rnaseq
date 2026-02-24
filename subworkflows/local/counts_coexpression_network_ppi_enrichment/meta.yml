@@ -1,20 +1,16 @@
 name: "counts_coexpression_network_ppi_enrichment"
 description: |
-  Comprehensive gene network analysis workflow integrating co-expression networks, protein-protein interactions, and functional enrichment.
-  Performs: WGCNA co-expression network construction, STRING PPI network analysis, quality control visualizations,
-  hub gene heatmaps, and optional GO/KEGG functional enrichment analyses.
+  Comprehensive gene network analysis workflow integrating co-expression networks (WGCNA),
+  protein-protein interactions (STRING), and functional enrichment (GO/KEGG).
 keywords:
   - co-expression
   - wgcna
-  - protein-protein-interaction
   - ppi
   - string
-  - network-analysis
   - functional-enrichment
   - go
   - kegg
   - hub-genes
-  - gene-networks
 components:
   - wgcna/analysis
   - qc/visualization
@@ -26,139 +22,102 @@ input:
   - ch_counts:
       type: file
       description: |
-        Input channel containing gene expression count matrix
+        Input channel containing gene expression count matrix.
         Structure: [ path(counts_matrix) ]
       pattern: "*.rds"
   - ch_samplesheet:
       type: file
       description: |
-        Channel containing sample metadata/samplesheet
+        Channel containing sample metadata/samplesheet.
         Structure: [ path(samplesheet) ]
       pattern: "*.{csv,tsv,txt}"
   - val_min_gs:
       type: integer
-      description: |
-        Minimum number of good samples threshold for WGCNA
-        Structure: integer
+      description: Minimum number of good samples threshold for WGCNA.
   - val_min_mm:
       type: integer
-      description: |
-        Minimum module membership threshold for WGCNA
-        Structure: integer
+      description: Minimum module membership threshold for WGCNA.
   - val_top_n_hubgenes:
       type: integer
-      description: |
-        Number of top hub genes to extract per module
-        Structure: integer
+      description: Number of top hub genes to extract per module.
   - val_top_n_processes:
       type: integer
-      description: |
-        Number of top biological processes to visualize in enrichment results
-        Structure: integer
+      description: Number of top biological processes to visualize in enrichment results.
   - val_cor_threshold:
       type: float
-      description: |
-        Correlation threshold for adjacency matrix construction in WGCNA
-        Structure: float (e.g., 0.8)
+      description: Correlation threshold for adjacency matrix construction in WGCNA.
   - val_pval_threshold:
       type: float
-      description: |
-        P-value threshold for statistical significance
-        Structure: float (e.g., 0.05)
+      description: P-value threshold for statistical significance.
   - val_tomtype:
       type: string
       description: |
-        TOM (Topological Overlap Matrix) type for WGCNA
+        TOM (Topological Overlap Matrix) type for WGCNA.
         Structure: [ "none" | "signed" | "signed 2" | "unsigned" | "unsigned 2" | "signed Nowick" | "signed Nowick 2" ]
   - val_networktype:
       type: string
       description: |
-        Network type for WGCNA
+        Network type for WGCNA.
         Structure: [ "signed" | "unsigned" | "signed hybrid" ]
   - val_deepsplit:
       type: integer
-      description: |
-        Deep split level for dendrogram cutting in WGCNA (0-4)
-        Structure: integer
+      description: Deep split level for dendrogram cutting in WGCNA (0-4).
   - val_reassignthreshold:
       type: float
-      description: |
-        Reassignment threshold for module merging in WGCNA
-        Structure: float (e.g., 0.05)
+      description: Reassignment threshold for module merging in WGCNA.
   - val_mergecutheight:
       type: float
-      description: |
-        Merge cut height for dendrogram in WGCNA
-        Structure: float (e.g., 0.25)
+      description: Merge cut height for dendrogram in WGCNA.
   - val_minmodulesize:
       type: integer
-      description: |
-        Minimum module size for WGCNA
-        Structure: integer (e.g., 30)
+      description: Minimum module size for WGCNA.
   - val_sft_r2_threshold:
-      type: integer
-      description: |
-        R² threshold for scale-free topology fit during soft-threshold selection for WGCNA
-        Structure: float (e.g., 0.80)
+      type: float
+      description: R² threshold for scale-free topology fit.
   - val_species_name:
       type: string
       description: |
-        Species name for PPI network and enrichment analyses
-        Supported species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey
-        Structure: string
+        Species name for PPI network and enrichment analyses.
+        Structure: [ "human" | "mouse" | "rat" | "yeast" | "fruitfly" | "zebrafish" | "worm" | "arabidopsis" | "chicken" | "cow" | "pig" | "dog" | "monkey" ]
   - val_score_threshold:
       type: integer
-      description: |
-        STRING PPI confidence score threshold (0-1000)
-        Structure: integer
+      description: STRING PPI confidence score threshold (0-1000).
   - val_enrichment_method:
       type: string
       description: |
-        Enrichment method(s) to perform. Can be "GO", "KEGG", or "GO,KEGG" for both.
+        Enrichment method(s) to perform.
         Structure: [ "GO" | "KEGG" | "GO,KEGG" ]
 output:
   - wgcna_results:
-      type: file
+      type: directory
       description: |
-        WGCNA co-expression network analysis results including modules, eigengenes, and hub genes
+        WGCNA results including modules, eigengenes, and hub genes.
         Structure: [ path(wgcna_results) ]
-      pattern: "wgcna_results/*"
   - ppi_results:
-      type: file
+      type: directory
       description: |
-        STRING protein-protein interaction network analysis results
+        STRING protein-protein interaction network analysis results.
         Structure: [ path(ppi_results) ]
-      pattern: "string_ppi_results/*"
   - qc_plots:
-      type: file
+      type: directory
       description: |
-        Quality control visualization plots (PCA, sample clustering, etc.)
+        Quality control visualization plots (PCA, sample clustering, etc.).
         Structure: [ path(qc_plots) ]
-      pattern: "qc_plots/*"
   - heatmap_plots:
-      type: file
+      type: directory
       description: |
-        Heatmap visualizations of hub genes and module expression patterns
+        Heatmap visualizations of hub genes and module expression patterns.
         Structure: [ path(heatmaps) ]
-      pattern: "heatmaps/*"
   - go_enrichment:
-      type: file
+      type: directory
       description: |
-        Gene Ontology (GO) enrichment analysis results (only when "GO" in val_enrichment_method)
+        GO enrichment analysis results.
         Structure: [ path(go_results) ]
-      pattern: "go_enrichment/*"
   - kegg_enrichment:
-      type: file
+      type: directory
       description: |
-        KEGG pathway enrichment analysis results (only when "KEGG" in val_enrichment_method)
+        KEGG pathway enrichment analysis results.
         Structure: [ path(kegg_results) ]
-      pattern: "kegg_enrichment/*"
-  - versions:
-      type: file
-      description: |
-        File containing software versions from all executed modules
-        Structure: [ path(versions.yml) ]
-      pattern: "versions.yml"
 authors:
   - "@Loai3tr"
 maintainers:

@@ -1,5 +1,5 @@
 {
-    "Should stub filter rRNA from single-end reads using built index and return mocked non-rRNA FASTQ files": {
+    "homo_sapiens - fastq1 - index - reference_dir - rrna_db_type - stub | remove rRNA reads using pre-built index": {
         "content": [
             {
                 "0": [
@@ -13,7 +13,13 @@
                 ],
                 "1": [
                     [
-                        
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "2": [
@@ -26,11 +32,21 @@
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,7df9d50209f351e1f75e05a1fad6ba4b"
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
                 ],
                 "index": [
                     [
-                        
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "log": [
@@ -51,8 +67,12 @@
                         "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,7df9d50209f351e1f75e05a1fad6ba4b"
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
                 ]
             }
         ],
@@ -60,21 +80,102 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T22:32:00.552362518"
+        "timestamp": "2026-02-21T04:44:37.188051369"
     },
-    "sortmerna_paired_end_non_rrna": {
+    "homo_sapiens - [fastq1, fastq2] - index - reference_dir - rrna_db_type | remove rRNA reads using pre-built index": {
         "content": [
-            [
-                "versions.yml:md5,7df9d50209f351e1f75e05a1fad6ba4b"
-            ]
+            {
+                "index": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "index"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz",
+                            "test_non_rRNA_reads_rev.fq.gz"
+                        ]
+                    ]
+                ],
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T21:05:27.180800507"
+        "timestamp": "2026-02-21T04:30:03.98615495"
     },
-    "Should stub filter rRNA from paired-end reads using built index and return mocked non-rRNA FASTQ files": {
+    "homo_sapiens - fastq1 - index - reference_dir - rrna_db_type | remove rRNA reads using pre-built index": {
+        "content": [
+            {
+                "index": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "index"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_non_rRNA_reads.fq.gz"
+                    ]
+                ],
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T03:44:44.421130005"
+    },
+    "homo_sapiens - [fastq1, fastq2] - index - reference_dir - rrna_db_type - stub | remove rRNA reads using pre-built index": {
         "content": [
             {
                 "0": [
@@ -91,7 +192,13 @@
                 ],
                 "1": [
                     [
-                        
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "2": [
@@ -104,11 +211,21 @@
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,7df9d50209f351e1f75e05a1fad6ba4b"
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
                 ],
                 "index": [
                     [
-                        
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "log": [
@@ -132,8 +249,12 @@
                         ]
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,7df9d50209f351e1f75e05a1fad6ba4b"
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
                 ]
             }
         ],
@@ -141,18 +262,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T22:36:37.132856548"
-    },
-    "sortmerna_single_end_non_rrna": {
-        "content": [
-            [
-                "versions.yml:md5,7df9d50209f351e1f75e05a1fad6ba4b"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-18T20:20:59.19852925"
+        "timestamp": "2026-02-21T04:56:01.87752377"
     }
 }

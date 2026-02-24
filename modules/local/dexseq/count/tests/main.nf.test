@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process DEXSEQ_COUNT"
-    script "modules/local/dexseq/count/main.nf"
+    script "../main.nf"
     process "DEXSEQ_COUNT"
 
     tag "modules"
+    tag "modules_local"
     tag "dexseq"
     tag "dexseq/count"
 
@@ -12,14 +13,14 @@ nextflow_process {
             script "modules/local/dexseq/prepareannotation/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 input[1] = true
                 """
             }
         }
     }
 
-    test("Should count exonic reads for DEXSeq analysis and return count files") {
+    test("sarscov2 - bam - gff - alignment_quality") {
         when {
             params {
                 outdir = "$outputDir"
@@ -50,7 +51,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub count exonic reads for DEXSeq analysis and return mocked count files") {
+    test("sarscov2 - bam - gff - alignment_quality - stub") {
         options "-stub"
         when {
             params {

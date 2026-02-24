@@ -1,17 +1,5 @@
 {
-    "versions_qcplots_deseq2": {
-        "content": [
-            [
-                "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-26T22:19:21.265889765"
-    },
-    "Should stub generate QC plots (MDS, violin, PCA) from edgeR data and return mocked PDF plots": {
+    "leishmaniasis - voom_transformed - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm - stub | edgeR": {
         "content": [
             {
                 "0": [
@@ -22,7 +10,67 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                    [
+                        "QC_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "4": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tidyr",
+                        "1.3.2"
+                    ]
+                ],
+                "7": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "8": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-cowplot",
+                        "1.2.0"
+                    ]
+                ],
+                "9": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-mass",
+                        "7.3.65"
+                    ]
                 ],
                 "qc_plots": [
                     [
@@ -31,8 +79,68 @@
                         "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                "versions_cowplot": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-cowplot",
+                        "1.2.0"
+                    ]
+                ],
+                "versions_deseq2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_edger": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "versions_tidyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tidyr",
+                        "1.3.2"
+                    ]
                 ]
             }
         ],
@@ -40,9 +148,86 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-26T22:22:01.057751002"
+        "timestamp": "2026-02-22T11:34:36.543265034"
     },
-    "Should stub generate QC plots (MDS, violin, PCA) from DESeq2 data and return mocked PDF plots": {
+    "leishmaniasis - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm | DESeq2": {
+        "content": [
+            {
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "versions_cowplot": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-cowplot",
+                        "1.2.0"
+                    ]
+                ],
+                "versions_deseq2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_edger": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "versions_tidyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tidyr",
+                        "1.3.2"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T11:32:47.782428721"
+    },
+    "leishmaniasis - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm - stub | DESeq2": {
         "content": [
             {
                 "0": [
@@ -53,7 +238,67 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                    [
+                        "QC_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "4": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tidyr",
+                        "1.3.2"
+                    ]
+                ],
+                "7": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "8": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-cowplot",
+                        "1.2.0"
+                    ]
+                ],
+                "9": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-mass",
+                        "7.3.65"
+                    ]
                 ],
                 "qc_plots": [
                     [
@@ -62,8 +307,68 @@
                         "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
+                "versions_cowplot": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-cowplot",
+                        "1.2.0"
+                    ]
+                ],
+                "versions_deseq2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_edger": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "versions_tidyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tidyr",
+                        "1.3.2"
+                    ]
                 ]
             }
         ],
@@ -71,18 +376,83 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-27T00:08:29.572891914"
+        "timestamp": "2026-02-22T11:36:40.893746913"
     },
-    "versions_qcplots_edger": {
+    "leishmaniasis - voom_transformed - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm | edgeR": {
         "content": [
-            [
-                "versions.yml:md5,98f3b86beb195b40ef589e5b438d2982"
-            ]
+            {
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "versions_cowplot": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-cowplot",
+                        "1.2.0"
+                    ]
+                ],
+                "versions_deseq2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_edger": [
+                    [
+                        "QC_VISUALIZATION",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "versions_tidyr": [
+                    [
+                        "QC_VISUALIZATION",
+                        "r-tidyr",
+                        "1.3.2"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-26T22:13:00.535540745"
+        "timestamp": "2026-02-22T11:27:20.015254894"
     }
 }

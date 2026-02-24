@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process WGCNA_ANALYSIS"
-    script "modules/local/wgcna_analysis/main.nf"
+    script "../main.nf"
     process "WGCNA_ANALYSIS"
 
     tag "modules"
+    tag "modules_local"
     tag "wgcna_analysis"
 
-    test("Should perform WGCNA analysis on leishmaniasis dataset with no timepoints and return WGCNA results") {
+    test("leishmaniasis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold | no timepoints") {
         when {
             params {
                 outdir = "$outputDir"
@@ -53,18 +54,12 @@ nextflow_process {
                 { assert process.out.modules_hubgenes.get(0) ==~ ".*/all_traits_modules_hubgenes\\.rds" },
                 { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
                 { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
-                { assert snapshot(
-                    process.out.unfiltered_log2counts,
-                    process.out.filtered_log2counts,
-                    process.out.normalized_log2counts,
-                    process.out.modules_hubgenes,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["wgcna_results", "vsd_object", "soft_threshold_plot", "module_dendrogram"])).match() }
             )
         }
     }
 
-    test("Should perform WGCNA analysis on plant dataset with timepoints and return WGCNA results") {
+    test("arabidopsis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold | with timepoints") {
         when {
             params {
                 outdir = "$outputDir"
@@ -111,18 +106,12 @@ nextflow_process {
                 { assert process.out.modules_hubgenes.get(0) ==~ ".*/all_traits_modules_hubgenes\\.rds" },
                 { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
                 { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
-                { assert snapshot(
-                    process.out.unfiltered_log2counts,
-                    process.out.filtered_log2counts,
-                    process.out.normalized_log2counts,
-                    process.out.modules_hubgenes,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["wgcna_results", "vsd_object", "soft_threshold_plot", "module_dendrogram"])).match() }
             )
         }
     }
 
-    test("Should stub perform WGCNA analysis on leishmaniasis dataset with no timepoints and return mocked WGCNA results") {
+    test("leishmaniasis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold - stub | no timepoints") {
         options "-stub"
         when {
             params {
@@ -167,7 +156,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub perform WGCNA analysis on plant dataset with timepoints and return mocked WGCNA results") {
+    test("arabidopsis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold - stub | with timepoints") {
         options "-stub"
         when {
             params {

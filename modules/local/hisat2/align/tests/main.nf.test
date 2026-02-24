@@ -1,18 +1,20 @@
 nextflow_process {
     name "Test Process HISAT2_ALIGN"
-    script "modules/local/hisat2/align/main.nf"
+    script "../main.nf"
     process "HISAT2_ALIGN"
 
     tag "modules"
+    tag "modules_local"
     tag "hisat2"
     tag "hisat2/align"
+    tag "samtools"
 
     setup {
         run("HISAT2_EXTRACTEXONS") {
             script "modules/local/hisat2/extractexons/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -21,7 +23,7 @@ nextflow_process {
             script "modules/local/hisat2/extractsplicesites/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -30,7 +32,7 @@ nextflow_process {
             script "modules/local/hisat2/build/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[0] = [[id : 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)]
                 input[1] = HISAT2_EXTRACTSPLICESITES.out.splice_sites
                 input[2] = HISAT2_EXTRACTEXONS.out.exons_sites
                 """
@@ -38,7 +40,7 @@ nextflow_process {
         }
     }
 
-    test("Should align single-end reads against reference genome using built index and return BAM file with summary") {
+    test("homo_sapiens - fastq1 - index - fasta") {
         when {
             params {
                 outdir = "$outputDir"
@@ -48,11 +50,11 @@ nextflow_process {
                 input[0] = Channel.of([
                     [ id: 'test', lib_type: 'forward', single_end: true ],
                     [
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
                 input[1] = HISAT2_BUILD.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[2] = [[id : 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)]
                 """
             }
         }
@@ -61,15 +63,12 @@ nextflow_process {
                 { assert process.success },
                 { assert process.out.bam.get(0).get(1) ==~ ".*/test\\.bam"},
                 { assert process.out.summary.get(0).get(1) ==~ ".*/*.hisat2\\.summary"},
-                { assert snapshot(
-                    process.out.summary,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["bam"])).match() }
             )
         }
     }
 
-    test("Should align paired-end reads against reference genome using built index and return BAM file with summary") {
+    test("homo_sapiens - [fastq1, fastq2] - index - fasta") {
         when {
             params {
                 outdir = "$outputDir"
@@ -79,12 +78,12 @@ nextflow_process {
                 input[0] = Channel.of([
                     [ id: 'test', lib_type: 'reverse', single_end: false ],
                     [
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
                 input[1] = HISAT2_BUILD.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[2] = [[id : 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)]
                 """
             }
         }
@@ -93,15 +92,12 @@ nextflow_process {
                 { assert process.success },
                 { assert process.out.bam.get(0).get(1) ==~ ".*/test\\.bam"},
                 { assert process.out.summary.get(0).get(1) ==~ ".*/*.hisat2\\.summary"},
-                { assert snapshot(
-                    process.out.summary,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["bam"])).match() }
             )
         }
     }
 
-    test("Should stub align single-end reads against reference genome using built index and return mocked BAM file with summary") {
+    test("homo_sapiens - fastq1 - index - fasta - stub") {
         options "-stub"
         when {
             params {
@@ -112,11 +108,11 @@ nextflow_process {
                 input[0] = Channel.of([
                     [ id: 'test', lib_type: 'forward', single_end: true ],
                     [
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
                 input[1] = HISAT2_BUILD.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[2] = [[id : 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)]
                 """
             }
         }
@@ -128,7 +124,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub align paired-end reads against reference genome using built index and return mocked BAM file with summary") {
+    test("homo_sapiens - [fastq1, fastq2] - index - fasta - stub") {
         options "-stub"
         when {
             params {
@@ -139,12 +135,12 @@ nextflow_process {
                 input[0] = Channel.of([
                     [ id: 'test', lib_type: 'reverse', single_end: false ],
                     [
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
                 input[1] = HISAT2_BUILD.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[2] = [[id : 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)]
                 """
             }
         }

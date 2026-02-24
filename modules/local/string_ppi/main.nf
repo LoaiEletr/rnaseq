@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process STRING_PPI {
     tag "${wgcna_results_rds}"
     label 'process_low'
@@ -16,7 +14,8 @@ process STRING_PPI {
 
     output:
     path "STRING_PPI", emit: string_results
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-stringdb'), eval("Rscript -e \"cat(as.character(packageVersion('STRINGdb')))\""), topic: versions, emit: versions_stringdb
 
     when:
     task.ext.when == null || task.ext.when
@@ -24,22 +23,10 @@ process STRING_PPI {
     script:
     """
     run_string_ppi.R ${wgcna_results_rds} ${species_name} ${score_threshold}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-stringdb: \$(Rscript -e "library(STRINGdb); cat(as.character(packageVersion('STRINGdb')))")
-    END_VERSIONS
     """
 
     stub:
     """
     mkdir STRING_PPI
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-stringdb: \$(Rscript -e "library(STRINGdb); cat(as.character(packageVersion('STRINGdb')))")
-    END_VERSIONS
     """
 }

@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process TXIMPORT"
-    script "modules/local/tximport/main.nf"
+    script "../main.nf"
     process "TXIMPORT"
 
     tag "modules"
+    tag "modules_local"
     tag "tximport"
 
     setup {
@@ -20,7 +21,7 @@ nextflow_process {
             script "modules/local/untar/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)
+                input[0] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)]
                 """
             }
         }
@@ -29,13 +30,13 @@ nextflow_process {
             script "modules/local/untar/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)
+                input[0] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)]
                 """
             }
         }
     }
 
-    test("Should import kallisto quantification with tximport and return RDS results") {
+    test("yeast - quant_dirs - pseudo_aligner - tx2gene tsv | kallisto") {
         when {
             params {
                 outdir = "$outputDir"
@@ -44,7 +45,7 @@ nextflow_process {
             process {
                 """
                 input[0] = UNTAR_KALLISTO.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = params.pseudo_aligner
@@ -56,12 +57,12 @@ nextflow_process {
             assertAll (
                 { assert process.success },
                 { assert process.out.rds.get(0) ==~ ".*/tximport_results\\.rds" },
-                { assert snapshot(process.out.versions).match("versions_tximport_kallisto") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["rds"])).match() }
             )
         }
     }
 
-    test("Should import salmon quantification with tximport and return RDS results") {
+    test("yeast - quant_dirs - pseudo_aligner - tx2gene tsv | salmon") {
         when {
             params {
                 outdir = "$outputDir"
@@ -70,7 +71,7 @@ nextflow_process {
             process {
                 """
                 input[0] = UNTAR_SALMON.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = params.pseudo_aligner
@@ -82,12 +83,12 @@ nextflow_process {
             assertAll (
                 { assert process.success },
                 { assert process.out.rds.get(0) ==~ ".*/tximport_results\\.rds" },
-                { assert snapshot(process.out.versions).match("versions_tximport_salmon") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["rds"])).match() }
             )
         }
     }
 
-    test("Should stub import kallisto quantification with tximport and return mocked RDS results") {
+    test("yeast - quant_dirs - pseudo_aligner - tx2gene tsv - stub | kallisto") {
         options "-stub"
         when {
             params {
@@ -97,7 +98,7 @@ nextflow_process {
             process {
                 """
                 input[0] = UNTAR_KALLISTO.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = params.pseudo_aligner
@@ -113,7 +114,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub import salmon quantification with tximport and return mocked RDS results") {
+    test("yeast - quant_dirs - pseudo_aligner - tx2gene tsv - stub | salmon") {
         options "-stub"
         when {
             params {
@@ -123,7 +124,7 @@ nextflow_process {
             process {
                 """
                 input[0] = UNTAR_SALMON.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = params.pseudo_aligner

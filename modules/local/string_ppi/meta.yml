@@ -1,83 +1,77 @@
-name: string_ppi
+name: "string_ppi"
 description: |
   Performs Protein-Protein Interaction (PPI) network analysis using STRINGdb for WGCNA hub genes.
+  Maps gene identifiers to the STRING database and retrieves interaction networks based on
+  confidence score thresholds.
 keywords:
   - stringdb
   - ppi
   - protein interaction
   - network
+  - wgcna
+  - systems biology
 tools:
   - bioconductor_stringdb:
       description: "STRINGdb API interface for protein-protein interaction networks"
       homepage: "https://www.bioconductor.org/packages/STRINGdb/"
       documentation: "https://www.bioconductor.org/packages/release/bioc/html/STRINGdb.html"
       tool_dev_url: "https://github.com/mensxmachina/STRINGdb"
+      doi: "10.1093/nar/gky1131"
       licence: ["Artistic-2.0"]
       identifier: "STRINGdb"
 
 input:
-  - wgcna_results_rds:
-      type: file
-      description: |
-        RDS file containing WGCNA results with hub genes
-      pattern: "*.rds"
-      ontologies: []
-
-  - species_name:
-      type: string
-      description: |
-        Species name for STRING database
-        Options: human, mouse, rat, fruitfly, zebrafish, worm, yeast
-      pattern: "human|mouse|rat|yeast|fruitfly|zebrafish|worm|arabidopsis|chicken|cow|pig|dog|monkey"
-
-  - score_threshold:
-      type: number
-      description: |
-        Minimum confidence score threshold for protein interactions
-      pattern: "[0-9]+(\\.[0-9]+)?"
+  - - wgcna_results_rds:
+        type: file
+        description: RDS file containing WGCNA results, typically including module membership and hub genes.
+        pattern: "*.rds"
+        ontologies: []
+  - - species_name:
+        type: string
+        description: Species name used to fetch the correct STRING database taxID.
+        ontologies: []
+  - - score_threshold:
+        type: float
+        description: Minimum confidence score (0-1000) for protein interactions.
+        ontologies: []
 
 output:
   string_results:
     - STRING_PPI:
-        type: file
-        description: |
-          Directory containing STRING PPI analysis results
-        pattern: "STRING_PPI/*"
-
-  versions_stringdb:
+        type: directory
+        description: Directory containing STRING PPI analysis results, tables, and network visualizations.
+        pattern: "STRING_PPI/"
+        ontologies: []
+  versions_rbase:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - r_base:
+      - r-base:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+      - "Rscript -e 'cat(as.character(getRversion()))'":
           type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_stringdb:
+  versions_stringdb:
+    - - "${task.process}":
           type: string
-          description: The name of the STRINGdb package
-      - 'Rscript -e "library(STRINGdb); cat(as.character(packageVersion(''STRINGdb'')))"':
+      - bioconductor-stringdb:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''STRINGdb'')))"':
           type: eval
-          description: The expression to obtain the version of STRINGdb
 
 topics:
   versions:
     - - "${task.process}":
           type: string
-          description: The name of the process
-      - r_base:
+      - r-base:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+      - "Rscript -e 'cat(as.character(getRversion()))'":
           type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_stringdb:
+    - - "${task.process}":
           type: string
-          description: The name of the STRINGdb package
-      - 'Rscript -e "library(STRINGdb); cat(as.character(packageVersion(''STRINGdb'')))"':
+      - bioconductor-stringdb:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''STRINGdb'')))"':
           type: eval
-          description: The expression to obtain the version of STRINGdb
 
 authors:
   - "@Loai3tr"

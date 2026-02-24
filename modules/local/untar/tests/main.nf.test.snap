@@ -1,22 +1,36 @@
 {
-    "Should extract tar.gz archive and return extracted files": {
+    "generic - tar.gz - stub": {
         "content": [
             {
                 "0": [
                     [
-                        "hello.txt:md5,e59ff97941044f85df5297e1c302d260"
+                        {
+                            "id": "hello"
+                        },
+                        "hello:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                    [
+                        "UNTAR",
+                        "untar",
+                        "1.35"
+                    ]
                 ],
                 "untar": [
                     [
-                        "hello.txt:md5,e59ff97941044f85df5297e1c302d260"
+                        {
+                            "id": "hello"
+                        },
+                        "hello:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                "versions_untar": [
+                    [
+                        "UNTAR",
+                        "untar",
+                        "1.35"
+                    ]
                 ]
             }
         ],
@@ -24,22 +38,44 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T02:34:45.199290424"
+        "timestamp": "2026-02-21T02:52:03.993400454"
     },
-    "Should stub extract tar.gz archive and return mocked extracted files": {
+    "generic - tar.gz": {
         "content": [
             {
                 "0": [
-                    "hello:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "hello"
+                        },
+                        [
+                            "hello.txt:md5,e59ff97941044f85df5297e1c302d260"
+                        ]
+                    ]
                 ],
                 "1": [
-                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                    [
+                        "UNTAR",
+                        "untar",
+                        "1.35"
+                    ]
                 ],
                 "untar": [
-                    "hello:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "hello"
+                        },
+                        [
+                            "hello.txt:md5,e59ff97941044f85df5297e1c302d260"
+                        ]
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,0cd92d20f9dfdad1f4fac382631cef03"
+                "versions_untar": [
+                    [
+                        "UNTAR",
+                        "untar",
+                        "1.35"
+                    ]
                 ]
             }
         ],
@@ -47,6 +83,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T02:36:43.328632996"
+        "timestamp": "2026-02-21T02:51:08.637167171"
     }
 }

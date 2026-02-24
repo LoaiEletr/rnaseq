@@ -1,5 +1,5 @@
 {
-    "Should decompress gzipped file and return decompressed output": {
+    "homo_sapiens - gz": {
         "content": [
             {
                 "0": [
@@ -11,7 +11,11 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
                 ],
                 "gunzip": [
                     [
@@ -21,8 +25,12 @@
                         "purecn_ex1_normal.txt:md5,a412992421727d291a7d65cc62cd5db8"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                "versions_gunzip": [
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
                 ]
             }
         ],
@@ -30,9 +38,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T03:27:29.145262143"
+        "timestamp": "2026-02-20T02:50:20.145495192"
     },
-    "Should stub decompress gzipped file and return mocked decompressed output": {
+    "homo_sapiens - gz - stub": {
         "content": [
             {
                 "0": [
@@ -44,7 +52,11 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
                 ],
                 "gunzip": [
                     [
@@ -54,8 +66,12 @@
                         "purecn_ex1_normal.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,c5b1f506505cf8cc26918abc62d741a2"
+                "versions_gunzip": [
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
                 ]
             }
         ],
@@ -63,6 +79,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T03:28:14.215487138"
+        "timestamp": "2026-02-20T02:51:37.672830362"
     }
 }

@@ -25,9 +25,9 @@ input:
         type: file
         description: |
           BAM file for statistics calculation
-        pattern: "*.{bam,bam.gz}"
+        pattern: "*.bam"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
+          - edam: "http://edamontology.org/format_2572" # BAM
 
 output:
   txt:
@@ -42,7 +42,7 @@ output:
             Text file containing BAM statistics
           pattern: "*.txt"
           ontologies:
-            - edam: "http://edamontology.org/format_2330"
+            - edam: "http://edamontology.org/format_2330" # Textual format
 
   versions_rseqc:
     - - "${task.process}":

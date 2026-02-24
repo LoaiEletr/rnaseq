@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process RSEQC_INFEREXPERIMENT"
-    script "modules/local/rseqc/inferexperiment/main.nf"
+    script "../main.nf"
     process "RSEQC_INFEREXPERIMENT"
 
     tag "modules"
+    tag "modules_local"
     tag "rseqc"
     tag "rseqc/inferexperiment"
 
-    test("Should identify RNA-seq strandedness with RSeQC and return experiment inference results") {
+    test("sarscov2 - bam - bed") {
         when {
             params {
                 outdir = "$outputDir"
@@ -18,7 +19,7 @@ nextflow_process {
                     [ id: 'test', single_end: true ],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
                 """
             }
         }
@@ -31,7 +32,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub identify RNA-seq strandedness with RSeQC and return mocked experiment inference results") {
+    test("sarscov2 - bam - bed - stub") {
         options "-stub"
         when {
             params {
@@ -43,7 +44,7 @@ nextflow_process {
                     [ id: 'test', single_end: true ],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
                 """
             }
         }

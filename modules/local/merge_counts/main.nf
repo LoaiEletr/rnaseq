@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process MERGE_COUNTS {
     label 'process_low'
 
@@ -13,7 +11,7 @@ process MERGE_COUNTS {
 
     output:
     path "merged_counts.rds", emit: counts_table
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
 
     when:
     task.ext.when == null || task.ext.when
@@ -21,20 +19,10 @@ process MERGE_COUNTS {
     script:
     """
     merge_counts.R ${counts}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-    END_VERSIONS
     """
 
     stub:
     """
     touch merged_counts.rds
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-    END_VERSIONS
     """
 }

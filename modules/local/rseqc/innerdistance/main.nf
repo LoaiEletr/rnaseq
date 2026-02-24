@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process RSEQC_INNERDISTANCE {
     tag "${meta.id}"
     label 'process_low'
@@ -11,14 +9,14 @@ process RSEQC_INNERDISTANCE {
 
     input:
     tuple val(meta), path(bam)
-    path bed
+    tuple val(meta2), path(bed)
 
     output:
     tuple val(meta), path("*distance.txt"), emit: distance
     tuple val(meta), path("*freq.txt"), emit: freq
     tuple val(meta), path("*.pdf"), emit: pdf
     tuple val(meta), path("*.r"), emit: rscript
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('rseqc'), eval("inner_distance.py --version | sed 's/.*.py //'"), topic: versions, emit: versions_rseqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -32,11 +30,6 @@ process RSEQC_INNERDISTANCE {
         ${args} \\
         -o ${prefix} \\
         -r ${bed}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( inner_distance.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 
     stub:
@@ -46,10 +39,5 @@ process RSEQC_INNERDISTANCE {
     touch ${prefix}.inner_distance_freq.txt
     touch ${prefix}.inner_distance_plot.r
     touch ${prefix}.inner_distance_plot.pdf
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( inner_distance.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 }

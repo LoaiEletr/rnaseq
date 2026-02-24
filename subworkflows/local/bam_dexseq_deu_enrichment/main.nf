@@ -12,7 +12,7 @@ include { KEGG_ENRICHMENT } from '../../../modules/local/kegg_enrichment/main.nf
 workflow BAM_DEXSEQ_DEU_ENRICHMENT {
     take:
     ch_bam // channel: [ val(meta), bam ]
-    ch_gff // channel: [ gff ]
+    ch_gff // channel: [ val(meta), gff ]
     ch_samplesheet // channel: [ samplesheet ]
     val_alignment_quality // integer: minimum alignment quality score
     val_pval_threshold // float: p-value threshold for significance
@@ -24,7 +24,6 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
     val_enrichment_method // string: enrichment method(s) - "GO", "KEGG", or "GO,KEGG"
 
     main:
-    ch_versions = channel.empty()
     ch_go_enrichment = channel.empty()
     ch_kegg_enrichment = channel.empty()
 
@@ -35,7 +34,6 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
         val_alignment_quality,
     )
     ch_counts = DEXSEQ_COUNT.out.counts
-    ch_versions = ch_versions.mix(DEXSEQ_COUNT.out.versions.first())
 
     // 2. Differential exon usage analysis
     DEXSEQ_DEU(
@@ -49,7 +47,6 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
         val_top_n,
         val_min_exonlength,
     )
-    ch_versions = ch_versions.mix(DEXSEQ_DEU.out.versions)
 
     // 3. GO enrichment analysis (optional)
     if ("GO" in val_enrichment_method) {
@@ -65,7 +62,6 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
             val_ntop_processes,
         )
         ch_go_enrichment = GO_ENRICHMENT.out.go_results
-        ch_versions = ch_versions.mix(GO_ENRICHMENT.out.versions)
     }
 
     // 4. KEGG pathway enrichment analysis (optional)
@@ -82,7 +78,6 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
             val_ntop_processes,
         )
         ch_kegg_enrichment = KEGG_ENRICHMENT.out.kegg_results
-        ch_versions = ch_versions.mix(KEGG_ENRICHMENT.out.versions)
     }
 
     emit:
@@ -94,5 +89,4 @@ workflow BAM_DEXSEQ_DEU_ENRICHMENT {
     report = DEXSEQ_DEU.out.report // channel: [ report ]
     go_enrichment = ch_go_enrichment // channel: [ go_results ]
     kegg_enrichment = ch_kegg_enrichment // channel: [ kegg_results ]
-    versions = ch_versions // channel: [ versions.yml ]
 }

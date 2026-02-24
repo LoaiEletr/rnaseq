@@ -1,119 +1,98 @@
 name: "counts_isoform_switch_enrichment"
 description: |
-  Isoform switch analysis workflow for differential isoform usage and alternative splicing.
-  Performs: IsoformSwitchAnalyzeR analysis to identify switching isoforms between conditions,
-  with support for both differential isoform usage (DIU) and alternative splicing (AS) detection methods,
-  followed by optional GO and KEGG functional enrichment analysis of switching genes.
+  Perform isoform switch analysis (DIU/AS) and functional enrichment.
+  Uses IsoformSwitchAnalyzeR to identify switching isoforms, followed by
+  optional GO and KEGG enrichment analysis.
 keywords:
   - isoform-switch
   - alternative-splicing
   - differential-isoform-usage
-  - isoformswitchanalyzer
-  - transcript-isoforms
-  - rna-seq
+  - transcriptomics
   - functional-enrichment
-  - go
-  - kegg
 components:
   - isoformswitchanalyzer
   - go/enrichment
   - kegg/enrichment
 input:
   - ch_counts:
-      type: file
+      type: list
       description: |
-        Input channel containing isoform quantification results from Kallisto or Salmon
+        Input channel containing quantification results from all samples.
         Structure: [ path(quant_results) ]
-      pattern: "*"
   - ch_samplesheet:
       type: file
       description: |
-        Channel containing sample metadata/samplesheet for switch analysis
+        Channel containing sample metadata/samplesheet.
         Structure: [ path(samplesheet) ]
       pattern: "*.{csv,tsv,txt}"
   - ch_gtf:
       type: file
       description: |
-        Channel containing GTF annotation file for isoform-gene mapping
-        Structure: [ path(gtf) ]
+        Genome annotation file in GTF format.
+        Structure: [ val(meta), path(gtf) ]
       pattern: "*.{gtf,gtf.gz}"
-  - ch_transcript:
+  - ch_transcriptome:
       type: file
       description: |
-        Channel containing transcriptome FASTA file for sequence analysis
-        Structure: [ path(transcript_fasta) ]
+        Transcriptome FASTA file.
+        Structure: [ val(meta), path(transcriptome) ]
       pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
   - val_quant_type:
       type: string
       description: |
-        Quantification tool used: 'kallisto' or 'salmon'
-        Structure: [ "kallisto" | "salmon" ]
+        Quantification tool used ('kallisto' or 'salmon').
+        Structure: string
   - val_method:
       type: string
       description: |
-        Analysis method(s) for isoform switch detection. Can be "DIU", "AS", or combinations like "DIU,AS".
-        DIU: Differential Isoform Usage, AS: Alternative Splicing.
-        Structure: comma-separated string
+        Analysis method(s) for switch detection (e.g., "DIU", "AS").
   - val_pvalue_threshold:
       type: float
-      description: |
-        P-value threshold for significant isoform switches
-        Structure: float (e.g., 0.05)
+      description: P-value threshold for statistical significance.
   - val_dif_cutoff:
       type: float
-      description: |
-        Log fold change (or dIF) threshold for significant isoform switches
-        Structure: float (e.g., 0.1 for dIF)
+      description: Difference in Isoform Fraction (dIF) or log fold change threshold.
   - val_ntop_isoforms:
       type: integer
-      description: |
-        Number of top switching isoforms to output
-        Structure: integer
+      description: Number of top switching isoforms to report/visualize.
   - val_species_name:
       type: string
       description: |
-        Species name for functional enrichment analyses
-        Supported species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey
-        Structure: string
+        Species name for enrichment analysis.
+        Structure: [ "human" | "mouse" | "rat" | "yeast" | "fruitfly" | "zebrafish" | "worm" | "arabidopsis" | "chicken" | "cow" | "pig" | "dog" | "monkey" ]
   - val_ntop_processes:
       type: integer
-      description: |
-        Number of top biological processes/pathways to output in enrichment results
-        Structure: integer
+      description: Number of top biological processes/pathways to visualize.
   - val_enrichment_method:
       type: string
       description: |
-        Functional enrichment method(s) to perform. Can be "GO", "KEGG", or comma-separated combinations.
-        Structure: comma-separated string (e.g., "GO" or "GO,KEGG")
+        Enrichment method(s) to perform.
+        Structure: [ "GO" | "KEGG" | "GO,KEGG" ]
 output:
   - isoform_results:
-      type: file
+      type: directory
       description: |
-        Comprehensive isoform switch analysis results including switching isoforms and statistics
-        Structure: [ path(isoform_results) ]
-      pattern: "isoform_output"
+        Directory containing IsoformSwitchAnalyzeR results and plots.
+        Structure: [ path(isoform_output) ]
   - significant_geneids:
       type: file
       description: |
-        List of gene IDs with significant isoform switches
+        File containing gene IDs with significant switches.
         Structure: [ path(significant_geneids) ]
-      pattern: "isoform_output/significant_DIU_gene_ids.rds"
   - go_enrichment:
-      type: file
+      type: directory
       description: |
-        Gene Ontology (GO) enrichment analysis results (only when "GO" in val_enrichment_method)
+        GO enrichment analysis results.
         Structure: [ path(go_results) ]
-      pattern: "go_results/*"
   - kegg_enrichment:
-      type: file
+      type: directory
       description: |
-        KEGG pathway enrichment analysis results (only when "KEGG" in val_enrichment_method)
+        KEGG pathway enrichment analysis results.
         Structure: [ path(kegg_results) ]
-      pattern: "kegg_results/*"
   - versions:
       type: file
       description: |
-        File containing software versions from all executed modules
+        File containing software versions.
         Structure: [ path(versions.yml) ]
       pattern: "versions.yml"
 authors:

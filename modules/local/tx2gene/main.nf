@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process TX2GENE {
     tag "${species_name}"
     label 'process_low'
@@ -14,7 +12,8 @@ process TX2GENE {
 
     output:
     path "*.tsv", emit: tsv
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-biomart'), eval("Rscript -e \"cat(as.character(packageVersion('biomaRt')))\""), topic: versions, emit: versions_biomart
 
     when:
     task.ext.when == null || task.ext.when
@@ -22,22 +21,10 @@ process TX2GENE {
     script:
     """
     generate_tx2gene.R ${species_name}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-biomart: \$(Rscript -e "library(biomaRt); cat(as.character(packageVersion('biomaRt')))")
-    END_VERSIONS
     """
 
     stub:
     """
     touch tx2gene.tsv
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-biomart: \$(Rscript -e "library(biomaRt); cat(as.character(packageVersion('biomaRt')))")
-    END_VERSIONS
     """
 }

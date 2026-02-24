@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process SALMON_QUANT"
-    script "modules/local/salmon/quant/main.nf"
+    script "../main.nf"
     process "SALMON_QUANT"
 
     tag "modules"
+    tag "modules_local"
     tag "salmon"
     tag "salmon/quant"
 
@@ -12,13 +13,13 @@ nextflow_process {
             script "modules/local/salmon/index/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[0] = [[id: 'transcriptome'], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
                 """
             }
         }
     }
 
-    test("Should quantify single-end reads with Salmon and return quantification results with log") {
+    test("sarscov2 - fastq1 - index - gtf") {
         when {
             params {
                 outdir = "$outputDir"
@@ -32,8 +33,7 @@ nextflow_process {
                     ]
                 ])
                 input[1] = SALMON_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = []
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -41,13 +41,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.quant_dir.get(0).get(1) ==~ ".*/test" },
-                { assert process.out.log.get(0).get(1) ==~ ".*/*.log" },
-                { assert snapshot(process.out.versions).match("versions_single_end") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["quant_dir"])).match() }
             )
         }
     }
 
-    test("Should quantify paired-end reads with Salmon and return quantification results with log") {
+    test("sarscov2 - [fastq1, fastq2] - index - gtf") {
         when {
             params {
                 outdir = "$outputDir"
@@ -62,8 +61,7 @@ nextflow_process {
                     ]
                 ])
                 input[1] = SALMON_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = []
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -71,13 +69,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.quant_dir.get(0).get(1) ==~ ".*/test" },
-                { assert process.out.log.get(0).get(1) ==~ ".*/*.log" },
-                { assert snapshot(process.out.versions).match("versions_paired_end") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["quant_dir"])).match() }
             )
         }
     }
 
-    test("Should stub quantify single-end reads with Salmon and return mocked quantification results") {
+    test("sarscov2 - fastq1 - index - gtf - stub") {
         options "-stub"
         when {
             params {
@@ -92,8 +89,7 @@ nextflow_process {
                     ]
                 ])
                 input[1] = SALMON_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = []
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -105,7 +101,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub quantify paired-end reads with Salmon and return mocked quantification results") {
+    test("sarscov2 - [fastq1, fastq2] - index - gtf - stub") {
         options "-stub"
         when {
             params {
@@ -121,8 +117,7 @@ nextflow_process {
                     ]
                 ])
                 input[1] = SALMON_INDEX.out.index
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = []
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }

@@ -1,162 +1,136 @@
 name: deseq2_de
 description: |
-  Performs differential expression analysis using DESeq2 with variance stabilizing transformation.
+  Performs differential expression analysis using DESeq2.
+  The module calculates fold changes and adjusted p-values based on a negative binomial distribution
+  and provides Variance Stabilizing Transformation (VST) for downstream visualization.
 keywords:
   - deseq2
   - differential expression
   - rna-seq
   - statistics
+  - normalization
 tools:
   - bioconductor_deseq2:
       description: "Differential gene expression analysis based on the negative binomial distribution"
       homepage: "https://bioconductor.org/packages/DESeq2/"
       documentation: "https://bioconductor.org/packages/release/bioc/html/DESeq2.html"
       tool_dev_url: "https://github.com/mikelove/DESeq2"
+      doi: "10.1186/s13059-014-0550-8"
       licence: ["LGPL-3.0-only"]
       identifier: "DESeq2"
 
 input:
-  - counts_rds:
-      type: file
-      description: |
-        RDS file containing raw count matrix
-      pattern: "*.rds"
-      ontologies: []
-
-  - samplesheet_csv:
-      type: file
-      description: |
-        CSV file with sample metadata and experimental design
-      pattern: "*.csv"
-      ontologies:
-        - edam: "http://edamontology.org/format_3752"
-
-  - pvalue_threshold:
-      type: number
-      description: |
-        Adjusted p-value threshold for significance
-      pattern: "[0-9]+(\\.[0-9]+)?"
-
-  - logfc_threshold:
-      type: number
-      description: |
-        Log2 fold change threshold for significance
-      pattern: "[0-9]+(\\.[0-9]+)?"
-
-  - top_genes:
-      type: integer
-      description: |
-        Number of top differentially expressed genes to output
-      pattern: "[0-9]+"
+  - - counts_rds:
+        type: file
+        description: RDS file containing the raw count matrix.
+        pattern: "*.rds"
+        ontologies: []
+  - - samplesheet_csv:
+        type: file
+        description: CSV file with sample metadata and experimental design.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  - - pvalue_threshold:
+        type: float
+        description: Adjusted p-value threshold for significance (e.g., 0.05).
+  - - logfc_threshold:
+        type: float
+        description: Log2 fold change threshold for significance (e.g., 1).
+  - - top_genes:
+        type: integer
+        description: Number of top differentially expressed genes to output for summary files.
 
 output:
   unfiltered_log2counts:
-    - unfiltered_counts.rds:
+    - "unfiltered_counts.rds":
         type: file
-        description: |
-          RDS file with unfiltered log2 count matrix
-        pattern: "unfiltered_counts.rds"
+        description: RDS file with unfiltered log2 count matrix.
+        pattern: "*.rds"
         ontologies: []
-
   filtered_log2counts:
-    - filtered_counts.rds:
+    - "filtered_counts.rds":
         type: file
-        description: |
-          RDS file with filtered log2 count matrix
-        pattern: "filtered_counts.rds"
-        ontologies: []
-
+        description: RDS file with filtered log2 count matrix.
+        pattern: "*.rds"
   normalized_log2counts:
-    - normalized_counts.rds:
+    - "normalized_counts.rds":
         type: file
-        description: |
-          RDS file with normalized log2 counts
-        pattern: "normalized_counts.rds"
+        description: RDS file with normalized log2 counts.
+        pattern: "*.rds"
         ontologies: []
-
   diffgenes_matrix:
-    - deseq2_de_genes.rds:
+    - "deseq2_de_genes.rds":
         type: file
-        description: |
-          RDS file with expression matrix of differentially expressed genes
-        pattern: "deseq2_de_genes.rds"
+        description: RDS file with expression matrix of DE genes.
+        pattern: "*.rds"
         ontologies: []
-
   vst_object:
-    - vst_transformed.rds:
+    - "vst_transformed.rds":
         type: file
-        description: |
-          RDS file with variance stabilizing transformed data
-        pattern: "vst_transformed.rds"
+        description: RDS file with variance stabilizing transformed data (DESeqTransform object).
+        pattern: "*.rds"
         ontologies: []
-
   diffgenes_table:
-    - de_genes_full_table.rds:
+    - "de_genes_full_table.rds":
         type: file
-        description: |
-          RDS file with full table of differentially expressed genes
-        pattern: "de_genes_full_table.rds"
+        description: RDS file with full table of DE results.
+        pattern: "*.rds"
         ontologies: []
-
   unfiltered_deg:
-    - unfiltered_deg_results.rds:
+    - "unfiltered_deg_results.rds":
         type: file
-        description: |
-          RDS file with unfiltered differential expression results
-        pattern: "unfiltered_deg_results.rds"
+        description: RDS file with unfiltered differential expression results.
+        pattern: "*.rds"
         ontologies: []
-
   topgenes_rds:
     - "top_${top_genes}_genes.rds":
         type: file
-        description: |
-          RDS file with top differentially expressed genes
+        description: RDS file with top DE genes based on the specified count.
         pattern: "top_*_genes.rds"
         ontologies: []
-
   topgenes_csv:
     - "top_${top_genes}_genes.csv":
         type: file
-        description: |
-          CSV file with top differentially expressed genes
+        description: CSV file with top DE genes.
         pattern: "top_*_genes.csv"
         ontologies:
           - edam: "http://edamontology.org/format_3752"
-
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+          description: The name of R
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
   versions_deseq2:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - r_base:
+      - bioconductor-deseq2:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
-          type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_deseq2:
-          type: string
-          description: The name of the DESeq2 package
+          description: The name of the tool
       - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
           type: eval
-          description: The expression to obtain the version of DESeq2
 
 topics:
   versions:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - r_base:
+      - r-base:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+      - "Rscript -e 'cat(as.character(getRversion()))'":
           type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_deseq2:
+    - - "${task.process}":
           type: string
-          description: The name of the DESeq2 package
+          description: The name of the process
+      - bioconductor-deseq2:
+          type: string
       - 'Rscript -e "library(DESeq2); cat(as.character(packageVersion(''DESeq2'')))"':
           type: eval
-          description: The expression to obtain the version of DESeq2
 
 authors:
   - "@Loai3tr"

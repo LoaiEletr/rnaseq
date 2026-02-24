@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process MASIGPRO_TIMECOURSE"
-    script "modules/local/masigpro_timecourse/main.nf"
+    script "../main.nf"
     process "MASIGPRO_TIMECOURSE"
 
     tag "modules"
+    tag "modules_local"
     tag "masigpro_timecourse"
 
-    test("Should perform timecourse analysis using maSigPro package with hierarchical cluster method and return timecourse results") {
+    test("arabidopsis - count matrix - samplesheet - pvalue_threshold - rsq_threshold - cluster_method | hclust method") {
         when {
             params {
                 outdir = "$outputDir"
@@ -37,23 +38,12 @@ nextflow_process {
                 { assert process.out.cluster_assignments.get(0) ==~ ".*/*assignments\\.csv" },
                 { assert process.out.clusters_list.get(0) ==~ ".*/clusters_list\\.rds" },
                 { assert process.out.significant_expression.get(0) ==~ ".*/expression_matrix_siggenes\\.rds" },
-                { assert snapshot(
-                    process.out.unfiltered_log2cpm,
-                    process.out.filtered_log2cpm,
-                    process.out.normalized_log2cpm,
-                    process.out.filtered_log2cpm,
-                    process.out.cluster_median_expression,
-                    process.out.summary_statistics,
-                    process.out.cluster_assignments,
-                    process.out.clusters_list,
-                    process.out.significant_expression,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["masigpro_results", "cluster_plots"])).match() }
             )
         }
     }
 
-    test("Should perform timecourse analysis using maSigPro package with Mclust cluster method and return timecourse results") {
+    test("arabidopsis - count matrix - samplesheet - pvalue_threshold - rsq_threshold - cluster_method | Mclust method") {
         when {
             params {
                 outdir = "$outputDir"
@@ -84,23 +74,12 @@ nextflow_process {
                 { assert process.out.cluster_assignments.get(0) ==~ ".*/*assignments\\.csv" },
                 { assert process.out.clusters_list.get(0) ==~ ".*/clusters_list\\.rds" },
                 { assert process.out.significant_expression.get(0) ==~ ".*/expression_matrix_siggenes\\.rds" },
-                { assert snapshot(
-                    process.out.unfiltered_log2cpm,
-                    process.out.filtered_log2cpm,
-                    process.out.normalized_log2cpm,
-                    process.out.filtered_log2cpm,
-                    process.out.cluster_median_expression,
-                    process.out.summary_statistics,
-                    process.out.cluster_assignments,
-                    process.out.clusters_list,
-                    process.out.significant_expression,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["masigpro_results", "cluster_plots"])).match() }
             )
         }
     }
 
-    test("Should stub perform timecourse analysis using maSigPro package with hierarchical cluster method and return mocked timecourse results") {
+    test("arabidopsis - count matrix - samplesheet - pvalue_threshold - rsq_threshold - cluster_method - stub | hclust method") {
         options "-stub"
         when {
             params {
@@ -127,7 +106,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub perform timecourse analysis using maSigPro package with Mclust cluster method and return mocked timecourse results") {
+    test("arabidopsis - count matrix - samplesheet - pvalue_threshold - rsq_threshold - cluster_method - stub | Mclust method") {
         options "-stub"
         when {
             params {

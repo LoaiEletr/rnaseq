@@ -2,12 +2,13 @@ nextflow_process {
     name "Test Process RMATS"
     script "modules/local/rmats/main.nf"
     process "RMATS"
+    config './nextflow.config'
 
     tag "modules"
+    tag "modules_local"
     tag "rmats"
 
     setup {
-
         run("MAKE_BAMLIST") {
             script "modules/local/make_bamlist/main.nf"
             process {
@@ -43,24 +44,24 @@ nextflow_process {
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.bam', checkIfExists: true)
                 ]
                 ]
-                input[1] = MAKE_BAMLIST.out.txt.map { meta,bams -> bams}.collect()
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = "prep"
-                input[4] = 50
-                input[5] = false
-                input[6] = false
-                input[7] = false
-                input[8] = false
-                input[9] = []
+                input[1] = MAKE_BAMLIST.out.txt.map {meta, bam -> [[:], bam]}.groupTuple()
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = [[:], []]
+                input[4] = [[:], 50]
+                input[5] = "prep"
                 """
             }
         }
     }
 
-    test("Should run rMATS for alternative splicing analysis and return results") {
+    test("sarscov2 - bam files - bam list - gtf - rmats prep directory - mode - avg_length | run alternative splicing analysis using pre-built prep directory") {
         when {
             params {
                 outdir = "$outputDir"
+                statoff = true
+                novelss = true
+                allowclipping = true
+                individualcounts = true
             }
             process {
                 """
@@ -73,27 +74,23 @@ nextflow_process {
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.bam', checkIfExists: true)
                 ]
                 ]
-                input[1] = MAKE_BAMLIST.out.txt.map { meta,bams -> bams}.collect()
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = "post"
-                input[4] = 50
-                input[5] = false
-                input[6] = false
-                input[7] = false
-                input[8] = false
-                input[9] = RMATS_PREP.out.prep_tmp
+                input[1] = MAKE_BAMLIST.out.txt.map {meta, bam -> [[:], bam]}.groupTuple()
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = RMATS_PREP.out.prep_tmp
+                input[4] = [[:], 50]
+                input[5] = "post"
                 """
             }
         }
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.versions).match("versions") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["post_output","prep_tmp"])).match() }
             )
         }
     }
 
-    test("Should stub run rMATS for alternative splicing analysis and return mocked results") {
+    test("sarscov2 - bam files - bam list - gtf - rmats prep directory - mode - avg_length  - stub | run alternative splicing analysis using pre-built prep directory") {
         options "-stub"
         when {
             params {
@@ -110,15 +107,11 @@ nextflow_process {
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.bam', checkIfExists: true)
                 ]
                 ]
-                input[1] = MAKE_BAMLIST.out.txt.map { meta,bams -> bams}.collect()
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = "post"
-                input[4] = 50
-                input[5] = false
-                input[6] = false
-                input[7] = false
-                input[8] = false
-                input[9] = RMATS_PREP.out.prep_tmp
+                input[1] = MAKE_BAMLIST.out.txt.map {meta, bam -> [[:], bam]}.groupTuple()
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = RMATS_PREP.out.prep_tmp
+                input[4] = [[:], 50]
+                input[5] = "post"
                 """
             }
         }

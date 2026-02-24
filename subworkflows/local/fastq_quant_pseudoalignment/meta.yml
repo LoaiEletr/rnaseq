@@ -1,89 +1,56 @@
 name: "fastq_quant_pseudoalignment"
-description: |
-  Flexible RNA-seq quantification workflow supporting both Kallisto and Salmon pseudoaligners.
-  Performs transcriptome quantification with user-selected pseudoalignment method.
-  Automatically handles method-specific parameters and outputs.
+description: Quantify transcriptome expression using either Kallisto or Salmon pseudo-aligners.
 keywords:
-  - pseudoalignment
   - quantification
-  - rna-seq
   - kallisto
   - salmon
-  - transcriptomics
-  - transcriptome
+  - pseudoalignment
+  - rna-seq
 components:
   - kallisto/quant
   - salmon/quant
 input:
   - ch_reads:
-      type: file
+      type: list
       description: |
-        Input channel containing FASTQ files (single or paired-end)
+        The input channel containing FASTQ files (single or paired-end)
         Structure: [ val(meta), path(reads) ]
       pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
   - ch_kallisto_index:
       type: file
       description: |
-        Channel containing kallisto index files
-        Structure: [ path(kallisto_index) ]
-      pattern: "*"
+        Kallisto transcriptome index file
+        Structure: [ val(meta), path(kallisto_index) ]
   - ch_salmon_index:
-      type: file
+      type: directory
       description: |
-        Channel containing salmon index files
-        Structure: [ path(salmon_index) ]
-      pattern: "*"
+        Salmon transcriptome index directory
+        Structure: [ val(meta), path(salmon_index) ]
   - ch_gtf:
       type: file
       description: |
-        Channel containing GTF annotation file for quantification
-        Structure: [ path(gtf) ]
-      pattern: "*.{gtf,gtf.gz}"
-  - val_bootstrap_count:
-      type: integer
-      description: |
-        Number of bootstrap samples for Kallisto quantification
-        Structure: integer
+        Genome annotation file (GTF)
+        Structure: [ val(meta), path(gtf) ]
   - val_fragment_length:
       type: integer
-      description: |
-        Average fragment length for Kallisto (single-end mode)
-        Structure: integer
+      description: Estimated average fragment length (required for Kallisto single-end)
   - val_fragment_length_sd:
       type: integer
-      description: |
-        Fragment length standard deviation for Kallisto (single-end mode)
-        Structure: integer
+      description: Estimated standard deviation of fragment length (required for Kallisto single-end)
   - val_pseudoaligner_method:
       type: string
-      description: |
-        Pseudoalignment method to use: 'kallisto' or 'salmon'
-        Structure: [ "kallisto" | "salmon" ]
+      description: Selected method for quantification ('kallisto' or 'salmon')
 output:
   - quant_dir:
-      type: file
+      type: directory
       description: |
-        Quantification output directories containing results
+        Directory containing quantification results (abundance.h5, quant.sf, etc.)
         Structure: [ val(meta), path(quant_dir) ]
-      pattern: "*"
-  - json_info:
-      type: file
-      description: |
-        JSON info files from Kallisto quantification (only when method='kallisto')
-        Structure: [ val(meta), path(json_info) ]
-      pattern: "*.json"
   - quant_log:
       type: file
       description: |
-        Log files from quantification (Kallisto or Salmon)
-        Structure: [ val(meta), path(quant_log) ]
-      pattern: "*.log"
-  - versions:
-      type: file
-      description: |
-        File containing software versions from executed modules
-        Structure: [ path(versions.yml) ]
-      pattern: "versions.yml"
+        Log files generated during quantification (Kallisto only)
+        Structure: [ val(meta), path(log) ]
 authors:
   - "@Loai3tr"
 maintainers:

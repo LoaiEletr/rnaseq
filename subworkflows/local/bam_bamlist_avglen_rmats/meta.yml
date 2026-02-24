@@ -79,13 +79,13 @@ output:
       type: file
       description: |
         Temporary files from rMATS preparation step
-        Structure: [ path(prep_tmp) ]
+        Structure: [ val(meta), path(prep_tmp) ]
       pattern: "*"
   - rmats_output:
       type: file
       description: |
         Complete rMATS analysis output files with all splicing events
-        Structure: [ path(post_output) ]
+        Structure: [ val(meta), path(post_output) ]
       pattern: "*"
   - sigevents_txt:
       type: file
@@ -97,14 +97,8 @@ output:
       type: file
       description: |
         Sashimi plot visualizations for significant splicing events
-        Structure: [ path(sashimi_output) ]
+        Structure: [ val(meta), path(sashimi_output) ]
       pattern: "*"
-  - versions:
-      type: file
-      description: |
-        File containing software versions from all executed modules
-        Structure: [ path(versions.yml) ]
-      pattern: "versions.yml"
 authors:
   - "@Loai3tr"
 maintainers:

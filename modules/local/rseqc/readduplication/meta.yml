@@ -1,17 +1,20 @@
 name: rseqc_readduplication
 description: |
   Calculates read duplication rates from RNA-seq BAM files using RSeQC read_duplication.py.
+  It distinguishes between sequence-based duplicates (identical reads) and position-based duplicates (reads sharing the same mapping coordinates).
 keywords:
   - rseqc
   - duplication
   - pcr duplicates
   - rna-seq
+  - quality control
 tools:
   - rseqc:
       description: "RNA-seq quality control package"
       homepage: "http://rseqc.sourceforge.net/"
       documentation: "http://rseqc.sourceforge.net/"
       tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      doi: "10.1093/bioinformatics/bts356"
       licence: ["GPL-3.0-only"]
       identifier: "rseqc"
 
@@ -23,11 +26,10 @@ input:
           e.g. `[ id:'sample1' ]`
     - bam:
         type: file
-        description: |
-          BAM file for duplication analysis
+        description: BAM file for duplication analysis
         pattern: "*.{bam,bam.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
+          - edam: "http://edamontology.org/format_2572" # BAM
 
 output:
   pdf:
@@ -38,12 +40,10 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.DupRate_plot.pdf":
           type: file
-          description: |
-            PDF plot of duplication rate
+          description: PDF plot of duplication rate
           pattern: "*.DupRate_plot.pdf"
           ontologies:
-            - edam: "http://edamontology.org/format_3508"
-
+            - edam: "http://edamontology.org/format_3508" # PDF
   rscript:
     - - meta:
           type: map
@@ -52,12 +52,10 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.DupRate_plot.r":
           type: file
-          description: |
-            R script for generating duplication plots
+          description: R script for generating duplication plots
           pattern: "*.DupRate_plot.r"
           ontologies:
-            - edam: "http://edamontology.org/format_3999"
-
+            - edam: "http://edamontology.org/format_3999" # R script
   seq_duplicaterate:
     - - meta:
           type: map
@@ -66,12 +64,10 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.seq.DupRate.xls":
           type: file
-          description: |
-            Excel file with sequence-based duplication rates
+          description: Spreadsheet with sequence-based duplication rates
           pattern: "*.seq.DupRate.xls"
           ontologies:
-            - edam: "http://edamontology.org/format_3468"
-
+            - edam: "http://edamontology.org/format_3468" # XLS
   pos_duplicaterate:
     - - meta:
           type: map
@@ -80,12 +76,10 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.pos.DupRate.xls":
           type: file
-          description: |
-            Excel file with position-based duplication rates
+          description: Spreadsheet with position-based duplication rates
           pattern: "*.pos.DupRate.xls"
           ontologies:
-            - edam: "http://edamontology.org/format_3468"
-
+            - edam: "http://edamontology.org/format_3468" # XLS
   versions_rseqc:
     - - "${task.process}":
           type: string

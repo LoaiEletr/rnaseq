@@ -1,36 +1,37 @@
 {
-    "versions_kegg": {
+    "leishmaniasis - counts - samplesheet | GO,KEGG enrichment": {
         "content": [
-            [
-                "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                "versions.yml:md5,cade0a8e4ce08ecefd84e5581cb8901e",
-                "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
-            ]
+            {
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "heatmap_plots": [
+                    [
+                        "modules_hubgenes_blue_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "ppi_results": [
+                    "STRING_PPI"
+                ],
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T03:23:07.444025504"
-    },
-    "versions_go_kegg": {
-        "content": [
-            [
-                "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                "versions.yml:md5,38182454643f459c9bafd63268bd2a3d",
-                "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                "versions.yml:md5,cade0a8e4ce08ecefd84e5581cb8901e",
-                "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-29T01:36:06.055648327"
+        "timestamp": "2026-02-23T07:52:56.828905744"
     },
     "leishmaniasis - counts - samplesheet | KEGG enrichment only - stub": {
         "content": [
@@ -83,13 +84,6 @@
                         
                     ]
                 ],
-                "6": [
-                    "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                    "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                    "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                    "versions.yml:md5,cade0a8e4ce08ecefd84e5581cb8901e",
-                    "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
-                ],
                 "go_enrichment": [
                     
                 ],
@@ -112,13 +106,6 @@
                         "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                    "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                    "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                    "versions.yml:md5,cade0a8e4ce08ecefd84e5581cb8901e",
-                    "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
                 ],
                 "wgcna_results": [
                     [
@@ -151,7 +138,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T03:47:59.728190177"
+        "timestamp": "2026-02-23T10:20:48.21162829"
     },
     "leishmaniasis - counts - samplesheet | GO,KEGG enrichment - stub": {
         "content": [
@@ -206,14 +193,6 @@
                         
                     ]
                 ],
-                "6": [
-                    "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                    "versions.yml:md5,38182454643f459c9bafd63268bd2a3d",
-                    "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                    "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                    "versions.yml:md5,cade0a8e4ce08ecefd84e5581cb8901e",
-                    "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
-                ],
                 "go_enrichment": [
                     [
                         
@@ -238,14 +217,6 @@
                         "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                    "versions.yml:md5,38182454643f459c9bafd63268bd2a3d",
-                    "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                    "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                    "versions.yml:md5,cade0a8e4ce08ecefd84e5581cb8901e",
-                    "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
                 ],
                 "wgcna_results": [
                     [
@@ -278,23 +249,75 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T03:34:25.641440388"
+        "timestamp": "2026-02-23T10:07:09.69155194"
     },
-    "versions_go": {
+    "leishmaniasis - counts - samplesheet | KEGG enrichment only": {
         "content": [
-            [
-                "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                "versions.yml:md5,38182454643f459c9bafd63268bd2a3d",
-                "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
-            ]
+            {
+                "go_enrichment": [
+                    
+                ],
+                "heatmap_plots": [
+                    [
+                        "modules_hubgenes_blue_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "ppi_results": [
+                    "STRING_PPI"
+                ],
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T02:35:39.250536054"
+        "timestamp": "2026-02-23T10:03:22.834121748"
+    },
+    "leishmaniasis - counts - samplesheet | GO enrichment only": {
+        "content": [
+            {
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "heatmap_plots": [
+                    [
+                        "modules_hubgenes_blue_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "ppi_results": [
+                    "STRING_PPI"
+                ],
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T08:36:06.000312643"
     },
     "leishmaniasis - counts - samplesheet | GO enrichment only - stub": {
         "content": [
@@ -347,13 +370,6 @@
                 "5": [
                     
                 ],
-                "6": [
-                    "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                    "versions.yml:md5,38182454643f459c9bafd63268bd2a3d",
-                    "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                    "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                    "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
-                ],
                 "go_enrichment": [
                     [
                         
@@ -376,13 +392,6 @@
                         "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,1fa0e4eea63dfaee2afa552f09c01af9",
-                    "versions.yml:md5,38182454643f459c9bafd63268bd2a3d",
-                    "versions.yml:md5,6848ec6a4630f2e4030d244906a07766",
-                    "versions.yml:md5,aa547b90ba74d9b6fd56492aa08a4656",
-                    "versions.yml:md5,eb11196a479fb0f91cfeb4592442a6fd"
                 ],
                 "wgcna_results": [
                     [
@@ -415,6 +424,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T03:41:10.010291144"
+        "timestamp": "2026-02-23T10:17:31.317438889"
     }
 }

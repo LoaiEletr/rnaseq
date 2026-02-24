@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process RSEQC_JUNCTIONANNOTATION {
     tag "${meta.id}"
     label 'process_low'
@@ -11,7 +9,7 @@ process RSEQC_JUNCTIONANNOTATION {
 
     input:
     tuple val(meta), path(bam)
-    path bed
+    tuple val(meta2), path(bed)
 
     output:
     tuple val(meta), path("*.xls"), emit: xls
@@ -21,7 +19,7 @@ process RSEQC_JUNCTIONANNOTATION {
     tuple val(meta), path("*.Interact.bed"), optional: true, emit: interact_bed
     tuple val(meta), path("*junction.pdf"), optional: true, emit: junction_pdf
     tuple val(meta), path("*events.pdf"), optional: true, emit: events_pdf
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('rseqc'), eval("junction_annotation.py --version | sed 's/.*.py //'"), topic: versions, emit: versions_rseqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -36,11 +34,6 @@ process RSEQC_JUNCTIONANNOTATION {
         -o ${prefix} \\
         -r ${bed} \\
         2>| >(tee ${prefix}.junction_annotation.log >&2)
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( junction_annotation.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 
     stub:
@@ -53,10 +46,5 @@ process RSEQC_JUNCTIONANNOTATION {
     touch ${prefix}.junction.pdf
     touch ${prefix}.events.pdf
     touch ${prefix}.junction_annotation.log
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( junction_annotation.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 }

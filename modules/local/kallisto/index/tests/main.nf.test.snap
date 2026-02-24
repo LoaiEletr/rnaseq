@@ -1,30 +1,21 @@
 {
-    "versions": {
-        "content": [
-            [
-                "versions.yml:md5,45c4b0d7096ba49d580e63cd72e6bc1d"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-16T20:37:04.770844424"
-    },
-    "Should stub build Kallisto index from transcriptome and return mocked index file": {
+    "homo_sapiens - transcriptome": {
         "content": [
             {
-                "0": [
-                    "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "1": [
-                    "versions.yml:md5,45c4b0d7096ba49d580e63cd72e6bc1d"
-                ],
                 "index": [
-                    "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome.idx"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,45c4b0d7096ba49d580e63cd72e6bc1d"
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_INDEX",
+                        "kallisto",
+                        "0.51.1"
+                    ]
                 ]
             }
         ],
@@ -32,6 +23,47 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T20:37:48.170439277"
+        "timestamp": "2026-02-20T05:47:31.34043545"
+    },
+    "homo_sapiens - transcriptome - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "KALLISTO_INDEX",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_INDEX",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T05:48:25.052653945"
     }
 }

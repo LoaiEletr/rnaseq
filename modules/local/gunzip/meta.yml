@@ -22,11 +22,10 @@ input:
           e.g. `[ id:'file1' ]`
     - archive:
         type: file
-        description: |
-          Gzip-compressed file to be decompressed
+        description: Gzip-compressed file to be decompressed
         pattern: "*.gz"
         ontologies:
-          - edam: "http://edamontology.org/format_3989"
+          - edam: "http://edamontology.org/format_3989" # GZIP
 
 output:
   gunzip:
@@ -35,13 +34,11 @@ output:
           description: |
             Groovy Map containing file information
             e.g. `[ id:'file1' ]`
-      - "${gunzip}":
+      - "*":
           type: file
-          description: |
-            Decompressed file (original name without .gz extension)
+          description: Decompressed file
           pattern: "*"
           ontologies: []
-
   versions_gunzip:
     - - "${task.process}":
           type: string
@@ -49,7 +46,7 @@ output:
       - gunzip:
           type: string
           description: The name of the tool
-      - "gunzip --version | grep 'gunzip' | awk '{print $3}'":
+      - "gunzip --version | grep 'gunzip' | awk '{print $3}' | sed 's/^.*(gzip) //'":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -61,7 +58,7 @@ topics:
       - gunzip:
           type: string
           description: The name of the tool
-      - "gunzip --version | grep 'gunzip' | awk '{print $3}'":
+      - "gunzip --version | grep 'gunzip' | awk '{print $3}' | sed 's/^.*(gzip) //'":
           type: eval
           description: The expression to obtain the version of the tool
 

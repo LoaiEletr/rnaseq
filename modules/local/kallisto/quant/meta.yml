@@ -20,98 +20,69 @@ input:
         type: map
         description: |
           Groovy Map containing sample information
-          e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
+          e.g. `[ id:'sample1', single_end:false, lib_type:'IU' ]`
     - reads:
         type: file
         description: |
-          Input FASTQ file(s) for quantification
-          Single file for single-end, two files for paired-end data
+          Input FASTQ file(s) for quantification.
+          Single file for single-end, two files for paired-end data.
         pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_1930"
-
-  - index:
-      type: file
-      description: |
-        Kallisto index file for pseudoalignment
-      pattern: "*.idx"
-      ontologies: []
-
-  - gtf:
-      type: file
-      description: |
-        GTF annotation file for transcript-to-gene mapping
-      pattern: "*.{gtf,gtf.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_2306"
-
-  - bootstrap_count:
-      type: integer
-      description: |
-        Number of bootstrap samples for uncertainty estimation
-      pattern: "[0-9]+"
-
-  - fragment_length:
-      type: integer
-      description: |
-        Estimated average fragment length (for single-end data)
-      pattern: "[0-9]+"
-
-  - fragment_length_sd:
-      type: integer
-      description: |
-        Estimated standard deviation of fragment length (for single-end data)
-      pattern: "[0-9]+"
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'transcriptome_index' ]`
+    - index:
+        type: file
+        description: Kallisto index file for pseudoalignment
+        pattern: "*.idx"
+        ontologies: []
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome_gtf' ]`
+    - gtf:
+        type: file
+        description: GTF annotation file for transcript-to-gene mapping
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
+  - - fragment_length:
+        type: integer
+        description: Estimated average fragment length (required for single-end data)
+        ontologies: []
+  - - fragment_length_sd:
+        type: integer
+        description: Estimated standard deviation of fragment length (required for single-end data)
+        ontologies: []
 
 output:
   quant_dir:
-    - "${prefix}":
-        type: file
-        description: |
-          Directory containing kallisto quantification results
-        pattern: "*"
-
-  quant_table:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
-      - "${prefix}/abundance.tsv":
+            e.g. `[ id:'sample1' ]`
+      - "${prefix}":
           type: file
-          description: |
-            TSV file with transcript abundance estimates
-          pattern: "*/abundance.tsv"
-          ontologies:
-            - edam: "http://edamontology.org/format_3475"
-
-  json_info:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
-      - "${prefix}/run_info.json":
-          type: file
-          description: |
-            JSON file with run information and statistics
-          pattern: "*/run_info.json"
-          ontologies:
-            - edam: "http://edamontology.org/format_3464"
-
+          description: Directory containing kallisto quantification results
+          pattern: "${prefix}"
+          ontologies: []
   log:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
-      - "*.log":
-        type: file
-        description: |
-          Log file from kallisto quantification
-        pattern: "*.log"
-        ontologies: []
-
+            e.g. `[ id:'sample1' ]`
+      - "${prefix}/*.log":
+          type: file
+          description: Log file from kallisto quantification
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678" # LOG
   versions_kallisto:
     - - "${task.process}":
           type: string

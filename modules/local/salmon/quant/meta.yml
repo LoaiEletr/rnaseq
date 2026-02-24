@@ -1,17 +1,20 @@
 name: salmon_quant
 description: |
-  Quantifies transcript abundances from RNA-seq reads using salmon with strand-specific options.
+  Quantifies transcript abundances from RNA-seq reads using Salmon with strand-specific options.
+  Supports automatic library type detection or manual specification.
 keywords:
   - salmon
   - quantification
   - rna-seq
   - transcript
+  - expression
 tools:
   - salmon:
       description: "Fast, bias-aware quantification of transcript expression"
       homepage: "https://combine-lab.github.io/salmon/"
       documentation: "https://salmon.readthedocs.io/"
       tool_dev_url: "https://github.com/COMBINE-lab/salmon"
+      doi: "10.1038/nmeth.4197"
       licence: ["GPL-3.0-only"]
       identifier: "salmon"
 
@@ -24,33 +27,31 @@ input:
     - reads:
         type: file
         description: |
-          Input FASTQ file(s) for quantification
-          Single file for single-end, two files for paired-end data
+          Input FASTQ file(s) for quantification.
+          Single file for single-end, two files for paired-end data.
         pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_1930"
-
-  - index:
-      type: file
-      description: |
-        Salmon transcriptome index directory
-      pattern: "transcripts_index/"
-
-  - gtf:
-      type: file
-      description: |
-        GTF annotation file for transcript-to-gene mapping
-      pattern: "*.{gtf,gtf.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_2306"
-
-  - libtype:
-      type: string
-      description: |
-        Library type for strand-specificity
-        Options for paired-end: A, IS, IU, ISF, ISR, OS, OU, OSF, OSR, MS, MU, MSF, MSR
-        Options for single-end: U, A, ISF, ISR
-      pattern: "[A-Z]+"
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'test_index' ]`
+    - index:
+        type: file
+        description: Salmon transcriptome index directory
+        pattern: "*/"
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing annotation information
+          e.g. `[ id:'test_annotation' ]`
+    - gtf:
+        type: file
+        description: GTF annotation file for transcript-to-gene mapping
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
 
 output:
   quant_dir:
@@ -60,12 +61,10 @@ output:
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false, lib_type:'ISF' ]`
       - "${prefix}":
-          type: file
-          description: |
-            Directory containing salmon quantification results
-          pattern: "*"
-        optional: true
-
+          type: directory
+          description: Directory containing Salmon quantification results
+          pattern: "*/"
+          ontologies: []
   strandness:
     - - meta:
           type: map
@@ -74,25 +73,8 @@ output:
             e.g. `[ id:'sample1', single_end:false, lib_type:'ISF' ]`
       - SALMON_STRANDNESS:
           type: string
-          description: |
-            Detected library strandness from salmon output
-          pattern: ".*"
-        optional: true
-
-  log:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false, lib_type:'ISF' ]`
-      - "*.log":
-          type: file
-          description: |
-            Log file from salmon quantification
-          pattern: "*.log"
-          ontologies:
-            - edam: "http://edamontology.org/data_1678"
-
+          description: Detected library strandness string from Salmon logs
+          ontologies: []
   versions_salmon:
     - - "${task.process}":
           type: string

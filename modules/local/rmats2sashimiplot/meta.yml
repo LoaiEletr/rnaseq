@@ -16,46 +16,50 @@ tools:
       identifier: "rmats2sashimiplot"
 
 input:
-  - - event_type:
-        type: string
+  - - meta:
+        type: map
         description: |
-          Type of splicing event
-          Options: SE (skipped exon), MXE (mutually exclusive exons), A5SS (alternative 5' splice site), A3SS (alternative 3' splice site), RI (retained intron)
-        pattern: "SE|MXE|A5SS|A3SS|RI"
-  - - rmats_sigevent:
+          Groovy Map containing sample information
+          e.g. `[ id:'SE' ]`
+    - rmats_sigevent:
         type: file
-        description: |
-          Filtered significant events file for the specific event type
-        pattern: "*_filtered.txt"
+        description: Filtered significant events file for the specific event type
+        pattern: "*.txt"
         ontologies:
-          - edam: "http://edamontology.org/format_2330"
-  - - bam_list1:
+          - edam: "http://edamontology.org/format_2330" # Textual format
+    - bam_list1:
         type: file
-        description: |
-          First condition BAM list file
+        description: First condition BAM list file
         pattern: "*.txt"
-  - - bam_list2:
+        ontologies:
+          - edam: "http://edamontology.org/format_2330" # Textual format
+    - bam_list2:
         type: file
-        description: |
-          Second condition BAM list file
+        description: Second condition BAM list file
         pattern: "*.txt"
-
-  - bam_files:
-      type: file
-      description: |
-        BAM files for Sashimi plot generation
-      pattern: "*.{bam,bam.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_2572"
+        ontologies:
+          - edam: "http://edamontology.org/format_2330" # Textual format
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing information for BAM files
+          e.g. `[ id:'all_bams' ]`
+    - bam_files:
+        type: file
+        description: BAM files for Sashimi plot generation
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
 
 output:
   sashimi_output:
-    - "${prefix}":
-        type: file
-        description: |
-          Directory containing Sashimi plot output
-        pattern: "*"
-
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "${prefix}":
+          type: directory
+          description: Directory containing Sashimi plot output
+          pattern: "sashimi_*_out"
   versions_rmats2sashimiplot:
     - - "${task.process}":
           type: string
@@ -63,7 +67,7 @@ output:
       - rmats2sashimiplot:
           type: string
           description: The name of the tool
-      - "pip show rmats2sashimiplot | grep 'Version:' | awk '{print $2}'":
+      - "pip show rmats2sashimiplot | grep 'Version:' | awk '{print $2}' | sed 's/Version: //'":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -75,7 +79,7 @@ topics:
       - rmats2sashimiplot:
           type: string
           description: The name of the tool
-      - "pip show rmats2sashimiplot | grep 'Version:' | awk '{print $2}'":
+      - "pip show rmats2sashimiplot | grep 'Version:' | awk '{print $2}' | sed 's/Version: //'":
           type: eval
           description: The expression to obtain the version of the tool
 

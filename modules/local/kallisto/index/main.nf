@@ -1,7 +1,5 @@
-#!/usr/bin/env nextflow
-
 process KALLISTO_INDEX {
-    tag "${transcriptome.baseName}"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -10,18 +8,18 @@ process KALLISTO_INDEX {
         : 'biocontainers/kallisto:0.51.1--h2b92561_2'}"
 
     input:
-    path transcriptome
+    tuple val(meta), path(transcriptome)
 
     output:
-    path "*.idx", emit: index
-    path "versions.yml", emit: versions
+    tuple val(meta), path("*.idx"), emit: index
+    tuple val("${task.process}"), val('kallisto'), eval("kallisto version | sed 's/.*ion //'"), topic: versions, emit: versions_kallisto
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.argg ?: ''
-    def prefix = task.ext.prefix ?: "${transcriptome.baseName}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     kallisto \\
         index \\
@@ -29,21 +27,11 @@ process KALLISTO_INDEX {
         ${args} \\
         -i ${prefix}.idx \\
         ${transcriptome}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        kallisto: \$( kallisto version | sed 's/.*ion //' )
-    END_VERSIONS
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${transcriptome.baseName}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.idx
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        kallisto: \$( kallisto version | sed 's/.*ion //' )
-    END_VERSIONS
     """
 }

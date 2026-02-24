@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process DEXSEQ_DEU {
     label 'process_low'
 
@@ -11,7 +9,7 @@ process DEXSEQ_DEU {
     input:
     path counts_txt
     path samplesheet_csv
-    path flattened_gff
+    tuple val(meta), path(flattened_gff)
     val pvalue_threshold
     val logfc_threshold
     val top_n
@@ -24,20 +22,21 @@ process DEXSEQ_DEU {
     path "top_DEU_plots", optional: true, emit: gene_plots
     path "significant_DEU_gene_ids.rds", optional: true, emit: significant_genes
     path "DEXSeqReport", optional: true, emit: report
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-dexseq'), eval("Rscript -e \"cat(as.character(packageVersion('DEXSeq')))\""), topic: versions, emit: versions_dexseq
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     """
-    run_dexseq_deu.R ${samplesheet_csv} ${flattened_gff} ${pvalue_threshold} ${logfc_threshold} ${top_n} ${min_exonlength}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-dexseq: \$(Rscript -e "library(DEXSeq); cat(as.character(packageVersion('DEXSeq')))")
-    END_VERSIONS
+    run_dexseq_deu.R \\
+        ${samplesheet_csv} \\
+        ${flattened_gff} \\
+        ${pvalue_threshold} \\
+        ${logfc_threshold} \\
+        ${top_n} \\
+        ${min_exonlength}
     """
 
     stub:
@@ -48,11 +47,5 @@ process DEXSEQ_DEU {
     touch significant_DEUs.csv
     touch DEXSeq_MA_plot.pdf
     touch significant_DEU_gene_ids.rds
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-dexseq: \$(Rscript -e "library(DEXSeq); cat(as.character(packageVersion('DEXSeq')))")
-    END_VERSIONS
     """
 }

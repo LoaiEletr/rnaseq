@@ -1,5 +1,5 @@
 {
-    "Should stub calculate inner distance for RNA-seq data with RSeQC and return mocked distance files with PDF and R script": {
+    "homo_sapiens - bam - bed - stub": {
         "content": [
             {
                 "0": [
@@ -39,7 +39,11 @@
                     ]
                 ],
                 "4": [
-                    "versions.yml:md5,5cd902c3871f2c9ec64b822e6888b7db"
+                    [
+                        "RSEQC_INNERDISTANCE",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "distance": [
                     [
@@ -77,8 +81,12 @@
                         "test.inner_distance_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,5cd902c3871f2c9ec64b822e6888b7db"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_INNERDISTANCE",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ]
             }
         ],
@@ -86,45 +94,60 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T02:59:43.751495689"
+        "timestamp": "2026-02-20T23:33:06.67367808"
     },
-    "Should calculate inner distance for RNA-seq data with RSeQC and return distance files with PDF and R script": {
+    "homo_sapiens - bam - bed": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.inner_distance.txt:md5,2c4ab5898d4a2cbae089d8e96cd3aaf1"
+            {
+                "distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance.txt:md5,2c4ab5898d4a2cbae089d8e96cd3aaf1"
+                    ]
+                ],
+                "freq": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_freq.txt:md5,795f08e1706a3ec875f4f79918c44350"
+                    ]
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.pdf"
+                    ]
+                ],
+                "rscript": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.r:md5,b8517398f1fb9ea0824e2d7843a709d2"
+                    ]
+                ],
+                "versions_rseqc": [
+                    [
+                        "RSEQC_INNERDISTANCE",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.inner_distance_freq.txt:md5,795f08e1706a3ec875f4f79918c44350"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.inner_distance_plot.r:md5,b8517398f1fb9ea0824e2d7843a709d2"
-                ]
-            ],
-            [
-                "versions.yml:md5,5cd902c3871f2c9ec64b822e6888b7db"
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T02:57:41.824605848"
+        "timestamp": "2026-02-20T23:32:08.870014072"
     }
 }

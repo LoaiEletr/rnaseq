@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process SAMTOOLS_SORT"
-    script "modules/local/samtools/sort/main.nf"
+    script "../main.nf"
     process "SAMTOOLS_SORT"
 
     tag "modules"
+    tag "modules_local"
     tag "samtools"
     tag "samtools/sort"
 
-    test("Should sort BAM file and return sorted BAM file") {
+    test("sarscov2 - bam") {
         when {
             params {
                 outdir = "$outputDir"
@@ -30,7 +31,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub sort BAM file and return mocked sorted BAM file") {
+    test("sarscov2 - bam - stub") {
         options "-stub"
         when {
             params {

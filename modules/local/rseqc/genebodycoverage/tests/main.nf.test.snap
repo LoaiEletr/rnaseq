@@ -1,42 +1,48 @@
 {
-    "Should stub calculate gene body coverage for multiple BAM files with RSeQC and return mocked coverage files with log": {
+    "sarscov2 - bam files - bed": {
         "content": [
             {
-                "0": [
-                    "genebody_coverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "1": [
-                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "2": [
-                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "3": [
-                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "4": [
-                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "5": [
-                    "versions.yml:md5,676786893fba326ad9e153fe37535cb2"
+                "curves": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.curves.pdf"
+                    ]
                 ],
                 "heatmap": [
-                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    
                 ],
                 "log": [
-                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "pdf": [
-                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "log.txt"
+                    ]
                 ],
                 "rscript": [
-                    "genebody_coverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.r:md5,30b2d095406c849305035159acdd6499"
+                    ]
                 ],
                 "txt": [
-                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.txt:md5,11ecc8f0c9644450685fe48ead48ffe4"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,676786893fba326ad9e153fe37535cb2"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_GENEBODYCOVERAGE",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ]
             }
         ],
@@ -44,24 +50,111 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:13:46.224937535"
+        "timestamp": "2026-02-20T23:09:41.031443475"
     },
-    "Should calculate gene body coverage for multiple BAM files with RSeQC and return coverage files with log": {
+    "sarscov2 - bam files - bed - stub": {
         "content": [
-            [
-                "genebody_coverage.geneBodyCoverage.r:md5,5b5fc7e0aadb1c55c7bf426845d33db5"
-            ],
-            [
-                "genebody_coverage.geneBodyCoverage.txt:md5,11ecc8f0c9644450685fe48ead48ffe4"
-            ],
-            [
-                "versions.yml:md5,676786893fba326ad9e153fe37535cb2"
-            ]
+            {
+                "0": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "5": [
+                    [
+                        "RSEQC_GENEBODYCOVERAGE",
+                        "rseqc",
+                        "2.6.4"
+                    ]
+                ],
+                "curves": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "heatmap": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "rscript": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "3 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_rseqc": [
+                    [
+                        "RSEQC_GENEBODYCOVERAGE",
+                        "rseqc",
+                        "2.6.4"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:12:41.59879977"
+        "timestamp": "2026-02-20T23:13:07.251418502"
     }
 }

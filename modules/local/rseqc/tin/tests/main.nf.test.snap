@@ -1,5 +1,5 @@
 {
-    "Should stub calculate Transcript Integrity Number (TIN) for RNA-seq data with RSeQC and return mocked TIN files with summary": {
+    "sarscov2 - bam - bed - stub": {
         "content": [
             {
                 "0": [
@@ -21,7 +21,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "txt": [
                     [
@@ -32,8 +36,12 @@
                         "test.paired_end.sorted.summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "xls": [
                     [
@@ -50,9 +58,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T04:30:03.712363621"
+        "timestamp": "2026-02-21T00:17:49.348861453"
     },
-    "Should calculate Transcript Integrity Number (TIN) for RNA-seq data with RSeQC and return TIN files with summary": {
+    "sarscov2 - bam - bed": {
         "content": [
             {
                 "0": [
@@ -74,7 +82,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "txt": [
                     [
@@ -85,8 +97,12 @@
                         "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,475d8648ad508f78dae64fa42b081b3d"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "xls": [
                     [
@@ -103,6 +119,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T04:28:07.649251903"
+        "timestamp": "2026-02-21T00:16:55.916843427"
     }
 }

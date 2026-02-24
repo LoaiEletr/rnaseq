@@ -1,29 +1,43 @@
 {
-    "versions_paired_end": {
+    "sarscov2 - [fastq1, fastq2] - index - gtf": {
         "content": [
-            [
-                "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
-            ]
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test"
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "Not detected"
+                    ]
+                ],
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T15:54:00.118596307"
+        "timestamp": "2026-02-21T00:54:23.920799244"
     },
-    "versions_single_end": {
-        "content": [
-            [
-                "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-17T15:53:05.082266452"
-    },
-    "Should stub quantify single-end reads with Salmon and return mocked quantification results": {
+    "sarscov2 - fastq1 - index - gtf - stub": {
         "content": [
             {
                 "0": [
@@ -66,25 +80,9 @@
                 ],
                 "2": [
                     [
-                        {
-                            "id": "test",
-                            "lib_type": "forward",
-                            "single_end": true
-                        },
-                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "3": [
-                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
-                ],
-                "log": [
-                    [
-                        {
-                            "id": "test",
-                            "lib_type": "forward",
-                            "single_end": true
-                        },
-                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
                     ]
                 ],
                 "quant_dir": [
@@ -125,8 +123,12 @@
                         "IU"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
                 ]
             }
         ],
@@ -134,9 +136,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T15:54:53.395869287"
+        "timestamp": "2026-02-21T00:55:16.95597766"
     },
-    "Should stub quantify paired-end reads with Salmon and return mocked quantification results": {
+    "sarscov2 - [fastq1, fastq2] - index - gtf - stub": {
         "content": [
             {
                 "0": [
@@ -179,25 +181,9 @@
                 ],
                 "2": [
                     [
-                        {
-                            "id": "test",
-                            "lib_type": "reverse",
-                            "single_end": false
-                        },
-                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "3": [
-                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
-                ],
-                "log": [
-                    [
-                        {
-                            "id": "test",
-                            "lib_type": "reverse",
-                            "single_end": false
-                        },
-                        "test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
                     ]
                 ],
                 "quant_dir": [
@@ -238,8 +224,12 @@
                         "IU"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,0d510d5db6398e2c8ca9443330740607"
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
                 ]
             }
         ],
@@ -247,6 +237,44 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T15:55:43.683808469"
+        "timestamp": "2026-02-21T00:56:13.548556049"
+    },
+    "sarscov2 - fastq1 - index - gtf": {
+        "content": [
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test"
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "Not detected"
+                    ]
+                ],
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:53:23.383772128"
     }
 }

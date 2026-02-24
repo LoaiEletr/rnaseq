@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process RSEQC_READDUPLICATION"
-    script "modules/local/rseqc/readduplication/main.nf"
+    script "../main.nf"
     process "RSEQC_READDUPLICATION"
 
     tag "modules"
+    tag "modules_local"
     tag "rseqc"
     tag "rseqc/readduplication"
 
-    test("Should calculate read duplication rate for RNA-seq data with RSeQC and return duplication files with PDF and R script") {
+    test("homo_sapiens - bam") {
         when {
             params {
                 outdir = "$outputDir"
@@ -28,17 +29,12 @@ nextflow_process {
                 { assert process.out.pos_duplicaterate.get(0).get(1) =~ ".*/*\\.pos\\.DupRate\\.xls" },
                 { assert process.out.pdf.get(0).get(1) =~ ".*/*\\.pdf" },
                 { assert process.out.rscript.get(0).get(1) =~ ".*/*\\.r" },
-                { assert snapshot(
-                    process.out.seq_duplicaterate,
-                    process.out.pos_duplicaterate,
-                    process.out.rscript,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["pdf"])).match() }
             )
         }
     }
 
-    test("Should stub calculate read duplication rate for RNA-seq data with RSeQC and return mocked duplication files with PDF and R script") {
+    test("homo_sapiens - bam - stub") {
         options "-stub"
         when {
             params {

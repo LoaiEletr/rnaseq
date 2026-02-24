@@ -1,21 +1,51 @@
 {
-    "yeast - salmon - samplesheet | DIU - GO enrichment only": {
+    "yeast - counts - samplesheet - gtf - transcriptome | salmon - DIU - GO enrichment only": {
         "content": [
-            [
-                
-            ],
-            [
-                "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                "versions.yml:md5,bdc7dce134739e582b2e398188164627"
-            ]
+            {
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "isoform_results": [
+                    "isoform_output"
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "significant_geneids": [
+                    
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-29T23:56:26.379202298"
+        "timestamp": "2026-02-23T23:03:50.152214383"
     },
-    "yeast - kallisto - samplesheet | DIU,AS - GO,KEGG enrichment - stub": {
+    "yeast - counts - samplesheet - gtf - transcriptome | kallisto - AS - KEGG enrichment only": {
+        "content": [
+            {
+                "go_enrichment": [
+                    
+                ],
+                "isoform_results": [
+                    "isoform_output"
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "significant_geneids": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T23:07:06.03362874"
+    },
+    "yeast - counts - samplesheet - gtf - transcriptome - stub | kallisto - DIU,AS - GO,KEGG enrichment": {
         "content": [
             {
                 "0": [
@@ -36,11 +66,6 @@
                         
                     ]
                 ],
-                "4": [
-                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                    "versions.yml:md5,bdc7dce134739e582b2e398188164627",
-                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
-                ],
                 "go_enrichment": [
                     [
                         
@@ -58,11 +83,6 @@
                 ],
                 "significant_geneids": [
                     "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "versions": [
-                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                    "versions.yml:md5,bdc7dce134739e582b2e398188164627",
-                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
                 ]
             }
         ],
@@ -70,77 +90,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-30T00:14:11.698435097"
+        "timestamp": "2026-02-23T23:09:21.751516522"
     },
-    "yeast - salmon - samplesheet | DIU - GO enrichment only - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "2": [
-                    [
-                        
-                    ]
-                ],
-                "3": [
-                    
-                ],
-                "4": [
-                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                    "versions.yml:md5,bdc7dce134739e582b2e398188164627"
-                ],
-                "go_enrichment": [
-                    [
-                        
-                    ]
-                ],
-                "isoform_results": [
-                    [
-                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "kegg_enrichment": [
-                    
-                ],
-                "significant_geneids": [
-                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "versions": [
-                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                    "versions.yml:md5,bdc7dce134739e582b2e398188164627"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-30T00:20:16.364611722"
-    },
-    "yeast - kallisto - samplesheet | DIU,AS - GO,KEGG enrichment": {
-        "content": [
-            [
-                
-            ],
-            [
-                "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                "versions.yml:md5,bdc7dce134739e582b2e398188164627",
-                "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-29T23:48:34.76879596"
-    },
-    "yeast - kallisto - samplesheet | AS - KEGG enrichment only - stub": {
+    "yeast - counts - samplesheet - gtf - transcriptome - stub | kallisto - AS - KEGG enrichment only": {
         "content": [
             {
                 "0": [
@@ -159,10 +111,6 @@
                         
                     ]
                 ],
-                "4": [
-                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
-                ],
                 "go_enrichment": [
                     
                 ],
@@ -178,10 +126,6 @@
                 ],
                 "significant_geneids": [
                     "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "versions": [
-                    "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                    "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
                 ]
             }
         ],
@@ -189,22 +133,72 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-30T00:26:09.974748401"
+        "timestamp": "2026-02-23T23:12:49.397511696"
     },
-    "yeast - kallisto - samplesheet | AS - KEGG enrichment only": {
+    "yeast - counts - samplesheet - gtf - transcriptome - stub | salmon - DIU - GO enrichment only": {
         "content": [
-            [
-                
-            ],
-            [
-                "versions.yml:md5,b47a84d2f61c3f3fc3635bfc1d36a30d",
-                "versions.yml:md5,ec4ec05ca82f0da103399c74e187810a"
-            ]
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        
+                    ]
+                ],
+                "3": [
+                    
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-30T00:04:02.055044546"
+        "timestamp": "2026-02-23T23:11:11.685431453"
+    },
+    "yeast - counts - samplesheet - gtf - transcriptome | kallisto - DIU,AS - GO,KEGG enrichment": {
+        "content": [
+            {
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "isoform_results": [
+                    "isoform_output"
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "significant_geneids": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T23:00:23.166218121"
     }
 }

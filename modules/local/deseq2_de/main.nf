@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process DESEQ2_DE {
     tag "${counts_rds}"
     label 'process_low'
@@ -26,20 +24,20 @@ process DESEQ2_DE {
     path "unfiltered_deg_results.rds", emit: unfiltered_deg
     path "top_${top_genes}_genes.rds", emit: topgenes_rds
     path "top_${top_genes}_genes.csv", emit: topgenes_csv
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-deseq2'), eval("Rscript -e \"library(DESeq2); cat(as.character(packageVersion('DESeq2')))\""), topic: versions, emit: versions_deseq2
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     """
-    run_deseq2_de.R ${counts_rds} ${samplesheet_csv} ${pvalue_threshold} ${logfc_threshold} ${top_genes}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-    END_VERSIONS
+    run_deseq2_de.R \\
+        ${counts_rds} \\
+        ${samplesheet_csv} \\
+        ${pvalue_threshold} \\
+        ${logfc_threshold} \\
+        ${top_genes}
     """
 
     stub:
@@ -53,11 +51,5 @@ process DESEQ2_DE {
     touch unfiltered_deg_results.rds
     touch top_${top_genes}_genes.rds
     touch top_${top_genes}_genes.csv
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-    END_VERSIONS
     """
 }

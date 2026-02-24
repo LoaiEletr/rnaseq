@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process GUNZIP"
-    script "modules/local/gunzip/main.nf"
+    script "../main.nf"
     process "GUNZIP"
 
     tag "modules"
+    tag "modules_local"
     tag "gunzip"
 
-    test("Should decompress gzipped file and return decompressed output") {
+    test("homo_sapiens - gz") {
         when {
             params {
                 outdir = "$outputDir"
@@ -30,8 +31,7 @@ nextflow_process {
     }
 
 
-    test("Should stub decompress gzipped file and return mocked decompressed output") {
-
+    test("homo_sapiens - gz - stub") {
         options "-stub"
         when {
             params {

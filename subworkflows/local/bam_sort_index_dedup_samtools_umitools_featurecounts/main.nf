@@ -18,22 +18,18 @@ include { SUBREAD_FEATURECOUNTS } from '../../../modules/local/subread/featureco
 workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
     take:
     ch_bam // channel: [ val(meta), bam ]
-    ch_gtf // channel: [ gtf ]
+    ch_gtf // channel: [ val(meta), gtf ]
     val_with_umi // boolean: true/false
     val_analysis_method // list: user-selected methods to be executed
 
     main:
 
-    ch_versions = channel.empty()
-
     // 1. Sort BAM with SAMtools
     SAMTOOLS_SORT(ch_bam)
-    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions.first())
     ch_umi_bam = SAMTOOLS_SORT.out.sorted_bam
 
     // 2. Index sorted BAM
     SAMTOOLS_INDEX(ch_umi_bam)
-    ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
     ch_bai = SAMTOOLS_INDEX.out.bai
 
     // 3. UMI deduplication (optional)
@@ -43,7 +39,6 @@ workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
     ch_umi_log = channel.empty()
     if (val_with_umi) {
         UMITOOLS_DEDUP(ch_umi_bam.join(ch_bai))
-        ch_versions = ch_versions.mix(UMITOOLS_DEDUP.out.versions.first())
         ch_edit_distance = UMITOOLS_DEDUP.out.tsv_edit_distance
         ch_per_umi = UMITOOLS_DEDUP.out.tsv_per_umi
         ch_per_position = UMITOOLS_DEDUP.out.tsv_umi_per_position
@@ -51,12 +46,10 @@ workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
 
         // 4. Re-sort deduplicated BAM
         SAMTOOLS_SORT_DEDUP(UMITOOLS_DEDUP.out.bam)
-        ch_versions = ch_versions.mix(SAMTOOLS_SORT_DEDUP.out.versions.first())
         ch_umi_bam = SAMTOOLS_SORT_DEDUP.out.sorted_bam
 
         // 5. Re-index deduplicated BAM
         SAMTOOLS_INDEX_DEDUP(ch_umi_bam)
-        ch_versions = ch_versions.mix(SAMTOOLS_INDEX_DEDUP.out.versions.first())
         ch_bai = SAMTOOLS_INDEX_DEDUP.out.bai
     }
 
@@ -67,7 +60,6 @@ workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
         SUBREAD_FEATURECOUNTS(ch_umi_bam, ch_gtf)
         ch_counts = SUBREAD_FEATURECOUNTS.out.counts
         ch_summary = SUBREAD_FEATURECOUNTS.out.summary
-        ch_versions = ch_versions.mix(SUBREAD_FEATURECOUNTS.out.versions.first())
     }
 
     emit:
@@ -79,5 +71,4 @@ workflow BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS {
     umi_log = ch_umi_log // channel: [ val(meta), [ log ] ]
     counts = ch_counts // channel: [ val(meta), [ counts ] ]
     summary = ch_summary // channel: [ val(meta), [ summary ] ]
-    versions = ch_versions // channel: [ versions.yml ]
 }

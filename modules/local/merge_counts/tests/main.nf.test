@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process MERGE_COUNTS"
-    script "modules/local/merge_counts/main.nf"
+    script "../main.nf"
     process "MERGE_COUNTS"
 
     tag "modules"
+    tag "modules_local"
     tag "merge_counts"
 
     setup {
@@ -43,13 +44,13 @@ nextflow_process {
                         ]
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
     }
 
-    test("Should merge featureCounts files successfully and return merged counts table") {
+    test("sarscov2 - counts") {
         when {
             params {
                 outdir = "$outputDir"
@@ -68,12 +69,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.counts_table.get(0) ==~ ".*/merged_counts\\.rds" },
-                { assert snapshot(process.out.versions).match("versions") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["counts_table"])).match() }
             )
         }
     }
 
-    test("Should stub merge featureCounts files successfully and return mocked merged counts table") {
+    test("sarscov2 - counts - stub") {
         options "-stub"
         when {
             params {

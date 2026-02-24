@@ -1,5 +1,5 @@
 {
-    "Should identify RNA-seq strandedness with RSeQC and return experiment inference results": {
+    "sarscov2 - bam - bed - stub": {
         "content": [
             {
                 "0": [
@@ -8,11 +8,15 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
+                        "test.infer_experiment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                    [
+                        "RSEQC_INFEREXPERIMENT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "txt": [
                     [
@@ -20,11 +24,15 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
+                        "test.infer_experiment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_INFEREXPERIMENT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ]
             }
         ],
@@ -32,9 +40,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T05:23:38.240637174"
+        "timestamp": "2026-02-20T23:25:21.143588657"
     },
-    "Should stub identify RNA-seq strandedness with RSeQC and return mocked experiment inference results": {
+    "sarscov2 - bam - bed": {
         "content": [
             {
                 "0": [
@@ -43,11 +51,15 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.infer_experiment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                    [
+                        "RSEQC_INFEREXPERIMENT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "txt": [
                     [
@@ -55,11 +67,15 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.infer_experiment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,787646d1308dfe04c8efbedbf47b2946"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_INFEREXPERIMENT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ]
             }
         ],
@@ -67,6 +83,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T05:24:23.503992936"
+        "timestamp": "2026-02-20T23:24:22.048845785"
     }
 }

@@ -1,7 +1,5 @@
-#!/usr/bin/env nextflow
-
 process SALMON_INDEX {
-    tag "${transcriptome}"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -10,18 +8,18 @@ process SALMON_INDEX {
         : 'biocontainers/salmon:1.10.3--h45fbf2d_5'}"
 
     input:
-    path transcriptome
+    tuple val(meta), path(transcriptome)
 
     output:
-    path ("transcripts_index"), emit: index
-    path ("versions.yml"), emit: versions
+    tuple val(meta), path("${prefix}"), emit: index
+    tuple val("${task.process}"), val('salmon'), eval("salmon --version | sed 's/salmon //'"), topic: versions, emit: versions_salmon
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "transcripts_index"
+    prefix = task.ext.prefix ?: "${meta.id}"
     """
     salmon \\
         index \\
@@ -29,15 +27,10 @@ process SALMON_INDEX {
         -p ${task.cpus} \\
         -i ${prefix} \\
         ${args}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        salmon: \$( salmon --version | sed 's/salmon //' )
-    END_VERSIONS
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "transcripts_index"
+    prefix = task.ext.prefix ?: "${meta.id}"
     """
     mkdir -p ${prefix}
     touch ${prefix}/complete_ref_lens.bin
@@ -55,10 +48,5 @@ process SALMON_INDEX {
     touch ${prefix}/refseq.bin
     touch ${prefix}/seq.bin
     touch ${prefix}/versionInfo.json
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        salmon: \$( salmon --version | sed 's/salmon //' )
-    END_VERSIONS
     """
 }

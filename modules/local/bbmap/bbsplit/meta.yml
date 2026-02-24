@@ -21,45 +21,51 @@ input:
         type: map
         description: |
           Groovy Map containing sample information
-          e.g. `[ id:'sample1', single_end:false ]`
+          e.g. `[ id:'sample1' ]`
     - reads:
         type: file
-        description: |
-          Input FASTQ file(s) to be split by reference
-          Single file for single-end, two files for paired-end data
+        description: Input FASTQ file(s) to be split by reference
         pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_1930"
-
-  - index:
-      type: file
-      description: |
-        Pre-built bbsplit index directory
-      pattern: "bbsplit/"
-
-  - primary_ref:
-      type: file
-      description: |
-        Primary reference genome in FASTA format
-        Reads aligning best to this reference are marked as "primary"
-      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_1929"
-
-  - other_ref:
-      type: file
-      description: |
-        Other reference genome(s) in FASTA format
-      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_1929"
-
-  - only_build_index:
-      type: boolean
-      description: |
-        true: Only build index from references
-        false: Split reads using references or existing index
-      pattern: "true or false"
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - index:
+        type: file
+        description: Pre-built bbsplit index directory
+        pattern: "bbsplit/"
+        ontologies: []
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - primary_ref:
+        type: file
+        description: Primary reference genome in FASTA format
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - other_ref:
+        type: file
+        description: Other reference genome(s) in FASTA format
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+  - - only_build_index:
+        type: boolean
+        description: |
+          true: Only build index from references
+          false: Split reads using references or existing index
+        ontologies: []
 
 output:
   reads:
@@ -67,34 +73,36 @@ output:
           type: map
           description: |
             Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
+            e.g. `[ id:'sample1' ]`
       - "*primary*.fastq.gz":
           type: file
-          description: |
-            FASTQ file(s) containing reads assigned to primary reference
+          description: FASTQ file(s) containing reads assigned to primary reference
           pattern: "*primary*.fastq.gz"
           ontologies:
-            - edam: "http://edamontology.org/format_1930"
-
+            - edam: "http://edamontology.org/format_1930" # FASTQ
   index:
-    - bbsplit:
-        type: file
-        description: |
-          Directory containing built bbsplit index
-        pattern: "bbsplit/"
-
+    - - meta2:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - bbsplit:
+          type: file
+          description: Directory containing built bbsplit index
+          pattern: "bbsplit/"
+          ontologies: []
   stats:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
+            e.g. `[ id:'sample1' ]`
       - "*stats.txt":
           type: file
-          description: |
-            Statistics file containing read assignment information
+          description: Statistics file containing read assignment information
           pattern: "*stats.txt"
-
+          ontologies:
+            - edam: "http://edamontology.org/format_1964" # plain text format
   versions_bbmap:
     - - "${task.process}":
           type: string

@@ -1,26 +1,80 @@
 {
-    "Should extract UMIs from single-end reads and return UMI-extracted FASTQ with log": {
+    "sarscov2 - fastq1 | quantseq": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.umi_extract.fastq.gz:md5,00ad1c7d121baa6eb53cc1062704e873"
+            {
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_extract.log"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_extract.fastq.gz:md5,00ad1c7d121baa6eb53cc1062704e873"
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_EXTRACT",
+                        "umitools",
+                        "1.1.6"
+                    ]
                 ]
-            ],
-            [
-                "versions.yml:md5,0ce013e3535927489f7d485f1e8ca54f"
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T01:16:46.110901528"
+        "timestamp": "2026-02-21T02:08:43.912400763"
     },
-    "Should stub extract UMIs from single-end reads and return mocked UMI-extracted FASTQ with log": {
+    "sarscov2 - fastq1 | takara": {
+        "content": [
+            {
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_extract.log"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test.umi_extract_1.fastq.gz:md5,bdb2826c6d99aa37df3a8e6c5ced76b6",
+                            "test.umi_extract_2.fastq.gz:md5,43f3b067bb51b760d8d2a6a9e26ee4fe"
+                        ]
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_EXTRACT",
+                        "umitools",
+                        "1.1.6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T02:10:53.433871436"
+    },
+    "sarscov2 - fastq1 - stub | corall": {
         "content": [
             {
                 "0": [
@@ -42,7 +96,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,0ce013e3535927489f7d485f1e8ca54f"
+                    [
+                        "UMITOOLS_EXTRACT",
+                        "umitools",
+                        "1.1.6"
+                    ]
                 ],
                 "log": [
                     [
@@ -62,8 +120,12 @@
                         "test.umi_extract.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,0ce013e3535927489f7d485f1e8ca54f"
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_EXTRACT",
+                        "umitools",
+                        "1.1.6"
+                    ]
                 ]
             }
         ],
@@ -71,9 +133,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T01:22:35.411894887"
+        "timestamp": "2026-02-21T02:12:02.00585306"
     },
-    "Should stub extract UMIs from paired-end reads and return mocked UMI-extracted FASTQ files with log": {
+    "sarscov2 - fastq1 - stub | quantseq": {
         "content": [
             {
                 "0": [
@@ -98,7 +160,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,0ce013e3535927489f7d485f1e8ca54f"
+                    [
+                        "UMITOOLS_EXTRACT",
+                        "umitools",
+                        "1.1.6"
+                    ]
                 ],
                 "log": [
                     [
@@ -121,8 +187,12 @@
                         ]
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,0ce013e3535927489f7d485f1e8ca54f"
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_EXTRACT",
+                        "umitools",
+                        "1.1.6"
+                    ]
                 ]
             }
         ],
@@ -130,30 +200,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T23:50:29.870822387"
-    },
-    "Should extract UMIs from paired-end reads and return UMI-extracted FASTQ files with log": {
-        "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    [
-                        "test.umi_extract_1.fastq.gz:md5,ea855bf6298aab237e9729a197763e62",
-                        "test.umi_extract_2.fastq.gz:md5,c76919884edeed5b38c04d0794541017"
-                    ]
-                ]
-            ],
-            [
-                "versions.yml:md5,0ce013e3535927489f7d485f1e8ca54f"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-18T01:18:07.112122429"
+        "timestamp": "2026-02-21T02:13:25.5257917"
     }
 }

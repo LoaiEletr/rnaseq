@@ -1,16 +1,20 @@
 nextflow_process {
     name "Test Process UMITOOLS_DEDUP"
-    script "modules/local/umitools/dedup/main.nf"
+    script "../main.nf"
     process "UMITOOLS_DEDUP"
+    config "./nextflow.config"
 
     tag "modules"
+    tag "modules_local"
     tag "umitools"
     tag "umitools/dedup"
 
-    test("Should deduplicate single-end BAM with UMIs and return deduplicated BAM with logs and TSV files") {
+    test("sarscov2 - [bam, bai] | single-end") {
         when {
             params {
                 outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
             }
             process {
                 """
@@ -30,20 +34,17 @@ nextflow_process {
                 { assert process.out.tsv_edit_distance.get(0).get(1) ==~ ".*/*edit_distance\\.tsv" },
                 { assert process.out.tsv_per_umi.get(0).get(1) ==~ ".*/*per_umi\\.tsv" },
                 { assert process.out.tsv_umi_per_position.get(0).get(1) ==~ ".*/*per_position\\.tsv" },
-                { assert snapshot(
-                    process.out.bam,
-                    process.out.tsv_per_umi,
-                    process.out.tsv_umi_per_position,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log", "tsv_edit_distance"])).match() }
             )
         }
     }
 
-    test("Should deduplicate paired-end BAM with UMIs and return deduplicated BAM with logs and TSV files") {
+    test("sarscov2 - [bam, bai] | paired-end") {
         when {
             params {
                 outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
             }
             process {
                 """
@@ -63,21 +64,18 @@ nextflow_process {
                 { assert process.out.tsv_edit_distance.get(0).get(1) ==~ ".*/*edit_distance\\.tsv" },
                 { assert process.out.tsv_per_umi.get(0).get(1) ==~ ".*/*per_umi\\.tsv" },
                 { assert process.out.tsv_umi_per_position.get(0).get(1) ==~ ".*/*per_position\\.tsv" },
-                { assert snapshot(
-                    process.out.bam,
-                    process.out.tsv_per_umi,
-                    process.out.tsv_umi_per_position,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log", "tsv_edit_distance"])).match() }
             )
         }
     }
 
-    test("Should stub deduplicate single-end BAM with UMIs and return mocked deduplicated BAM with logs and TSV files") {
+    test("sarscov2 - [bam, bai] - stub | single-end") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
             }
             process {
                 """
@@ -97,11 +95,13 @@ nextflow_process {
         }
     }
 
-    test("Should stub deduplicate paired-end BAM with UMIs and return mocked deduplicated BAM with logs and TSV files") {
+    test("sarscov2 - [bam, bai] - stub | paired-end") {
         options "-stub"
         when {
             params {
                 outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
             }
             process {
                 """

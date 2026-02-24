@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process MASIGPRO_TIMECOURSE {
     tag "${count_matrix_rds}"
     label 'process_low'
@@ -27,27 +25,27 @@ process MASIGPRO_TIMECOURSE {
     path "masigpro_results/*assignments.csv", emit: cluster_assignments
     path "masigpro_results/expression_matrix_siggenes.rds", emit: significant_expression
     path "masigpro_results/clusters_list.rds", emit: clusters_list
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-masigpro'), eval("Rscript -e \"cat(as.character(packageVersion('maSigPro')))\""), topic: versions, emit: versions_masigpro
+    tuple val("${task.process}"), val('r-dplyr'), eval("Rscript -e \"cat(as.character(packageVersion('dplyr')))\""), topic: versions, emit: versions_dplyr
+    tuple val("${task.process}"), val('r-tibble'), eval("Rscript -e \"cat(as.character(packageVersion('tibble')))\""), topic: versions, emit: versions_tibble
+    tuple val("${task.process}"), val('bioconductor-edger'), eval("Rscript -e \"cat(as.character(packageVersion('edgeR')))\""), topic: versions, emit: versions_edger
+    tuple val("${task.process}"), val('r-ggplot2'), eval("Rscript -e \"cat(as.character(packageVersion('ggplot2')))\""), topic: versions, emit: versions_ggplot2
+    tuple val("${task.process}"), val('r-reshape2'), eval("Rscript -e \"cat(as.character(packageVersion('reshape2')))\""), topic: versions, emit: versions_reshape2
+    tuple val("${task.process}"), val('r-patchwork'), eval("Rscript -e \"cat(as.character(packageVersion('patchwork')))\""), topic: versions, emit: versions_patchwork
+    tuple val("${task.process}"), val('r-mclust'), eval("Rscript -e \"cat(as.character(packageVersion('mclust')))\""), topic: versions, emit: versions_mclust
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     """
-    run_masigpro.R ${count_matrix_rds} ${samplesheet_csv} ${pvalue_threshold} ${rsq_threshold} ${cluster_method}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-masigpro: \$(Rscript -e "library(maSigPro); cat(as.character(packageVersion('maSigPro')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        bioconductor-edger: \$(Rscript -e "library(edgeR); cat(as.character(packageVersion('edgeR')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        r-reshape2: \$(Rscript -e "library(reshape2); cat(as.character(packageVersion('reshape2')))")
-        r-patchwork: \$(Rscript -e "library(patchwork); cat(as.character(packageVersion('patchwork')))")
-        r-mclust: \$(Rscript -e "library(mclust); cat(as.character(packageVersion('mclust')))")
-    END_VERSIONS
+    run_masigpro.R \\
+        ${count_matrix_rds} \\
+        ${samplesheet_csv} \\
+        ${pvalue_threshold} \\
+        ${rsq_threshold} \\
+        ${cluster_method}
     """
 
     stub:
@@ -62,18 +60,5 @@ process MASIGPRO_TIMECOURSE {
     touch masigpro_results/filtered_log2cpm.rds
     touch masigpro_results/normalized_log2cpm.rds
     touch masigpro_results/masigpro_clusterplots.pdf
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-masigpro: \$(Rscript -e "library(maSigPro); cat(as.character(packageVersion('maSigPro')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        bioconductor-edger: \$(Rscript -e "library(edgeR); cat(as.character(packageVersion('edgeR')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        r-reshape2: \$(Rscript -e "library(reshape2); cat(as.character(packageVersion('reshape2')))")
-        r-patchwork: \$(Rscript -e "library(patchwork); cat(as.character(packageVersion('patchwork')))")
-        r-mclust: \$(Rscript -e "library(mclust); cat(as.character(packageVersion('mclust')))")
-    END_VERSIONS
     """
 }

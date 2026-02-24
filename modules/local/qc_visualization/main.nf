@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process QC_VISUALIZATION {
     label 'process_low'
 
@@ -18,7 +16,15 @@ process QC_VISUALIZATION {
 
     output:
     path "qc_plots", emit: qc_plots
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-edger'), eval("Rscript -e \"cat(as.character(packageVersion('edgeR')))\""), topic: versions, emit: versions_edger
+    tuple val("${task.process}"), val('r-ggplot2'), eval("Rscript -e \"cat(as.character(packageVersion('ggplot2')))\""), topic: versions, emit: versions_ggplot2
+    tuple val("${task.process}"), val('bioconductor-deseq2'), eval("Rscript -e \"cat(as.character(packageVersion('DESeq2')))\""), topic: versions, emit: versions_deseq2
+    tuple val("${task.process}"), val('r-tibble'), eval("Rscript -e \"cat(as.character(packageVersion('tibble')))\""), topic: versions, emit: versions_tibble
+    tuple val("${task.process}"), val('r-tidyr'), eval("Rscript -e \"cat(as.character(packageVersion('tidyr')))\""), topic: versions, emit: versions_tidyr
+    tuple val("${task.process}"), val('r-dplyr'), eval("Rscript -e \"cat(as.character(packageVersion('dplyr')))\""), topic: versions, emit: versions_dplyr
+    tuple val("${task.process}"), val('r-cowplot'), eval("Rscript -e \"cat(as.character(packageVersion('cowplot')))\""), topic: versions, emit: versions_cowplot
+    tuple val("${task.process}"), val('r-mass'), eval("Rscript -e \"cat(as.character(packageVersion('MASS')))\""), topic: versions, emit: versions_mass
 
     when:
     task.ext.when == null || task.ext.when
@@ -34,19 +40,6 @@ process QC_VISUALIZATION {
         ${filtered_logcounts} \\
         ${normalized_logcounts} \\
         ${vst_object_flag}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-edger: \$(Rscript -e "library(edgeR); cat(as.character(packageVersion('edgeR')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        r-tidyr: \$(Rscript -e "library(tidyr); cat(as.character(packageVersion('tidyr')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-cowplot: \$(Rscript -e "library(cowplot); cat(as.character(packageVersion('cowplot')))")
-        r-mass: \$(Rscript -e "library(MASS); cat(as.character(packageVersion('MASS')))")
-    END_VERSIONS
     """
 
     stub:
@@ -55,18 +48,5 @@ process QC_VISUALIZATION {
     touch qc_plots/mds_plot.pdf
     touch qc_plots/pca_plot.pdf
     touch qc_plots/violin_plots.pdf
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-edger: \$(Rscript -e "library(edgeR); cat(as.character(packageVersion('edgeR')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        r-tidyr: \$(Rscript -e "library(tidyr); cat(as.character(packageVersion('tidyr')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-cowplot: \$(Rscript -e "library(cowplot); cat(as.character(packageVersion('cowplot')))")
-        r-mass: \$(Rscript -e "library(MASS); cat(as.character(packageVersion('MASS')))")
-    END_VERSIONS
     """
 }

@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process RSEQC_TIN {
     tag "${meta.id}"
     label 'process_low'
@@ -11,12 +9,12 @@ process RSEQC_TIN {
 
     input:
     tuple val(meta), path(bam), path(bai)
-    path bed
+    tuple val(meta2), path(bed)
 
     output:
     tuple val(meta), path("*.txt"), emit: txt
     tuple val(meta), path("*.xls"), emit: xls
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('rseqc'), eval("tin.py --version | sed 's/.*.py //'"), topic: versions, emit: versions_rseqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -28,21 +26,11 @@ process RSEQC_TIN {
         -r ${bed} \\
         ${args} \\
         -i ${bam}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( tin.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 
     stub:
     """
     touch ${bam.baseName}.tin.xls
     touch ${bam.baseName}.summary.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( read_duplication.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 }

@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process DEXSEQ_DEU"
-    script "modules/local/dexseq/deu/main.nf"
+    script "../main.nf"
     process "DEXSEQ_DEU"
 
     tag "modules"
+    tag "modules_local"
     tag "dexseq"
     tag "dexseq/deu"
 
-    test("Should perform differential exon usage analysis with DEXSeq and return DEU results") {
+    test("lymphoblastoid - counts - samplesheet - gff - pvalue_threshold - logfc - top_n - min_exonlength") {
         when {
             params {
                 outdir = "$outputDir"
@@ -27,7 +28,7 @@ nextflow_process {
                     params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188273.counts.txt'
                 ).collect()
                 input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_lymphoblastoid_celllines.csv', checkIfExists: true)
-                input[2] = file(params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/annotations/human_chrX_dexseq_flattened.gff', checkIfExists: true)
+                input[2] = [[:], file(params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/annotations/human_chrX_dexseq_flattened.gff', checkIfExists: true)]
                 input[3] = params.pvalue_threshold
                 input[4] = params.logfc_threshold
                 input[5] = params.top_n
@@ -44,16 +45,12 @@ nextflow_process {
                 { assert process.out.gene_plots.get(0) ==~ ".*/top_DEU_plots" },
                 { assert process.out.significant_genes.get(0) ==~ ".*/significant_DEU_gene_ids\\.rds" },
                 { assert process.out.report.get(0) ==~ ".*/DEXSeqReport" },
-                { assert snapshot(
-                    process.out.significant_genes,
-                    process.out.report,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["results_table", "significant_results", "ma_plot", "gene_plots"])).match() }
             )
         }
     }
 
-    test("Should stub perform differential exon usage analysis with DEXSeq and return mocked DEU results") {
+    test("lymphoblastoid - counts - samplesheet - gff - pvalue_threshold - logfc - top_n - min_exonlength - stub") {
         options "-stub"
         when {
             params {
@@ -74,7 +71,7 @@ nextflow_process {
                     params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/exon_counts/ERR188273.counts.txt'
                 ).collect()
                 input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_lymphoblastoid_celllines.csv', checkIfExists: true)
-                input[2] = file(params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/annotations/human_chrX_dexseq_flattened.gff', checkIfExists: true)
+                input[2] = [[:], file(params.pipelines_testdata_base_path + 'dexseq_data/lymphoblastoid_celllines/annotations/human_chrX_dexseq_flattened.gff', checkIfExists: true)]
                 input[3] = params.pvalue_threshold
                 input[4] = params.logfc_threshold
                 input[5] = params.top_n

@@ -21,7 +21,7 @@ nextflow_workflow {
             script "modules/local/untar/main.nf"
             process {
                 """
-                input[0] = file("https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz")
+                input[0] = [[id: 'database'], file("https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz")]
                 """
             }
         }
@@ -34,9 +34,9 @@ nextflow_workflow {
                     [ id: 'index' ],
                     []
                 ])
-                input[1] = []
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
-                input[3] = file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)
+                input[1] = [[:], []]
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)]
                 input[4] = true
                 """
             }
@@ -46,8 +46,8 @@ nextflow_workflow {
             script "modules/local/sortmerna/main.nf"
             process {
                 """
-                input[0] = [[],[]]
-                input[1] = []
+                input[0] = [[id: 'index'], []]
+                input[1] = [[:], []]
                 input[2] = UNTAR.out.untar
                 input[3] = "fast"
                 input[4] = true
@@ -57,7 +57,7 @@ nextflow_workflow {
     }
 
     // Base test: All steps enabled
-    test("sarscov2 paired-end [fastq]") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type") {
         when {
             params {
                 outdir = "$outputDir"
@@ -80,35 +80,29 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.umi_log,
-                    workflow.out.trim_json,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
-    test("sarscov2 paired-end [fastq] | skip_fastqc") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_fastqc") {
         when {
             params {
                 outdir = "$outputDir"
@@ -131,43 +125,38 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.fastqc_raw_html,
-                    workflow.out.fastqc_raw_zip,
-                    workflow.out.fastqc_trim_html,
-                    workflow.out.fastqc_trim_zip,
-                    workflow.out.umi_log,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
-    test("sarscov2 paired-end [fastq] | with_umi") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | with_umi") {
         when {
             params {
                 outdir = "$outputDir"
                 skip_fastqc       = false
                 with_umi          = true
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
                 skip_umi_extract  = false
                 skip_cutadapt     = false
                 skip_bbsplit      = false
@@ -185,35 +174,29 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.reads,
-                    workflow.out.trim_json,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
-    test("sarscov2 paired-end [fastq] | skip_umi_extract") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_umi_extract") {
         when {
             params {
                 outdir = "$outputDir"
@@ -236,35 +219,29 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.umi_log,
-                    workflow.out.trim_json,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
-    test("sarscov2 paired-end [fastq] | skip_cutadapt") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_cutadapt") {
         when {
             params {
                 outdir = "$outputDir"
@@ -287,35 +264,29 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.umi_log,
-                    workflow.out.trim_json,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
-    test("sarscov2 paired-end [fastq] | skip_bbsplit") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - sortmerna index - rrna_db_type | skip_bbsplit") {
         when {
             params {
                 outdir = "$outputDir"
@@ -338,35 +309,29 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
-                input[3] = []
+                input[3] = [[:], []]
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.umi_log,
-                    workflow.out.trim_json,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
-    test("sarscov2 paired-end [fastq] | skip_sortmerna") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - rrna_db_type | skip_sortmerna") {
         when {
             params {
                 outdir = "$outputDir"
@@ -389,37 +354,30 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
-                input[4] = []
+                input[4] = [[:], []]
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.umi_log,
-                    workflow.out.trim_json,
-                    workflow.out.nonrrna_log,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
     // Single-end tests
-    test("sarscov2 single-end [fastq]") {
+    test("sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type") {
         when {
             params {
                 outdir = "$outputDir"
@@ -441,36 +399,30 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.umi_log,
-                    workflow.out.trim_json,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
             )
         }
     }
 
     // Stub tests
-    test("sarscov2 paired-end [fastq] - stub") {
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub") {
         options "-stub"
         when {
             params {
@@ -494,18 +446,17 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }
@@ -517,7 +468,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 single-end [fastq] - stub") {
+    test("sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub") {
         options "-stub"
         when {
             params {
@@ -540,18 +491,17 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.adapter)
+                input[1] = [[:], file(params.adapter)]
                 input[2] = UNTAR.out.untar
                 input[3] = BBMAP_BBSPLIT.out.index
                 input[4] = SORTMERNA.out.index
                 input[5] = params.rrna_db_type
-                input[6] = params.lib_kit
-                input[7] = params.with_umi
-                input[8] = params.skip_umi_extract
-                input[9] = params.skip_fastqc
-                input[10] = params.skip_cutadapt
-                input[11] = params.skip_bbsplit
-                input[12] = params.skip_sortmerna
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
                 """
             }
         }

@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process CUTADAPT"
-    script "modules/local/cutadapt/main.nf"
+    script "../main.nf"
     process "CUTADAPT"
     config './nextflow.config'
 
     tag "modules"
+    tag "modules_local"
     tag "cutadapt"
 
-    test("Should trim single-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+    test("homo_sapiens - fastq1 - adapters") {
         when {
             params {
                 outdir = "$outputDir"
@@ -20,7 +21,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file("$projectDir/assets/adapters-SE.fa", checkIfExists: true)
+                input[1] = channel.value([[:],file("$projectDir/assets/adapters-SE.fa", checkIfExists: true)])
                 """
             }
         }
@@ -34,7 +35,7 @@ nextflow_process {
         }
     }
 
-    test("Should trim paired-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+    test("homo_sapiens - [fastq1, fastq2] - adapters") {
         when {
             params {
                 outdir = "$outputDir"
@@ -48,7 +49,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file("$projectDir/assets/adapters-PE.fa", checkIfExists: true)
+                input[1] = channel.value([[:],file("$projectDir/assets/adapters-PE.fa", checkIfExists: true)])
                 """
             }
         }
@@ -68,7 +69,7 @@ nextflow_process {
     }
 
 
-    test("Should stub trim single-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+    test("homo_sapiens - fastq1 - adapters - stub") {
 
         options "-stub"
         when {
@@ -83,7 +84,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file("$projectDir/assets/adapters-SE.fa", checkIfExists: true)
+                input[1] = channel.value([[:],file("$projectDir/assets/adapters-SE.fa", checkIfExists: true)])
                 """
             }
         }
@@ -95,7 +96,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub trim paired-end reads with Cutadapt and return trimmed FASTQ files with summary JSON") {
+    test("homo_sapiens - [fastq1, fastq2] - adapters - stub") {
 
         options "-stub"
         when {
@@ -111,7 +112,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file("$projectDir/assets/adapters-PE.fa", checkIfExists: true)
+                input[1] = channel.value([[:],file("$projectDir/assets/adapters-PE.fa", checkIfExists: true)])
                 """
             }
         }

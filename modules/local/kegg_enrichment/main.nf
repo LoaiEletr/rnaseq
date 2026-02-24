@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process KEGG_ENRICHMENT {
     label 'process_low'
 
@@ -21,7 +19,26 @@ process KEGG_ENRICHMENT {
 
     output:
     path "KEGG_results", optional: true, emit: kegg_results
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-clusterprofiler'), eval("Rscript -e \"cat(as.character(packageVersion('clusterProfiler')))\""), topic: versions, emit: versions_clusterprofiler
+    tuple val("${task.process}"), val('r-ggplot2'), eval("Rscript -e \"cat(as.character(packageVersion('ggplot2')))\""), topic: versions, emit: versions_ggplot2
+    tuple val("${task.process}"), val('bioconductor-org.hs.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Hs.eg.db')))\""), topic: versions, emit: versions_org_hs_eg_db
+    tuple val("${task.process}"), val('r-purrr'), eval("Rscript -e \"cat(as.character(packageVersion('purrr')))\""), topic: versions, emit: versions_purrr
+    tuple val("${task.process}"), val('bioconductor-biomart'), eval("Rscript -e \"cat(as.character(packageVersion('biomaRt')))\""), topic: versions, emit: versions_biomart
+    tuple val("${task.process}"), val('bioconductor-org.mm.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Mm.eg.db')))\""), topic: versions, emit: versions_org_mm_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.rn.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Rn.eg.db')))\""), topic: versions, emit: versions_org_rn_eg_db
+    tuple val("${task.process}"), val('r-dplyr'), eval("Rscript -e \"cat(as.character(packageVersion('dplyr')))\""), topic: versions, emit: versions_dplyr
+    tuple val("${task.process}"), val('r-tibble'), eval("Rscript -e \"cat(as.character(packageVersion('tibble')))\""), topic: versions, emit: versions_tibble
+    tuple val("${task.process}"), val('bioconductor-org.sc.sgd.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Sc.sgd.db')))\""), topic: versions, emit: versions_org_sc_sgd_db
+    tuple val("${task.process}"), val('bioconductor-org.dm.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Dm.eg.db')))\""), topic: versions, emit: versions_org_dm_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.dr.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Dr.eg.db')))\""), topic: versions, emit: versions_org_dr_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.ce.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Ce.eg.db')))\""), topic: versions, emit: versions_org_ce_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.at.tair.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.At.tair.db')))\""), topic: versions, emit: versions_org_at_tair_db
+    tuple val("${task.process}"), val('bioconductor-org.gg.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Gg.eg.db')))\""), topic: versions, emit: versions_org_gg_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.bt.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Bt.eg.db')))\""), topic: versions, emit: versions_org_bt_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.ss.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Ss.eg.db')))\""), topic: versions, emit: versions_org_ss_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.cf.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Cf.eg.db')))\""), topic: versions, emit: versions_org_cf_eg_db
+    tuple val("${task.process}"), val('bioconductor-org.mmu.eg.db'), eval("Rscript -e \"cat(as.character(packageVersion('org.Mmu.eg.db')))\""), topic: versions, emit: versions_org_mmu_eg_db
 
     when:
     task.ext.when == null || task.ext.when
@@ -34,59 +51,20 @@ process KEGG_ENRICHMENT {
     def genes_diu_flag = genes_diu ?: null
     def genes_deu_flag = genes_deu ?: null
     """
-    run_kegg_enrichment.R ${unfiltered_deg_flag} ${pvalue_threshold} ${logfc_threshold_flag} ${species_name} ${wgcna_list_flag} ${masigpro_list_flag} ${genes_diu_flag} ${genes_deu_flag} ${ntop_processes}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-clusterprofiler: \$(Rscript -e "library(clusterProfiler); cat(as.character(packageVersion('clusterProfiler')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        bioconductor-org.hs.eg.db: \$(Rscript -e "library(org.Hs.eg.db); cat(as.character(packageVersion('org.Hs.eg.db')))")
-        r-purrr: \$(Rscript -e "library(purrr); cat(as.character(packageVersion('purrr')))")
-        bioconductor-biomart: \$(Rscript -e "library(biomaRt); cat(as.character(packageVersion('biomaRt')))")
-        bioconductor-org.mm.eg.db: \$(Rscript -e "library(org.Mm.eg.db); cat(as.character(packageVersion('org.Mm.eg.db')))")
-        bioconductor-org.rn.eg.db: \$(Rscript -e "library(org.Rn.eg.db); cat(as.character(packageVersion('org.Rn.eg.db')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        bioconductor-org.sc.sgd.db: \$(Rscript -e "library(org.Sc.sgd.db); cat(as.character(packageVersion('org.Sc.sgd.db')))")
-        bioconductor-org.dm.eg.db: \$(Rscript -e "library(org.Dm.eg.db); cat(as.character(packageVersion('org.Dm.eg.db')))")
-        bioconductor-org.dr.eg.db: \$(Rscript -e "library(org.Dr.eg.db); cat(as.character(packageVersion('org.Dr.eg.db')))")
-        bioconductor-org.ce.eg.db: \$(Rscript -e "library(org.Ce.eg.db); cat(as.character(packageVersion('org.Ce.eg.db')))")
-        bioconductor-org.at.tair.db: \$(Rscript -e "library(org.At.tair.db); cat(as.character(packageVersion('org.At.tair.db')))")
-        bioconductor-org.gg.eg.db: \$(Rscript -e "library(org.Gg.eg.db); cat(as.character(packageVersion('org.Gg.eg.db')))")
-        bioconductor-org.bt.eg.db: \$(Rscript -e "library(org.Bt.eg.db); cat(as.character(packageVersion('org.Bt.eg.db')))")
-        bioconductor-org.ss.eg.db: \$(Rscript -e "library(org.Ss.eg.db); cat(as.character(packageVersion('org.Ss.eg.db')))")
-        bioconductor-org.cf.eg.db: \$(Rscript -e "library(org.Cf.eg.db); cat(as.character(packageVersion('org.Cf.eg.db')))")
-        bioconductor-org.mmu.eg.db: \$(Rscript -e "library(org.Mmu.eg.db); cat(as.character(packageVersion('org.Mmu.eg.db')))")
-    END_VERSIONS
+    run_kegg_enrichment.R \\
+        ${unfiltered_deg_flag} \\
+        ${pvalue_threshold} \\
+        ${logfc_threshold_flag} \\
+        ${species_name} \\
+        ${wgcna_list_flag} \\
+        ${masigpro_list_flag} \\
+        ${genes_diu_flag} \\
+        ${genes_deu_flag} \\
+        ${ntop_processes}
     """
 
     stub:
     """
     mkdir KEGG_results
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-clusterprofiler: \$(Rscript -e "library(clusterProfiler); cat(as.character(packageVersion('clusterProfiler')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        bioconductor-org.hs.eg.db: \$(Rscript -e "library(org.Hs.eg.db); cat(as.character(packageVersion('org.Hs.eg.db')))")
-        r-purrr: \$(Rscript -e "library(purrr); cat(as.character(packageVersion('purrr')))")
-        bioconductor-biomart: \$(Rscript -e "library(biomaRt); cat(as.character(packageVersion('biomaRt')))")
-        bioconductor-org.mm.eg.db: \$(Rscript -e "library(org.Mm.eg.db); cat(as.character(packageVersion('org.Mm.eg.db')))")
-        bioconductor-org.rn.eg.db: \$(Rscript -e "library(org.Rn.eg.db); cat(as.character(packageVersion('org.Rn.eg.db')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        bioconductor-org.sc.sgd.db: \$(Rscript -e "library(org.Sc.sgd.db); cat(as.character(packageVersion('org.Sc.sgd.db')))")
-        bioconductor-org.dm.eg.db: \$(Rscript -e "library(org.Dm.eg.db); cat(as.character(packageVersion('org.Dm.eg.db')))")
-        bioconductor-org.dr.eg.db: \$(Rscript -e "library(org.Dr.eg.db); cat(as.character(packageVersion('org.Dr.eg.db')))")
-        bioconductor-org.ce.eg.db: \$(Rscript -e "library(org.Ce.eg.db); cat(as.character(packageVersion('org.Ce.eg.db')))")
-        bioconductor-org.at.tair.db: \$(Rscript -e "library(org.At.tair.db); cat(as.character(packageVersion('org.At.tair.db')))")
-        bioconductor-org.gg.eg.db: \$(Rscript -e "library(org.Gg.eg.db); cat(as.character(packageVersion('org.Gg.eg.db')))")
-        bioconductor-org.bt.eg.db: \$(Rscript -e "library(org.Bt.eg.db); cat(as.character(packageVersion('org.Bt.eg.db')))")
-        bioconductor-org.ss.eg.db: \$(Rscript -e "library(org.Ss.eg.db); cat(as.character(packageVersion('org.Ss.eg.db')))")
-        bioconductor-org.cf.eg.db: \$(Rscript -e "library(org.Cf.eg.db); cat(as.character(packageVersion('org.Cf.eg.db')))")
-        bioconductor-org.mmu.eg.db: \$(Rscript -e "library(org.Mmu.eg.db); cat(as.character(packageVersion('org.Mmu.eg.db')))")
-    END_VERSIONS
     """
 }

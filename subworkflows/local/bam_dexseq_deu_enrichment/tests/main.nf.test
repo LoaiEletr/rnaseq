@@ -1,10 +1,11 @@
 nextflow_workflow {
 
     name "Test Workflow BAM_DEXSEQ_DEU_ENRICHMENT"
-    script "subworkflows/local/bam_dexseq_deu_enrichment/main.nf"
+    script "../main.nf"
     workflow "BAM_DEXSEQ_DEU_ENRICHMENT"
 
     tag "subworkflows"
+    tag "subworkflows_local"
     tag "subworkflows/bam_dexseq_deu_enrichment"
     tag "dexseq"
     tag "dexseq/count"
@@ -17,7 +18,7 @@ nextflow_workflow {
             script "modules/local/dexseq/prepareannotation/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 input[1] = true
                 """
             }
@@ -79,10 +80,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.significant_genes,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["dexseq_table", "dexseq_sigtable", "ma_plot", "deu_plots", "report", "go_enrichment", "kegg_enrichment"])).match() }
             )
         }
     }
@@ -140,10 +138,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.significant_genes,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["dexseq_table", "dexseq_sigtable", "ma_plot", "deu_plots", "report", "go_enrichment", "kegg_enrichment"])).match() }
             )
         }
     }
@@ -201,15 +196,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.significant_genes,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["dexseq_table", "dexseq_sigtable", "ma_plot", "deu_plots", "report", "go_enrichment", "kegg_enrichment"])).match() }
             )
         }
     }
 
-    test("sarscov2 - bam - gff - samplesheet | GO,KEGG enrichment - stub") {
+    test("sarscov2 - bam - gff - samplesheet - stub | GO,KEGG enrichment") {
         options "-stub"
         when {
             params {
@@ -268,7 +260,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - bam - gff - samplesheet | GO enrichment only - stub") {
+    test("sarscov2 - bam - gff - samplesheet - stub | GO enrichment only") {
         options "-stub"
         when {
             params {
@@ -327,7 +319,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - bam - gff - samplesheet | KEGG enrichment only - stub") {
+    test("sarscov2 - bam - gff - samplesheet - stub | KEGG enrichment only") {
         options "-stub"
         when {
             params {

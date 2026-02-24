@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process RSEQC_READDISTRIBUTION {
     tag "${meta.id}"
     label 'process_low'
@@ -11,11 +9,11 @@ process RSEQC_READDISTRIBUTION {
 
     input:
     tuple val(meta), path(bam)
-    path bed
+    tuple val(meta2), path(bed)
 
     output:
     tuple val(meta), path("*.read_distribution.txt"), emit: txt
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('rseqc'), eval("read_distribution.py --version | sed 's/.*.py //'"), topic: versions, emit: versions_rseqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -29,21 +27,11 @@ process RSEQC_READDISTRIBUTION {
         ${args} \\
         -i ${bam} \\
         > ${prefix}.read_distribution.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( read_distribution.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.read_distribution.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( read_distribution.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 }

@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process KEGG_ENRICHMENT"
-    script "modules/local/kegg_enrichment/main.nf"
+    script "../main.nf"
     process "KEGG_ENRICHMENT"
 
     tag "modules"
+    tag "modules_local"
     tag "kegg_enrichment"
 
     setup {
@@ -44,7 +45,7 @@ nextflow_process {
         }
     }
 
-    test("Should perform KEGG enrichment analysis on DEGs from DESeq2 and return KEGG results") {
+    test("leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes | DESeq2") {
         when {
             params {
                 outdir = "$outputDir"
@@ -67,12 +68,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
-                { assert snapshot(process.out.versions).match("versions_kegg_deseq2") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["kegg_results"])).match() }
             )
         }
     }
 
-    test("Should perform KEGG enrichment analysis on DEGs from limma and return KEGG results") {
+    test("leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes | Limma") {
         when {
             params {
                 outdir = "$outputDir"
@@ -95,12 +96,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
-                { assert snapshot(process.out.versions).match("versions_kegg_limma") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["kegg_results"])).match() }
             )
         }
     }
 
-    test("Should perform KEGG enrichment analysis on DEU genes and return KEGG results") {
+    test("lymphoblastoid - pvalue_threshold - logfc - species_name - DEU genes - ntop_processes | DEXSeq") {
         when {
             params {
                 outdir = "$outputDir"
@@ -123,12 +124,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
-                { assert snapshot(process.out.versions).match("versions_kegg_deu") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["kegg_results"])).match() }
             )
         }
     }
 
-    test("Should perform KEGG enrichment analysis on DIU genes and return KEGG results") {
+    test("leishmaniasis - pvalue_threshold - logfc - species_name - DIU genes - ntop_processes | IsoformSwitchAnalyzeR") {
         when {
             params {
                 outdir = "$outputDir"
@@ -151,12 +152,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
-                { assert snapshot(process.out.versions).match("versions_kegg_diu") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["kegg_results"])).match() }
             )
         }
     }
 
-    test("Should perform KEGG enrichment analysis on maSigPro clusters and return KEGG results") {
+    test("arabidopsis - pvalue_threshold - logfc - species_name - masigpro_clusters - ntop_processes | maSigPro") {
         when {
             params {
                 outdir = "$outputDir"
@@ -179,12 +180,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
-                { assert snapshot(process.out.versions).match("versions_kegg_masigpro") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["kegg_results"])).match() }
             )
         }
     }
 
-    test("Should perform KEGG enrichment analysis on WGCNA module genes for human species and return KEGG results") {
+    test("leishmaniasis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes | WGCNA") {
         when {
             params {
                 outdir = "$outputDir"
@@ -207,12 +208,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
-                { assert snapshot(process.out.versions).match("versions_kegg_wgcna_human") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["kegg_results"])).match() }
             )
         }
     }
 
-    test("Should perform KEGG enrichment analysis on WGCNA module genes for arabidopsis species and return KEGG results") {
+    test("arabidopsis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes | WGCNA") {
         when {
             params {
                 outdir = "$outputDir"
@@ -235,12 +236,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.kegg_results.get(0) ==~ ".*/KEGG_results" },
-                { assert snapshot(process.out.versions).match("versions_kegg_wgcna_arabidopsis") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["kegg_results"])).match() }
             )
         }
     }
 
-    test("Should stub perform KEGG enrichment analysis on DEGs from DESeq2 and return mocked KEGG results") {
+    test("leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes - stub | DESeq2") {
         options "-stub"
         when {
             params {
@@ -268,7 +269,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub perform KEGG enrichment analysis on WGCNA module genes for human species and return mocked KEGG results") {
+    test("leishmaniasis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes - stub | WGCNA") {
         options "-stub"
         when {
             params {

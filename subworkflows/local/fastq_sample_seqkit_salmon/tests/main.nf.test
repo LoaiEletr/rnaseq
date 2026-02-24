@@ -6,6 +6,7 @@ nextflow_workflow {
     config './nextflow.config'
 
     tag "subworkflows"
+    tag "subworkflows_local"
     tag "subworkflows/fastq_sample_seqkit_salmon"
     tag "seqkit"
     tag "seqkit/sample"
@@ -17,13 +18,13 @@ nextflow_workflow {
             script "modules/local/salmon/index/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)
+                input[0] = [[id: 'transcriptome'], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
                 """
             }
         }
     }
 
-    test("sarscov2 - fastq - index - gtf") {
+    test("sarscov2 - fastq1 - index - gtf") {
         when {
             params {
                 outdir = "$outputDir"
@@ -31,12 +32,12 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: true ],
+                    [ id: 'test', single_end: true, lib_type: 'auto' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 input[2] = SALMON_INDEX.out.index
                 """
             }
@@ -44,11 +45,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.strandness,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["quant_dir"])).match() }
             )
         }
     }
@@ -61,13 +58,13 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false ],
+                    [ id: 'test', single_end: false, lib_type: 'auto' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 input[2] = SALMON_INDEX.out.index
                 """
             }
@@ -75,17 +72,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.reads,
-                    workflow.out.strandness,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["quant_dir"])).match() }
             )
         }
     }
 
-    // Stub tests
-    test("sarscov2 - fastq - index - gtf - stub") {
+    test("sarscov2 - fastq1 - index - gtf - stub") {
         options "-stub"
         when {
             params {
@@ -94,12 +86,12 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: true ],
+                    [ id: 'test', single_end: true, lib_type: 'auto' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 input[2] = SALMON_INDEX.out.index
                 """
             }
@@ -121,13 +113,13 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test', single_end: false ],
+                    [ id: 'test', single_end: false, lib_type: 'auto' ],
                     [
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 input[2] = SALMON_INDEX.out.index
                 """
             }

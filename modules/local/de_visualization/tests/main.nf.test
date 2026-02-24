@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process DE_VISUALIZATION"
-    script "modules/local/de_visualization/main.nf"
+    script "../main.nf"
     process "DE_VISUALIZATION"
 
     tag "modules"
+    tag "modules_local"
     tag "de_visualization"
 
     setup {
@@ -44,7 +45,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate heatmap on plant dataset from maSigPro diffgenes and return visualization results") {
+    test("arabidopsis - samplesheet - cluster_file - pval_threshold - logfc - diffexpr_matrix | masigpro") {
         when {
             params {
                 outdir = "$outputDir"
@@ -63,12 +64,12 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.versions).match("versions_masigpro_plants") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["volcano_plot", "heatmaps"])).match() }
             )
         }
     }
 
-    test("Should generate heatmap on leishmaniasis dataset from WGCNA hub genes and return visualization results") {
+    test("leishmaniasis - samplesheet - pval_threshold - logfc - hub genes list | WGCNA") {
         when {
             params {
                 outdir = "$outputDir"
@@ -87,12 +88,12 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.versions).match("versions_wgcna_leishmaniasis") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["volcano_plot", "heatmaps"])).match() }
             )
         }
     }
 
-    test("Should generate heatmap on plant dataset from WGCNA hub genes and return visualization results") {
+    test("arabidopsis - samplesheet - pval_threshold - logfc - hub genes list | WGCNA") {
         when {
             params {
                 outdir = "$outputDir"
@@ -111,12 +112,12 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.versions).match("versions_wgcna_plant") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["volcano_plot", "heatmaps"])).match() }
             )
         }
     }
 
-    test("Should generate heatmap and volcano plot from DESeq2 diffgenes and return visualization results") {
+    test("leishmaniasis - unfiltered_deg - samplesheet - pval_threshold - logfc - diffexpr_matrix | DESeq2") {
         when {
             params {
                 outdir = "$outputDir"
@@ -136,12 +137,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.volcano_plot.get(0) ==~ ".*/volcano_sig_genes\\.pdf" },
-                { assert snapshot(process.out.versions).match("versions_deseq2") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["volcano_plot", "heatmaps"])).match() }
             )
         }
     }
 
-    test("Should generate heatmap and volcano plot from limma diffgenes and return visualization results") {
+    test("leishmaniasis - unfiltered_deg - samplesheet - pval_threshold - logfc - diffexpr_matrix | Limma") {
         when {
             params {
                 outdir = "$outputDir"
@@ -161,12 +162,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.volcano_plot.get(0) ==~ ".*/volcano_sig_genes\\.pdf" },
-                { assert snapshot(process.out.versions).match("versions_limma") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["volcano_plot", "heatmaps"])).match() }
             )
         }
     }
 
-    test("Should stub generate heatmap and volcano plot from DESeq2 diffgenes and return mocked visualization results") {
+    test("leishmaniasis - unfiltered_deg - samplesheet - pval_threshold - logfc - diffexpr_matrix - stub | DESeq2") {
         options "-stub"
         when {
             params {

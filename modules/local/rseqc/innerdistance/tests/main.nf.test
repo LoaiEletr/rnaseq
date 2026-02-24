@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process RSEQC_INNERDISTANCE"
-    script "modules/local/rseqc/innerdistance/main.nf"
+    script "../main.nf"
     process "RSEQC_INNERDISTANCE"
 
     tag "modules"
+    tag "modules_local"
     tag "rseqc"
     tag "rseqc/innerdistance"
 
-    test("Should calculate inner distance for RNA-seq data with RSeQC and return distance files with PDF and R script") {
+    test("homo_sapiens - bam - bed") {
         when {
             params {
                 outdir = "$outputDir"
@@ -18,7 +19,7 @@ nextflow_process {
                     [ id: 'test', single_end: false ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.bed', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.bed', checkIfExists: true)]
                 """
             }
         }
@@ -29,17 +30,12 @@ nextflow_process {
                 { assert process.out.freq.get(0).get(1) =~ ".*/*freq\\.txt" },
                 { assert process.out.pdf.get(0).get(1) =~ ".*/*\\.pdf" },
                 { assert process.out.rscript.get(0).get(1) =~ ".*/*\\.r" },
-                { assert snapshot(
-                    process.out.distance,
-                    process.out.freq,
-                    process.out.rscript,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["pdf"])).match() }
             )
         }
     }
 
-    test("Should stub calculate inner distance for RNA-seq data with RSeQC and return mocked distance files with PDF and R script") {
+    test("homo_sapiens - bam - bed - stub") {
         options "-stub"
         when {
             params {
@@ -51,7 +47,7 @@ nextflow_process {
                     [ id: 'test', single_end: false ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.bed', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.bed', checkIfExists: true)]
                 """
             }
         }

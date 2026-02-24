@@ -1,6 +1,6 @@
 name: rseqc_inferexperiment
 description: |
-  Infers strand-specificity of RNA-seq experiments using RSeQC infer_experiment.py.
+  Infers strand-specificity of RNA-seq experiments using RSeQC infer_experiment.py by comparing mapped reads against a reference gene model.
 keywords:
   - rseqc
   - strandness
@@ -12,6 +12,7 @@ tools:
       homepage: "http://rseqc.sourceforge.net/"
       documentation: "http://rseqc.sourceforge.net/"
       tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      doi: "10.1093/bioinformatics/bts356"
       licence: ["GPL-3.0-only"]
       identifier: "rseqc"
 
@@ -23,19 +24,21 @@ input:
           e.g. `[ id:'sample1', single_end:false ]`
     - bam:
         type: file
-        description: |
-          BAM file for strandness inference
+        description: BAM file for strandness inference
         pattern: "*.{bam,bam.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
-
-  - bed:
-      type: file
-      description: |
-        BED file with strand-specific gene annotations
-      pattern: "*.{bed,bed.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_3003"
+          - edam: "http://edamontology.org/format_2572" # BAM
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'ref_genome' ]`
+    - bed:
+        type: file
+        description: BED file with strand-specific gene annotations
+        pattern: "*.{bed,bed.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3003" # BED
 
 output:
   txt:
@@ -46,12 +49,10 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - "*.infer_experiment.txt":
           type: file
-          description: |
-            Text file with strandness inference results
+          description: Text file with strandness inference results
           pattern: "*.infer_experiment.txt"
           ontologies:
-            - edam: "http://edamontology.org/format_2330"
-
+            - edam: "http://edamontology.org/format_2330" # Textual format
   versions_rseqc:
     - - "${task.process}":
           type: string

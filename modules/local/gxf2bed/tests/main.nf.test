@@ -1,32 +1,33 @@
 nextflow_process {
     name "Test Process GXF2BED"
-    script "modules/local/gxf2bed/main.nf"
+    script "../main.nf"
     process "GXF2BED"
 
     tag "modules"
+    tag "modules_local"
     tag "gxf2bed"
 
-    test("Should convert GTF to BED and return BED file") {
+    test("homo_sapiens - gtf") {
         when {
             params {
                 outdir = "$outputDir"
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/chr1/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/chr1/genome.gtf', checkIfExists: true)]
                 """
             }
         }
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.bed.get(0) ==~ ".*/*.bed" },
-                { assert snapshot(process.out.versions).match("versions") }
+                { assert process.out.bed.get(0).get(1) ==~ ".*/*.bed" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["bed"])).match() }
             )
         }
     }
 
-    test("Should stub convert GTF to BED and return mocked BED file") {
+    test("homo_sapiens - gtf - stub") {
         options "-stub"
         when {
             params {
@@ -34,7 +35,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/chr1/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/chr1/genome.gtf', checkIfExists: true)]
                 """
             }
         }

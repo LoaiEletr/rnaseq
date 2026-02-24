@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process SEQKIT_SAMPLE {
     tag "${meta.id}"
     label 'process_low'
@@ -14,8 +12,7 @@ process SEQKIT_SAMPLE {
 
     output:
     tuple val(meta), path("*_1M.fastq.gz"), emit: reads
-    tuple val(meta), path("*.log"), emit: log
-    path ("versions.yml"), emit: versions
+    tuple val("${task.process}"), val('seqkit'), eval("seqkit version | sed 's/seqkit v//'"), topic: versions, emit: versions_seqkit
 
     when:
     task.ext.when == null || task.ext.when
@@ -31,13 +28,7 @@ process SEQKIT_SAMPLE {
             ${reads} \\
             -n 1000000 \\
             ${args} \\
-            -o ${prefix}_1M.fastq.gz \\
-            2>| >(tee ${prefix}_1_1M.log >&2 )
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            seqkit: \$( seqkit version | sed 's/seqkit v//' )
-        END_VERSIONS
+            -o ${prefix}_1M.fastq.gz
         """
     }
     else {
@@ -48,8 +39,7 @@ process SEQKIT_SAMPLE {
             ${reads[0]} \\
             -n 1000000 \\
             ${args} \\
-            -o ${prefix}_1_1M.fastq.gz \\
-            2>| >(tee ${prefix}_1_1M.log >&2 )
+            -o ${prefix}_1_1M.fastq.gz
 
         seqkit \\
             sample \\
@@ -58,13 +48,7 @@ process SEQKIT_SAMPLE {
             -n 1000000 \\
             -j ${task.cpus} \\
             ${args} \\
-            -o ${prefix}_2_1M.fastq.gz \\
-            2>| >(tee ${prefix}_2_1M.log >&2 )
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            seqkit: \$( seqkit version | sed 's/seqkit v//' )
-        END_VERSIONS
+            -o ${prefix}_2_1M.fastq.gz
         """
     }
 
@@ -73,7 +57,6 @@ process SEQKIT_SAMPLE {
     if (meta.single_end) {
         """
         echo "" | gzip > ${prefix}_1M.fastq.gz
-        touch ${prefix}_1M.log
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
@@ -85,7 +68,6 @@ process SEQKIT_SAMPLE {
         """
         echo "" | gzip > ${prefix}_1_1M.fastq.gz
         echo "" | gzip > ${prefix}_2_1M.fastq.gz
-        touch ${prefix}_{1,2}_1M.log
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":

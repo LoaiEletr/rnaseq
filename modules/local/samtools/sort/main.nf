@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process SAMTOOLS_SORT {
     tag "${meta.id}"
     label 'process_low'
@@ -14,7 +12,7 @@ process SAMTOOLS_SORT {
 
     output:
     tuple val(meta), path("*.sorted.bam"), emit: sorted_bam
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('samtools'), eval("samtools --version | head -n 1 | sed 's/samtools //'"), topic: versions, emit: versions_samtools
 
     when:
     task.ext.when == null || task.ext.when
@@ -27,21 +25,11 @@ process SAMTOOLS_SORT {
         sort ${bam} \\
         -o ${prefix}.sorted.bam \\
         ${args}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        samtools: \$( samtools --version | head -n 1 | sed 's/samtools //' )
-    END_VERSIONS
     """
 
     stub:
     def prefix = task.ext.prefix ?: (bam.name.contains("umi_dedup") ? "${meta.id}.umi_dedup" : "${meta.id}")
     """
     touch ${prefix}.sorted.bam
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        samtools: \$( samtools --version | head -n 1 | sed 's/samtools //' )
-    END_VERSIONS
     """
 }

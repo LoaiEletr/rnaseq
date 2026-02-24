@@ -12,7 +12,8 @@ tools:
       homepage: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
       documentation: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/
       tool_dev_url: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
-      licence: ["GPL-2.0-only"]
+      licence: ["GPL-3.0-or-later"]
+      identifier: "fastqc"
 
 input:
   - - meta:
@@ -23,11 +24,11 @@ input:
     - reads:
         type: file
         description: |
-          Input FASTQ file(s)
-          Single file for single-end, two files for paired-end data
+          Input FASTQ file(s).
+          Single file for single-end, two files for paired-end data.
         pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_1930"
+          - edam: "http://edamontology.org/format_1930" # FASTQ
 
 output:
   html:
@@ -41,8 +42,7 @@ output:
           description: HTML quality control report
           pattern: "*.html"
           ontologies:
-            - edam: "http://edamontology.org/format_2331"
-
+            - edam: "http://edamontology.org/format_2331" # HTML
   zip:
     - - meta:
           type: map
@@ -54,18 +54,17 @@ output:
           description: Zipped FastQC report data
           pattern: "*.zip"
           ontologies:
-            - edam: "http://edamontology.org/format_3987"
-
+            - edam: "http://edamontology.org/format_3987" # ZIP
   versions_fastqc:
-    - "${task.process}":
-        type: string
-        description: The name of the process
-    - fastqc:
-        type: string
-        description: The name of the tool
-    - "fastqc --version | sed 's/.*v//'":
-        type: eval
-        description: The expression to obtain the version of FastQC
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - fastqc:
+          type: string
+          description: The name of the tool
+      - "fastqc --version | sed 's/.*v//'":
+          type: eval
+          description: The expression to obtain the version of FastQC
 
 topics:
   versions:

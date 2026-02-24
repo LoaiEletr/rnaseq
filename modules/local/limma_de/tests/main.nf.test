@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process LIMMA_DE"
-    script "modules/local/limma_de/main.nf"
+    script "../main.nf"
     process "LIMMA_DE"
 
     tag "modules"
+    tag "modules_local"
     tag "limma_de"
 
-    test("Should perform limma differential expression analysis successfully and return differential expression results") {
+    test("yeast - voom_object - samplesheet - pvalue_threshold - logfc - ntop_genes") {
         when {
             params {
                 outdir = "$outputDir"
@@ -30,16 +31,12 @@ nextflow_process {
                 { assert process.out.unfiltered_deg_rds.get(0) ==~ ".*/unfiltered_deg_results\\.rds" },
                 { assert process.out.topgenes_rds.get(0) ==~ ".*/top_100_genes\\.rds" },
                 { assert process.out.topgenes_csv.get(0) ==~ ".*/top_100_genes\\.csv" },
-                { assert snapshot(
-                    process.out.de_expression_rds,
-                    process.out.de_genes_rds,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["ebfit_rds", "unfiltered_deg_rds", "topgenes_rds", "topgenes_csv"])).match() }
             )
         }
     }
 
-    test("Should stub perform limma differential expression analysis successfully and return mocked differential expression results") {
+    test("yeast - voom_object - samplesheet - pvalue_threshold - logfc - ntop_genes - stub") {
         options "-stub"
         when {
             params {

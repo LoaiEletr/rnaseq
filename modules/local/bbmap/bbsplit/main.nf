@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process BBMAP_BBSPLIT {
     tag "${meta.id}"
     label 'process_low'
@@ -11,16 +9,16 @@ process BBMAP_BBSPLIT {
 
     input:
     tuple val(meta), path(reads)
-    path index
-    path primary_ref
-    path other_ref
+    tuple val(meta2), path(index)
+    tuple val(meta3), path(primary_ref)
+    tuple val(meta4), path(other_ref)
     val only_build_index
 
     output:
     tuple val(meta), path("*primary*.fastq.gz"), optional: true, emit: reads
-    path "bbsplit", optional: true, emit: index
+    tuple val(meta2), path("bbsplit"), optional: true, emit: index
     tuple val(meta), path("*stats.txt"), optional: true, emit: stats
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('bbmap'), eval("bbversion.sh --version | head -n 1"), topic: versions, emit: versions_bbmap
 
     when:
     task.ext.when == null || task.ext.when
@@ -43,11 +41,6 @@ process BBMAP_BBSPLIT {
             ref_${other_ref_name}=${other_ref} \\
             path=bbsplit \\
             build=1
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bbmap: \$( bbversion.sh --version | head -n 1 )
-        END_VERSIONS
         """
     }
     else {
@@ -59,15 +52,7 @@ process BBMAP_BBSPLIT {
             ${fastq_in} \\
             path=${index} \\
             ${fastq_out} \\
-            maxindel=1000000 \\
-            minhits=1 \\
-            minratio=0.5 \\
             refstats=${prefix}.bbsplit_stats.txt
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bbmap: \$( bbversion.sh --version | head -n 1 )
-        END_VERSIONS
         """
     }
 
@@ -90,22 +75,12 @@ process BBMAP_BBSPLIT {
         touch bbsplit/genome/1/reflist.txt
         touch bbsplit/genome/1/summary.txt
         touch bbsplit/index/1/chr1_index_k13_c5_b1.block
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bbmap: \$( bbversion.sh --version | head -n 1 )
-        END_VERSIONS
         """
     }
     else {
         """
         ${gzip_fastq_out}
         touch ${prefix}.bbsplit_stats.txt
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bbmap: \$( bbversion.sh --version | head -n 1 )
-        END_VERSIONS
         """
     }
 }

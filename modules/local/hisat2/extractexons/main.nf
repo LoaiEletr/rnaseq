@@ -1,7 +1,5 @@
-#!/usr/bin/env nextflow
-
 process HISAT2_EXTRACTEXONS {
-    tag "${gtf.baseName}"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -10,38 +8,28 @@ process HISAT2_EXTRACTEXONS {
         : 'biocontainers/hisat2:2.2.1--h503566f_8'}"
 
     input:
-    path gtf
+    tuple val(meta), path(gtf)
 
     output:
-    path "*.exons.tsv", emit: exons_sites
-    path "versions.yml", emit: versions
+    tuple val(meta), path("*.exons.tsv"), emit: exons_sites
+    tuple val("${task.process}"), val('hisat2'), eval("hisat2 --version | head -n 1 | awk '{print \$3}' | sed 's/^.*version //'"), topic: versions, emit: versions_hisat2
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${gtf.baseName}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     hisat2_extract_exons.py \\
         ${gtf} \\
         ${args} \\
         > ${prefix}.exons.tsv
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        hisat2: \$( hisat2 --version | head -n 1 | awk '{print \$3}' )
-    END_VERSIONS
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${gtf.baseName}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.exons.tsv
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        hisat2: \$( hisat2 --version | head -n 1 | awk '{print \$3}' )
-    END_VERSIONS
     """
 }

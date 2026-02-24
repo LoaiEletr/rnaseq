@@ -1,18 +1,38 @@
 {
-    "Should calculate average read length with SeqKit and return statistics": {
+    "sarscov2 - fastq1 - stub": {
         "content": [
             {
                 "0": [
-                    "151"
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "100"
+                    ]
                 ],
                 "1": [
-                    "versions.yml:md5,1f897d80a064c5bd3cebc79983dad42f"
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
                 ],
                 "avg_length": [
-                    "151"
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "100"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,1f897d80a064c5bd3cebc79983dad42f"
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
                 ]
             }
         ],
@@ -20,22 +40,42 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T17:26:16.296275871"
+        "timestamp": "2026-02-21T01:23:53.460100051"
     },
-    "Should stub calculate average read length with SeqKit and return mocked statistics": {
+    "sarscov2 - fastq1": {
         "content": [
             {
                 "0": [
-                    "100"
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "151"
+                    ]
                 ],
                 "1": [
-                    "versions.yml:md5,6c3508dd665d55c0d179c6416f4106a4"
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
                 ],
                 "avg_length": [
-                    "100"
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "151"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,6c3508dd665d55c0d179c6416f4106a4"
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
                 ]
             }
         ],
@@ -43,6 +83,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T17:27:00.013771281"
+        "timestamp": "2026-02-21T01:22:20.858330854"
     }
 }

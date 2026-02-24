@@ -1,125 +1,5 @@
 {
-    "Should trim single-end reads with Cutadapt and return trimmed FASTQ files with summary JSON": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
-                        },
-                        "test.cutadapt.fastq.gz:md5,f3f66fca1c1450afe4c95fcf02ea6bab"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
-                        },
-                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
-                ],
-                "json": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
-                        },
-                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
-                    ]
-                ],
-                "reads": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
-                        },
-                        "test.cutadapt.fastq.gz:md5,f3f66fca1c1450afe4c95fcf02ea6bab"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-22T03:43:43.76531416"
-    },
-    "Should trim paired-end reads with Cutadapt and return trimmed FASTQ files with summary JSON": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false,
-                            "sequencer": "NovaSeq"
-                        },
-                        [
-                            "test.cutadapt_1.fastq.gz:md5,ffc8a86a4bc5accbd8acba7b6870ff26",
-                            "test.cutadapt_2.fastq.gz:md5,bb48a4dbf374729c4827fd2e5b98663d"
-                        ]
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false,
-                            "sequencer": "NovaSeq"
-                        },
-                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
-                ],
-                "json": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false,
-                            "sequencer": "NovaSeq"
-                        },
-                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
-                    ]
-                ],
-                "reads": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false,
-                            "sequencer": "NovaSeq"
-                        },
-                        [
-                            "test.cutadapt_1.fastq.gz:md5,ffc8a86a4bc5accbd8acba7b6870ff26",
-                            "test.cutadapt_2.fastq.gz:md5,bb48a4dbf374729c4827fd2e5b98663d"
-                        ]
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-22T03:45:09.689839015"
-    },
-    "Should stub trim single-end reads with Cutadapt and return trimmed FASTQ files with summary JSON": {
+    "homo_sapiens - fastq1 - adapters - stub": {
         "content": [
             {
                 "0": [
@@ -143,7 +23,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
                 ],
                 "json": [
                     [
@@ -165,8 +49,12 @@
                         "test.cutadapt.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
+                "versions_cutadapt": [
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
                 ]
             }
         ],
@@ -174,9 +62,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-15T22:44:34.380562643"
+        "timestamp": "2026-02-20T02:10:14.77474686"
     },
-    "Should stub trim paired-end reads with Cutadapt and return trimmed FASTQ files with summary JSON": {
+    "homo_sapiens - [fastq1, fastq2] - adapters - stub": {
         "content": [
             {
                 "0": [
@@ -203,7 +91,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
                 ],
                 "json": [
                     [
@@ -228,8 +120,12 @@
                         ]
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,f35a658885d5ee51791cf09210ea3cb4"
+                "versions_cutadapt": [
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
                 ]
             }
         ],
@@ -237,6 +133,142 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T23:33:55.168470486"
+        "timestamp": "2026-02-20T02:11:31.627442615"
+    },
+    "homo_sapiens - fastq1 - adapters": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.fastq.gz:md5,f3f66fca1c1450afe4c95fcf02ea6bab"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
+                    ]
+                ],
+                "2": [
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.fastq.gz:md5,f3f66fca1c1450afe4c95fcf02ea6bab"
+                    ]
+                ],
+                "versions_cutadapt": [
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T02:07:35.557650178"
+    },
+    "homo_sapiens - [fastq1, fastq2] - adapters": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test.cutadapt_1.fastq.gz:md5,ffc8a86a4bc5accbd8acba7b6870ff26",
+                            "test.cutadapt_2.fastq.gz:md5,bb48a4dbf374729c4827fd2e5b98663d"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
+                    ]
+                ],
+                "2": [
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "NovaSeq"
+                        },
+                        [
+                            "test.cutadapt_1.fastq.gz:md5,ffc8a86a4bc5accbd8acba7b6870ff26",
+                            "test.cutadapt_2.fastq.gz:md5,bb48a4dbf374729c4827fd2e5b98663d"
+                        ]
+                    ]
+                ],
+                "versions_cutadapt": [
+                    [
+                        "CUTADAPT",
+                        "cutadapt",
+                        "5.2"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T02:09:10.695718795"
     }
 }

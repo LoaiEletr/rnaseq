@@ -1,5 +1,5 @@
 {
-    "Should generate BAM statistics with RSeQC and return statistics TXT file": {
+    "sarscov2 - bam - stub": {
         "content": [
             {
                 "0": [
@@ -7,22 +7,30 @@
                         {
                             "id": "test"
                         },
-                        "test_bam_stat.txt:md5,ca5705e6249ef0ec367f8317ad75c05b"
+                        "test.bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                    [
+                        "RSEQC_BAMSTAT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "txt": [
                     [
                         {
                             "id": "test"
                         },
-                        "test_bam_stat.txt:md5,ca5705e6249ef0ec367f8317ad75c05b"
+                        "test.bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_BAMSTAT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ]
             }
         ],
@@ -30,9 +38,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T01:23:21.119475696"
+        "timestamp": "2026-02-20T22:19:38.891017137"
     },
-    "Should stub generate BAM statistics with RSeQC and return mocked statistics TXT file": {
+    "sarscov2 - bam": {
         "content": [
             {
                 "0": [
@@ -40,22 +48,30 @@
                         {
                             "id": "test"
                         },
-                        "test_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.bam_stat.txt:md5,ca5705e6249ef0ec367f8317ad75c05b"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                    [
+                        "RSEQC_BAMSTAT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "txt": [
                     [
                         {
                             "id": "test"
                         },
-                        "test_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.bam_stat.txt:md5,ca5705e6249ef0ec367f8317ad75c05b"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,cd8ce3f17f920afbe5e15c1050f6e790"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_BAMSTAT",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ]
             }
         ],
@@ -63,6 +79,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T01:24:05.653676591"
+        "timestamp": "2026-02-20T22:18:52.214713118"
     }
 }

@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process TXIMPORT {
     label 'process_low'
 
@@ -15,7 +13,9 @@ process TXIMPORT {
 
     output:
     path "*.rds", emit: rds
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-tximport'), eval("Rscript -e \"cat(as.character(packageVersion('tximport')))\""), topic: versions, emit: versions_tximport
+    tuple val("${task.process}"), val('bioconductor-rhdf5'), eval("Rscript -e \"cat(as.character(packageVersion('rhdf5')))\""), topic: versions, emit: versions_rhdf5
 
     when:
     task.ext.when == null || task.ext.when
@@ -23,24 +23,10 @@ process TXIMPORT {
     script:
     """
     run_tximport.R ${quant_dirs} ${quant_type} ${tx2gene_table}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-tximport: \$(Rscript -e "library(tximport); cat(as.character(packageVersion('tximport')))")
-        bioconductor-rhdf5: \$(Rscript -e "library(rhdf5); cat(as.character(packageVersion('rhdf5')))")
-    END_VERSIONS
     """
 
     stub:
     """
     touch tximport_results.rds
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-tximport: \$(Rscript -e "library(tximport); cat(as.character(packageVersion('tximport')))")
-        bioconductor-rhdf5: \$(Rscript -e "library(rhdf5); cat(as.character(packageVersion('rhdf5')))")
-    END_VERSIONS
     """
 }

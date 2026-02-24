@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process STRING_PPI"
-    script "modules/local/string_ppi/main.nf"
+    script "../main.nf"
     process "STRING_PPI"
 
     tag "modules"
+    tag "modules_local"
     tag "string_ppi"
 
-    test("Should run STRING PPI analysis on WGCNA hub genes with no timepoints and return PPI results") {
+    test("leishmaniasis - WGCNA results - species_name - score_threshold | no timepoints") {
         when {
             params {
                 outdir = "$outputDir"
@@ -29,7 +30,7 @@ nextflow_process {
         }
     }
 
-    test("Should run STRING PPI analysis on WGCNA hub genes with timepoints and return PPI results") {
+    test("arabidopsis - WGCNA results - species_name - score_threshold | with timepoints") {
         when {
             params {
                 outdir = "$outputDir"
@@ -52,7 +53,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub run STRING PPI analysis on WGCNA hub genes with no timepoints and return mocked PPI results") {
+    test("leishmaniasis - WGCNA results - species_name - score_threshold - stub | no timepoints") {
         options "-stub"
         when {
             params {
@@ -76,7 +77,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub run STRING PPI analysis on WGCNA hub genes with timepoints and return mocked PPI results") {
+    test("arabidopsis - WGCNA results - species_name - score_threshold - stub | with timepoints") {
         options "-stub"
         when {
             params {

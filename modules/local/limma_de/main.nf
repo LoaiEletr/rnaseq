@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process LIMMA_DE {
     tag "${voom_object}"
     label 'process_low'
@@ -14,29 +12,24 @@ process LIMMA_DE {
     path samplesheet
     val pvalue_threshold
     val logfc_threshold
-    val top_genes
+    val ntop_genes
 
     output:
     path "ebfit.rds", emit: ebfit_rds
     path "de_expression_values.rds", emit: de_expression_rds
     path "de_genes_full_table.rds", emit: de_genes_rds
     path "unfiltered_deg_results.rds", emit: unfiltered_deg_rds
-    path "top_${top_genes}_genes.rds", emit: topgenes_rds
-    path "top_${top_genes}_genes.csv", emit: topgenes_csv
-    path "versions.yml", emit: versions
+    path "top_${ntop_genes}_genes.rds", emit: topgenes_rds
+    path "top_${ntop_genes}_genes.csv", emit: topgenes_csv
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-limma'), eval("Rscript -e \"cat(as.character(packageVersion('limma')))\""), topic: versions, emit: versions_limma
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     """
-    run_limma_de.R ${voom_object} ${samplesheet} ${pvalue_threshold} ${logfc_threshold} ${top_genes}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-limma: \$(Rscript -e "library(limma); cat(as.character(packageVersion('limma')))" 2>/dev/null || echo "NA")
-    END_VERSIONS
+    run_limma_de.R ${voom_object} ${samplesheet} ${pvalue_threshold} ${logfc_threshold} ${ntop_genes}
     """
 
     stub:
@@ -45,13 +38,7 @@ process LIMMA_DE {
     touch de_expression_values.rds
     touch de_genes_full_table.rds
     touch unfiltered_deg_results.rds
-    touch top_${top_genes}_genes.rds
-    touch top_${top_genes}_genes.csv
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-limma: \$(Rscript -e "library(limma); cat(as.character(packageVersion('limma')))" 2>/dev/null || echo "NA")
-    END_VERSIONS
+    touch top_${ntop_genes}_genes.rds
+    touch top_${ntop_genes}_genes.csv
     """
 }

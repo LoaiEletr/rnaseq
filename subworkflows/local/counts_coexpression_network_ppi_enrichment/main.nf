@@ -33,8 +33,6 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
 
     main:
 
-    ch_versions = channel.empty()
-
     // 1. WGCNA co-expression network analysis
     WGCNA_ANALYSIS(
         ch_counts,
@@ -52,7 +50,6 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
         val_minmodulesize,
         val_sft_r2_threshold,
     )
-    ch_versions = ch_versions.mix(WGCNA_ANALYSIS.out.versions)
 
     // 2. STRING protein-protein interaction network analysis
     STRING_PPI(
@@ -60,7 +57,6 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
         val_species_name,
         val_score_threshold,
     )
-    ch_versions = ch_versions.mix(STRING_PPI.out.versions)
 
     // 3. Quality control visualization
     QC_VISUALIZATION(
@@ -71,7 +67,6 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
         WGCNA_ANALYSIS.out.normalized_log2counts,
         WGCNA_ANALYSIS.out.vsd_object,
     )
-    ch_versions = ch_versions.mix(QC_VISUALIZATION.out.versions)
 
     // 4. Hub gene heatmap visualization
     DE_VISUALIZATION(
@@ -82,7 +77,6 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
         1,
         WGCNA_ANALYSIS.out.modules_hubgenes,
     )
-    ch_versions = ch_versions.mix(DE_VISUALIZATION.out.versions)
 
     ch_go_enrichment = channel.empty()
     ch_kegg_enrichment = channel.empty()
@@ -101,7 +95,6 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
             val_top_n_processes,
         )
         ch_go_enrichment = GO_ENRICHMENT.out.go_results
-        ch_versions = ch_versions.mix(GO_ENRICHMENT.out.versions)
     }
 
     // 6. KEGG pathway enrichment analysis (optional)
@@ -118,7 +111,6 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
             val_top_n_processes,
         )
         ch_kegg_enrichment = KEGG_ENRICHMENT.out.kegg_results
-        ch_versions = ch_versions.mix(KEGG_ENRICHMENT.out.versions)
     }
 
     emit:
@@ -128,5 +120,4 @@ workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT {
     heatmap_plots = DE_VISUALIZATION.out.heatmaps // channel: [ heatmaps ]
     go_enrichment = ch_go_enrichment // channel: [ go_results ]
     kegg_enrichment = ch_kegg_enrichment // channel: [ kegg_results ]
-    versions = ch_versions // channel: [ versions.yml ]
 }

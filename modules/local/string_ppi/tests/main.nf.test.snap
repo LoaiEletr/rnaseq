@@ -1,65 +1,10 @@
 {
-    "Should run STRING PPI analysis on WGCNA hub genes with no timepoints and return PPI results": {
+    "arabidopsis - WGCNA results - species_name - score_threshold | with timepoints": {
         "content": [
             {
                 "0": [
                     [
-                        "analysis_summary.csv:md5,bba91a274644df643ba57201680255a6",
-                        [
-                            [
-                                "blue_disease_ppi_edges.csv:md5,b238a3e4a927c455da82dace556ed194",
-                                "midnightblue_disease_ppi_edges.csv:md5,794a11c4b491594164308ccd0b1a0edb",
-                                "pink_disease_ppi_edges.csv:md5,e9849cb8b7698806cd59a3fdc06585b6",
-                                "turquoise_disease_ppi_edges.csv:md5,1889e1466949f9ca570b1d426eb0f5b0"
-                            ],
-                            [
-                                "blue_network_summary.csv:md5,4137086cb7a5d12c4bd02a3cc60d2c66",
-                                "midnightblue_network_summary.csv:md5,8dc282d3d6d57661cddc869014550bb6",
-                                "pink_network_summary.csv:md5,db8c1089f09c6813c458c2291e5a7d6e",
-                                "turquoise_network_summary.csv:md5,5887c86a08596e3bae9f7a5475f89bcb"
-                            ]
-                        ]
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
-                ],
-                "string_results": [
-                    [
-                        "analysis_summary.csv:md5,bba91a274644df643ba57201680255a6",
-                        [
-                            [
-                                "blue_disease_ppi_edges.csv:md5,b238a3e4a927c455da82dace556ed194",
-                                "midnightblue_disease_ppi_edges.csv:md5,794a11c4b491594164308ccd0b1a0edb",
-                                "pink_disease_ppi_edges.csv:md5,e9849cb8b7698806cd59a3fdc06585b6",
-                                "turquoise_disease_ppi_edges.csv:md5,1889e1466949f9ca570b1d426eb0f5b0"
-                            ],
-                            [
-                                "blue_network_summary.csv:md5,4137086cb7a5d12c4bd02a3cc60d2c66",
-                                "midnightblue_network_summary.csv:md5,8dc282d3d6d57661cddc869014550bb6",
-                                "pink_network_summary.csv:md5,db8c1089f09c6813c458c2291e5a7d6e",
-                                "turquoise_network_summary.csv:md5,5887c86a08596e3bae9f7a5475f89bcb"
-                            ]
-                        ]
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-25T15:23:03.685031368"
-    },
-    "Should run STRING PPI analysis on WGCNA hub genes with timepoints and return PPI results": {
-        "content": [
-            {
-                "0": [
-                    [
-                        "analysis_summary.csv:md5,d33cd13f1af36dbd682dc255ae2c6505",
+                        "analysis_summary.csv:md5,44602d10800c3d6209d8f6e313e94228",
                         [
                             [
                                 "green_control_12_ppi_edges.csv:md5,4f1a51ecc102fcab821c1bc76aa98272",
@@ -135,12 +80,10 @@
                         [
                             [
                                 "black_mutant_24_ppi_edges.csv:md5,21651ba09ffa014f6ff5d80e56516d53",
-                                "midnightblue_mutant_24_ppi_edges.csv:md5,5ddb75355749af0e2d3190e9f556542d",
                                 "tan_mutant_24_ppi_edges.csv:md5,f0ad5a506afe41e8d8f77150ad7d4b8a"
                             ],
                             [
                                 "black_network_summary.csv:md5,3d4d69bb9e61214381ec0d25c2f1ffc8",
-                                "midnightblue_network_summary.csv:md5,3e255cf1461d33993351db1e10aa2270",
                                 "tan_network_summary.csv:md5,085a680e34201d0f1348d78096a2bf5c"
                             ]
                         ],
@@ -159,11 +102,22 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
                 ],
                 "string_results": [
                     [
-                        "analysis_summary.csv:md5,d33cd13f1af36dbd682dc255ae2c6505",
+                        "analysis_summary.csv:md5,44602d10800c3d6209d8f6e313e94228",
                         [
                             [
                                 "green_control_12_ppi_edges.csv:md5,4f1a51ecc102fcab821c1bc76aa98272",
@@ -239,12 +193,10 @@
                         [
                             [
                                 "black_mutant_24_ppi_edges.csv:md5,21651ba09ffa014f6ff5d80e56516d53",
-                                "midnightblue_mutant_24_ppi_edges.csv:md5,5ddb75355749af0e2d3190e9f556542d",
                                 "tan_mutant_24_ppi_edges.csv:md5,f0ad5a506afe41e8d8f77150ad7d4b8a"
                             ],
                             [
                                 "black_network_summary.csv:md5,3d4d69bb9e61214381ec0d25c2f1ffc8",
-                                "midnightblue_network_summary.csv:md5,3e255cf1461d33993351db1e10aa2270",
                                 "tan_network_summary.csv:md5,085a680e34201d0f1348d78096a2bf5c"
                             ]
                         ],
@@ -262,8 +214,19 @@
                         ]
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
+                "versions_rbase": [
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_stringdb": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
                 ]
             }
         ],
@@ -271,9 +234,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T16:15:57.901111656"
+        "timestamp": "2026-02-22T12:57:08.129466686"
     },
-    "Should stub run STRING PPI analysis on WGCNA hub genes with no timepoints and return mocked PPI results": {
+    "arabidopsis - WGCNA results - species_name - score_threshold - stub | with timepoints": {
         "content": [
             {
                 "0": [
@@ -282,15 +245,37 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
                 ],
                 "string_results": [
                     [
                         
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
+                "versions_rbase": [
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_stringdb": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
                 ]
             }
         ],
@@ -298,9 +283,86 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T16:50:00.622924384"
+        "timestamp": "2026-02-22T13:09:59.410605421"
     },
-    "Should stub run STRING PPI analysis on WGCNA hub genes with timepoints and return mocked PPI results": {
+    "leishmaniasis - WGCNA results - species_name - score_threshold | no timepoints": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "analysis_summary.csv:md5,bba91a274644df643ba57201680255a6",
+                        [
+                            [
+                                "blue_disease_ppi_edges.csv:md5,b238a3e4a927c455da82dace556ed194",
+                                "midnightblue_disease_ppi_edges.csv:md5,794a11c4b491594164308ccd0b1a0edb",
+                                "pink_disease_ppi_edges.csv:md5,e9849cb8b7698806cd59a3fdc06585b6",
+                                "turquoise_disease_ppi_edges.csv:md5,1889e1466949f9ca570b1d426eb0f5b0"
+                            ],
+                            [
+                                "blue_network_summary.csv:md5,4137086cb7a5d12c4bd02a3cc60d2c66",
+                                "midnightblue_network_summary.csv:md5,8dc282d3d6d57661cddc869014550bb6",
+                                "pink_network_summary.csv:md5,db8c1089f09c6813c458c2291e5a7d6e",
+                                "turquoise_network_summary.csv:md5,5887c86a08596e3bae9f7a5475f89bcb"
+                            ]
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
+                ],
+                "string_results": [
+                    [
+                        "analysis_summary.csv:md5,bba91a274644df643ba57201680255a6",
+                        [
+                            [
+                                "blue_disease_ppi_edges.csv:md5,b238a3e4a927c455da82dace556ed194",
+                                "midnightblue_disease_ppi_edges.csv:md5,794a11c4b491594164308ccd0b1a0edb",
+                                "pink_disease_ppi_edges.csv:md5,e9849cb8b7698806cd59a3fdc06585b6",
+                                "turquoise_disease_ppi_edges.csv:md5,1889e1466949f9ca570b1d426eb0f5b0"
+                            ],
+                            [
+                                "blue_network_summary.csv:md5,4137086cb7a5d12c4bd02a3cc60d2c66",
+                                "midnightblue_network_summary.csv:md5,8dc282d3d6d57661cddc869014550bb6",
+                                "pink_network_summary.csv:md5,db8c1089f09c6813c458c2291e5a7d6e",
+                                "turquoise_network_summary.csv:md5,5887c86a08596e3bae9f7a5475f89bcb"
+                            ]
+                        ]
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_stringdb": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T12:05:24.150142094"
+    },
+    "leishmaniasis - WGCNA results - species_name - score_threshold - stub | no timepoints": {
         "content": [
             {
                 "0": [
@@ -309,15 +371,37 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
                 ],
                 "string_results": [
                     [
                         
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,fbd6873feaad2aea1181ba4583088dee"
+                "versions_rbase": [
+                    [
+                        "STRING_PPI",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_stringdb": [
+                    [
+                        "STRING_PPI",
+                        "bioconductor-stringdb",
+                        "2.18.0"
+                    ]
                 ]
             }
         ],
@@ -325,6 +409,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T16:17:40.94343423"
+        "timestamp": "2026-02-22T13:08:24.015951124"
     }
 }

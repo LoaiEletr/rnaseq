@@ -1,18 +1,36 @@
 {
-    "Should stub sort a BED file and return mocked sorted BED file": {
+    "homo_sapiens - bed": {
         "content": [
             {
                 "0": [
-                    "test.sorted.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bed:md5,21d0139e4424be50c563d3f9b26e2b66"
+                    ]
                 ],
                 "1": [
-                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                    [
+                        "BEDTOOLS_SORT",
+                        "bedtools",
+                        "2.31.1"
+                    ]
                 ],
                 "bed": [
-                    "test.sorted.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bed:md5,21d0139e4424be50c563d3f9b26e2b66"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                "versions_bedtools": [
+                    [
+                        "BEDTOOLS_SORT",
+                        "bedtools",
+                        "2.31.1"
+                    ]
                 ]
             }
         ],
@@ -20,22 +38,40 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T03:55:37.914086588"
+        "timestamp": "2026-02-20T01:43:02.571928227"
     },
-    "Should sort a BED file and return sorted BED file": {
+    "homo_sapiens - bed - stub": {
         "content": [
             {
                 "0": [
-                    "test.sorted.bed:md5,21d0139e4424be50c563d3f9b26e2b66"
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "1": [
-                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                    [
+                        "BEDTOOLS_SORT",
+                        "bedtools",
+                        "2.31.1"
+                    ]
                 ],
                 "bed": [
-                    "test.sorted.bed:md5,21d0139e4424be50c563d3f9b26e2b66"
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.sorted.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,cdbae2c7ebc41e534aaf0835779061f8"
+                "versions_bedtools": [
+                    [
+                        "BEDTOOLS_SORT",
+                        "bedtools",
+                        "2.31.1"
+                    ]
                 ]
             }
         ],
@@ -43,6 +79,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T03:54:52.441382876"
+        "timestamp": "2026-02-20T01:43:48.729528333"
     }
 }
