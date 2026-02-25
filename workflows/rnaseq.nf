@@ -15,7 +15,7 @@ include { MULTIQC } from '../modules/local/multiqc'
 // PLUGINS & UTILS: nf-core standard utilities
 //
 include { paramsSummaryMap } from 'plugin/nf-schema'
-include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
+include { softwareVersionsToYAML } from 'plugin/nf-core-utils'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_rnaseq_pipeline'
 include { paramsSummaryMultiqc } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 
@@ -43,7 +43,6 @@ include { COUNTS_ISOFORM_SWITCH_ENRICHMENT } from '../subworkflows/local/counts_
 workflow RNASEQ {
     take:
     ch_samplesheet // channel: [ val(meta), [ reads ] ]
-    ch_versions // channel: [ versions.yml ]
     ch_transcriptome // channel: [ transcriptome.fasta ]
     ch_fasta_uncompressed // channel: [ genome.fasta ]
     ch_gtf_compressed // channel: [ genome.gtf.gz ]
@@ -69,8 +68,8 @@ workflow RNASEQ {
     ch_adapters = ch_input
         .map { meta_map, fastqs ->
             meta_map.single_end
-                ? file("${projectDir}/assets/adapters-SE.fa")
-                : file("${projectDir}/assets/adapters-PE.fa")
+                ? [[id: "adapters-SE"], file("${projectDir}/assets/adapters-SE.fa")]
+                : [[id: "adapters-PE"], file("${projectDir}/assets/adapters-PE.fa")]
         }
         .first()
 
@@ -82,7 +81,6 @@ workflow RNASEQ {
         ch_bbsplit_index,
         ch_sortmerna_index,
         params.rrna_db_type,
-        params.lib_kit,
         params.with_umi,
         params.skip_umi_extract,
         params.skip_fastqc,
@@ -91,7 +89,6 @@ workflow RNASEQ {
         params.skip_sortmerna,
     )
     ch_reads = FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA.out.reads
-    ch_versions = ch_versions.mix(FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA.out.versions)
 
     // -------------------------------------------------------------------------
     //  STAGE 1: Strandedness Detection (Auto-detection via Salmon)
@@ -104,7 +101,6 @@ workflow RNASEQ {
     )
 
     ch_subsampled_reads = FASTQ_SAMPLE_SEQKIT_SALMON.out.reads.first()
-    ch_versions = ch_versions.mix(FASTQ_SAMPLE_SEQKIT_SALMON.out.versions)
 
     // Update metadata with inferred or user-defined strandedness
     ch_reads = FASTQ_SAMPLE_SEQKIT_SALMON.out.strandness
@@ -145,7 +141,6 @@ workflow RNASEQ {
             ch_fasta_uncompressed,
         )
         ch_hisat2_summary = HISAT2_ALIGN.out.summary
-        ch_versions = ch_versions.mix(HISAT2_ALIGN.out.versions.first())
 
         // Post-alignment processing: Sort, Index, Dedup, and FeatureCounts
         BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS(
@@ -158,7 +153,6 @@ workflow RNASEQ {
         ch_counts = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.counts
         ch_counts_summary = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.summary
         ch_umi_log = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.umi_log
-        ch_versions = ch_versions.mix(BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.versions)
 
         // RSeQC quality control metrics
         BAM_RSEQC(
@@ -175,7 +169,6 @@ workflow RNASEQ {
         ch_inferexperiment = BAM_RSEQC.out.inferexperiment
         ch_readdistribution = BAM_RSEQC.out.readdistribution
         ch_tin = BAM_RSEQC.out.tin_txt
-        ch_versions = ch_versions.mix(BAM_RSEQC.out.versions)
     }
     else if (params.pseudo_aligner in ["salmon", "kallisto"]) {
 
@@ -184,14 +177,12 @@ workflow RNASEQ {
             ch_kallisto_index,
             ch_salmon_index,
             ch_gtf_compressed,
-            params.bootstrap_count,
             params.fragment_length,
             params.fragment_length_sd,
             params.pseudo_aligner,
         )
         ch_counts = FASTQ_QUANT_PSEUDOALIGNMENT.out.quant_dir
         ch_counts_summary = FASTQ_QUANT_PSEUDOALIGNMENT.out.quant_log
-        ch_versions = ch_versions.mix(FASTQ_QUANT_PSEUDOALIGNMENT.out.versions)
     }
     else {
         error(
@@ -213,7 +204,6 @@ workflow RNASEQ {
             params.aligner ? "featurecounts" : params.pseudo_aligner,
             params.species,
         )
-        ch_versions = ch_versions.mix(COUNTS_MATRIXGENERATION.out.versions)
     }
 
     // Differential Gene Expression (DEG)
@@ -235,7 +225,6 @@ workflow RNASEQ {
             params.cluster_method,
             params.enrichment_method ? params.enrichment_method.split(",") : null,
         )
-        ch_versions = ch_versions.mix(COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION.out.versions)
     }
 
     // Gene Co-expression Network (WGCNA)
@@ -260,7 +249,6 @@ workflow RNASEQ {
             params.score_threshold,
             params.enrichment_method ? params.enrichment_method.split(",") : null,
         )
-        ch_versions = ch_versions.mix(COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT.out.versions)
     }
 
     // Differential Isoform Usage (DIU) & Alternative Splicing (AS - Pseudo)
@@ -279,7 +267,6 @@ workflow RNASEQ {
             params.ntop_processes,
             params.enrichment_method ? params.enrichment_method.split(",") : null,
         )
-        ch_versions = ch_versions.mix(COUNTS_ISOFORM_SWITCH_ENRICHMENT.out.versions)
     }
 
     // Alternative Splicing via rMATS (AS - HISAT2 only)
@@ -287,7 +274,6 @@ workflow RNASEQ {
         if (ch_subsampled_reads.count() == 0) {
             SEQKIT_SAMPLE(ch_reads.first())
             ch_subsampled_reads = SEQKIT_SAMPLE.out.reads
-            ch_versions = ch_versions.mix(SEQKIT_SAMPLE.out.versions)
         }
         BAM_BAMLIST_AVGLEN_RMATS(
             ch_bam,
@@ -301,7 +287,6 @@ workflow RNASEQ {
             params.pvalue_threshold,
             params.delta_psi,
         )
-        ch_versions = ch_versions.mix(BAM_BAMLIST_AVGLEN_RMATS.out.versions)
     }
 
     // Differential Exon Usage (DEU)
@@ -319,7 +304,6 @@ workflow RNASEQ {
             params.ntop_processes,
             params.enrichment_method ? params.enrichment_method.split(",") : null,
         )
-        ch_versions = ch_versions.mix(BAM_DEXSEQ_DEU_ENRICHMENT.out.versions)
     }
 
     // -------------------------------------------------------------------------
@@ -327,38 +311,20 @@ workflow RNASEQ {
     // -------------------------------------------------------------------------
 
     // Software Version Handling
-    def topic_versions = Channel
-        .topic("versions")
-        .distinct()
-        .branch { entry ->
-            versions_file: entry instanceof Path
-            versions_tuple: true
-        }
-
-    def topic_versions_string = topic_versions.versions_tuple
-        .map { process, tool, version ->
-            [process[process.lastIndexOf(':') + 1..-1], "  ${tool}: ${version}"]
-        }
-        .groupTuple(by: 0)
-        .map { process, tool_versions ->
-            tool_versions.unique().sort()
-            "${process}:\n${tool_versions.join('\n')}"
-        }
-
-    softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))
-        .mix(topic_versions_string)
-        .collectFile(
-            storeDir: "${params.outdir}/pipeline_info",
-            name: 'rnaseq_software_' + 'mqc_' + 'versions.yml',
-            sort: true,
-            newLine: true,
-        )
-        .set { ch_collated_versions }
+    softwareVersionsToYAML(
+        softwareVersions: channel.topic("versions"),
+        nextflowVersion: workflow.nextflow.version,
+    ).collectFile(
+        storeDir: "${params.outdir}/pipeline_info",
+        name: 'rnaseq_software_' + 'mqc_' + 'versions.yml',
+        sort: true,
+        newLine: true,
+    ).set { ch_collated_versions }
 
     ch_multiqc_report = channel.empty()
 
     if (!params.skip_multiqc) {
-        ch_multiqc_config = file("${projectDir}/assets/multiqc_config.yml", checkIfExists: true)
+        ch_multiqc_config = [[:], file("${projectDir}/assets/multiqc_config.yml", checkIfExists: true)]
 
         // Compile Summary and Description
         summary_params = paramsSummaryMap(workflow, parameters_schema: "nextflow_schema.json")
@@ -382,7 +348,7 @@ workflow RNASEQ {
         ch_multiqc_files = ch_multiqc_files.mix(FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA.out.umi_log.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA.out.trim_json.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA.out.bbsplit_stats.collect { it[1] }.ifEmpty([]))
-        ch_multiqc_files = ch_multiqc_files.mix(FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA.out.nonrrna_log.collect { it[1] }.ifEmpty([]))
+        ch_multiqc_files = ch_multiqc_files.mix(FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA.out.rrna_log.collect { it[1] }.ifEmpty([]))
 
         // Collate Alignment/Quant QC
         ch_multiqc_files = ch_multiqc_files.mix(ch_hisat2_summary.collect { it[1] }.ifEmpty([]))
@@ -403,7 +369,7 @@ workflow RNASEQ {
         ch_multiqc_files = ch_multiqc_files.mix(ch_tin.collect { it[1] }.ifEmpty([]))
 
         MULTIQC(
-            ch_multiqc_files.collect(),
+            ch_multiqc_files.collect().map { [[:], it] },
             ch_multiqc_config,
         )
         ch_multiqc_report = MULTIQC.out.report
@@ -411,5 +377,4 @@ workflow RNASEQ {
 
     emit:
     multiqc_report = ch_multiqc_report // channel: /path/to/multiqc_report.html
-    versions = ch_versions // channel: [ path(versions.yml) ]
 }
