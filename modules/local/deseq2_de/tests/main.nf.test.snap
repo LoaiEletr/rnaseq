@@ -2,47 +2,6 @@
     "yeast - samplesheet - pvalue_threshold - logfc  - ntop_genes | tximport matrix": {
         "content": [
             {
-                "0": [
-                    "unfiltered_counts.rds:md5,a0e5543c68f01acc66a39ae60ac40818"
-                ],
-                "1": [
-                    "filtered_counts.rds:md5,528c476805cbfec6e91b4f025b17350f"
-                ],
-                "10": [
-                    [
-                        "DESEQ2_DE",
-                        "bioconductor-deseq2",
-                        "1.46.0"
-                    ]
-                ],
-                "2": [
-                    "normalized_counts.rds:md5,5c86142e9bb36c76f61b6282d45e1048"
-                ],
-                "3": [
-                    "deseq2_de_genes.rds:md5,7ec5cd333671d12283c436b4d90c2d04"
-                ],
-                "4": [
-                    "vst_transformed.rds:md5,ee9ea2d2e3b11496c5473b5e29269572"
-                ],
-                "5": [
-                    "de_genes_full_table.rds:md5,4b38b3297a593665b58d4a26dfa8f359"
-                ],
-                "6": [
-                    "unfiltered_deg_results.rds:md5,0566fa481ab797a931a2eba32621a56e"
-                ],
-                "7": [
-                    "top_100_genes.rds:md5,4b38b3297a593665b58d4a26dfa8f359"
-                ],
-                "8": [
-                    "top_100_genes.csv:md5,edd6eef13a3b2d161e550890cb7f63e2"
-                ],
-                "9": [
-                    [
-                        "DESEQ2_DE",
-                        "r-base",
-                        "4.4.0"
-                    ]
-                ],
                 "diffgenes_matrix": [
                     "deseq2_de_genes.rds:md5,7ec5cd333671d12283c436b4d90c2d04"
                 ],
@@ -62,7 +21,7 @@
                     "top_100_genes.rds:md5,4b38b3297a593665b58d4a26dfa8f359"
                 ],
                 "unfiltered_deg": [
-                    "unfiltered_deg_results.rds:md5,0566fa481ab797a931a2eba32621a56e"
+                    "unfiltered_deg_results.rds"
                 ],
                 "unfiltered_log2counts": [
                     "unfiltered_counts.rds:md5,a0e5543c68f01acc66a39ae60ac40818"
@@ -90,7 +49,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-22T02:28:10.338032226"
+        "timestamp": "2026-02-25T22:41:22.724642997"
     },
     "yeast - samplesheet - pvalue_threshold - logfc  - ntop_genes - stub | tximport matrix": {
         "content": [
