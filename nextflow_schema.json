@@ -124,6 +124,44 @@
                     "help_text": "Base URL for downloading Ensembl reference files. Used when auto-fetching genome/annotation files.",
                     "fa_icon": "fas fa-cloud-download-alt"
                 },
+                "fai": {
+                    "type": "string",
+                    "description": "Path to Samtools Fasta Index (.fai) file for the reference genome",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "Required for GVC (Genomic Variant Calling) analysis if `--genome` is not specified. When `--genome` is provided, this file will be automatically retrieved from the genome configuration. The .fai index enables fast random access to the reference FASTA file.",
+                    "format": "file-path"
+                },
+                "dict": {
+                    "type": "string",
+                    "description": "Path to GATK Sequence Dictionary (.dict) file for the reference genome",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "Required for GVC (Genomic Variant Calling) analysis if `--genome` is not specified. When `--genome` is provided, this file will be automatically retrieved from the genome configuration. The .dict file contains metadata about the reference sequences and is required by GATK tools.",
+                    "format": "file-path"
+                },
+                "interval_list": {
+                    "type": "string",
+                    "description": "Path to GATK Interval List (.interval_list) file for targeted analysis",
+                    "exists": true,
+                    "fa_icon": "fas fa-list",
+                    "help_text": "Required for GVC (Genomic Variant Calling) analysis if `--genome` is not specified. When `--genome` is provided, this file will be automatically retrieved from the genome configuration. This defines genomic regions for targeted variant calling (e.g., exome capture targets).",
+                    "format": "file-path"
+                },
+                "snpeff_db": {
+                    "type": "string",
+                    "description": "Path to SnpEff database folder or tar archive for variant annotation",
+                    "exists": true,
+                    "fa_icon": "fas fa-database",
+                    "help_text": "Required for variant annotation in GVC analysis if `--genome` is not specified. When `--genome` is provided, the appropriate SnpEff database will be automatically determined from the genome configuration. If not provided and no genome config exists, SnpEff will attempt to download the database specified by `--snpeff_genome`.",
+                    "format": "path"
+                },
+                "snpeff_genome": {
+                    "type": "string",
+                    "description": "SnpEff genome build version (e.g., 'GRCh38.99') for variant annotation",
+                    "fa_icon": "fas fa-dna",
+                    "help_text": "Required for variant annotation in GVC analysis if `--genome` is not specified. When `--genome` is provided, this value will be automatically set from the genome configuration. Examples include 'GRCh38.99' for human or 'GRCm39.99' for mouse."
+                },
                 "igenomes_base": {
                     "type": "string",
                     "format": "directory-path",
