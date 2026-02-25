@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process TX2GENE"
-    script "modules/local/tx2gene/main.nf"
+    script "../main.nf"
     process "TX2GENE"
 
     tag "modules"
+    tag "modules_local"
     tag "tx2gene"
 
-    test("Should generate transcript-to-gene mapping file for human species and return TSV file") {
+    test("human - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -26,7 +27,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for mouse species and return TSV file") {
+    test("mouse - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -46,7 +47,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for rat species and return TSV file") {
+    test("rat - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -66,7 +67,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for yeast species and return TSV file") {
+    test("yeast - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -86,7 +87,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for fruitfly species and return TSV file") {
+    test("fruitfly - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -106,7 +107,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for zebrafish species and return TSV file") {
+    test("zebrafish - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -126,7 +127,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for worm species and return TSV file") {
+    test("worm - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -146,7 +147,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for arabidopsis species and return TSV file") {
+    test("arabidopsis - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -166,7 +167,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for chicken species and return TSV file") {
+    test("chicken - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -186,7 +187,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for cow species and return TSV file") {
+    test("cow - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -206,7 +207,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for pig species and return TSV file") {
+    test("pig - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -226,7 +227,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for dog species and return TSV file") {
+    test("dog - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -246,7 +247,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate transcript-to-gene mapping file for monkey species and return TSV file") {
+    test("monkey - species_name") {
         when {
             params {
                 outdir = "$outputDir"
@@ -267,7 +268,7 @@ nextflow_process {
     }
 
     // Stub tests (one representative stub test to show pattern)
-    test("Should stub generate transcript-to-gene mapping file for human species and return mocked TSV file") {
+    test("human - species_name - stub") {
         options "-stub"
         when {
             params {

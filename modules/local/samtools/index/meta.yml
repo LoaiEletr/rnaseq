@@ -1,16 +1,19 @@
 name: samtools_index
 description: |
   Creates index files for BAM files using samtools index.
+  Indexing is required for fast random access and visualization of alignments.
 keywords:
   - samtools
   - index
   - bam
+  - bai
 tools:
   - samtools:
       description: "Tools for manipulating next-generation sequencing data"
       homepage: "https://www.htslib.org/"
       documentation: "https://www.htslib.org/doc/samtools.html"
       tool_dev_url: "https://github.com/samtools/samtools"
+      doi: "10.1093/bioinformatics/btp352"
       licence: ["MIT"]
       identifier: "samtools"
 
@@ -22,11 +25,10 @@ input:
           e.g. `[ id:'sample1' ]`
     - bam:
         type: file
-        description: |
-          BAM file to index
-        pattern: "*.{bam,bam.gz}"
+        description: BAM file to index
+        pattern: "*.{bam}"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
+          - edam: "http://edamontology.org/format_2572" # BAM
 
 output:
   bai:
@@ -37,12 +39,10 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.bai":
           type: file
-          description: |
-            Index file for BAM input
+          description: Index file for BAM input
           pattern: "*.bai"
           ontologies:
-            - edam: "http://edamontology.org/format_3327"
-
+            - edam: "http://edamontology.org/format_3327" # BAI
   versions_samtools:
     - - "${task.process}":
           type: string

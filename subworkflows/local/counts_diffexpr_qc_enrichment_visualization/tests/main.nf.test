@@ -5,6 +5,7 @@ nextflow_workflow {
     workflow "COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION"
 
     tag "subworkflows"
+    tag "subworkflows_local"
     tag "subworkflows/counts_diffexpr_qc_enrichment_visualization"
     tag "edger_voom"
     tag "limma_de"
@@ -59,13 +60,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.unfiltered_log2counts,
-                    workflow.out.filtered_log2counts,
-                    workflow.out.normalized_log2counts,
-                    workflow.out.diffgenes_expression,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["voom_object", "voom_plot", "ebfit_rds", "diffgenes_table", "unfiltered_deg", "topgenes_rds", "topgenes_csv", "timecourse_clusterplots", "timecourse_clustermedian", "timecourse_summarystatistics", "timecourse_clusterassignments", "timecourse_clusterlist", "qc_plots", "volcano_plot", "heatmap_plots", "go_enrichment", "kegg_enrichment", "gsea_results"])).match() }
             )
         }
     }
@@ -113,18 +108,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.unfiltered_log2counts,
-                    workflow.out.filtered_log2counts,
-                    workflow.out.normalized_log2counts,
-                    workflow.out.diffgenes_expression,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["voom_object", "voom_plot", "ebfit_rds", "diffgenes_table", "unfiltered_deg", "topgenes_rds", "topgenes_csv", "timecourse_clusterplots", "timecourse_clustermedian", "timecourse_summarystatistics", "timecourse_clusterassignments", "timecourse_clusterlist", "qc_plots", "volcano_plot", "heatmap_plots", "go_enrichment", "kegg_enrichment", "gsea_results"])).match() }
             )
         }
     }
 
-    test("plant_timecourse - counts - samplesheet | masigpro - GO,KEGG,GSEA enrichment") {
+    test("arabidopsis - counts - samplesheet | masigpro - GO,KEGG,GSEA enrichment") {
 
         when {
             params {
@@ -167,22 +156,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.unfiltered_log2counts,
-                    workflow.out.filtered_log2counts,
-                    workflow.out.normalized_log2counts,
-                    workflow.out.diffgenes_expression,
-                    workflow.out.timecourse_clustermedian,
-                    workflow.out.timecourse_summarystatistics,
-                    workflow.out.timecourse_clusterassignments,
-                    workflow.out.timecourse_clusterlist,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["voom_object", "voom_plot", "ebfit_rds", "diffgenes_table", "unfiltered_deg", "topgenes_rds", "topgenes_csv", "timecourse_clusterplots", "timecourse_clustermedian", "timecourse_summarystatistics", "timecourse_clusterassignments", "timecourse_clusterlist", "qc_plots", "volcano_plot", "heatmap_plots", "go_enrichment", "kegg_enrichment", "gsea_results"])).match() }
             )
         }
     }
 
-    test("leishmaniasis - counts - samplesheet | DESeq2 - GO enrichment - stub") {
+    test("leishmaniasis - counts - samplesheet - stub | DESeq2 - GO enrichment") {
         options "-stub"
         when {
             params {
@@ -230,7 +209,7 @@ nextflow_workflow {
         }
     }
 
-    test("leishmaniasis - counts - samplesheet | limma - KEGG,GSEA enrichment - stub") {
+    test("leishmaniasis - counts - samplesheet - stub | limma - KEGG,GSEA enrichment") {
         options "-stub"
         when {
             params {
@@ -278,7 +257,7 @@ nextflow_workflow {
         }
     }
 
-    test("plant_timecourse - counts - samplesheet | masigpro - GO,KEGG,GSEA enrichment - stub") {
+    test("arabidopsis - counts - samplesheet - stub | masigpro - GO,KEGG,GSEA enrichment") {
         options "-stub"
         when {
             params {

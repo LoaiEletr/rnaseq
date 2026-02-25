@@ -15,23 +15,30 @@ tools:
       identifier: "kallisto"
 
 input:
-  - transcriptome:
-      type: file
-      description: |
-        Transcriptome sequences in FASTA format
-      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_1929"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - transcriptome:
+        type: file
+        description: Transcriptome sequences in FASTA format
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
 
 output:
   index:
-    - "*.idx":
-        type: file
-        description: |
-          Kallisto index file for pseudoalignment
-        pattern: "*.idx"
-        ontologies: []
-
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.idx":
+          type: file
+          description: Kallisto index file for pseudoalignment
+          pattern: "*.idx"
+          ontologies: []
   versions_kallisto:
     - - "${task.process}":
           type: string

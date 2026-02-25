@@ -1,17 +1,20 @@
 name: rseqc_tin
 description: |
   Calculates Transcript Integrity Number (TIN) from RNA-seq BAM files using RSeQC tin.py.
+  TIN is a metric used to measure RNA integrity at the transcript level, similar to RIN but specifically for sequencing data.
 keywords:
   - rseqc
   - tin
   - transcript integrity
   - rna-seq
+  - quality control
 tools:
   - rseqc:
       description: "RNA-seq quality control package"
       homepage: "http://rseqc.sourceforge.net/"
       documentation: "http://rseqc.sourceforge.net/"
       tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      doi: "10.1093/bioinformatics/bts356"
       licence: ["GPL-3.0-only"]
       identifier: "rseqc"
 
@@ -23,26 +26,27 @@ input:
           e.g. `[ id:'sample1' ]`
     - bam:
         type: file
-        description: |
-          BAM file for TIN calculation
+        description: BAM file for TIN calculation
         pattern: "*.{bam,bam.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
+          - edam: "http://edamontology.org/format_2572" # BAM
     - bai:
         type: file
-        description: |
-          BAM index file
+        description: BAM index file
         pattern: "*.{bai}"
         ontologies:
-          - edam: "http://edamontology.org/format_3327"
-
-  - bed:
-      type: file
-      description: |
-        BED file with transcript annotations
-      pattern: "*.{bed,bed.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_3003"
+          - edam: "http://edamontology.org/format_3327" # BAI
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'reference' ]`
+    - bed:
+        type: file
+        description: BED file with transcript annotations
+        pattern: "*.{bed,bed.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3003" # BED
 
 output:
   txt:
@@ -53,12 +57,10 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.txt":
           type: file
-          description: |
-            Text file with TIN summary statistics
+          description: Text file with TIN summary statistics
           pattern: "*.txt"
           ontologies:
-            - edam: "http://edamontology.org/format_2330"
-
+            - edam: "http://edamontology.org/format_2330" # Textual format
   xls:
     - - meta:
           type: map
@@ -67,12 +69,10 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.xls":
           type: file
-          description: |
-            Excel file with detailed TIN results
+          description: Excel file with detailed TIN results for each transcript
           pattern: "*.xls"
           ontologies:
-            - edam: "http://edamontology.org/format_3468"
-
+            - edam: "http://edamontology.org/format_3468" # XLS
   versions_rseqc:
     - - "${task.process}":
           type: string

@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process SUBREAD_FEATURECOUNTS"
-    script "modules/local/subread/featurecounts/main.nf"
+    script "../main.nf"
     process "SUBREAD_FEATURECOUNTS"
 
     tag "modules"
+    tag "modules_local"
     tag "subread"
     tag "subread/featurecounts"
 
-    test("Should count single-end reads with featureCounts and return counts with summary") {
+    test("sarscov2 - bam - gtf | single-end") {
         when {
             params {
                 outdir = "$outputDir"
@@ -20,7 +21,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -34,7 +35,7 @@ nextflow_process {
         }
     }
 
-    test("Should count paired-end reads with featureCounts and return counts with summary") {
+    test("sarscov2 - bam - gtf | paired-end") {
         when {
             params {
                 outdir = "$outputDir"
@@ -47,7 +48,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -61,7 +62,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub count single-end reads with featureCounts and return mocked counts with summary") {
+    test("sarscov2 - bam - gtf - stub | single-end") {
         options "-stub"
         when {
             params {
@@ -75,7 +76,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
@@ -89,7 +90,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub count paired-end reads with featureCounts and return mocked counts with summary") {
+    test("sarscov2 - bam - gtf - stub | paired-end") {
         options "-stub"
         when {
             params {
@@ -103,7 +104,7 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                     ]
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }

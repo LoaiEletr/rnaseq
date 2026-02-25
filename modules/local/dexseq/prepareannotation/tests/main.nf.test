@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process DEXSEQ_PREPAREANNOTATION"
-    script "modules/local/dexseq/prepareannotation/main.nf"
+    script "../main.nf"
     process "DEXSEQ_PREPAREANNOTATION"
 
     tag "modules"
+    tag "modules_local"
     tag "dexseq"
     tag "dexseq/prepareannotation"
 
-    test("Should prepare DEXSeq annotation with aggregation and return GFF file") {
+    test("homo_sapiens - gtf - aggregation | with aggregation") {
         when {
             params {
                 outdir = "$outputDir"
@@ -15,7 +16,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[1] = params.aggregation
                 """
             }
@@ -23,13 +24,13 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.gff.get(0) ==~ ".*/DEXSeq\\.gff" },
-                { assert snapshot(process.out.versions).match("versions_aggregation") }
+                { assert process.out.gff.get(0).get(1) ==~ ".*/DEXSeq\\.gff" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gff"])).match() }
             )
         }
     }
 
-    test("Should prepare DEXSeq annotation with no aggregation and return GFF file") {
+    test("homo_sapiens - gtf - aggregation | no aggregation") {
         when {
             params {
                 outdir = "$outputDir"
@@ -37,7 +38,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[1] = params.aggregation
                 """
             }
@@ -45,13 +46,13 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.gff.get(0) ==~ ".*/DEXSeq\\.gff" },
-                { assert snapshot(process.out.versions).match("versions_no_aggregation") }
+                { assert process.out.gff.get(0).get(1) ==~ ".*/DEXSeq\\.gff" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gff"])).match() }
             )
         }
     }
 
-    test("Should stub prepare DEXSeq annotation with aggregation and return mocked GFF file") {
+    test("homo_sapiens - gtf - aggregation - stub | with aggregation") {
         options "-stub"
         when {
             params {
@@ -60,7 +61,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[1] = params.aggregation
                 """
             }
@@ -73,7 +74,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub prepare DEXSeq annotation with no aggregation and return mocked GFF file") {
+    test("homo_sapiens - gtf - aggregation - stub | no aggregation") {
         options "-stub"
         when {
             params {
@@ -82,7 +83,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[1] = params.aggregation
                 """
             }

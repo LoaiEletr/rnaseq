@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process SALMON_QUANT {
     tag "${meta.id}"
     label 'process_low'
@@ -11,15 +9,13 @@ process SALMON_QUANT {
 
     input:
     tuple val(meta), path(reads)
-    path index
-    path gtf
-    val libtype
+    tuple val(meta2), path(index)
+    tuple val(meta3), path(gtf)
 
     output:
     tuple val(meta), path("${prefix}"), emit: quant_dir, optional: true
     tuple val(meta), env("SALMON_STRANDNESS"), emit: strandness, optional: true
-    tuple val(meta), path("*.log"), emit: log
-    path ("versions.yml"), emit: versions
+    tuple val("${task.process}"), val('salmon'), eval("salmon --version | sed 's/salmon //'"), topic: versions, emit: versions_salmon
 
     when:
     task.ext.when == null || task.ext.when
@@ -52,55 +48,40 @@ process SALMON_QUANT {
     // Determine strand flag
     if (meta.single_end) {
         // Single-end library
-        if (libtype) {
-            if (single_end_strandedness_opts.contains(libtype)) {
-                strand_flag = "-l ${libtype}"
-            }
-            else {
-                error("❌ ERROR: Unknown library type '${libtype}' provided for single-end reads. Allowed: ${single_end_strandedness_opts.join(', ')}")
-            }
+        if (meta.lib_type.toLowerCase() == "auto") {
+            strand_flag = "-l A"
+        }
+        else if (meta.lib_type.toLowerCase() == "forward") {
+            strand_flag = "-l SF"
+        }
+        else if (meta.lib_type.toLowerCase() == "reverse") {
+            strand_flag = "-l SR"
+        }
+        else if (single_end_strandedness_opts.contains(meta.lib_type)) {
+            strand_flag = "-l ${meta.lib_type}"
         }
         else {
-            if (meta.lib_type.toLowerCase() == "forward") {
-                strand_flag = "-l SF"
-            }
-            else if (meta.lib_type.toLowerCase() == "reverse") {
-                strand_flag = "-l SR"
-            }
-            else if (single_end_strandedness_opts.contains(meta.lib_type)) {
-                strand_flag = "-l ${meta.lib_type}"
-            }
-            else {
-                error("Unknown meta.lib_type provided for single-end: ${meta.lib_type}. Use one of: ${single_end_strandedness_opts.join(', ')}")
-            }
+            error("Unknown meta.lib_type provided for single-end: ${meta.lib_type}. Use one of: ${single_end_strandedness_opts.join(', ')}")
         }
     }
     else {
         // Paired-end library
-        if (libtype) {
-            if (paired_end_strandedness_opts.contains(libtype)) {
-                strand_flag = "-l ${libtype}"
-            }
-            else {
-                error("❌ ERROR: Unknown library type '${libtype}' provided for paired-end reads. Allowed: ${paired_end_strandedness_opts.join(', ')}")
-            }
+        if (meta.lib_type.toLowerCase() == "auto") {
+            strand_flag = "-l A"
+        }
+        else if (meta.lib_type.toLowerCase() == "forward") {
+            strand_flag = "-l ISF"
+        }
+        else if (meta.lib_type.toLowerCase() == "reverse") {
+            strand_flag = "-l ISR"
+        }
+        else if (paired_end_strandedness_opts.contains(meta.lib_type)) {
+            strand_flag = "-l ${meta.lib_type}"
         }
         else {
-            if (meta.lib_type.toLowerCase() == "forward") {
-                strand_flag = "-l ISF"
-            }
-            else if (meta.lib_type.toLowerCase() == "reverse") {
-                strand_flag = "-l ISR"
-            }
-            else if (paired_end_strandedness_opts.contains(meta.lib_type)) {
-                strand_flag = "-l ${meta.lib_type}"
-            }
-            else {
-                error("Unknown meta.lib_type provided for paired-end: ${meta.lib_type}. Use one of: ${paired_end_strandedness_opts.join(', ')}")
-            }
+            error("Unknown meta.lib_type provided for paired-end: ${meta.lib_type}. Use one of: ${paired_end_strandedness_opts.join(', ')}")
         }
     }
-
     """
     salmon quant \\
         -i ${index} \\
@@ -109,15 +90,9 @@ process SALMON_QUANT {
         --geneMap ${gtf} \\
         -p ${task.cpus} \\
         ${fastq_in} \\
-        -o ${prefix} \\
-        2>| >( tee ${prefix}_quant.log >&2 )
+        -o ${prefix}
 
     SALMON_STRANDNESS=\$(grep "most likely library type as" ${prefix}_quant.log | awk -F'as ' '{print \$2}' || echo "Not detected")
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        salmon: \$( salmon --version | sed 's/salmon //' )
-    END_VERSIONS
     """
 
     stub:
@@ -125,7 +100,6 @@ process SALMON_QUANT {
     """
     mkdir -p ${prefix} ${prefix}/aux_info ${prefix}/libParams ${prefix}/logs
 
-    touch ${prefix}_quant.log
     touch ${prefix}/cmd_info.json
     touch ${prefix}/lib_format_counts.json
     touch ${prefix}/quant.sf
@@ -142,10 +116,5 @@ process SALMON_QUANT {
     touch ${prefix}/logs/salmon_quant.log
 
     SALMON_STRANDNESS="IU"
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        salmon: \$( salmon --version | sed 's/salmon //' )
-    END_VERSIONS
     """
 }

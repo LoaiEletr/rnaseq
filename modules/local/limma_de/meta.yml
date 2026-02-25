@@ -1,138 +1,114 @@
-name: limma_de
+name: "limma_de"
 description: |
   Performs differential expression analysis using limma with empirical Bayes moderation.
+  This module accepts voom-transformed data and outputs multiple formats of
+  differentially expressed genes and model fits.
 keywords:
   - limma
   - differential expression
   - rna-seq
   - statistics
+  - linear models
 tools:
   - bioconductor_limma:
       description: "Linear models for microarray and RNA-seq data analysis"
       homepage: "https://bioconductor.org/packages/limma/"
       documentation: "https://bioconductor.org/packages/release/bioc/html/limma.html"
       tool_dev_url: "https://github.com/LTLA/limma"
+      doi: "10.1093/nar/gkv007"
       licence: ["GPL-2.0-only"]
       identifier: "limma"
 
 input:
-  - voom_object:
-      type: file
-      description: |
-        RDS file containing voom-transformed expression data
-      pattern: "*.rds"
-      ontologies: []
-
-  - samplesheet:
-      type: file
-      description: |
-        CSV file with sample metadata and experimental design
-      pattern: "*.csv"
-      ontologies:
-        - edam: "http://edamontology.org/format_3752"
-
-  - pvalue_threshold:
-      type: number
-      description: |
-        Adjusted p-value threshold for significance
-      pattern: "[0-9]+(\\.[0-9]+)?"
-
-  - logfc_threshold:
-      type: number
-      description: |
-        Log2 fold change threshold for significance
-      pattern: "[0-9]+(\\.[0-9]+)?"
-
-  - top_genes:
-      type: integer
-      description: |
-        Number of top differentially expressed genes to output
-      pattern: "[0-9]+"
+  - - voom_object:
+        type: file
+        description: RDS file containing voom-transformed expression data (typically an EList object).
+        pattern: "*.rds"
+        ontologies: []
+  - - samplesheet:
+        type: file
+        description: CSV file with sample metadata and experimental design for model contrast.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  - - pvalue_threshold:
+        type: float
+        description: Adjusted p-value threshold for statistical significance.
+  - - logfc_threshold:
+        type: float
+        description: Log2 fold change threshold for biological significance.
+  - - ntop_genes:
+        type: integer
+        description: Number of top differentially expressed genes to export in summary files.
 
 output:
   ebfit_rds:
     - ebfit.rds:
         type: file
-        description: |
-          RDS file with empirical Bayes fitted model
+        description: RDS file containing the empirical Bayes moderated M-values and model fit.
         pattern: "ebfit.rds"
         ontologies: []
-
   de_expression_rds:
     - de_expression_values.rds:
         type: file
-        description: |
-          RDS file with expression values of differentially expressed genes
+        description: RDS file containing the expression values specifically for significant DE genes.
         pattern: "de_expression_values.rds"
         ontologies: []
-
   de_genes_rds:
     - de_genes_full_table.rds:
         type: file
-        description: |
-          RDS file with full table of differentially expressed genes
+        description: RDS file with the complete statistics for all significant DE genes.
         pattern: "de_genes_full_table.rds"
         ontologies: []
-
   unfiltered_deg_rds:
     - unfiltered_deg_results.rds:
         type: file
-        description: |
-          RDS file with unfiltered differential expression results
+        description: RDS file containing the full differential expression results for all tested genes.
         pattern: "unfiltered_deg_results.rds"
         ontologies: []
-
   topgenes_rds:
-    - "top_${top_genes}_genes.rds":
+    - "top_${ntop_genes}_genes.rds":
         type: file
-        description: |
-          RDS file with top differentially expressed genes
+        description: RDS file containing the top N differentially expressed genes.
         pattern: "top_*_genes.rds"
         ontologies: []
-
   topgenes_csv:
-    - "top_${top_genes}_genes.csv":
+    - "top_${ntop_genes}_genes.csv":
         type: file
-        description: |
-          CSV file with top differentially expressed genes
+        description: CSV file containing the top N differentially expressed genes.
         pattern: "top_*_genes.csv"
         ontologies:
-          - edam: "http://edamontology.org/format_3752"
-
-  versions_limma:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  versions_rbase:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - r_base:
+      - r-base:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+      - "Rscript -e 'cat(as.character(getRversion()))'":
           type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_limma:
+  versions_limma:
+    - - "${task.process}":
           type: string
-          description: The name of the limma package
-      - 'Rscript -e "library(limma); cat(as.character(packageVersion(''limma'')))"':
+      - bioconductor-limma:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''limma'')))"':
           type: eval
-          description: The expression to obtain the version of limma
 
 topics:
   versions:
     - - "${task.process}":
           type: string
-          description: The name of the process
-      - r_base:
+      - r-base:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+      - "Rscript -e 'cat(as.character(getRversion()))'":
           type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_limma:
+    - - "${task.process}":
           type: string
-          description: The name of the limma package
-      - 'Rscript -e "library(limma); cat(as.character(packageVersion(''limma'')))"':
+      - bioconductor-limma:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''limma'')))"':
           type: eval
-          description: The expression to obtain the version of limma
 
 authors:
   - "@Loai3tr"

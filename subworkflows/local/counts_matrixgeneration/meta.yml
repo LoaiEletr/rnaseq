@@ -1,18 +1,13 @@
 name: "counts_matrixgeneration"
 description: |
-  Generate gene-level count matrix from quantification results.
-  Supports multiple quantification methods: Salmon/Kallisto (via tximport) or featureCounts (via count merging).
-  For pseudoalignment methods (Salmon/Kallisto), performs transcript-to-gene mapping followed by tximport.
-  For featureCounts, merges individual count files into a unified matrix.
+  Generate a gene-level count matrix from quantification results.
+  Supports transcript-level summarization for pseudoaligners (Salmon/Kallisto) using tximport,
+  or merging individual count files for alignment-based methods (featureCounts).
 keywords:
   - count-matrix
-  - gene-expression
   - tximport
   - transcript-to-gene
   - quantification
-  - salmon
-  - kallisto
-  - featurecounts
   - rna-seq
 components:
   - tx2gene
@@ -20,38 +15,28 @@ components:
   - merge/counts
 input:
   - ch_counts:
-      type: file
+      type: list
       description: |
-        Input channel containing quantification results.
-        Structure depends on quant_method:
-        - For 'salmon'/'kallisto': [ path(quant_dir) ]
-        - For 'featurecounts': [ path(counts_file) ]
+        Input channel containing quantification results from all samples.
+        Structure: [ path(quant_files) ]
       pattern: "*"
   - val_quant_method:
       type: string
       description: |
-        Quantification method used. Determines processing pipeline.
+        Quantification method used. Determines the processing pipeline.
         Structure: [ "salmon" | "kallisto" | "featurecounts" ]
   - val_species_name:
       type: string
       description: |
-        Species name for transcript-to-gene mapping (required for 'salmon' and 'kallisto' methods).
-        Common examples: 'human', 'mouse', 'rat'
+        Species name for transcript-to-gene mapping (required for 'salmon' and 'kallisto').
         Structure: string
 output:
   - gene_table_rds:
       type: file
       description: |
-        Gene-level count matrix in RDS format.
-        Contains gene expression counts for all samples.
+        Unified gene-level count matrix in RDS format.
         Structure: [ path(rds) ]
       pattern: "*.rds"
-  - versions:
-      type: file
-      description: |
-        File containing software versions from executed modules.
-        Structure: [ path(versions.yml) ]
-      pattern: "versions.yml"
 authors:
   - "@Loai3tr"
 maintainers:

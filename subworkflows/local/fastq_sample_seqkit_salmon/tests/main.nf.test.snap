@@ -1,68 +1,154 @@
 {
-    "sarscov2 - fastq - index - gtf": {
-        "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.subsample_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "Not detected"
-                ]
-            ],
-            [
-                "versions.yml:md5,4e261bef04ca9bf4632277896365048b",
-                "versions.yml:md5,d7396499ef94b85fe25d2fc2f000abcd"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-02T03:12:28.714025278"
-    },
     "sarscov2 - [fastq1, fastq2] - index - gtf": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
+            {
+                "quant_dir": [
                     [
-                        "test.subsample_1_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
-                        "test.subsample_2_1M.fastq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                        {
+                            "id": "test",
+                            "lib_type": "auto",
+                            "single_end": false
+                        },
+                        "test_subsamples"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "auto"
+                        },
+                        [
+                            "test.subsample_1_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                            "test.subsample_2_1M.fastq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                        ]
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "auto"
+                        },
+                        "Not detected"
                     ]
                 ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "Not detected"
-                ]
-            ],
-            [
-                "versions.yml:md5,4e261bef04ca9bf4632277896365048b",
-                "versions.yml:md5,d7396499ef94b85fe25d2fc2f000abcd"
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T03:13:22.809837254"
+        "timestamp": "2026-02-23T02:47:05.157594008"
+    },
+    "sarscov2 - fastq1 - index - gtf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "auto"
+                        },
+                        "test.subsample_1M.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "auto"
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "auto"
+                        },
+                        "IU"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "auto"
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "auto"
+                        },
+                        "test.subsample_1M.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "lib_type": "auto"
+                        },
+                        "IU"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T02:48:05.691336525"
     },
     "sarscov2 - [fastq1, fastq2] - index - gtf - stub": {
         "content": [
@@ -71,7 +157,8 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false
+                            "single_end": false,
+                            "lib_type": "auto"
                         },
                         [
                             "test.subsample_1_1M.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
@@ -83,7 +170,8 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false
+                            "single_end": false,
+                            "lib_type": "auto"
                         },
                         [
                             [
@@ -110,29 +198,18 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false
+                            "single_end": false,
+                            "lib_type": "auto"
                         },
                         "IU"
                     ]
-                ],
-                "3": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test_subsamples_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "4": [
-                    "versions.yml:md5,4e261bef04ca9bf4632277896365048b",
-                    "versions.yml:md5,d7396499ef94b85fe25d2fc2f000abcd"
                 ],
                 "quant_dir": [
                     [
                         {
                             "id": "test",
-                            "single_end": false
+                            "single_end": false,
+                            "lib_type": "auto"
                         },
                         [
                             [
@@ -155,20 +232,12 @@
                         ]
                     ]
                 ],
-                "quant_log": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test_subsamples_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
                 "reads": [
                     [
                         {
                             "id": "test",
-                            "single_end": false
+                            "single_end": false,
+                            "lib_type": "auto"
                         },
                         [
                             "test.subsample_1_1M.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
@@ -180,14 +249,11 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false
+                            "single_end": false,
+                            "lib_type": "auto"
                         },
                         "IU"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,4e261bef04ca9bf4632277896365048b",
-                    "versions.yml:md5,d7396499ef94b85fe25d2fc2f000abcd"
                 ]
             }
         ],
@@ -195,126 +261,40 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T03:15:04.110234635"
+        "timestamp": "2026-02-23T02:49:03.444089338"
     },
-    "sarscov2 - fastq - index - gtf - stub": {
+    "sarscov2 - fastq1 - index - gtf": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.subsample_1M.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        [
-                            [
-                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ],
-                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            [
-                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ],
-                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            [
-                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ],
-                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                        ]
-                    ]
-                ],
-                "2": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "IU"
-                    ]
-                ],
-                "3": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_subsamples_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "4": [
-                    "versions.yml:md5,4e261bef04ca9bf4632277896365048b",
-                    "versions.yml:md5,d7396499ef94b85fe25d2fc2f000abcd"
-                ],
                 "quant_dir": [
                     [
                         {
                             "id": "test",
+                            "lib_type": "auto",
                             "single_end": true
                         },
-                        [
-                            [
-                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ],
-                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            [
-                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ],
-                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            [
-                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ],
-                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                        ]
-                    ]
-                ],
-                "quant_log": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_subsamples_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_subsamples"
                     ]
                 ],
                 "reads": [
                     [
                         {
                             "id": "test",
-                            "single_end": true
+                            "single_end": true,
+                            "lib_type": "auto"
                         },
-                        "test.subsample_1M.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test.subsample_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec"
                     ]
                 ],
                 "strandness": [
                     [
                         {
                             "id": "test",
-                            "single_end": true
+                            "single_end": true,
+                            "lib_type": "auto"
                         },
-                        "IU"
+                        "Not detected"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,4e261bef04ca9bf4632277896365048b",
-                    "versions.yml:md5,d7396499ef94b85fe25d2fc2f000abcd"
                 ]
             }
         ],
@@ -322,6 +302,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-02T03:14:13.17894236"
+        "timestamp": "2026-02-23T02:46:02.14569648"
     }
 }

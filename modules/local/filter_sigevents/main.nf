@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process FILTER_SIGEVENTS {
     tag "${event_type}"
     label 'process_low'
@@ -10,20 +8,20 @@ process FILTER_SIGEVENTS {
         : 'biocontainers/gawk:5.3.1'}"
 
     input:
-    path rmats_post_output
+    tuple val(meta), path(rmats_post_output)
     each event_type
     val fdr_cutoff
     val delta_psi
 
     output:
-    tuple val(event_type), path("${event_type}_filtered.txt"), emit: sig_rmats
-    path ("versions.yml"), emit: versions
+    tuple val(event_type), path("${event_type}.filtered.txt"), emit: sig_rmats
+    tuple val("${task.process}"), val('awk'), eval("awk --version | awk 'NR==1 {print \$3}' | sed 's/^.*Awk //; s/,.*//'"), topic: versions, emit: versions_awk
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    def prefix = task.ext.prefix ?: "${event_type}_filtered.txt"
+    def prefix = task.ext.prefix ?: "${event_type}"
     """
     cat ${rmats_post_output}/${event_type}.MATS.JC.txt | awk -v fdr=${fdr_cutoff} -v dpsi=${delta_psi} '\\
     NR==1 { print; next } \\
@@ -36,22 +34,12 @@ process FILTER_SIGEVENTS {
         split(\$22,q,","); sumq=0; countq=0; for(i in q){ if(q[i]!="NA"){ sumq+=q[i]; countq++ } }; avgq=sumq/countq; \\
         if (\$20 <= fdr && (\$23 >= dpsi || \$23 <= -dpsi) && avg1 >= 10 && avg2 >= 10 && avgp >= 0.05 && avgp <= 0.95 && avgq >= 0.05 && avgq <= 0.95) \\
             print; \\
-    }' > ${prefix}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        awk: \$(awk --version | awk 'NR==1 {print \$3}' | tr -d ',')
-    END_VERSIONS
+    }' > ${prefix}.filtered.txt
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${event_type}_filtered.txt"
+    def prefix = task.ext.prefix ?: "${event_type}"
     """
-    touch ${prefix}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        awk: \$(awk --version | awk 'NR==1 {print \$3}' | tr -d ',')
-    END_VERSIONS
+    touch ${prefix}.filtered.txt
     """
 }

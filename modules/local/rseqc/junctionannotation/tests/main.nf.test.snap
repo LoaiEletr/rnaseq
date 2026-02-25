@@ -1,5 +1,5 @@
 {
-    "Should annotate splice junctions in RNA-seq data with RSeQC and return annotation files with R script": {
+    "sarscov2 - bam - bed - stub": {
         "content": [
             {
                 "0": [
@@ -26,35 +26,87 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.junction_annotation.log:md5,9da2baa3710aef8a7ac5d5592bd861ac"
+                        "test.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "3": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "4": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "5": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "6": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.events.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "7": [
-                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                    [
+                        "RSEQC_JUNCTIONANNOTATION",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "events_pdf": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.events.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "interact_bed": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "junction_bed": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "junction_pdf": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.junction.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "log": [
                     [
@@ -62,7 +114,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.junction_annotation.log:md5,9da2baa3710aef8a7ac5d5592bd861ac"
+                        "test.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "rscript": [
@@ -74,8 +126,12 @@
                         "test.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_JUNCTIONANNOTATION",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "xls": [
                     [
@@ -92,9 +148,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:37:21.324705242"
+        "timestamp": "2026-02-20T23:47:53.566049421"
     },
-    "Should stub annotate splice junctions in RNA-seq data with RSeQC and return mocked annotation files with R script": {
+    "sarscov2 - bam - bed": {
         "content": [
             {
                 "0": [
@@ -121,83 +177,39 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.junction_annotation.log:md5,9da2baa3710aef8a7ac5d5592bd861ac"
                     ]
                 ],
                 "3": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.junction.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "4": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "5": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.junction.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "6": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.events.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "7": [
-                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                    [
+                        "RSEQC_JUNCTIONANNOTATION",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "events_pdf": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.events.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "interact_bed": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.Interact.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "junction_bed": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.junction.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "junction_pdf": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.junction.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    
                 ],
                 "log": [
                     [
@@ -205,7 +217,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.junction_annotation.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.junction_annotation.log:md5,9da2baa3710aef8a7ac5d5592bd861ac"
                     ]
                 ],
                 "rscript": [
@@ -217,8 +229,12 @@
                         "test.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,ae73d0e10243a147b6811bdbf2042506"
+                "versions_rseqc": [
+                    [
+                        "RSEQC_JUNCTIONANNOTATION",
+                        "rseqc",
+                        "2.6.4"
+                    ]
                 ],
                 "xls": [
                     [
@@ -235,6 +251,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:38:03.47668622"
+        "timestamp": "2026-02-20T23:46:56.565537851"
     }
 }

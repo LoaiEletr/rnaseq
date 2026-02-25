@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process DEXSEQ_COUNT {
     tag "${meta.id}"
     label 'process_low'
@@ -11,12 +9,12 @@ process DEXSEQ_COUNT {
 
     input:
     tuple val(meta), path(bam)
-    path gff
+    tuple val(meta2), path(gff)
     val alignment_quality
 
     output:
     tuple val(meta), path("*.counts.txt"), emit: counts
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('htseq'), eval("python -c 'from importlib.metadata import version; print(version(\"HTSeq\"))'"), topic: versions, emit: versions_htseq
 
     when:
     task.ext.when == null || task.ext.when
@@ -50,21 +48,11 @@ process DEXSEQ_COUNT {
         ${prefix}.counts.txt \\
         ${alignment_quality_flag} \\
         ${strand_flag}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        htseq: \$(python -c "import pkg_resources; print(pkg_resources.get_distribution('htseq').version)")
-    END_VERSIONS
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.counts.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        htseq: \$(python -c "import pkg_resources; print(pkg_resources.get_distribution('htseq').version)")
-    END_VERSIONS
     """
 }

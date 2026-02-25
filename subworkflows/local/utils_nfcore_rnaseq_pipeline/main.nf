@@ -206,7 +206,7 @@ def validateInputParameters() {
     }
 
     // Validate analysis methods
-    def valid_methods = ["DEG", "WGCNA", "DIU", "AS", "DEU"]
+    def valid_methods = ["DEG", "WGCNA", "DIU", "AS", "DEU", "GVC"]
     def requested_methods = params.analysis_method ? params.analysis_method.split(",").collect { it.trim() } : []
     def invalid_methods = requested_methods.findAll { !valid_methods.contains(it) }
 
@@ -221,6 +221,7 @@ def validateInputParameters() {
           • DIU   - Differential Isoform Usage (ISoformSwitchAnalyzeR)
           • DEU   - Differential Exon Usage (DEXSeq)
           • AS    - Alternative Splicing (rMATS, ISoformSwitchAnalyzeR)
+          • GVC   - Germline Variant Calling
 
         Example usage:
           --analysis_method DEG,WGCNA   # Run DE and co-expression

@@ -1,26 +1,30 @@
 nextflow_process {
     name "Test Process UMITOOLS_EXTRACT"
-    script "modules/local/umitools/extract/main.nf"
+    script "../main.nf"
     process "UMITOOLS_EXTRACT"
+    config "./nextflow.config"
 
     tag "modules"
+    tag "modules_local"
     tag "umitools"
     tag "umitools/extract"
 
-    test("Should extract UMIs from single-end reads and return UMI-extracted FASTQ with log") {
+    test("sarscov2 - fastq1 | quantseq") {
         when {
             params {
-                outdir = "$outputDir"
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "quantseq"
             }
             process {
                 """
                 input[0] = Channel.of([
                     [ id: 'test', single_end: true ],
-                    [
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
-                    ]
+                    [ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true) ]
                 ])
-                input[1] = "quantseq"
                 """
             }
         }
@@ -29,18 +33,20 @@ nextflow_process {
                 { assert process.success },
                 { assert process.out.reads.get(0).get(1) ==~ ".*/test\\.umi_extract\\.fastq\\.gz" },
                 { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_extract\\.log" },
-                { assert snapshot(
-                    process.out.reads,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log"])).match() }
             )
         }
     }
 
-    test("Should extract UMIs from paired-end reads and return UMI-extracted FASTQ files with log") {
+    test("sarscov2 - fastq1 | takara") {
         when {
             params {
-                outdir = "$outputDir"
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "takara"
             }
             process {
                 """
@@ -51,7 +57,6 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = "takara"
                 """
             }
         }
@@ -61,29 +66,28 @@ nextflow_process {
                 { assert process.out.reads.get(0).get(1)[0] ==~ ".*/test\\.umi_extract_1\\.fastq\\.gz" },
                 { assert process.out.reads.get(0).get(1)[1] ==~ ".*/test\\.umi_extract_2\\.fastq\\.gz" },
                 { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_extract\\.log" },
-                { assert snapshot(
-                    process.out.reads,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log"])).match() }
             )
         }
     }
 
-    test("Should stub extract UMIs from single-end reads and return mocked UMI-extracted FASTQ with log") {
+    test("sarscov2 - fastq1 - stub | corall") {
         options "-stub"
         when {
             params {
-                outdir = "$outputDir"
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "corall"
             }
             process {
                 """
                 input[0] = Channel.of([
                     [ id: 'test', single_end: true ],
-                    [
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
-                    ]
+                    [ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true) ]
                 ])
-                input[1] = "quantseq"
                 """
             }
         }
@@ -95,11 +99,16 @@ nextflow_process {
         }
     }
 
-    test("Should stub extract UMIs from paired-end reads and return mocked UMI-extracted FASTQ files with log") {
+    test("sarscov2 - fastq1 - stub | quantseq") {
         options "-stub"
         when {
             params {
-                outdir = "$outputDir"
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "quantseq"
             }
             process {
                 """
@@ -110,7 +119,6 @@ nextflow_process {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[1] = "quantseq"
                 """
             }
         }

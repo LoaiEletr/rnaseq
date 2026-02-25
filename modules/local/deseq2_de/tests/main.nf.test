@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process DESEQ2_DE"
-    script "modules/local/deseq2_de/main.nf"
+    script "../main.nf"
     process "DESEQ2_DE"
 
     tag "modules"
+    tag "modules_local"
     tag "deseq2_de"
 
-    test("Should perform DESeq2 differential expression analysis on tximport counts and return differential expression results") {
+    test("yeast - samplesheet - pvalue_threshold - logfc  - ntop_genes | tximport matrix") {
         when {
             params {
                 outdir = "$outputDir"
@@ -33,12 +34,12 @@ nextflow_process {
                 { assert process.out.unfiltered_deg.get(0) ==~ ".*/unfiltered_deg_results\\.rds" },
                 { assert process.out.topgenes_rds.get(0) ==~ ".*/top_100_genes\\.rds" },
                 { assert process.out.topgenes_csv.get(0) ==~ ".*/top_100_genes\\.csv" },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["unfiltered_deg"])).match() }
             )
         }
     }
 
-    test("Should perform DESeq2 differential expression analysis on featureCounts counts and return differential expression results") {
+    test("yeast - samplesheet - pvalue_threshold - logfc  - ntop_genes | featurecounts matrix") {
         when {
             params {
                 outdir = "$outputDir"
@@ -70,7 +71,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub perform DESeq2 differential expression analysis and return mocked differential expression results") {
+    test("yeast - samplesheet - pvalue_threshold - logfc  - ntop_genes - stub | tximport matrix") {
         options "-stub"
         when {
             params {

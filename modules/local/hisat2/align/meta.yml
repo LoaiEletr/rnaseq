@@ -14,6 +14,13 @@ tools:
       tool_dev_url: "https://github.com/DaehwanKimLab/hisat2"
       licence: ["GPL-3.0-only"]
       identifier: "hisat2"
+  - samtools:
+      description: "Tools for manipulating next-generation sequencing data"
+      homepage: "http://www.htslib.org/"
+      documentation: "http://www.htslib.org/doc/samtools.html"
+      tool_dev_url: "https://github.com/samtools/samtools"
+      licence: ["MIT"]
+      identifier: "samtools"
 
 input:
   - - meta:
@@ -28,21 +35,28 @@ input:
           Single file for single-end, two files for paired-end data
         pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_1930"
-
-  - index:
-      type: file
-      description: |
-        HISAT2 genome index directory
-      pattern: "index/"
-
-  - ref:
-      type: file
-      description: |
-        Reference genome FASTA file used for index building
-      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_1929"
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'genome_index' ]`
+    - index:
+        type: file
+        description: HISAT2 genome index directory
+        pattern: "index/"
+        ontologies: []
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome_fasta' ]`
+    - fasta:
+        type: file
+        description: Reference genome FASTA file used for index building
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
 
 output:
   bam:
@@ -53,12 +67,10 @@ output:
             e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
       - "*.bam":
           type: file
-          description: |
-            Aligned reads in BAM format
+          description: Aligned reads in BAM format
           pattern: "*.bam"
           ontologies:
-            - edam: "http://edamontology.org/format_2572"
-
+            - edam: "http://edamontology.org/format_2572" # BAM
   summary:
     - - meta:
           type: map
@@ -67,11 +79,9 @@ output:
             e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
       - "*.summary":
           type: file
-          description: |
-            HISAT2 alignment summary statistics
+          description: HISAT2 alignment summary statistics
           pattern: "*.summary"
           ontologies: []
-
   versions_hisat2:
     - - "${task.process}":
           type: string
@@ -79,7 +89,17 @@ output:
       - hisat2:
           type: string
           description: The name of the tool
-      - "hisat2 --version | head -n 1 | awk '{print $3}'":
+      - "hisat2 --version | head -n 1 | awk '{print $3}' | sed 's/^.*version //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+  versions_samtools:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - samtools:
+          type: string
+          description: The name of the tool
+      - "samtools --version | head -n 1 | sed 's/samtools //'":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -91,7 +111,16 @@ topics:
       - hisat2:
           type: string
           description: The name of the tool
-      - "hisat2 --version | head -n 1 | awk '{print $3}'":
+      - "hisat2 --version | head -n 1 | awk '{print $3}' | sed 's/^.*version //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - samtools:
+          type: string
+          description: The name of the tool
+      - "samtools --version | head -n 1 | sed 's/samtools //'":
           type: eval
           description: The expression to obtain the version of the tool
 

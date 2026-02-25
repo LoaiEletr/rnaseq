@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process WGCNA_ANALYSIS {
     tag "${count_matrix_rds}"
     label 'process_low'
@@ -37,7 +35,10 @@ process WGCNA_ANALYSIS {
     path "WGCNA/module_trait_correlation_heatmap.pdf", emit: module_trait_heatmap, optional: true
     path "WGCNA/module_eigengenes_heatmap.pdf", emit: module_eigengenes_heatmap, optional: true
     path "WGCNA/module_analysis/**", emit: module_analysis_results, optional: true
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('r-wgcna'), eval("Rscript -e \"cat(as.character(packageVersion('WGCNA')))\""), topic: versions, emit: versions_wgcna
+    tuple val("${task.process}"), val('bioconductor-deseq2'), eval("Rscript -e \"cat(as.character(packageVersion('DESeq2')))\""), topic: versions, emit: versions_deseq2
+    tuple val("${task.process}"), val('r-pheatmap'), eval("Rscript -e \"cat(as.character(packageVersion('pheatmap')))\""), topic: versions, emit: versions_pheatmap
 
     when:
     task.ext.when == null || task.ext.when
@@ -49,14 +50,6 @@ process WGCNA_ANALYSIS {
     ${min_mm} ${top_n} ${cor_threshold} ${pval_threshold} ${maxblocksize} \\
     ${tomtype} ${networktype} ${deepsplit} ${reassignthreshold} \\
     ${mergecutheight} ${minmodulesize} ${sft_r2_threshold}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        r-wgcna: \$(Rscript -e "library(WGCNA); cat(as.character(packageVersion('WGCNA')))")
-        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-        r-pheatmap: \$(Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
-    END_VERSIONS
     """
 
     stub:
@@ -80,13 +73,5 @@ process WGCNA_ANALYSIS {
     touch WGCNA/module_analysis/sample_trait/csv/blue_hub_genes.csv
     touch WGCNA/module_analysis/sample_trait/csv/blue_top${top_n}_hub_genes.csv
     touch WGCNA/module_analysis/sample_trait/plots/MM_vs_GS_blue.pdf
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        r-wgcna: \$(Rscript -e "library(WGCNA); cat(as.character(packageVersion('WGCNA')))")
-        bioconductor-deseq2: \$(Rscript -e "library(DESeq2); cat(as.character(packageVersion('DESeq2')))")
-        r-pheatmap: \$(Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
-    END_VERSIONS
     """
 }

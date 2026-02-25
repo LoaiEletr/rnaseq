@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process MSIGDB_GSEA"
-    script "modules/local/msigdb_gsea/main.nf"
+    script "../main.nf"
     process "MSIGDB_GSEA"
 
     tag "modules"
+    tag "modules_local"
     tag "msigdb_gsea"
 
     setup {
@@ -31,7 +32,7 @@ nextflow_process {
         }
     }
 
-    test("Should perform GSEA using MSigDB with logFC ranking and return GSEA results") {
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | logfc ranking method") {
         when {
             params {
                 outdir = "$outputDir"
@@ -53,12 +54,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
-                { assert snapshot(process.out.versions).match("versions_gsea_logfc") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
             )
         }
     }
 
-    test("Should perform GSEA using MSigDB with t-statistic ranking and return GSEA results") {
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | t-statistic ranking method") {
         when {
             params {
                 outdir = "$outputDir"
@@ -80,12 +81,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
-                { assert snapshot(process.out.versions).match("versions_gsea_tstat") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
             )
         }
     }
 
-    test("Should perform GSEA using MSigDB with signed significance ranking and return GSEA results") {
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | signed significance ranking method") {
         when {
             params {
                 outdir = "$outputDir"
@@ -107,12 +108,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
-                { assert snapshot(process.out.versions).match("versions_gsea_signed_significance") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
             )
         }
     }
 
-    test("Should perform GSEA with entire MSigDB collection and return GSEA results") {
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | entire MSigDB collection") {
         when {
             params {
                 outdir = "$outputDir"
@@ -134,12 +135,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
-                { assert snapshot(process.out.versions).match("versions_gsea_msigdb_all") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
             )
         }
     }
 
-    test("Should stub perform GSEA with entire MSigDB collection and return mocked GSEA results") {
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method - stub | entire MSigDB collection") {
         options "-stub"
         when {
             params {

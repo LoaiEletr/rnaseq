@@ -34,8 +34,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
 
     main:
 
-    ch_versions = channel.empty()
-
     // Initialize empty channels for conditional outputs
     ch_unfiltered_log2counts = channel.empty()
     ch_filtered_log2counts = channel.empty()
@@ -70,7 +68,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
         ch_normalized_log2counts = EDGER_VOOM.out.normalized_log2cpm
         ch_voom_object = EDGER_VOOM.out.voom_transformed
         ch_voom_plot = EDGER_VOOM.out.voom_plot
-        ch_versions = ch_versions.mix(EDGER_VOOM.out.versions)
 
         LIMMA_DE(
             ch_voom_object,
@@ -85,7 +82,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
         ch_unfiltered_deg = LIMMA_DE.out.unfiltered_deg_rds
         ch_topgenes_rds = LIMMA_DE.out.topgenes_rds
         ch_topgenes_csv = LIMMA_DE.out.topgenes_csv
-        ch_versions = ch_versions.mix(LIMMA_DE.out.versions)
     }
     else if (val_diffexpr_method == "deseq2") {
         // DESeq2 analysis
@@ -105,7 +101,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
         ch_unfiltered_deg = DESEQ2_DE.out.unfiltered_deg
         ch_topgenes_rds = DESEQ2_DE.out.topgenes_rds
         ch_topgenes_csv = DESEQ2_DE.out.topgenes_csv
-        ch_versions = ch_versions.mix(DESEQ2_DE.out.versions)
     }
     else if (val_diffexpr_method == "masigpro") {
         // maSigPro timecourse analysis
@@ -125,7 +120,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
         ch_timecourse_clusterassignments = MASIGPRO_TIMECOURSE.out.cluster_assignments
         ch_timecourse_clusterlist = MASIGPRO_TIMECOURSE.out.clusters_list
         ch_diffgenes_expression = MASIGPRO_TIMECOURSE.out.significant_expression
-        ch_versions = ch_versions.mix(MASIGPRO_TIMECOURSE.out.versions)
     }
     else {
         error("Invalid diffexpr_method: ${val_diffexpr_method}. Must be one of: 'limma', 'deseq2', or 'masigpro'")
@@ -140,7 +134,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
         ch_normalized_log2counts,
         ch_vst_object.ifEmpty([]),
     )
-    ch_versions = ch_versions.mix(QC_VISUALIZATION.out.versions)
 
     // 3. Differential expression visualization
     DE_VISUALIZATION(
@@ -151,7 +144,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
         val_logfc_threshold,
         ch_diffgenes_expression,
     )
-    ch_versions = ch_versions.mix(DE_VISUALIZATION.out.versions)
 
     // 4. GO enrichment analysis (optional)
     if ("GO" in val_enrichment_method) {
@@ -167,7 +159,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
             val_ntop_processes,
         )
         ch_go_enrichment = GO_ENRICHMENT.out.go_results
-        ch_versions = ch_versions.mix(GO_ENRICHMENT.out.versions)
     }
 
     // 5. KEGG pathway enrichment analysis (optional)
@@ -184,7 +175,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
             val_ntop_processes,
         )
         ch_kegg_enrichment = KEGG_ENRICHMENT.out.kegg_results
-        ch_versions = ch_versions.mix(KEGG_ENRICHMENT.out.versions)
     }
 
     // 6. MSigDB gene set enrichment analysis (optional)
@@ -200,7 +190,6 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
             val_rank_method,
         )
         ch_gsea_results = MSIGDB_GSEA.out.gsea_results
-        ch_versions = ch_versions.mix(MSIGDB_GSEA.out.versions)
     }
 
     emit:
@@ -226,5 +215,4 @@ workflow COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION {
     go_enrichment = ch_go_enrichment // channel: [ go_results ]
     kegg_enrichment = ch_kegg_enrichment // channel: [ kegg_results ]
     gsea_results = ch_gsea_results // channel: [ gsea_results ]
-    versions = ch_versions // channel: [ versions.yml ]
 }

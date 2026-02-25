@@ -1,18 +1,21 @@
 {
-    "Should stub convert GTF to BED and return mocked BED file": {
+    "homo_sapiens - gtf": {
         "content": [
             {
-                "0": [
-                    "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "1": [
-                    "versions.yml:md5,02d14217e3f0332acbec8b006775fefc"
-                ],
                 "bed": [
-                    "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.bed"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,02d14217e3f0332acbec8b006775fefc"
+                "versions_gxf2bed": [
+                    [
+                        "GXF2BED",
+                        "gxf2bed",
+                        "0.2.7"
+                    ]
                 ]
             }
         ],
@@ -20,18 +23,47 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T04:38:59.348288686"
+        "timestamp": "2026-02-20T03:10:20.369718316"
     },
-    "versions": {
+    "homo_sapiens - gtf - stub": {
         "content": [
-            [
-                "versions.yml:md5,02d14217e3f0332acbec8b006775fefc"
-            ]
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GXF2BED",
+                        "gxf2bed",
+                        "0.2.7"
+                    ]
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_gxf2bed": [
+                    [
+                        "GXF2BED",
+                        "gxf2bed",
+                        "0.2.7"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T04:38:06.362632991"
+        "timestamp": "2026-02-20T03:11:20.884991896"
     }
 }

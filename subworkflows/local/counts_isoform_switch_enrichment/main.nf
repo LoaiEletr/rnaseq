@@ -12,8 +12,8 @@ workflow COUNTS_ISOFORM_SWITCH_ENRICHMENT {
     take:
     ch_counts // channel: [ quant_results ]
     ch_samplesheet // channel: [ samplesheet ]
-    ch_gtf // channel: [ gtf ]
-    ch_transcript // channel: [ transcript_fasta ]
+    ch_gtf // channel: [ val(meta), gtf ]
+    ch_transcriptome // channel: [ val(meta), transcriptome ]
     val_quant_type // string: quantification type - "kallisto" or "salmon"
     val_method // string: analysis method - "DIU", "AS", or combinations
     val_pvalue_threshold // float: p-value threshold for significance
@@ -24,7 +24,6 @@ workflow COUNTS_ISOFORM_SWITCH_ENRICHMENT {
     val_enrichment_method // string: enrichment method(s) - "GO", "KEGG", or combinations
 
     main:
-    ch_versions = channel.empty()
     ch_go_enrichment = channel.empty()
     ch_kegg_enrichment = channel.empty()
 
@@ -34,13 +33,12 @@ workflow COUNTS_ISOFORM_SWITCH_ENRICHMENT {
         ch_samplesheet,
         val_quant_type,
         ch_gtf,
-        ch_transcript,
+        ch_transcriptome,
         val_method,
         val_dif_cutoff,
         val_pvalue_threshold,
         val_ntop_isoforms,
     )
-    ch_versions = ch_versions.mix(ISOFORMSWITCHANALYZER.out.versions)
 
     // 2. GO enrichment analysis (optional)
     if ("GO" in val_enrichment_method) {
@@ -56,7 +54,6 @@ workflow COUNTS_ISOFORM_SWITCH_ENRICHMENT {
             val_ntop_processes,
         )
         ch_go_enrichment = GO_ENRICHMENT.out.go_results
-        ch_versions = ch_versions.mix(GO_ENRICHMENT.out.versions)
     }
 
     // 3. KEGG pathway enrichment analysis (optional)
@@ -73,7 +70,6 @@ workflow COUNTS_ISOFORM_SWITCH_ENRICHMENT {
             val_ntop_processes,
         )
         ch_kegg_enrichment = KEGG_ENRICHMENT.out.kegg_results
-        ch_versions = ch_versions.mix(KEGG_ENRICHMENT.out.versions)
     }
 
     emit:
@@ -81,5 +77,4 @@ workflow COUNTS_ISOFORM_SWITCH_ENRICHMENT {
     significant_geneids = ISOFORMSWITCHANALYZER.out.significant_geneids // channel: [ significant_geneids ]
     go_enrichment = ch_go_enrichment // channel: [ go_results ]
     kegg_enrichment = ch_kegg_enrichment // channel: [ kegg_results ]
-    versions = ch_versions // channel: [ versions.yml ]
 }

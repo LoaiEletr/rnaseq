@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process KALLISTO_QUANT {
     tag "${meta.id}"
     label 'process_low'
@@ -11,28 +9,24 @@ process KALLISTO_QUANT {
 
     input:
     tuple val(meta), path(reads)
-    path index
-    path gtf
-    val bootstrap_count
+    tuple val(meta2), path(index)
+    tuple val(meta3), path(gtf)
     val fragment_length
     val fragment_length_sd
 
     output:
     tuple val(meta), path("${prefix}"), emit: quant_dir
-    tuple val(meta), path("${prefix}/run_info.json"), emit: json_info
-    tuple val(meta), path("*.log"), emit: log
-    path "versions.yml", emit: versions
+    tuple val(meta), path("${prefix}/*.log"), emit: log
+    tuple val("${task.process}"), val('kallisto'), eval("kallisto version | sed 's/.*ion //'"), topic: versions, emit: versions_kallisto
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args ?: ''
-    def bootstrap_count_input = bootstrap_count ? "-b ${bootstrap_count}" : ''
-    def gtf_input = gtf ? "--gtf ${gtf}" : ''
     prefix = task.ext.prefix ?: "${meta.id}"
     def fastq_in = meta.single_end ? "--single -l ${fragment_length} -s ${fragment_length_sd} ${reads}" : "${reads[0]} ${reads[1]}"
-    strand_flag = ""
+    def strand_flag = ""
 
     if (meta.lib_type in ["IU", "U", "MU", "OU"]) {
         strand_flag = ""
@@ -50,8 +44,7 @@ process KALLISTO_QUANT {
     kallisto \\
         quant \\
         ${args} \\
-        ${bootstrap_count_input} \\
-        ${gtf_input} \\
+        --gtf ${gtf} \\
         ${strand_flag} \\
         -t ${task.cpus} \\
         -i ${index} \\
@@ -59,24 +52,19 @@ process KALLISTO_QUANT {
         ${fastq_in} \\
         2>| >( tee kallisto_${prefix}_quant.log >&2 )
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        kallisto: \$( kallisto version | sed 's/.*ion //' )
-    END_VERSIONS
+    mv kallisto_${prefix}_quant.log ${prefix}
     """
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
     mkdir ${prefix}
+
     touch kallisto_${prefix}_quant.log
     touch ${prefix}/abundance.h5
     touch ${prefix}/abundance.tsv
     touch ${prefix}/run_info.json
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        kallisto: \$( kallisto version | sed 's/.*ion //' )
-    END_VERSIONS
+    mv kallisto_${prefix}_quant.log ${prefix}
     """
 }

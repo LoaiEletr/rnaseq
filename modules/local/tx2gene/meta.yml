@@ -1,72 +1,68 @@
-name: tx2gene
+name: "tx2gene"
 description: |
-  Generates transcript-to-gene mapping file (tx2gene) for various species using biomaRt.
+  Generates a transcript-to-gene mapping file (tx2gene) for various species using biomaRt.
+  This is essential for summarizing transcript-level quantification to gene-level counts.
 keywords:
   - biomart
   - transcript
   - gene
   - mapping
+  - annotation
 tools:
   - bioconductor_biomart:
-      description: "Interface to BioMart databases for gene/transcript annotation"
+      description: "Interface to BioMart databases (e.g. Ensembl) for gene/transcript annotation"
       homepage: "https://bioconductor.org/packages/biomaRt/"
       documentation: "https://bioconductor.org/packages/release/bioc/html/biomaRt.html"
       tool_dev_url: "https://github.com/grimbough/biomaRt"
+      doi: "10.1038/nprot.2009.97"
       licence: ["Artistic-2.0"]
       identifier: "biomaRt"
 
 input:
-  - species_name:
-      type: string
-      description: |
-        Species name for transcript-to-gene mapping
-        Supported species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey
-      pattern: "human|mouse|rat|yeast|fruitfly|zebrafish|worm|arabidopsis|chicken|cow|pig|dog|monkey"
+  - - species_name:
+        type: string
+        description: Species name for fetching the correct BioMart dataset (e.g., "human", "mouse").
+        pattern: "human|mouse|rat|yeast|fruitfly|zebrafish|worm|arabidopsis|chicken|cow|pig|dog|monkey"
+        ontologies: []
 
 output:
   tsv:
     - "*.tsv":
         type: file
-        description: |
-          TSV file with transcript-to-gene mapping
+        description: TSV file containing transcript IDs and their corresponding gene IDs/names.
         pattern: "*.tsv"
         ontologies:
-          - edam: "http://edamontology.org/format_3475"
-
-  versions_biomart:
+          - edam: "http://edamontology.org/format_3475" # TSV
+  versions_rbase:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - r_base:
+      - r-base:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+      - "Rscript -e 'cat(as.character(getRversion()))'":
           type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_biomart:
+  versions_biomart:
+    - - "${task.process}":
           type: string
-          description: The name of the BioMart package
-      - 'Rscript -e "library(biomaRt); cat(as.character(packageVersion(''biomaRt'')))"':
+      - bioconductor-biomart:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''biomaRt'')))"':
           type: eval
-          description: The expression to obtain the version of BioMart
 
 topics:
   versions:
     - - "${task.process}":
           type: string
-          description: The name of the process
-      - r_base:
+      - r-base:
           type: string
-          description: The name of R programming language
-      - "echo $(R --version 2>&1) | sed 's/^.*R version //; s/ .*$//'":
+      - "Rscript -e 'cat(as.character(getRversion()))'":
           type: eval
-          description: The expression to obtain the version of R
-      - bioconductor_biomart:
+    - - "${task.process}":
           type: string
-          description: The name of the BioMart package
-      - 'Rscript -e "library(biomaRt); cat(as.character(packageVersion(''biomaRt'')))"':
+      - bioconductor-biomart:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''biomaRt'')))"':
           type: eval
-          description: The expression to obtain the version of BioMart
 
 authors:
   - "@Loai3tr"

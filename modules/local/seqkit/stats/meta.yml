@@ -1,17 +1,20 @@
 name: seqkit_stats
 description: |
   Calculates average read length from FASTQ files using seqkit stats.
+  The value is rounded to the nearest integer and exported as an environment variable.
 keywords:
   - seqkit
   - statistics
   - read length
   - fastq
+  - quality control
 tools:
   - seqkit:
       description: "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation"
       homepage: "https://bioinf.shenwei.me/seqkit/"
       documentation: "https://bioinf.shenwei.me/seqkit/usage/"
       tool_dev_url: "https://github.com/shenwei356/seqkit"
+      doi: "10.1371/journal.pone.0163962"
       licence: ["MIT"]
       identifier: "seqkit"
 
@@ -24,20 +27,23 @@ input:
     - reads:
         type: file
         description: |
-          Input FASTQ file(s) for read length calculation
-          For paired-end data, uses first read file
+          Input FASTQ file(s) for read length calculation.
+          For paired-end data, only the first read file is typically used for length inference.
         pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_1930"
+          - edam: "http://edamontology.org/format_1930" # FASTQ
 
 output:
   avg_length:
-    - AVG_READLENGTH:
-        type: integer
-        description: |
-          Average read length (rounded to nearest integer)
-        pattern: "[0-9]+"
-
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - AVG_READLENGTH:
+          type: string
+          description: Average read length extracted from seqkit stats (rounded to nearest integer)
+          ontologies: []
   versions_seqkit:
     - - "${task.process}":
           type: string

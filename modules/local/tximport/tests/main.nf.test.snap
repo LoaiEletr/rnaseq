@@ -1,18 +1,30 @@
 {
-    "Should stub import kallisto quantification with tximport and return mocked RDS results": {
+    "yeast - quant_dirs - pseudo_aligner - tx2gene tsv | salmon": {
         "content": [
             {
-                "0": [
-                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "1": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
-                ],
                 "rds": [
-                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "tximport_results.rds"
                 ],
-                "versions": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+                "versions_rbase": [
+                    [
+                        "TXIMPORT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ],
+                "versions_tximport": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-tximport",
+                        "1.34.0"
+                    ]
                 ]
             }
         ],
@@ -20,22 +32,58 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T21:34:23.86166052"
+        "timestamp": "2026-02-23T01:44:37.800317411"
     },
-    "Should stub import salmon quantification with tximport and return mocked RDS results": {
+    "yeast - quant_dirs - pseudo_aligner - tx2gene tsv - stub | salmon": {
         "content": [
             {
                 "0": [
                     "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "1": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+                    [
+                        "TXIMPORT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-tximport",
+                        "1.34.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
                 ],
                 "rds": [
                     "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
-                "versions": [
-                    "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
+                "versions_rbase": [
+                    [
+                        "TXIMPORT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ],
+                "versions_tximport": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-tximport",
+                        "1.34.0"
+                    ]
                 ]
             }
         ],
@@ -43,30 +91,100 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T21:35:32.556271896"
+        "timestamp": "2026-02-23T01:47:06.34875202"
     },
-    "versions_tximport_kallisto": {
+    "yeast - quant_dirs - pseudo_aligner - tx2gene tsv - stub | kallisto": {
         "content": [
-            [
-                "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
-            ]
+            {
+                "0": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    [
+                        "TXIMPORT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-tximport",
+                        "1.34.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ],
+                "rds": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_rbase": [
+                    [
+                        "TXIMPORT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ],
+                "versions_tximport": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-tximport",
+                        "1.34.0"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T21:31:11.58210555"
+        "timestamp": "2026-02-23T01:45:36.213650449"
     },
-    "versions_tximport_salmon": {
+    "yeast - quant_dirs - pseudo_aligner - tx2gene tsv | kallisto": {
         "content": [
-            [
-                "versions.yml:md5,73e71e2bca699ad1bed449a0239e74de"
-            ]
+            {
+                "rds": [
+                    "tximport_results.rds"
+                ],
+                "versions_rbase": [
+                    [
+                        "TXIMPORT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ],
+                "versions_tximport": [
+                    [
+                        "TXIMPORT",
+                        "bioconductor-tximport",
+                        "1.34.0"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-22T21:32:44.446961485"
+        "timestamp": "2026-02-23T01:43:15.19222239"
     }
 }

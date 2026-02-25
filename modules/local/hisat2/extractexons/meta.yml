@@ -15,24 +15,31 @@ tools:
       identifier: "hisat2"
 
 input:
-  - gtf:
-      type: file
-      description: |
-        Input GTF annotation file
-      pattern: "*.{gtf,gtf.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_2306"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - gtf:
+        type: file
+        description: Input GTF annotation file
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
 
 output:
   exons_sites:
-    - "*.exons.tsv":
-        type: file
-        description: |
-          TSV file containing exon coordinates extracted from GTF
-        pattern: "*.exons.tsv"
-        ontologies:
-          - edam: "http://edamontology.org/format_3475"
-
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.exons.tsv":
+          type: file
+          description: TSV file containing exon coordinates extracted from GTF
+          pattern: "*.exons.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475" # TSV
   versions_hisat2:
     - - "${task.process}":
           type: string
@@ -40,7 +47,7 @@ output:
       - hisat2:
           type: string
           description: The name of the tool
-      - "hisat2 --version | head -n 1 | awk '{print $3}'":
+      - "hisat2 --version | head -n 1 | awk '{print $3}' | sed 's/^.*version //'":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -52,7 +59,7 @@ topics:
       - hisat2:
           type: string
           description: The name of the tool
-      - "hisat2 --version | head -n 1 | awk '{print $3}'":
+      - "hisat2 --version | head -n 1 | awk '{print $3}' | sed 's/^.*version //'":
           type: eval
           description: The expression to obtain the version of the tool
 

@@ -1,5 +1,5 @@
 {
-    "Should stub deduplicate paired-end BAM with UMIs and return mocked deduplicated BAM with logs and TSV files": {
+    "sarscov2 - [bam, bai] - stub | paired-end": {
         "content": [
             {
                 "0": [
@@ -48,7 +48,11 @@
                     ]
                 ],
                 "5": [
-                    "versions.yml:md5,410312d7030cade03ce9998101ac359a"
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
                 ],
                 "bam": [
                     [
@@ -95,8 +99,12 @@
                         "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,410312d7030cade03ce9998101ac359a"
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
                 ]
             }
         ],
@@ -104,9 +112,135 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T02:21:11.705542875"
+        "timestamp": "2026-02-21T02:36:46.918020833"
     },
-    "Should stub deduplicate single-end BAM with UMIs and return mocked deduplicated BAM with logs and TSV files": {
+    "sarscov2 - [bam, bai] | single-end": {
+        "content": [
+            {
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.bam:md5,c9da2ee4f07f5c6922251bd01d6bcb01"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.log"
+                    ]
+                ],
+                "tsv_edit_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_edit_distance.tsv"
+                    ]
+                ],
+                "tsv_per_umi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_per_umi.tsv:md5,9b59b25634740ae3dd02a38b3aee1397"
+                    ]
+                ],
+                "tsv_umi_per_position": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_per_umi_per_position.tsv:md5,2e1a12e6f720510880068deddeefe063"
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T02:28:28.417991779"
+    },
+    "sarscov2 - [bam, bai] | paired-end": {
+        "content": [
+            {
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.bam:md5,350e942a0d45e8356fa24bc8c47dc1ed"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.log"
+                    ]
+                ],
+                "tsv_edit_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_edit_distance.tsv"
+                    ]
+                ],
+                "tsv_per_umi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_per_umi.tsv:md5,8e6783a4a79437b095f095f2aefe7c01"
+                    ]
+                ],
+                "tsv_umi_per_position": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_per_umi_per_position.tsv:md5,9386db4a104b8e4e32f3ca4a84efa4ac"
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T02:29:53.160161401"
+    },
+    "sarscov2 - [bam, bai] - stub | single-end": {
         "content": [
             {
                 "0": [
@@ -155,7 +289,11 @@
                     ]
                 ],
                 "5": [
-                    "versions.yml:md5,410312d7030cade03ce9998101ac359a"
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
                 ],
                 "bam": [
                     [
@@ -202,8 +340,12 @@
                         "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,410312d7030cade03ce9998101ac359a"
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
                 ]
             }
         ],
@@ -211,84 +353,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-18T02:20:09.054904313"
-    },
-    "Should deduplicate paired-end BAM with UMIs and return deduplicated BAM with logs and TSV files": {
-        "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.umi_dedup.bam:md5,350e942a0d45e8356fa24bc8c47dc1ed"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test_per_umi.tsv:md5,8e6783a4a79437b095f095f2aefe7c01"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test_per_umi_per_position.tsv:md5,9386db4a104b8e4e32f3ca4a84efa4ac"
-                ]
-            ],
-            [
-                "versions.yml:md5,410312d7030cade03ce9998101ac359a"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-18T02:03:26.853402972"
-    },
-    "Should deduplicate single-end BAM with UMIs and return deduplicated BAM with logs and TSV files": {
-        "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.umi_dedup.bam:md5,c9da2ee4f07f5c6922251bd01d6bcb01"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test_per_umi.tsv:md5,9b59b25634740ae3dd02a38b3aee1397"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test_per_umi_per_position.tsv:md5,2e1a12e6f720510880068deddeefe063"
-                ]
-            ],
-            [
-                "versions.yml:md5,410312d7030cade03ce9998101ac359a"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-18T02:00:56.101899418"
+        "timestamp": "2026-02-21T02:35:38.948932169"
     }
 }

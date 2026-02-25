@@ -1,7 +1,5 @@
-#!/usr/bin/env nextflow
-
 process DEXSEQ_PREPAREANNOTATION {
-    tag "${gtf}"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -10,12 +8,12 @@ process DEXSEQ_PREPAREANNOTATION {
         : 'biocontainers/htseq:2.0.9--py312h8f4af18_0'}"
 
     input:
-    path gtf
+    tuple val(meta), path(gtf)
     val aggregation
 
     output:
-    path "*.gff", emit: gff
-    path "versions.yml", emit: versions
+    tuple val(meta), path("*.gff"), emit: gff
+    tuple val("${task.process}"), val('htseq'), eval("python -c 'from importlib.metadata import version; print(version(\"HTSeq\"))'"), topic: versions, emit: versions_htseq
 
     when:
     task.ext.when == null || task.ext.when
@@ -31,21 +29,11 @@ process DEXSEQ_PREPAREANNOTATION {
         ${prefix}.gff \\
         ${args} \\
         ${aggregation_flag}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        htseq: \$(python -c "import pkg_resources; print(pkg_resources.get_distribution('htseq').version)")
-    END_VERSIONS
     """
 
     stub:
     def prefix = task.ext.prefix ?: "DEXSeq"
     """
     touch ${prefix}.gff
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        htseq: \$(python -c "import pkg_resources; print(pkg_resources.get_distribution('htseq').version)")
-    END_VERSIONS
     """
 }

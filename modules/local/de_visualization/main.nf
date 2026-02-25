@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process DE_VISUALIZATION {
     label 'process_low'
 
@@ -19,7 +17,10 @@ process DE_VISUALIZATION {
     output:
     path "de_visualization/volcano_sig_genes.pdf", optional: true, emit: volcano_plot
     path "de_visualization/heatmap/**", optional: true, emit: heatmaps
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-enhancedvolcano'), eval("Rscript -e \"library(EnhancedVolcano); cat(as.character(packageVersion('EnhancedVolcano')))\""), topic: versions, emit: versions_enhancedvolcano
+    tuple val("${task.process}"), val('r-pheatmap'), eval("Rscript -e \"library(pheatmap); cat(as.character(packageVersion('pheatmap')))\""), topic: versions, emit: versions_pheatmap
+    tuple val("${task.process}"), val('r-rcolorbrewer'), eval("Rscript -e \"library(RColorBrewer); cat(as.character(packageVersion('RColorBrewer')))\""), topic: versions, emit: versions_rcolorbrewer
 
     when:
     task.ext.when == null || task.ext.when
@@ -35,27 +36,11 @@ process DE_VISUALIZATION {
         ${pval_threshold} \\
         ${lfc_threshold} \\
         ${vst_file}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-enhancedvolcano: \$(Rscript -e "library(EnhancedVolcano); cat(as.character(packageVersion('EnhancedVolcano')))")
-        r-pheatmap: \$(Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
-        r-rcolorbrewer: \$(Rscript -e "library(RColorBrewer); cat(as.character(packageVersion('RColorBrewer')))")
-    END_VERSIONS
     """
 
     stub:
     """
     mkdir -p de_visualization/heatmap
     touch de_visualization/volcano_sig_genes.pdf
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-enhancedvolcano: \$(Rscript -e "library(EnhancedVolcano); cat(as.character(packageVersion('EnhancedVolcano')))")
-        r-pheatmap: \$(Rscript -e "library(pheatmap); cat(as.character(packageVersion('pheatmap')))")
-        r-rcolorbrewer: \$(Rscript -e "library(RColorBrewer); cat(as.character(packageVersion('RColorBrewer')))")
-    END_VERSIONS
     """
 }

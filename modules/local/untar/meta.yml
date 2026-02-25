@@ -1,10 +1,12 @@
 name: untar
 description: |
   Extracts contents from tar.gz archives.
+  Uses the --one-top-level flag to ensure contents are extracted into a specific subdirectory named after the archive.
 keywords:
   - tar
   - extraction
   - archive
+  - compressed
 tools:
   - tar:
       description: "GNU tar - an archiving utility"
@@ -15,27 +17,35 @@ tools:
       identifier: "tar"
 
 input:
-  - archive:
-      type: file
-      description: |
-        tar.gz archive file to extract
-      pattern: "*.tar.gz"
-      ontologies:
-        - edam: "http://edamontology.org/format_3989"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test' ]`
+    - archive:
+        type: file
+        description: Compressed tar archive file (typically .tar.gz)
+        pattern: "*.{tar,tar.gz,tgz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3989" # GZIP format
 
 output:
   untar:
-    - "${prefix}":
-        type: file
-        description: |
-          Directory containing extracted contents
-        pattern: "*"
-
-  versions_tar:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test' ]`
+      - "${prefix}":
+          type: directory
+          description: Directory containing the extracted contents of the archive
+          pattern: "*/"
+          ontologies: []
+  versions_untar:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - tar:
+      - untar:
           type: string
           description: The name of the tool
       - "tar --version | head -n 1 | sed 's/.*) //'":
@@ -47,7 +57,7 @@ topics:
     - - "${task.process}":
           type: string
           description: The name of the process
-      - tar:
+      - untar:
           type: string
           description: The name of the tool
       - "tar --version | head -n 1 | sed 's/.*) //'":

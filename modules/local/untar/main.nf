@@ -1,15 +1,13 @@
-#!/usr/bin/env nextflow
-
 process UNTAR {
-    tag "${archive}"
+    tag "${meta.id}"
     label 'process_low'
 
     input:
-    path archive
+    tuple val(meta), path(archive)
 
     output:
-    path ("${prefix}"), emit: untar
-    path "versions.yml", emit: versions
+    tuple val(meta), path("${prefix}"), emit: untar
+    tuple val("${task.process}"), val('untar'), eval("tar --version | head -n 1 | sed 's/.*) //'"), topic: versions, emit: versions_untar
 
     when:
     task.ext.when == null || task.ext.when
@@ -23,21 +21,11 @@ process UNTAR {
         ${args} \\
         ${archive} \\
         --one-top-level=${prefix}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        untar: \$( tar --version | head -n 1 | sed 's/.*) //' )
-    END_VERSIONS
     """
 
     stub:
     prefix = archive.toString() - '.tar.gz'
     """
     touch ${prefix}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        untar: \$( tar --version | head -n 1 | sed 's/.*) //' )
-    END_VERSIONS
     """
 }

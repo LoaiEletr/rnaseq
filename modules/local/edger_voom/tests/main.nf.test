@@ -1,12 +1,13 @@
 nextflow_process {
     name "Test Process EDGER_VOOM"
-    script "modules/local/edger_voom/main.nf"
+    script "../main.nf"
     process "EDGER_VOOM"
 
     tag "modules"
+    tag "modules_local"
     tag "edger_voom"
 
-    test("Should run edgeR with voom transformation on tximport counts and return Voom results with plots") {
+    test("yeast - tximport matrix - samplesheet") {
         when {
             params {
                 outdir = "$outputDir"
@@ -26,17 +27,12 @@ nextflow_process {
                 { assert process.out.normalized_log2cpm.get(0) ==~ ".*/normalized_log2cpm\\.rds" },
                 { assert process.out.voom_transformed.get(0) ==~ ".*/voom_transformed\\.rds" },
                 { assert process.out.voom_plot.get(0) ==~ ".*/voom_plot\\.pdf" },
-                { assert snapshot(
-                    process.out.unfiltered_log2cpm,
-                    process.out.filtered_log2cpm,
-                    process.out.normalized_log2cpm,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["voom_transformed", "voom_plot"])).match() }
             )
         }
     }
 
-    test("Should run edgeR with voom transformation on featureCounts counts and return Voom results with plots") {
+    test("yeast - featurecounts matrix - samplesheet") {
         when {
             params {
                 outdir = "$outputDir"
@@ -56,17 +52,12 @@ nextflow_process {
                 { assert process.out.normalized_log2cpm.get(0) ==~ ".*/normalized_log2cpm\\.rds" },
                 { assert process.out.voom_transformed.get(0) ==~ ".*/voom_transformed\\.rds" },
                 { assert process.out.voom_plot.get(0) ==~ ".*/voom_plot\\.pdf" },
-                { assert snapshot(
-                    process.out.unfiltered_log2cpm,
-                    process.out.filtered_log2cpm,
-                    process.out.normalized_log2cpm,
-                    process.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["voom_transformed", "voom_plot"])).match() }
             )
         }
     }
 
-    test("Should stub run edgeR with voom transformation on tximport counts and return mocked Voom results with plots") {
+    test("yeast - tximport matrix - samplesheet - stub") {
         options "-stub"
         when {
             params {
@@ -87,7 +78,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub run edgeR with voom transformation on featureCounts counts and return mocked Voom results with plots") {
+    test("yeast - featurecounts matrix - samplesheet - stub") {
         options "-stub"
         when {
             params {

@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process RSEQC_INFEREXPERIMENT {
     tag "${meta.id}"
     label 'process_low'
@@ -11,11 +9,11 @@ process RSEQC_INFEREXPERIMENT {
 
     input:
     tuple val(meta), path(bam)
-    path bed
+    tuple val(meta2), path(bed)
 
     output:
     tuple val(meta), path("*.infer_experiment.txt"), emit: txt
-    path ("versions.yml"), emit: versions
+    tuple val("${task.process}"), val('rseqc'), eval("infer_experiment.py --version | sed 's/.*.py //'"), topic: versions, emit: versions_rseqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -29,21 +27,11 @@ process RSEQC_INFEREXPERIMENT {
         ${args} \\
         -i ${bam} \\
         > ${prefix}.infer_experiment.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( infer_experiment.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.infer_experiment.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( infer_experiment.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 }

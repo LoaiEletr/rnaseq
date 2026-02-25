@@ -1,10 +1,11 @@
 nextflow_workflow {
 
     name "Test Workflow COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT"
-    script "subworkflows/local/counts_coexpression_network_ppi_enrichment/main.nf"
+    script "../main.nf"
     workflow "COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT"
 
     tag "subworkflows"
+    tag "subworkflows_local"
     tag "subworkflows/counts_coexpression_network_ppi_enrichment"
     tag "wgcna_analysis"
     tag "qc_visualization"
@@ -62,7 +63,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.versions).match("versions_go_kegg") }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["wgcna_results", "ppi_results", "qc_plots", "heatmap_plots", "go_enrichment", "kegg_enrichment"])).match() }
             )
         }
     }
@@ -114,7 +115,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.versions).match("versions_go") }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["wgcna_results", "ppi_results", "qc_plots", "heatmap_plots", "go_enrichment", "kegg_enrichment"])).match() }
             )
         }
     }
@@ -166,7 +167,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.versions).match("versions_kegg") }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["wgcna_results", "ppi_results", "qc_plots", "heatmap_plots", "go_enrichment", "kegg_enrichment"])).match() }
             )
         }
     }

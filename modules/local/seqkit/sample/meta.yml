@@ -1,16 +1,19 @@
 name: seqkit_sample
 description: |
-  Subsamples FASTQ files to 1 million reads using seqkit.
+  Subsamples FASTQ files to a specific number of reads (default: 1 million) using SeqKit.
+  Uses a fixed seed to ensure reproducibility in paired-end subsampling.
 keywords:
   - seqkit
   - subsample
   - fastq
+  - downsample
 tools:
   - seqkit:
       description: "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation"
       homepage: "https://bioinf.shenwei.me/seqkit/"
       documentation: "https://bioinf.shenwei.me/seqkit/usage/"
       tool_dev_url: "https://github.com/shenwei356/seqkit"
+      doi: "10.1371/journal.pone.0163962"
       licence: ["MIT"]
       identifier: "seqkit"
 
@@ -23,11 +26,11 @@ input:
     - reads:
         type: file
         description: |
-          Input FASTQ file(s) to subsample
-          Single file for single-end, two files for paired-end data
+          Input FASTQ file(s) to subsample.
+          Single file for single-end, list of two files for paired-end data.
         pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_1930"
+          - edam: "http://edamontology.org/format_1930" # FASTQ
 
 output:
   reads:
@@ -38,27 +41,10 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - "*_1M.fastq.gz":
           type: file
-          description: |
-            Subsampled FASTQ files (1 million reads each)
-            Single file for single-end, two files for paired-end data
+          description: Subsampled FASTQ files containing 1 million reads.
           pattern: "*_1M.fastq.gz"
           ontologies:
-            - edam: "http://edamontology.org/format_1930"
-
-  log:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
-      - "*.log":
-          type: file
-          description: |
-            Log file from seqkit subsampling
-          pattern: "*.log"
-          ontologies:
-            - edam: "http://edamontology.org/data_1678"
-
+            - edam: "http://edamontology.org/format_1930" # FASTQ
   versions_seqkit:
     - - "${task.process}":
           type: string

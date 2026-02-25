@@ -5,6 +5,7 @@ nextflow_workflow {
     workflow "COUNTS_MATRIXGENERATION"
 
     tag "subworkflows"
+    tag "subworkflows_local"
     tag "subworkflows/counts_matrixgeneration"
     tag "tx2gene"
     tag "tximport"
@@ -15,7 +16,7 @@ nextflow_workflow {
             script "modules/local/untar/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)
+                input[0] = [[id: 'kallisto_results'], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)]
                 """
             }
         }
@@ -24,7 +25,7 @@ nextflow_workflow {
             script "modules/local/untar/main.nf"
             process {
                 """
-                input[0] = file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)
+                input[0] = [[id: 'salmon_results'], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)]
                 """
             }
         }
@@ -65,13 +66,13 @@ nextflow_workflow {
                         ]
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 """
             }
         }
     }
 
-    test("saccharomyces_cerevisiae - kallisto_results - yeast | kallisto") {
+    test("yeast - counts - species name | kallisto") {
         when {
             params {
                 outdir = "$outputDir"
@@ -79,7 +80,7 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = UNTAR_KALLISTO.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = "kallisto"
@@ -90,12 +91,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.versions).match("versions_kallisto") }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["gene_table_rds"])).match() }
             )
         }
     }
 
-    test("saccharomyces_cerevisiae - salmon_results - yeast | salmon") {
+    test("yeast - counts - species name | salmon") {
         when {
             params {
                 outdir = "$outputDir"
@@ -103,7 +104,7 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = UNTAR_SALMON.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = "salmon"
@@ -114,12 +115,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.versions).match("versions_salmon") }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["gene_table_rds"])).match() }
             )
         }
     }
 
-    test("sarscov2 - featurecounts - homo_sapiens | featurecounts") {
+    test("sarscov2 - counts - species name | featurecounts") {
         when {
             params {
                 outdir = "$outputDir"
@@ -139,12 +140,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.versions).match("versions_featurecounts") }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["gene_table_rds"])).match() }
             )
         }
     }
 
-    test("saccharomyces_cerevisiae - kallisto_results - yeast | kallisto - stub") {
+    test("yeast - counts - species name - stub | kallisto") {
         options "-stub"
         when {
             params {
@@ -153,7 +154,7 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = UNTAR_KALLISTO.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = "kallisto"
@@ -169,7 +170,7 @@ nextflow_workflow {
         }
     }
 
-    test("saccharomyces_cerevisiae - salmon_results - yeast | salmon - stub") {
+    test("yeast - counts - species name - stub | salmon") {
         options "-stub"
         when {
             params {
@@ -178,7 +179,7 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = UNTAR_SALMON.out.untar
-                .map { dir ->
+                .map { meta, dir ->
                     dir.listFiles().findAll { it.isDirectory() }
                 }
                 input[1] = "salmon"
@@ -194,7 +195,7 @@ nextflow_workflow {
         }
     }
 
-    test("sarscov2 - featurecounts - homo_sapiens | featurecounts - stub") {
+    test("sarscov2 - counts - species name - stub | featurecounts") {
         options "-stub"
         when {
             params {

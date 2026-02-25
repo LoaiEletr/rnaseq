@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process UMITOOLS_DEDUP {
     tag "${meta.id}"
     label 'process_low'
@@ -18,7 +16,7 @@ process UMITOOLS_DEDUP {
     tuple val(meta), path("*edit_distance.tsv"), emit: tsv_edit_distance
     tuple val(meta), path("*per_umi.tsv"), emit: tsv_per_umi
     tuple val(meta), path("*per_position.tsv"), emit: tsv_umi_per_position
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('umitools'), eval("umi_tools --version | sed 's/.*version: //'"), topic: versions, emit: versions_umitools
 
     when:
     task.ext.when == null || task.ext.when
@@ -35,14 +33,7 @@ process UMITOOLS_DEDUP {
         -L ${prefix}.umi_dedup.log \\
         -S ${prefix}.umi_dedup.bam \\
         ${bam_in} \\
-        --extract-umi-method=read_id \\
-        --umi-separator=":" \\
         --output-stats=${prefix}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        umi_tools: \$( umi_tools --version | sed 's/.*version: //' )
-    END_VERSIONS
     """
 
     stub:
@@ -53,10 +44,5 @@ process UMITOOLS_DEDUP {
     touch ${prefix}.edit_distance.tsv
     touch ${prefix}.per_umi.tsv
     touch ${prefix}.per_position.tsv
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        umi_tools: \$( umi_tools --version | sed 's/.*version: //' )
-    END_VERSIONS
     """
 }

@@ -1,317 +1,111 @@
 {
-    "sarscov2 - fasta - gtf | kallisto - with_DIU": {
-        "content": [
-            [
-                "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-            ],
-            [
-                "versions.yml:md5,29ec3909f67e8fa9baacdf0f95d5020d",
-                "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-07T11:02:05.729094954"
-    },
-    "sarscov2 - fasta - gtf - contaminant | hisat2 - with_DIU - with_SortMeRNA": {
-        "content": [
-            [
-                "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
-            ],
-            [
-                "genome.fasta:md5,6e9fe4042a72f2345f644f239272b7e6"
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-            ],
-            [
-                "chr19.filtered.gtf:md5,29ea9f8629c84868b4b0ce5cd4f57632"
-            ],
-            [
-                
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta"
-            ],
-            [
-                [
-                    "smr_v4.3_default_db.fasta:md5,d3cb15b68d7eee5b4610126db7781f82",
-                    "smr_v4.3_fast_db.fasta:md5,ebe4e5c0059591f8ae37dadffcf55b3a",
-                    "smr_v4.3_sensitive_db.fasta:md5,45ec08a220f069499cdb3a4b7b1eef1b",
-                    "smr_v4.3_sensitive_db_rfam_seeds.fasta:md5,24250fbee1fa25d30dc2b150b81078cb"
-                ]
-            ],
-            [
-                "versions.yml:md5,287ab689cbf7c313466543dafa12e0a9",
-                "versions.yml:md5,7e1e31cebae0ec0eff9f65eb9d224a01",
-                "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f",
-                "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
-                "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
-                "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
-                "versions.yml:md5,9a57298745e2538f275553382d65a1fc",
-                "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-07T11:00:33.278319724"
-    },
-    "sarscov2 - fasta - gtf | hisat2 - minimal": {
-        "content": [
-            [
-                "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
-            ],
-            [
-                "genome.fasta:md5,6e9fe4042a72f2345f644f239272b7e6"
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-            ],
-            [
-                "chr19.filtered.gtf:md5,29ea9f8629c84868b4b0ce5cd4f57632"
-            ],
-            [
-                "versions.yml:md5,287ab689cbf7c313466543dafa12e0a9",
-                "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f",
-                "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
-                "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
-                "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-07T11:04:18.412411032"
-    },
-    "sarscov2 - fasta - gtf - contaminant | hisat2 - with_DEU - with_RSeQC": {
-        "content": [
-            [
-                "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
-            ],
-            [
-                "genome.fasta:md5,6e9fe4042a72f2345f644f239272b7e6"
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-            ],
-            [
-                "chr19.filtered.gtf:md5,29ea9f8629c84868b4b0ce5cd4f57632"
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta"
-            ],
-            [
-                
-            ],
-            [
-                "versions.yml:md5,287ab689cbf7c313466543dafa12e0a9",
-                "versions.yml:md5,35c8fa38e426196fbd01e9e262e9739f",
-                "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f",
-                "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
-                "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
-                "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
-                "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
-                "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-07T10:45:49.849992136"
-    },
-    "sarscov2 - fasta - gtf | salmon - no_DIU": {
-        "content": [
-            [
-                "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
-            ],
-            [
-                "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-            ],
-            [
-                
-            ],
-            [
-                "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-07T11:03:02.542603147"
-    },
-    "sarscov2 - fasta - gtf - contaminant | hisat2 - with_DEU - with_RSeQC - stub": {
+    "sarscov2 - GVC - build gatk indices": {
         "content": [
             {
-                "0": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
-                ],
-                "1": [
-                    "genome.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "10": [
-                    [
-                        "genome.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "11": [
-                    
-                ],
-                "12": [
-                    [
-                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "13": [
-                    
-                ],
-                "14": [
-                    [
-                        [
-                            [
-                                "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ]
-                        ],
-                        [
-                            [
-                                "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ]
-                        ]
-                    ]
-                ],
-                "15": [
-                    "versions.yml:md5,287ab689cbf7c313466543dafa12e0a9",
-                    "versions.yml:md5,35c8fa38e426196fbd01e9e262e9739f",
-                    "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f",
-                    "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
-                    "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
-                    "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
-                    "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                    "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
-                    "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
-                ],
-                "2": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
-                ],
-                "3": [
-                    "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-                ],
-                "4": [
-                    "chr19.filtered.gtf:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "5": [
-                    
-                ],
-                "6": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta"
-                ],
-                "7": [
-                    
-                ],
-                "8": [
-                    "chr19.filtered.gtf.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "9": [
-                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
                 "bbsplit_index": [
-                    [
-                        [
-                            [
-                                "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                                "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                            ]
-                        ],
-                        [
-                            [
-                                "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
-                                "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                            ]
-                        ]
-                    ]
+                    
                 ],
                 "bed": [
-                    "chr19.filtered.gtf.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/bed/test.bed12"
+                    ]
                 ],
                 "contaminant_fasta": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta"
+                    
+                ],
+                "dict": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.dict:md5,7362679f176e0f52add03c08f457f646"
+                    ]
+                ],
+                "fai": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.fasta.fai:md5,9da2a56e2853dc8c0b86a9e7229c9fe5"
+                    ]
                 ],
                 "fasta_compressed": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
                 ],
                 "fasta_uncompressed": [
-                    "genome.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.fasta:md5,6e9fe4042a72f2345f644f239272b7e6"
+                    ]
                 ],
                 "gff": [
-                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    
                 ],
                 "gtf_compressed": [
-                    "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.gtf"
+                    ]
                 ],
                 "gtf_isoform": [
                     
                 ],
                 "gtf_uncompressed": [
-                    "chr19.filtered.gtf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.gtf"
+                    ]
                 ],
                 "hisat2_index": [
                     [
-                        "genome.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "genome.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        {
+                            "id": "genome.fasta"
+                        },
+                        [
+                            "genome.fasta.1.ht2:md5,057cfa8a22b97ee9cff4c8d342498803",
+                            "genome.fasta.2.ht2:md5,47b153cd1319abc88dda532462651fcf",
+                            "genome.fasta.3.ht2:md5,4ed93abba181d8dfab2e303e33114777",
+                            "genome.fasta.4.ht2:md5,c25be5f8b0378abf7a58c8a880b87626",
+                            "genome.fasta.5.ht2:md5,91198831aaba993acac1734138c5f173",
+                            "genome.fasta.6.ht2:md5,265e1284ce85686516fae5d35540994a",
+                            "genome.fasta.7.ht2:md5,9013eccd91ad614d7893c739275a394f",
+                            "genome.fasta.8.ht2:md5,33cdeccccebe80329f1fdbee7f5874cb"
+                        ]
+                    ]
+                ],
+                "intervallist": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.interval_list:md5,c6c77fb23a18dbc51ff3dc840c7076dc"
+                    ]
+                ],
+                "intervals_split": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "1scattered.interval_list:md5,b0ab7803e81d68c1abc8ebaef66a9332",
+                            "2scattered.interval_list:md5,3f03c208a1f62f09d8a069d748eeb258",
+                            "3scattered.interval_list:md5,35a387002eb928cee4a210689f8708ea",
+                            "4scattered.interval_list:md5,8271d84a10c61c2394e7abf73ada42c6"
+                        ]
                     ]
                 ],
                 "kallisto_index": [
@@ -322,39 +116,34 @@
                 ],
                 "salmon_index": [
                     [
-                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome"
+                    ]
+                ],
+                "snpeff_db": [
+                    [
+                        {
+                            "id": "R64-1-1.99"
+                        },
+                        [
+                            [
+                                "snpEffectPredictor.bin:md5,1d2aee27c944ae26afb83e7d424a8334"
+                            ]
+                        ]
                     ]
                 ],
                 "sortmerna_index": [
                     
                 ],
                 "transcriptome": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
-                ],
-                "versions": [
-                    "versions.yml:md5,287ab689cbf7c313466543dafa12e0a9",
-                    "versions.yml:md5,35c8fa38e426196fbd01e9e262e9739f",
-                    "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f",
-                    "versions.yml:md5,82e9b660bff14eba450c7baa32097e49",
-                    "versions.yml:md5,85db3db3e96b7bc88ad5f6865a433106",
-                    "versions.yml:md5,96ff9ea8efdec6f26a297d93b4a13ddb",
-                    "versions.yml:md5,c9cf034c572acc1519e5c016a8265f43",
-                    "versions.yml:md5,f8c499e7a9b1948ac8946ebccdd9a80b",
-                    "versions.yml:md5,f96eef75993c5dc6ce038c601cb99fd6"
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
                 ]
             }
         ],
@@ -362,75 +151,11 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-07T11:08:42.692348309"
+        "timestamp": "2026-02-25T21:08:30.218878487"
     },
-    "sarscov2 - fasta - gtf | salmon - no_DIU - stub": {
+    "sarscov2 - hisat2 - build index": {
         "content": [
             {
-                "0": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
-                ],
-                "1": [
-                    
-                ],
-                "10": [
-                    
-                ],
-                "11": [
-                    
-                ],
-                "12": [
-                    [
-                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "13": [
-                    
-                ],
-                "14": [
-                    
-                ],
-                "15": [
-                    "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f"
-                ],
-                "2": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
-                ],
-                "3": [
-                    "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
-                ],
-                "4": [
-                    
-                ],
-                "5": [
-                    
-                ],
-                "6": [
-                    
-                ],
-                "7": [
-                    
-                ],
-                "8": [
-                    
-                ],
-                "9": [
-                    
-                ],
                 "bbsplit_index": [
                     
                 ],
@@ -440,25 +165,62 @@
                 "contaminant_fasta": [
                     
                 ],
+                "dict": [
+                    
+                ],
+                "fai": [
+                    
+                ],
                 "fasta_compressed": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
                 ],
                 "fasta_uncompressed": [
-                    
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.fasta:md5,6e9fe4042a72f2345f644f239272b7e6"
+                    ]
                 ],
                 "gff": [
                     
                 ],
                 "gtf_compressed": [
-                    "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    ]
                 ],
                 "gtf_isoform": [
                     
                 ],
                 "gtf_uncompressed": [
-                    
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "chr19.filtered.gtf:md5,29ea9f8629c84868b4b0ce5cd4f57632"
+                    ]
                 ],
                 "hisat2_index": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "index"
+                    ]
+                ],
+                "intervallist": [
+                    
+                ],
+                "intervals_split": [
                     
                 ],
                 "kallisto_index": [
@@ -469,31 +231,25 @@
                 ],
                 "salmon_index": [
                     [
-                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome"
                     ]
+                ],
+                "snpeff_db": [
+                    
                 ],
                 "sortmerna_index": [
                     
                 ],
                 "transcriptome": [
-                    "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
-                ],
-                "versions": [
-                    "versions.yml:md5,80b70172974f819687dc8e3a1bea2b9f"
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
                 ]
             }
         ],
@@ -501,6 +257,831 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-07T11:09:50.498497083"
+        "timestamp": "2026-02-25T20:42:46.243213952"
+    },
+    "sarscov2 - sortmerna - build index": {
+        "content": [
+            {
+                "bbsplit_index": [
+                    
+                ],
+                "bed": [
+                    
+                ],
+                "contaminant_fasta": [
+                    
+                ],
+                "dict": [
+                    
+                ],
+                "fai": [
+                    
+                ],
+                "fasta_compressed": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
+                ],
+                "fasta_uncompressed": [
+                    
+                ],
+                "gff": [
+                    
+                ],
+                "gtf_compressed": [
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    ]
+                ],
+                "gtf_isoform": [
+                    
+                ],
+                "gtf_uncompressed": [
+                    
+                ],
+                "hisat2_index": [
+                    
+                ],
+                "intervallist": [
+                    
+                ],
+                "intervals_split": [
+                    
+                ],
+                "kallisto_index": [
+                    
+                ],
+                "rrna_db_fasta": [
+                    [
+                        {
+                            "id": "database.tar"
+                        },
+                        [
+                            "smr_v4.3_default_db.fasta:md5,d3cb15b68d7eee5b4610126db7781f82",
+                            "smr_v4.3_fast_db.fasta:md5,ebe4e5c0059591f8ae37dadffcf55b3a",
+                            "smr_v4.3_sensitive_db.fasta:md5,45ec08a220f069499cdb3a4b7b1eef1b",
+                            "smr_v4.3_sensitive_db_rfam_seeds.fasta:md5,24250fbee1fa25d30dc2b150b81078cb"
+                        ]
+                    ]
+                ],
+                "salmon_index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome"
+                    ]
+                ],
+                "snpeff_db": [
+                    
+                ],
+                "sortmerna_index": [
+                    [
+                        {
+                            "id": "index"
+                        },
+                        "index"
+                    ]
+                ],
+                "transcriptome": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-25T21:02:52.245563163"
+    },
+    "sarscov2 - salmon - build index": {
+        "content": [
+            {
+                "bbsplit_index": [
+                    
+                ],
+                "bed": [
+                    
+                ],
+                "contaminant_fasta": [
+                    
+                ],
+                "dict": [
+                    
+                ],
+                "fai": [
+                    
+                ],
+                "fasta_compressed": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
+                ],
+                "fasta_uncompressed": [
+                    
+                ],
+                "gff": [
+                    
+                ],
+                "gtf_compressed": [
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    ]
+                ],
+                "gtf_isoform": [
+                    
+                ],
+                "gtf_uncompressed": [
+                    
+                ],
+                "hisat2_index": [
+                    
+                ],
+                "intervallist": [
+                    
+                ],
+                "intervals_split": [
+                    
+                ],
+                "kallisto_index": [
+                    
+                ],
+                "rrna_db_fasta": [
+                    
+                ],
+                "salmon_index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome"
+                    ]
+                ],
+                "snpeff_db": [
+                    
+                ],
+                "sortmerna_index": [
+                    
+                ],
+                "transcriptome": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T21:55:59.614185212"
+    },
+    "sarscov2 - all tools - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "10": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.fasta.fai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "11": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.dict:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "12": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "13": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "1scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "2scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "3scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "4scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "14": [
+                    [
+                        {
+                            "id": "R64-1-1.99"
+                        },
+                        [
+                            [
+                                "sequence.I.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "sequence.bin:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ]
+                        ]
+                    ]
+                ],
+                "15": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        [
+                            "genome.fasta.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "16": [
+                    
+                ],
+                "17": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        [
+                            "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "18": [
+                    [
+                        {
+                            "id": "index"
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "19": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.gtf"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.gtf"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    ]
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta"
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "database.tar"
+                        },
+                        "database:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "8": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/bed/test.bed12"
+                    ]
+                ],
+                "9": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bbsplit_index": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/bed/test.bed12"
+                    ]
+                ],
+                "contaminant_fasta": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta"
+                    ]
+                ],
+                "dict": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.dict:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fai": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.fasta.fai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fasta_compressed": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
+                ],
+                "fasta_uncompressed": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "genome.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gtf_compressed": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.gtf"
+                    ]
+                ],
+                "gtf_isoform": [
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    ]
+                ],
+                "gtf_uncompressed": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.gtf"
+                    ]
+                ],
+                "hisat2_index": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        [
+                            "genome.fasta.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.fasta.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "intervallist": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "intervals_split": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "1scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "2scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "3scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "4scattered.interval_list:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "kallisto_index": [
+                    
+                ],
+                "rrna_db_fasta": [
+                    [
+                        {
+                            "id": "database.tar"
+                        },
+                        "database:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "salmon_index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        [
+                            "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "snpeff_db": [
+                    [
+                        {
+                            "id": "R64-1-1.99"
+                        },
+                        [
+                            [
+                                "sequence.I.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "sequence.bin:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ]
+                        ]
+                    ]
+                ],
+                "sortmerna_index": [
+                    [
+                        {
+                            "id": "index"
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "transcriptome": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T23:27:27.077251636"
+    },
+    "sarscov2 - kallisto - build index": {
+        "content": [
+            {
+                "bbsplit_index": [
+                    
+                ],
+                "bed": [
+                    
+                ],
+                "contaminant_fasta": [
+                    
+                ],
+                "dict": [
+                    
+                ],
+                "fai": [
+                    
+                ],
+                "fasta_compressed": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
+                ],
+                "fasta_uncompressed": [
+                    
+                ],
+                "gff": [
+                    
+                ],
+                "gtf_compressed": [
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    ]
+                ],
+                "gtf_isoform": [
+                    
+                ],
+                "gtf_uncompressed": [
+                    
+                ],
+                "hisat2_index": [
+                    
+                ],
+                "intervallist": [
+                    
+                ],
+                "intervals_split": [
+                    
+                ],
+                "kallisto_index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome.idx"
+                    ]
+                ],
+                "rrna_db_fasta": [
+                    
+                ],
+                "salmon_index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome"
+                    ]
+                ],
+                "snpeff_db": [
+                    
+                ],
+                "sortmerna_index": [
+                    
+                ],
+                "transcriptome": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-25T20:43:41.738719837"
+    },
+    "sarscov2 - bbsplit - build index": {
+        "content": [
+            {
+                "bbsplit_index": [
+                    [
+                        {
+                            
+                        },
+                        "bbsplit"
+                    ]
+                ],
+                "bed": [
+                    
+                ],
+                "contaminant_fasta": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta"
+                    ]
+                ],
+                "dict": [
+                    
+                ],
+                "fai": [
+                    
+                ],
+                "fasta_compressed": [
+                    [
+                        {
+                            "id": "genome.fasta"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz"
+                    ]
+                ],
+                "fasta_uncompressed": [
+                    
+                ],
+                "gff": [
+                    
+                ],
+                "gtf_compressed": [
+                    [
+                        {
+                            "id": "chr19.filtered.gtf"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/mus_musculus/genome/chr19.filtered.gtf.gz"
+                    ]
+                ],
+                "gtf_isoform": [
+                    
+                ],
+                "gtf_uncompressed": [
+                    
+                ],
+                "hisat2_index": [
+                    
+                ],
+                "intervallist": [
+                    
+                ],
+                "intervals_split": [
+                    
+                ],
+                "kallisto_index": [
+                    
+                ],
+                "rrna_db_fasta": [
+                    
+                ],
+                "salmon_index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome"
+                    ]
+                ],
+                "snpeff_db": [
+                    
+                ],
+                "sortmerna_index": [
+                    
+                ],
+                "transcriptome": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/transcriptome.fasta"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-25T21:04:33.026231301"
     }
 }

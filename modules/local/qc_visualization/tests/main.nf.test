@@ -1,9 +1,10 @@
 nextflow_process {
     name "Test Process QC_VISUALIZATION"
-    script "modules/local/qc_visualization/main.nf"
+    script "../main.nf"
     process "QC_VISUALIZATION"
 
     tag "modules"
+    tag "modules_local"
     tag "qc_visualization"
 
     setup {
@@ -31,7 +32,7 @@ nextflow_process {
         }
     }
 
-    test("Should generate QC plots (MDS, violin, PCA) from edgeR data and return PDF plots") {
+    test("leishmaniasis - voom_transformed - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm | edgeR") {
         when {
             params {
                 outdir = "$outputDir"
@@ -51,12 +52,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.qc_plots.get(0) ==~ ".*/qc_plots" },
-                { assert snapshot(process.out.versions).match("versions_qcplots_edger") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["qc_plots"])).match() }
             )
         }
     }
 
-    test("Should generate QC plots (MDS, violin, PCA) from DESeq2 data and return PDF plots") {
+    test("leishmaniasis - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm | DESeq2") {
         when {
             params {
                 outdir = "$outputDir"
@@ -76,12 +77,12 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert process.out.qc_plots.get(0) ==~ ".*/qc_plots" },
-                { assert snapshot(process.out.versions).match("versions_qcplots_deseq2") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["qc_plots"])).match() }
             )
         }
     }
 
-    test("Should stub generate QC plots (MDS, violin, PCA) from edgeR data and return mocked PDF plots") {
+    test("leishmaniasis - voom_transformed - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm - stub | edgeR") {
         options "-stub"
         when {
             params {
@@ -106,7 +107,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub generate QC plots (MDS, violin, PCA) from DESeq2 data and return mocked PDF plots") {
+    test("leishmaniasis - samplesheet - unfiltered_log2cpm - filtered_log2cpm - normalized_log2cpm - stub | DESeq2") {
         options "-stub"
         when {
             params {

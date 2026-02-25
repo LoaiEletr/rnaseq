@@ -1,50 +1,47 @@
 nextflow_process {
     name "Test Process RSEQC_GENEBODYCOVERAGE"
-    script "modules/local/rseqc/genebodycoverage/main.nf"
+    script "../main.nf"
     process "RSEQC_GENEBODYCOVERAGE"
 
     tag "modules"
+    tag "modules_local"
     tag "rseqc"
     tag "rseqc/genebodycoverage"
 
-    test("Should calculate gene body coverage for multiple BAM files with RSeQC and return coverage files with log") {
+    test("sarscov2 - bam files - bed") {
         when {
             params {
                 outdir = "$outputDir"
             }
             process {
                 """
-                input[0] = [
+                input[0] = [[id: '3 samples'], [
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam', checkIfExists: true)
-                ]
-                input[1] = [
+                ]]
+                input[1] = [[:], [
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam.bai', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam.bai', checkIfExists: true)
-                ]
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)
+                ]]
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)]
                 """
             }
         }
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.rscript.get(0) ==~ ".*/*\\.geneBodyCoverage\\.r" },
-                { assert process.out.pdf.get(0) ==~ ".*/*\\.geneBodyCoverage\\.curves\\.pdf" },
-                { assert process.out.txt.get(0) ==~ ".*/*\\.geneBodyCoverage\\.txt" },
-                { assert process.out.log.get(0) ==~ ".*/log\\.txt" },
-                { assert snapshot(
-                    process.out.rscript,
-                    process.out.txt,
-                    process.out.versions
-                ).match() }
+                { assert process.out.rscript.get(0).get(1) ==~ ".*/*\\.geneBodyCoverage\\.r" },
+                { assert process.out.curves.get(0).get(1) ==~ ".*/*\\.geneBodyCoverage\\.curves\\.pdf" },
+                { assert process.out.txt.get(0).get(1) ==~ ".*/*\\.geneBodyCoverage\\.txt" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/log\\.txt" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["curves", "heatmap", "log"])).match() }
             )
         }
     }
 
-    test("Should stub calculate gene body coverage for multiple BAM files with RSeQC and return mocked coverage files with log") {
+    test("sarscov2 - bam files - bed - stub") {
         options "-stub"
         when {
             params {
@@ -52,17 +49,17 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = [
+                input[0] = [[id: '3 samples'], [
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam', checkIfExists: true)
-                ]
-                input[1] = [
+                ]]
+                input[1] = [[:], [
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam.bai', checkIfExists: true),
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam.bai', checkIfExists: true)
-                ]
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)
+                ]]
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)]
                 """
             }
         }

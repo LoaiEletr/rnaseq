@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process MAKE_BAMLIST {
     tag "${meta.condition}"
     label 'process_low'
@@ -9,7 +7,7 @@ process MAKE_BAMLIST {
 
     output:
     tuple val(meta), path("*.txt"), emit: txt
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('bash'), eval("bash --version | head -n1 | awk '{print \$4}' | sed 's/^.*version //; s/(.*//'"), topic: versions, emit: versions_bash
 
     when:
     task.ext.when == null || task.ext.when
@@ -20,21 +18,11 @@ process MAKE_BAMLIST {
     echo \\
         ${bam_files.join(',')} \\
         > ${prefix}.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bash: \$(bash --version | head -n1 | awk '{print \$4}' | sed 's/(.*//')
-    END_VERSIONS
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.condition}"
     """
     touch ${prefix}.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bash: \$(bash --version | head -n1 | awk '{print \$4}' | sed 's/(.*//')
-    END_VERSIONS
     """
 }

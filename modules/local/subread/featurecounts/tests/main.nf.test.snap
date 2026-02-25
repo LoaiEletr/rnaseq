@@ -1,5 +1,5 @@
 {
-    "Should count single-end reads with featureCounts and return counts with summary": {
+    "sarscov2 - bam - gtf | single-end": {
         "content": [
             {
                 "0": [
@@ -23,7 +23,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
                 ],
                 "counts": [
                     [
@@ -45,8 +49,12 @@
                         "test.counts.txt.summary:md5,4e50fb077f63df0fe65e0159ab0c1d36"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
                 ]
             }
         ],
@@ -54,66 +62,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T22:12:24.982620756"
+        "timestamp": "2026-02-21T01:56:43.229433838"
     },
-    "Should stub count paired-end reads with featureCounts and return mocked counts with summary": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "lib_type": "reverse",
-                            "single_end": false
-                        },
-                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "lib_type": "reverse",
-                            "single_end": false
-                        },
-                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
-                ],
-                "counts": [
-                    [
-                        {
-                            "id": "test",
-                            "lib_type": "reverse",
-                            "single_end": false
-                        },
-                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "summary": [
-                    [
-                        {
-                            "id": "test",
-                            "lib_type": "reverse",
-                            "single_end": false
-                        },
-                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-17T22:20:20.518246889"
-    },
-    "Should count paired-end reads with featureCounts and return counts with summary": {
+    "sarscov2 - bam - gtf | paired-end": {
         "content": [
             {
                 "0": [
@@ -137,7 +88,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
                 ],
                 "counts": [
                     [
@@ -159,8 +114,12 @@
                         "test.counts.txt.summary:md5,1da8956b1684a40bdbfb83c95089c2a7"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
                 ]
             }
         ],
@@ -168,9 +127,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T22:13:50.040910581"
+        "timestamp": "2026-02-21T01:57:43.026296524"
     },
-    "Should stub count single-end reads with featureCounts and return mocked counts with summary": {
+    "sarscov2 - bam - gtf - stub | single-end": {
         "content": [
             {
                 "0": [
@@ -194,7 +153,11 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
                 ],
                 "counts": [
                     [
@@ -216,8 +179,12 @@
                         "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,85ca00843b85516edc6d50a57f87d387"
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
                 ]
             }
         ],
@@ -225,6 +192,71 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T22:19:27.519107418"
+        "timestamp": "2026-02-21T01:58:31.160199694"
+    },
+    "sarscov2 - bam - gtf - stub | paired-end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:59:21.239375411"
     }
 }

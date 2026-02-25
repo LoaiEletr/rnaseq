@@ -9,14 +9,14 @@ process MULTIQC {
         : 'biocontainers/multiqc:1.33--pyhdfd78af_0'}"
 
     input:
-    path multiqc_files
-    path multiqc_config
+    tuple val(meta), path(multiqc_files)
+    tuple val(meta2), path(multiqc_config)
 
     output:
-    path "*.html", emit: report
-    path "*_data", emit: data
-    path "*_plots", optional: true, emit: plots
-    path "versions.yml", emit: versions
+    tuple val(meta), path("*.html"), emit: report
+    tuple val(meta), path("*_data"), emit: data
+    tuple val(meta), path("*_plots"), optional: true, emit: plots
+    tuple val("${task.process}"), val('multiqc'), eval("multiqc --version | sed 's/.*version //'"), emit: versions_multiqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -30,11 +30,6 @@ process MULTIQC {
         ${args} \\
         ${config} \\
         ${multiqc_files} \\
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        multiqc: \$( multiqc --version | sed 's/.*version //' )
-    END_VERSIONS
     """
 
     stub:
@@ -42,10 +37,5 @@ process MULTIQC {
     mkdir multiqc_data
     mkdir multiqc_plots
     touch multiqc_report.html
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        multiqc: \$( multiqc --version | sed 's/.*version //' )
-    END_VERSIONS
     """
 }

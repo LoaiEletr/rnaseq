@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process RSEQC_READDUPLICATION {
     tag "${meta.id}"
     label 'process_low'
@@ -17,7 +15,7 @@ process RSEQC_READDUPLICATION {
     tuple val(meta), path("*.DupRate_plot.r"), emit: rscript
     tuple val(meta), path("*.seq.DupRate.xls"), emit: seq_duplicaterate
     tuple val(meta), path("*.pos.DupRate.xls"), emit: pos_duplicaterate
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('rseqc'), eval("read_duplication.py --version | sed 's/.*.py //'"), topic: versions, emit: versions_rseqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -30,11 +28,6 @@ process RSEQC_READDUPLICATION {
         -i ${bam} \\
         ${args} \\
         -o ${prefix}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( read_duplication.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 
     stub:
@@ -44,10 +37,5 @@ process RSEQC_READDUPLICATION {
     touch ${prefix}.DupRate_plot.r
     touch ${prefix}.seq.DupRate.xls
     touch ${prefix}.pos.DupRate.xls
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( read_duplication.py --version | sed 's/.*.py //' )
-    END_VERSIONS
     """
 }

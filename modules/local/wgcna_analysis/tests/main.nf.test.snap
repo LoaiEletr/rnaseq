@@ -1,29 +1,5 @@
 {
-    "Should perform WGCNA analysis on leishmaniasis dataset with no timepoints and return WGCNA results": {
-        "content": [
-            [
-                "unfiltered_counts.rds:md5,284a9429ce8fb9da143500b78c0e7482"
-            ],
-            [
-                "filtered_counts.rds:md5,f97400532f2d07195732d168bfc30681"
-            ],
-            [
-                "normalized_counts.rds:md5,a9e4c5256228f0412c37055f812468a3"
-            ],
-            [
-                "all_traits_modules_hubgenes.rds:md5,5ebeb2eb3049d5fa9d9d4ffd799896e4"
-            ],
-            [
-                "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-07T23:01:59.283377614"
-    },
-    "Should stub perform WGCNA analysis on leishmaniasis dataset with no timepoints and return mocked WGCNA results": {
+    "leishmaniasis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold - stub | no timepoints": {
         "content": [
             {
                 "0": [
@@ -63,7 +39,32 @@
                     ]
                 ],
                 "11": [
-                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "12": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-wgcna",
+                        "1.73"
+                    ]
+                ],
+                "13": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "14": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
                 ],
                 "2": [
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -121,8 +122,33 @@
                 "unfiltered_log2counts": [
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
-                "versions": [
-                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
+                "versions_deseq2": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_wgcna": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-wgcna",
+                        "1.73"
+                    ]
                 ],
                 "vsd_object": [
                     "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -158,33 +184,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-07T23:19:35.42952746"
+        "timestamp": "2026-02-22T14:10:48.476635082"
     },
-    "Should perform WGCNA analysis on plant dataset with timepoints and return WGCNA results": {
-        "content": [
-            [
-                "unfiltered_counts.rds:md5,2386a722d71fafac409a1f44d6cdcb18"
-            ],
-            [
-                "filtered_counts.rds:md5,e36ba9a291dbc36e6f17209844b69b19"
-            ],
-            [
-                "normalized_counts.rds:md5,908b8f9184ca6d8612c9bd1514bfcf90"
-            ],
-            [
-                "all_traits_modules_hubgenes.rds:md5,06e0db370c6b88b996f1c6582d4d827c"
-            ],
-            [
-                "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-02-08T00:42:50.002356404"
-    },
-    "Should stub perform WGCNA analysis on plant dataset with timepoints and return mocked WGCNA results": {
+    "arabidopsis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold - stub | with timepoints": {
         "content": [
             {
                 "0": [
@@ -224,7 +226,32 @@
                     ]
                 ],
                 "11": [
-                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "12": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-wgcna",
+                        "1.73"
+                    ]
+                ],
+                "13": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "14": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
                 ],
                 "2": [
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -282,8 +309,33 @@
                 "unfiltered_log2counts": [
                     "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
-                "versions": [
-                    "versions.yml:md5,bf345fca890155c77150cbf5d3f83428"
+                "versions_deseq2": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_wgcna": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-wgcna",
+                        "1.73"
+                    ]
                 ],
                 "vsd_object": [
                     "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -319,6 +371,268 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-07T23:21:16.157410326"
+        "timestamp": "2026-02-22T14:11:49.328194781"
+    },
+    "arabidopsis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold | with timepoints": {
+        "content": [
+            {
+                "filtered_log2counts": [
+                    "filtered_counts.rds:md5,e36ba9a291dbc36e6f17209844b69b19"
+                ],
+                "module_analysis_results": [
+                    [
+                        "green_genes.csv",
+                        "green_hub_genes.csv",
+                        "green_top10_hub_genes.csv",
+                        "pink_genes.csv",
+                        "pink_hub_genes.csv",
+                        "pink_top10_hub_genes.csv",
+                        "purple_genes.csv",
+                        "purple_hub_genes.csv",
+                        "purple_top10_hub_genes.csv",
+                        "turquoise_genes.csv",
+                        "turquoise_hub_genes.csv",
+                        "turquoise_top10_hub_genes.csv",
+                        "MM_vs_GS_green.pdf",
+                        "MM_vs_GS_pink.pdf",
+                        "MM_vs_GS_purple.pdf",
+                        "MM_vs_GS_turquoise.pdf",
+                        "greenyellow_genes.csv",
+                        "greenyellow_hub_genes.csv",
+                        "greenyellow_top10_hub_genes.csv",
+                        "salmon_genes.csv",
+                        "salmon_hub_genes.csv",
+                        "salmon_top10_hub_genes.csv",
+                        "MM_vs_GS_greenyellow.pdf",
+                        "MM_vs_GS_salmon.pdf",
+                        "black_genes.csv",
+                        "black_hub_genes.csv",
+                        "black_top10_hub_genes.csv",
+                        "tan_genes.csv",
+                        "tan_hub_genes.csv",
+                        "tan_top10_hub_genes.csv",
+                        "MM_vs_GS_black.pdf",
+                        "MM_vs_GS_tan.pdf",
+                        "lightgreen_genes.csv",
+                        "lightgreen_hub_genes.csv",
+                        "lightgreen_top10_hub_genes.csv",
+                        "lightyellow_genes.csv",
+                        "lightyellow_hub_genes.csv",
+                        "lightyellow_top10_hub_genes.csv",
+                        "magenta_genes.csv",
+                        "magenta_hub_genes.csv",
+                        "magenta_top10_hub_genes.csv",
+                        "red_genes.csv",
+                        "red_hub_genes.csv",
+                        "red_top10_hub_genes.csv",
+                        "yellow_genes.csv",
+                        "yellow_hub_genes.csv",
+                        "yellow_top10_hub_genes.csv",
+                        "MM_vs_GS_lightgreen.pdf",
+                        "MM_vs_GS_lightyellow.pdf",
+                        "MM_vs_GS_magenta.pdf",
+                        "MM_vs_GS_red.pdf",
+                        "MM_vs_GS_yellow.pdf",
+                        "green_genes.csv",
+                        "green_hub_genes.csv",
+                        "green_top10_hub_genes.csv",
+                        "pink_genes.csv",
+                        "pink_hub_genes.csv",
+                        "pink_top10_hub_genes.csv",
+                        "purple_genes.csv",
+                        "purple_hub_genes.csv",
+                        "purple_top10_hub_genes.csv",
+                        "turquoise_genes.csv",
+                        "turquoise_hub_genes.csv",
+                        "turquoise_top10_hub_genes.csv",
+                        "MM_vs_GS_green.pdf",
+                        "MM_vs_GS_pink.pdf",
+                        "MM_vs_GS_purple.pdf",
+                        "MM_vs_GS_turquoise.pdf",
+                        "greenyellow_genes.csv",
+                        "greenyellow_hub_genes.csv",
+                        "greenyellow_top10_hub_genes.csv",
+                        "salmon_genes.csv",
+                        "salmon_hub_genes.csv",
+                        "salmon_top10_hub_genes.csv",
+                        "MM_vs_GS_greenyellow.pdf",
+                        "MM_vs_GS_salmon.pdf",
+                        "black_genes.csv",
+                        "black_hub_genes.csv",
+                        "black_top10_hub_genes.csv",
+                        "midnightblue_genes.csv",
+                        "midnightblue_hub_genes.csv",
+                        "midnightblue_top10_hub_genes.csv",
+                        "tan_genes.csv",
+                        "tan_hub_genes.csv",
+                        "tan_top10_hub_genes.csv",
+                        "MM_vs_GS_black.pdf",
+                        "MM_vs_GS_midnightblue.pdf",
+                        "MM_vs_GS_tan.pdf",
+                        "magenta_genes.csv",
+                        "magenta_hub_genes.csv",
+                        "magenta_top10_hub_genes.csv",
+                        "red_genes.csv",
+                        "red_hub_genes.csv",
+                        "red_top10_hub_genes.csv",
+                        "yellow_genes.csv",
+                        "yellow_hub_genes.csv",
+                        "yellow_top10_hub_genes.csv",
+                        "MM_vs_GS_magenta.pdf",
+                        "MM_vs_GS_red.pdf",
+                        "MM_vs_GS_yellow.pdf"
+                    ]
+                ],
+                "module_dendrogram": [
+                    "module_dendrogram.pdf"
+                ],
+                "module_eigengenes_heatmap": [
+                    "module_eigengenes_heatmap.pdf"
+                ],
+                "module_trait_heatmap": [
+                    "module_trait_correlation_heatmap.pdf"
+                ],
+                "modules_hubgenes": [
+                    "all_traits_modules_hubgenes.rds"
+                ],
+                "normalized_log2counts": [
+                    "normalized_counts.rds:md5,908b8f9184ca6d8612c9bd1514bfcf90"
+                ],
+                "soft_threshold_plot": [
+                    "soft_threshold_selection.pdf"
+                ],
+                "unfiltered_log2counts": [
+                    "unfiltered_counts.rds:md5,2386a722d71fafac409a1f44d6cdcb18"
+                ],
+                "versions_deseq2": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_wgcna": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-wgcna",
+                        "1.73"
+                    ]
+                ],
+                "vsd_object": [
+                    "vsd_object.rds"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-25T03:55:17.806121517"
+    },
+    "leishmaniasis - count matrix - samplesheet - min_gs - min_mm - top_n - cor_threshold - pval_threshold - tomtype - networktype - deepsplit - reassignthreshold - mergecutheight - minmodulesize - sft_r2_threshold | no timepoints": {
+        "content": [
+            {
+                "filtered_log2counts": [
+                    "filtered_counts.rds:md5,f97400532f2d07195732d168bfc30681"
+                ],
+                "module_analysis_results": [
+                    [
+                        "blue_genes.csv",
+                        "blue_hub_genes.csv",
+                        "blue_top10_hub_genes.csv",
+                        "midnightblue_genes.csv",
+                        "midnightblue_hub_genes.csv",
+                        "midnightblue_top10_hub_genes.csv",
+                        "pink_genes.csv",
+                        "pink_hub_genes.csv",
+                        "pink_top10_hub_genes.csv",
+                        "turquoise_genes.csv",
+                        "turquoise_hub_genes.csv",
+                        "turquoise_top10_hub_genes.csv",
+                        "MM_vs_GS_blue.pdf",
+                        "MM_vs_GS_midnightblue.pdf",
+                        "MM_vs_GS_pink.pdf",
+                        "MM_vs_GS_turquoise.pdf"
+                    ]
+                ],
+                "module_dendrogram": [
+                    "module_dendrogram.pdf"
+                ],
+                "module_eigengenes_heatmap": [
+                    "module_eigengenes_heatmap.pdf"
+                ],
+                "module_trait_heatmap": [
+                    "module_trait_correlation_heatmap.pdf"
+                ],
+                "modules_hubgenes": [
+                    "all_traits_modules_hubgenes.rds"
+                ],
+                "normalized_log2counts": [
+                    "normalized_counts.rds:md5,a9e4c5256228f0412c37055f812468a3"
+                ],
+                "soft_threshold_plot": [
+                    "soft_threshold_selection.pdf"
+                ],
+                "unfiltered_log2counts": [
+                    "unfiltered_counts.rds:md5,284a9429ce8fb9da143500b78c0e7482"
+                ],
+                "versions_deseq2": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "bioconductor-deseq2",
+                        "1.46.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_wgcna": [
+                    [
+                        "WGCNA_ANALYSIS",
+                        "r-wgcna",
+                        "1.73"
+                    ]
+                ],
+                "vsd_object": [
+                    "vsd_object.rds"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-25T01:45:03.481749741"
     }
 }

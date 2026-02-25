@@ -22,11 +22,10 @@ input:
           e.g. `[ condition:'control' ]`
     - bam_files:
         type: file
-        description: |
-          BAM files to be listed
+        description: BAM files to be listed
         pattern: "*.{bam,bam.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
+          - edam: "http://edamontology.org/format_2572" # BAM
 
 output:
   txt:
@@ -37,12 +36,10 @@ output:
             e.g. `[ condition:'control' ]`
       - "*.txt":
           type: file
-          description: |
-            Text file containing list of BAM file paths
+          description: Text file containing list of BAM file paths
           pattern: "*.txt"
           ontologies:
-            - edam: "http://edamontology.org/format_2330"
-
+            - edam: "http://edamontology.org/format_2330" # Textual format
   versions_bash:
     - - "${task.process}":
           type: string
@@ -50,7 +47,7 @@ output:
       - bash:
           type: string
           description: The name of the tool
-      - "bash --version | head -n1 | awk '{print $4}' | sed 's/(.*//'":
+      - "bash --version | head -n1 | awk '{print $4}' | sed 's/^.*version //; s/(.*//'":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -62,7 +59,7 @@ topics:
       - bash:
           type: string
           description: The name of the tool
-      - "bash --version | head -n1 | awk '{print $4}' | sed 's/(.*//'":
+      - "bash --version | head -n1 | awk '{print $4}' | sed 's/^.*version //; s/(.*//'":
           type: eval
           description: The expression to obtain the version of the tool
 

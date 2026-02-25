@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process SUBREAD_FEATURECOUNTS {
     tag "${meta.id}"
     label 'process_low'
@@ -11,12 +9,12 @@ process SUBREAD_FEATURECOUNTS {
 
     input:
     tuple val(meta), path(bam)
-    path gtf
+    tuple val(meta2), path(gtf)
 
     output:
     tuple val(meta), path("*.counts.txt"), emit: counts
     tuple val(meta), path("*.summary"), emit: summary
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('subread'), eval("featureCounts -v 2>&1 | sed 's/featureCounts v//'"), topic: versions, emit: versions_subread
 
     when:
     task.ext.when == null || task.ext.when
@@ -47,11 +45,6 @@ process SUBREAD_FEATURECOUNTS {
         -a ${gtf} \\
         -o ${prefix}.counts.txt \\
         ${bam_in}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        subread: \$( echo \$(featureCounts -v 2>&1) | sed -e "s/featureCounts v//g")
-    END_VERSIONS
     """
 
     stub:
@@ -59,10 +52,5 @@ process SUBREAD_FEATURECOUNTS {
     """
     touch ${prefix}.counts.txt
     touch ${prefix}.counts.txt.summary
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        subread: \$( echo \$(featureCounts -v 2>&1) | sed -e "s/featureCounts v//g")
-    END_VERSIONS
     """
 }

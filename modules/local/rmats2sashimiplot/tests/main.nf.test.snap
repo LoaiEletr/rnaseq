@@ -4,27 +4,63 @@
             {
                 "0": [
                     [
-                        
+                        {
+                            "id": "RI"
+                        },
+                        [
+                            
+                        ]
                     ],
                     [
-                        
+                        {
+                            "id": "SE"
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41",
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41"
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ],
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ]
                 ],
                 "sashimi_output": [
                     [
-                        
+                        {
+                            "id": "RI"
+                        },
+                        [
+                            
+                        ]
                     ],
                     [
-                        
+                        {
+                            "id": "SE"
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41",
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41"
+                "versions_rmats2sashimiplot": [
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ],
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ]
                 ]
             }
         ],
@@ -32,46 +68,82 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T03:46:29.788571064"
+        "timestamp": "2026-02-20T22:10:32.691895221"
     },
     "Should generate Sashimi plot for alternative splicing events and return plot outputs": {
         "content": [
             {
                 "0": [
                     [
+                        {
+                            "id": "RI"
+                        },
                         [
-                            "RI.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "events_file.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                            [
+                                "RI.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "events_file.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                            ]
                         ]
                     ],
                     [
+                        {
+                            "id": "SE"
+                        },
                         [
-                            "SE.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "events_file.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                            [
+                                "SE.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "events_file.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                            ]
                         ]
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41",
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41"
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ],
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ]
                 ],
                 "sashimi_output": [
                     [
+                        {
+                            "id": "RI"
+                        },
                         [
-                            "RI.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "events_file.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                            [
+                                "RI.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "events_file.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                            ]
                         ]
                     ],
                     [
+                        {
+                            "id": "SE"
+                        },
                         [
-                            "SE.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "events_file.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                            [
+                                "SE.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "events_file.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                            ]
                         ]
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41",
-                    "versions.yml:md5,67ed20b731706fe89d3520f6c2e84a41"
+                "versions_rmats2sashimiplot": [
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ],
+                    [
+                        "RMATS2SASHIMIPLOT",
+                        "rmats2sashimiplot",
+                        "3.0.0"
+                    ]
                 ]
             }
         ],
@@ -79,6 +151,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T03:45:07.129971261"
+        "timestamp": "2026-02-20T22:08:58.021745601"
     }
 }

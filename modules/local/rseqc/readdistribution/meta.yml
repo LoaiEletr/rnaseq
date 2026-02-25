@@ -1,17 +1,19 @@
 name: rseqc_readdistribution
 description: |
-  Calculates read distribution across genomic features using RSeQC read_distribution.py.
+  Calculates read distribution across genomic features (CDS, 5'UTR, 3'UTR, Introns, Intergenic) using RSeQC read_distribution.py.
 keywords:
   - rseqc
   - read distribution
   - genomic features
   - rna-seq
+  - quality control
 tools:
   - rseqc:
       description: "RNA-seq quality control package"
       homepage: "http://rseqc.sourceforge.net/"
       documentation: "http://rseqc.sourceforge.net/"
       tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      doi: "10.1093/bioinformatics/bts356"
       licence: ["GPL-3.0-only"]
       identifier: "rseqc"
 
@@ -23,35 +25,33 @@ input:
           e.g. `[ id:'sample1' ]`
     - bam:
         type: file
-        description: |
-          BAM file for read distribution analysis
+        description: BAM file for read distribution analysis
         pattern: "*.{bam,bam.gz}"
         ontologies:
-          - edam: "http://edamontology.org/format_2572"
-
-  - bed:
-      type: file
-      description: |
-        BED file with genomic feature annotations
-      pattern: "*.{bed,bed.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_3003"
+          - edam: "http://edamontology.org/format_2572" # BAM
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'reference_bed' ]`
+    - bed:
+        type: file
+        description: BED file with genomic feature annotations
+        pattern: "*.{bed,bed.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3003" # BED
 
 output:
   txt:
     - - meta:
           type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1' ]`
+          description: Groovy Map containing sample information
       - "*.read_distribution.txt":
           type: file
-          description: |
-            Text file with read distribution statistics
+          description: Text file with read distribution statistics
           pattern: "*.read_distribution.txt"
           ontologies:
-            - edam: "http://edamontology.org/format_2330"
-
+            - edam: "http://edamontology.org/format_2330" # Textual format
   versions_rseqc:
     - - "${task.process}":
           type: string

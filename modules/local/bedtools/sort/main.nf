@@ -1,7 +1,5 @@
-#!/usr/bin/env nextflow
-
 process BEDTOOLS_SORT {
-    tag "${bed.baseName}"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -10,39 +8,29 @@ process BEDTOOLS_SORT {
         : 'biocontainers/bedtools:2.31.1--h13024bc_3'}"
 
     input:
-    path bed
+    tuple val(meta), path(bed)
 
     output:
-    path "*.sorted.bed", emit: bed
-    path "versions.yml", emit: versions
+    tuple val(meta), path("*.sorted.bed"), emit: bed
+    tuple val("${task.process}"), val('bedtools'), eval("bedtools --version | sed 's/.*tools v//'"), topic: versions, emit: versions_bedtools
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${bed.baseName}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     bedtools \\
         sort \\
         -i ${bed} \\
         ${args} \\
         > ${prefix}.sorted.bed
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bedtools: \$( bedtools --version | sed 's/.*tools v//' )
-    END_VERSIONS
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${bed.baseName}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.sorted.bed
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bedtools: \$( bedtools --version | sed 's/.*tools v//' )
-    END_VERSIONS
     """
 }

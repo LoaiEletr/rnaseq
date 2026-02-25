@@ -1,5 +1,5 @@
 {
-    "Should stub count exonic reads for DEXSeq analysis and return mocked count files": {
+    "sarscov2 - bam - gff - alignment_quality - stub": {
         "content": [
             {
                 "0": [
@@ -13,7 +13,11 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
                 ],
                 "counts": [
                     [
@@ -25,8 +29,12 @@
                         "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
                 ]
             }
         ],
@@ -34,9 +42,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T17:50:47.634556276"
+        "timestamp": "2026-02-23T02:09:19.767688469"
     },
-    "Should count exonic reads for DEXSeq analysis and return count files": {
+    "sarscov2 - bam - gff - alignment_quality": {
         "content": [
             {
                 "0": [
@@ -50,7 +58,11 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
                 ],
                 "counts": [
                     [
@@ -62,8 +74,12 @@
                         "test.counts.txt:md5,47ad42277f7bf925db993e44663721d0"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,a8fee31441280112c7b28ba3743d3e5f"
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
                 ]
             }
         ],
@@ -71,6 +87,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T17:48:04.602997616"
+        "timestamp": "2026-02-23T02:05:32.082349303"
     }
 }

@@ -1,36 +1,44 @@
 name: salmon_index
 description: |
-  Builds salmon transcriptome index for quasi-mapping.
+  Builds a Salmon transcriptome index using a decoy-aware or standard quasi-mapping approach.
 keywords:
   - salmon
   - index
   - transcriptome
+  - quasi-mapping
 tools:
   - salmon:
       description: "Fast, bias-aware quantification of transcript expression"
       homepage: "https://combine-lab.github.io/salmon/"
       documentation: "https://salmon.readthedocs.io/"
       tool_dev_url: "https://github.com/COMBINE-lab/salmon"
+      doi: "10.1038/nmeth.4197"
       licence: ["GPL-3.0-only"]
       identifier: "salmon"
 
 input:
-  - transcriptome:
-      type: file
-      description: |
-        Transcriptome sequences in FASTA format
-      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_1929"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing information about the transcriptome
+          e.g. `[ id:'human_gencode_v44' ]`
+    - transcriptome:
+        type: file
+        description: Transcriptome sequences in FASTA format
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
 
 output:
   index:
-    - transcripts_index:
-        type: file
-        description: |
-          Directory containing salmon transcriptome index
-        pattern: "transcripts_index/*"
-
+    - - meta:
+          type: map
+          description: Groovy Map containing index information
+      - "${prefix}":
+          type: directory
+          description: Directory containing the Salmon transcriptome index files
+          pattern: "*/"
+          ontologies: []
   versions_salmon:
     - - "${task.process}":
           type: string

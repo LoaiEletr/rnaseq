@@ -1,7 +1,5 @@
-#!/usr/bin/env nextflow
-
 process SORTMERNA {
-    tag "${prefix}"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -11,22 +9,22 @@ process SORTMERNA {
 
     input:
     tuple val(meta), path(reads)
-    path index
-    path ref_dir
+    tuple val(meta2), path(index)
+    tuple val(meta3), path(reference_dir)
     val rrna_db_type
     val only_build_index
 
     output:
     tuple val(meta), path("*non_rRNA*.fq.gz"), optional: true, emit: reads
-    path ("index"), optional: true, emit: index
+    tuple val(meta), path("index"), optional: true, emit: index
     tuple val(meta), path("*.log"), optional: true, emit: log
-    path ("versions.yml"), emit: versions
+    tuple val("${task.process}"), val('sortmerna'), eval("sortmerna --version | grep Sort | sed 's/.*ion //'"), topic: versions, emit: versions_sortmerna
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    prefix = task.ext.prefix ?: (only_build_index == true ? "index" : "${meta.id}")
+    def prefix = task.ext.prefix ?: (only_build_index == true ? "index" : "${meta.id}")
     def args = task.ext.args ?: ''
     def fastq_in = meta.single_end ? "--reads ${reads}" : "--paired_in --out2 --reads ${reads[0]} --reads ${reads[1]}"
     def ref_file = (rrna_db_type == "fast"
@@ -39,22 +37,17 @@ process SORTMERNA {
     if (only_build_index) {
         """
         sortmerna \\
-            --ref ${ref_dir}/${ref_file} \\
+            --ref ${reference_dir}/${ref_file} \\
             ${args} \\
             --index 1 \\
             --idx-dir ${prefix} \\
             -v
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            sortmerna: \$( sortmerna --version | grep Sort | sed 's/.*ion //' )
-        END_VERSIONS
         """
     }
     else {
         """
         sortmerna \\
-            --ref ${ref_dir}/${ref_file} \\
+            --ref ${reference_dir}/${ref_file} \\
             ${args} \\
             --workdir ./ \\
             ${fastq_in} \\
@@ -63,25 +56,15 @@ process SORTMERNA {
             --fastx \\
             --aligned ${prefix}_rRNA_reads \\
             --other ${prefix}_non_rRNA_reads
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            sortmerna: \$( sortmerna --version | grep Sort | sed 's/.*ion //' )
-        END_VERSIONS
         """
     }
 
     stub:
-    prefix = task.ext.prefix ?: (only_build_index == true ? "index" : "${meta.id}")
+    def prefix = task.ext.prefix ?: (only_build_index == true ? "index" : "${meta.id}")
     def mkdir_index = only_build_index == true ? "mkdir -p index" : ''
     def fastq_log_out = only_build_index == false ? (meta.single_end ? "echo '' | gzip > ${prefix}_non_rRNA_reads.fq.gz ; touch rRNA_reads.log" : "echo '' | gzip > ${prefix}_non_rRNA_reads_fwd.fq.gz ; echo '' | gzip > ${prefix}_non_rRNA_reads_rev.fq.gz ; touch rRNA_reads.log") : ''
     """
     ${mkdir_index}
     ${fastq_log_out}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        sortmerna: \$( sortmerna --version | grep Sort | sed 's/.*ion //' )
-    END_VERSIONS
     """
 }

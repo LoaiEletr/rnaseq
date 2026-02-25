@@ -21,13 +21,11 @@ workflow BAM_RSEQC {
 
     main:
 
-    ch_versions = channel.empty()
     ch_bamstat = channel.empty()
 
     if ("bam_stat" in val_rseqc_modules) {
         RSEQC_BAMSTAT(ch_bam)
         ch_bamstat = RSEQC_BAMSTAT.out.txt
-        ch_versions = ch_versions.mix(RSEQC_BAMSTAT.out.versions.first())
     }
 
     ch_genebodycoverage_r = channel.empty()
@@ -38,16 +36,15 @@ workflow BAM_RSEQC {
 
     if ("genebody_coverage" in val_rseqc_modules) {
         RSEQC_GENEBODYCOVERAGE(
-            ch_bam.map { meta, bams -> bams }.collect(),
-            ch_bai.map { meta, bais -> bais }.collect(),
+            ch_bam.map { it[1] }.collect().map { [[id: "${it.size()} samples"], it] },
+            ch_bai.map { [[:], it[1]] }.groupTuple(),
             ch_bed,
         )
         ch_genebodycoverage_r = RSEQC_GENEBODYCOVERAGE.out.rscript
-        ch_genebodycoverage_curves = RSEQC_GENEBODYCOVERAGE.out.pdf
+        ch_genebodycoverage_curves = RSEQC_GENEBODYCOVERAGE.out.curves
         ch_genebodycoverage_heatmap = RSEQC_GENEBODYCOVERAGE.out.heatmap
         ch_genebodycoverage_txt = RSEQC_GENEBODYCOVERAGE.out.txt
         ch_genebodycoverage_log = RSEQC_GENEBODYCOVERAGE.out.log
-        ch_versions = ch_versions.mix(RSEQC_GENEBODYCOVERAGE.out.versions)
     }
 
     ch_inferexperiment = channel.empty()
@@ -55,7 +52,6 @@ workflow BAM_RSEQC {
     if ("infer_experiment" in val_rseqc_modules) {
         RSEQC_INFEREXPERIMENT(ch_bam, ch_bed)
         ch_inferexperiment = RSEQC_INFEREXPERIMENT.out.txt
-        ch_versions = ch_versions.mix(RSEQC_INFEREXPERIMENT.out.versions.first())
     }
 
     ch_innerdistance_distance = channel.empty()
@@ -69,7 +65,6 @@ workflow BAM_RSEQC {
         ch_innerdistance_freq = RSEQC_INNERDISTANCE.out.freq
         ch_innerdistance_pdf = RSEQC_INNERDISTANCE.out.pdf
         ch_innerdistance_r = RSEQC_INNERDISTANCE.out.rscript
-        ch_versions = ch_versions.mix(RSEQC_INNERDISTANCE.out.versions.first())
     }
 
     ch_junctionannotation_xls = channel.empty()
@@ -89,7 +84,6 @@ workflow BAM_RSEQC {
         ch_junctionannotation_interact = RSEQC_JUNCTIONANNOTATION.out.interact_bed
         ch_junctionannotation_pdf = RSEQC_JUNCTIONANNOTATION.out.junction_pdf
         ch_junctionannotation_events_pdf = RSEQC_JUNCTIONANNOTATION.out.events_pdf
-        ch_versions = ch_versions.mix(RSEQC_JUNCTIONANNOTATION.out.versions.first())
     }
 
     ch_readdistribution = channel.empty()
@@ -97,8 +91,6 @@ workflow BAM_RSEQC {
     if ("read_distribution" in val_rseqc_modules) {
         RSEQC_READDISTRIBUTION(ch_bam, ch_bed)
         ch_readdistribution = RSEQC_READDISTRIBUTION.out.txt
-        // Assumed output name
-        ch_versions = ch_versions.mix(RSEQC_READDISTRIBUTION.out.versions.first())
     }
 
     ch_readduplication_pdf = channel.empty()
@@ -112,7 +104,6 @@ workflow BAM_RSEQC {
         ch_readduplication_r = RSEQC_READDUPLICATION.out.rscript
         ch_readduplication_seq = RSEQC_READDUPLICATION.out.seq_duplicaterate
         ch_readduplication_pos = RSEQC_READDUPLICATION.out.pos_duplicaterate
-        ch_versions = ch_versions.mix(RSEQC_READDUPLICATION.out.versions.first())
     }
 
     ch_tin_txt = channel.empty()
@@ -122,16 +113,15 @@ workflow BAM_RSEQC {
         RSEQC_TIN(ch_bam.join(ch_bai), ch_bed)
         ch_tin_txt = RSEQC_TIN.out.txt
         ch_tin_xls = RSEQC_TIN.out.xls
-        ch_versions = ch_versions.mix(RSEQC_TIN.out.versions.first())
     }
 
     emit:
     bamstat = ch_bamstat // channel: [ val(meta), txt ]
-    genebodycoverage_r = ch_genebodycoverage_r // channel: [ rscript ]
-    genebodycoverage_curves = ch_genebodycoverage_curves // channel: [ pdf ]
-    genebodycoverage_heatmap = ch_genebodycoverage_heatmap // channel: [ pdf ]
-    genebodycoverage_txt = ch_genebodycoverage_txt // channel: [ txt ]
-    genebodycoverage_log = ch_genebodycoverage_log // channel: [ log ]
+    genebodycoverage_r = ch_genebodycoverage_r // channel: [ val(meta), [ rscript ] ]
+    genebodycoverage_curves = ch_genebodycoverage_curves // channel: [ val(meta), [ pdf ] ]
+    genebodycoverage_heatmap = ch_genebodycoverage_heatmap // channel: [ val(meta), [ pdf ] ]
+    genebodycoverage_txt = ch_genebodycoverage_txt // channel: [ val(meta), [ txt ] ]
+    genebodycoverage_log = ch_genebodycoverage_log // channel: [ val(meta), [ log ] ]
     inferexperiment = ch_inferexperiment // channel: [ val(meta), [ txt ] ]
     innerdistance_distance = ch_innerdistance_distance // channel: [ val(meta), [ distance ] ]
     innerdistance_freq = ch_innerdistance_freq // channel: [ val(meta), [ freq ] ]
@@ -151,5 +141,4 @@ workflow BAM_RSEQC {
     readduplication_pos = ch_readduplication_pos // channel: [ val(meta), [ pos_duplicaterate ] ]
     tin_txt = ch_tin_txt // channel: [ val(meta), [ txt ] ]
     tin_xls = ch_tin_xls // channel: [ val(meta), [ xls ] ]
-    versions = ch_versions // channel: [ versions.yml ]
 }

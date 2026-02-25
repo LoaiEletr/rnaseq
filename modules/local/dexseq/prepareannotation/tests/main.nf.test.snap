@@ -1,30 +1,21 @@
 {
-    "versions_aggregation": {
-        "content": [
-            [
-                "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-25T17:28:16.034436843"
-    },
-    "Should stub prepare DEXSeq annotation with no aggregation and return mocked GFF file": {
+    "homo_sapiens - gtf - aggregation | with aggregation": {
         "content": [
             {
-                "0": [
-                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "1": [
-                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
-                ],
                 "gff": [
-                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_PREPAREANNOTATION",
+                        "htseq",
+                        "2.0.9"
+                    ]
                 ]
             }
         ],
@@ -32,22 +23,40 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T17:30:44.985793666"
+        "timestamp": "2026-02-23T01:55:22.772684624"
     },
-    "Should stub prepare DEXSeq annotation with aggregation and return mocked GFF file": {
+    "homo_sapiens - gtf - aggregation - stub | with aggregation": {
         "content": [
             {
                 "0": [
-                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "1": [
-                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+                    [
+                        "DEXSEQ_PREPAREANNOTATION",
+                        "htseq",
+                        "2.0.9"
+                    ]
                 ],
                 "gff": [
-                    "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_PREPAREANNOTATION",
+                        "htseq",
+                        "2.0.9"
+                    ]
                 ]
             }
         ],
@@ -55,18 +64,73 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T17:29:54.123168894"
+        "timestamp": "2026-02-23T01:59:49.407786225"
     },
-    "versions_no_aggregation": {
+    "homo_sapiens - gtf - aggregation | no aggregation": {
         "content": [
-            [
-                "versions.yml:md5,ef574cae994a438b3773c3b94b859573"
-            ]
+            {
+                "gff": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff"
+                    ]
+                ],
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_PREPAREANNOTATION",
+                        "htseq",
+                        "2.0.9"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-25T17:29:03.667468583"
+        "timestamp": "2026-02-23T01:59:00.567415827"
+    },
+    "homo_sapiens - gtf - aggregation - stub | no aggregation": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "DEXSEQ_PREPAREANNOTATION",
+                        "htseq",
+                        "2.0.9"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "DEXSeq.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_PREPAREANNOTATION",
+                        "htseq",
+                        "2.0.9"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T02:00:40.992291358"
     }
 }

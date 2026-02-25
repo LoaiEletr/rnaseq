@@ -5,6 +5,7 @@ nextflow_workflow {
     workflow "BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS"
 
     tag "subworkflows"
+    tag "subworkflows_local"
     tag "subworkflows/bam_sort_index_dedup_samtools_umitools_featurecounts"
     tag "samtools"
     tag "samtools/sort"
@@ -25,7 +26,7 @@ nextflow_workflow {
                     [ id: 'test', single_end: true, lib_type: 'U'],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[2] = true
                 input[3] = "DEG"
                 """
@@ -34,15 +35,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.bam,
-                    workflow.out.bai,
-                    workflow.out.per_umi,
-                    workflow.out.per_position,
-                    workflow.out.counts,
-                    workflow.out.summary,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["edit_distance", "umi_log"])).match() }
             )
         }
     }
@@ -58,7 +51,7 @@ nextflow_workflow {
                     [ id: 'test', single_end: true, lib_type: 'U'],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[2] = false
                 input[3] = "DEG"
                 """
@@ -67,15 +60,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.bam,
-                    workflow.out.bai,
-                    workflow.out.per_umi,
-                    workflow.out.per_position,
-                    workflow.out.counts,
-                    workflow.out.summary,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["edit_distance", "umi_log"])).match() }
             )
         }
     }
@@ -92,7 +77,7 @@ nextflow_workflow {
                     [ id: 'test', single_end: true, lib_type: 'U'],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[2] = true
                 input[3] = "DEG"
                 """
@@ -118,7 +103,7 @@ nextflow_workflow {
                     [ id: 'test', single_end: true, lib_type: 'U'],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
                 input[2] = false
                 input[3] = "DEG"
                 """

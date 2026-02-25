@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process RSEQC_READDISTRIBUTION"
-    script "modules/local/rseqc/readdistribution/main.nf"
+    script "../main.nf"
     process "RSEQC_READDISTRIBUTION"
 
     tag "modules"
+    tag "modules_local"
     tag "rseqc"
     tag "rseqc/readdistribution"
 
-    test("Should calculate read distribution across genomic features with RSeQC and return distribution TXT file") {
+    test("sarscov2 - bam - bed") {
         when {
             params {
                 outdir = "$outputDir"
@@ -18,7 +19,7 @@ nextflow_process {
                     [ id: 'test', single_end: false ],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
                 """
             }
         }
@@ -31,7 +32,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub calculate read distribution across genomic features with RSeQC and return mocked distribution TXT file") {
+    test("sarscov2 - bam - bed - stub") {
         options "-stub"
         when {
             params {
@@ -43,7 +44,7 @@ nextflow_process {
                     [ id: 'test', single_end: false ],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
                 """
             }
         }

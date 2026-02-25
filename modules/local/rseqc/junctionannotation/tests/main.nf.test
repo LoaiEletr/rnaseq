@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process RSEQC_JUNCTIONANNOTATION"
-    script "modules/local/rseqc/junctionannotation/main.nf"
+    script "../main.nf"
     process "RSEQC_JUNCTIONANNOTATION"
 
     tag "modules"
+    tag "modules_local"
     tag "rseqc"
     tag "rseqc/junctionannotation"
 
-    test("Should annotate splice junctions in RNA-seq data with RSeQC and return annotation files with R script") {
+    test("sarscov2 - bam - bed") {
         when {
             params {
                 outdir = "$outputDir"
@@ -18,7 +19,7 @@ nextflow_process {
                     [ id: 'test', single_end: true ],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)]
                 """
             }
         }
@@ -32,7 +33,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub annotate splice junctions in RNA-seq data with RSeQC and return mocked annotation files with R script") {
+    test("sarscov2 - bam - bed - stub") {
         options "-stub"
         when {
             params {
@@ -44,7 +45,7 @@ nextflow_process {
                     [ id: 'test', single_end: true ],
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
                 ])
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed', checkIfExists: true)]
                 """
             }
         }

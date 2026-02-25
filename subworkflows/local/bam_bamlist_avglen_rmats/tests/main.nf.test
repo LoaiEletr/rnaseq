@@ -3,8 +3,10 @@ nextflow_workflow {
     name "Test Workflow BAM_BAMLIST_AVGLEN_RMATS"
     script "../main.nf"
     workflow "BAM_BAMLIST_AVGLEN_RMATS"
+    config './nextflow.config'
 
     tag "subworkflows"
+    tag "subworkflows_local"
     tag "subworkflows/bam_bamlist_avglen_rmats"
     tag "make_bamlist"
     tag "seqkit"
@@ -51,25 +53,17 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.statoff
-                input[4] = params.novelss
-                input[5] = params.allowclipping
-                input[6] = params.individualcounts
-                input[7] = Channel.of(*params.event_types.split(","))
-                input[8] = params.fdr_cutoff
-                input[9] = params.delta_psi
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = Channel.of(*params.event_types.split(","))
+                input[4] = params.fdr_cutoff
+                input[5] = params.delta_psi
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.sigevents_txt,
-                    workflow.out.rmats2sashimi_output,
-                    workflow.out.versions
-                ).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["rmats_prep_tmp", "rmats_output"])).match() }
             )
         }
     }
@@ -113,14 +107,10 @@ nextflow_workflow {
                         file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                     ]
                 ])
-                input[2] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)
-                input[3] = params.statoff
-                input[4] = params.novelss
-                input[5] = params.allowclipping
-                input[6] = params.individualcounts
-                input[7] = Channel.of(*params.event_types.split(","))
-                input[8] = params.fdr_cutoff
-                input[9] = params.delta_psi
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = Channel.of(*params.event_types.split(","))
+                input[4] = params.fdr_cutoff
+                input[5] = params.delta_psi
                 """
             }
         }

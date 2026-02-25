@@ -16,24 +16,31 @@ tools:
       identifier: "gxf2bed"
 
 input:
-  - gtf:
-      type: file
-      description: |
-        Input GFF or GTF file to convert to BED format
-      pattern: "*.{gff,gtf,gff3,gff.gz,gtf.gz,gff3.gz}"
-      ontologies:
-        - edam: "http://edamontology.org/format_2306"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - gtf:
+        type: file
+        description: Input GFF or GTF file to convert to BED format
+        pattern: "*.{gff,gtf,gff3,gff.gz,gtf.gz,gff3.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
 
 output:
   bed:
-    - "*.bed":
-        type: file
-        description: |
-          Output BED file converted from GFF/GTF input
-        pattern: "*.bed"
-        ontologies:
-          - edam: "	http://edamontology.org/format_3003"
-
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.bed":
+          type: file
+          description: Output BED file converted from GFF/GTF input
+          pattern: "*.bed"
+          ontologies:
+            - edam: "http://edamontology.org/format_3003" # BED
   versions_gxf2bed:
     - - "${task.process}":
           type: string

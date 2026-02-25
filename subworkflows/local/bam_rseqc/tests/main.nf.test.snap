@@ -1,21 +1,109 @@
 {
     "sarscov2 - bam - bed - bai | genebody_coverage_only": {
         "content": [
-            [
-                "genebody_coverage.geneBodyCoverage.r:md5,5b5fc7e0aadb1c55c7bf426845d33db5"
-            ],
-            [
-                "genebody_coverage.geneBodyCoverage.txt:md5,11ecc8f0c9644450685fe48ead48ffe4"
-            ],
-            [
-                "versions.yml:md5,9a33d32db31911a8b0cd8bdbc528875f"
-            ]
+            {
+                "bamstat": [
+                    
+                ],
+                "genebodycoverage_curves": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.curves.pdf"
+                    ]
+                ],
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "log.txt"
+                    ]
+                ],
+                "genebodycoverage_r": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.r:md5,30b2d095406c849305035159acdd6499"
+                    ]
+                ],
+                "genebodycoverage_txt": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.txt:md5,11ecc8f0c9644450685fe48ead48ffe4"
+                    ]
+                ],
+                "inferexperiment": [
+                    
+                ],
+                "innerdistance_distance": [
+                    
+                ],
+                "innerdistance_freq": [
+                    
+                ],
+                "innerdistance_pdf": [
+                    
+                ],
+                "innerdistance_r": [
+                    
+                ],
+                "junctionannotation_bed": [
+                    
+                ],
+                "junctionannotation_events_pdf": [
+                    
+                ],
+                "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
+                    
+                ],
+                "junctionannotation_pdf": [
+                    
+                ],
+                "junctionannotation_r": [
+                    
+                ],
+                "junctionannotation_xls": [
+                    
+                ],
+                "readdistribution": [
+                    
+                ],
+                "readduplication_pdf": [
+                    
+                ],
+                "readduplication_pos": [
+                    
+                ],
+                "readduplication_r": [
+                    
+                ],
+                "readduplication_seq": [
+                    
+                ],
+                "tin_txt": [
+                    
+                ],
+                "tin_xls": [
+                    
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:55:25.728523479"
+        "timestamp": "2026-02-24T19:16:30.554925801"
     },
     "sarscov2 - bam - bed - bai | junction_annotation_only": {
         "content": [
@@ -92,9 +180,6 @@
                 "24": [
                     
                 ],
-                "25": [
-                    "versions.yml:md5,497bfd7a0ca772f3e0f94c15f00cbf48"
-                ],
                 "3": [
                     
                 ],
@@ -208,9 +293,6 @@
                 ],
                 "tin_xls": [
                     
-                ],
-                "versions": [
-                    "versions.yml:md5,497bfd7a0ca772f3e0f94c15f00cbf48"
                 ]
             }
         ],
@@ -218,7 +300,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:57:50.650657864"
+        "timestamp": "2026-02-24T19:20:50.626540347"
     },
     "sarscov2 - bam - bed - bai | tin_only": {
         "content": [
@@ -289,9 +371,6 @@
                         "test.paired_end.sorted.tin.xls:md5,abdbb6d51a5cd7038cd862ce241ecef1"
                     ]
                 ],
-                "25": [
-                    "versions.yml:md5,55bb098a2568f941ae2c8a376a7286a5"
-                ],
                 "3": [
                     
                 ],
@@ -399,9 +478,6 @@
                         },
                         "test.paired_end.sorted.tin.xls:md5,abdbb6d51a5cd7038cd862ce241ecef1"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,55bb098a2568f941ae2c8a376a7286a5"
                 ]
             }
         ],
@@ -409,46 +485,117 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T18:00:18.335482999"
+        "timestamp": "2026-02-24T19:24:58.659496287"
     },
     "sarscov2 - bam - bed - bai | read_duplication_only": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.seq.DupRate.xls:md5,ee8783399eec5a18522a6f08bece338b"
+            {
+                "bamstat": [
+                    
+                ],
+                "genebodycoverage_curves": [
+                    
+                ],
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
+                    
+                ],
+                "genebodycoverage_r": [
+                    
+                ],
+                "genebodycoverage_txt": [
+                    
+                ],
+                "inferexperiment": [
+                    
+                ],
+                "innerdistance_distance": [
+                    
+                ],
+                "innerdistance_freq": [
+                    
+                ],
+                "innerdistance_pdf": [
+                    
+                ],
+                "innerdistance_r": [
+                    
+                ],
+                "junctionannotation_bed": [
+                    
+                ],
+                "junctionannotation_events_pdf": [
+                    
+                ],
+                "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
+                    
+                ],
+                "junctionannotation_pdf": [
+                    
+                ],
+                "junctionannotation_r": [
+                    
+                ],
+                "junctionannotation_xls": [
+                    
+                ],
+                "readdistribution": [
+                    
+                ],
+                "readduplication_pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.DupRate_plot.pdf"
+                    ]
+                ],
+                "readduplication_pos": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pos.DupRate.xls:md5,a859bc2031d46bf1cc4336205847caa3"
+                    ]
+                ],
+                "readduplication_r": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.DupRate_plot.r:md5,3c0325095cee4835b921e57d61c23dca"
+                    ]
+                ],
+                "readduplication_seq": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq.DupRate.xls:md5,ee8783399eec5a18522a6f08bece338b"
+                    ]
+                ],
+                "tin_txt": [
+                    
+                ],
+                "tin_xls": [
+                    
                 ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.pos.DupRate.xls:md5,a859bc2031d46bf1cc4336205847caa3"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.DupRate_plot.r:md5,3c0325095cee4835b921e57d61c23dca"
-                ]
-            ],
-            [
-                "versions.yml:md5,ca7dd6bc18f0ccc5f293900719b1d8c5"
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:59:27.765992581"
+        "timestamp": "2026-02-24T19:23:54.849206371"
     },
     "sarscov2 - bam - bed - bai - stub": {
         "content": [
@@ -459,18 +606,23 @@
                             "id": "test1",
                             "single_end": false
                         },
-                        "test1_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test1.bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
                             "id": "test2",
                             "single_end": false
                         },
-                        "test2_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test2.bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
-                    "genebody_coverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "10": [
                     [
@@ -633,7 +785,12 @@
                     ]
                 ],
                 "2": [
-                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "20": [
                     [
@@ -715,24 +872,29 @@
                         "test.paired_end.methylated.sorted.tin.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "25": [
-                    "versions.yml:md5,06f01970db8f497c0c58ff9d1a99792f",
-                    "versions.yml:md5,36d44ac04fbebd880a708416d1977b13",
-                    "versions.yml:md5,497bfd7a0ca772f3e0f94c15f00cbf48",
-                    "versions.yml:md5,55bb098a2568f941ae2c8a376a7286a5",
-                    "versions.yml:md5,5d97249de0a6e2833b319a1708b42f17",
-                    "versions.yml:md5,93efe9464c94ed39e3c4af87a4c1e46f",
-                    "versions.yml:md5,9a33d32db31911a8b0cd8bdbc528875f",
-                    "versions.yml:md5,ca7dd6bc18f0ccc5f293900719b1d8c5"
-                ],
                 "3": [
-                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "4": [
-                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "5": [
-                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "6": [
                     [
@@ -804,30 +966,55 @@
                             "id": "test1",
                             "single_end": false
                         },
-                        "test1_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test1.bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
                             "id": "test2",
                             "single_end": false
                         },
-                        "test2_bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test2.bam_stat.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "genebodycoverage_curves": [
-                    "genebody_coverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.curves.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "genebodycoverage_heatmap": [
-                    "genebody_coverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.heatMap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "genebodycoverage_log": [
-                    "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "log.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "genebodycoverage_r": [
-                    "genebody_coverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "genebodycoverage_txt": [
-                    "genebody_coverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "inferexperiment": [
                     [
@@ -1132,16 +1319,6 @@
                         },
                         "test.paired_end.methylated.sorted.tin.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,06f01970db8f497c0c58ff9d1a99792f",
-                    "versions.yml:md5,36d44ac04fbebd880a708416d1977b13",
-                    "versions.yml:md5,497bfd7a0ca772f3e0f94c15f00cbf48",
-                    "versions.yml:md5,55bb098a2568f941ae2c8a376a7286a5",
-                    "versions.yml:md5,5d97249de0a6e2833b319a1708b42f17",
-                    "versions.yml:md5,93efe9464c94ed39e3c4af87a4c1e46f",
-                    "versions.yml:md5,9a33d32db31911a8b0cd8bdbc528875f",
-                    "versions.yml:md5,ca7dd6bc18f0ccc5f293900719b1d8c5"
                 ]
             }
         ],
@@ -1149,46 +1326,117 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T18:02:03.003123332"
+        "timestamp": "2026-02-24T19:27:27.864169023"
     },
     "sarscov2 - bam - bed - bai | inner_distance_only": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.inner_distance.txt:md5,a1acc9def0f64a5500d4c4cb47cbe32b"
+            {
+                "bamstat": [
+                    
+                ],
+                "genebodycoverage_curves": [
+                    
+                ],
+                "genebodycoverage_heatmap": [
+                    
+                ],
+                "genebodycoverage_log": [
+                    
+                ],
+                "genebodycoverage_r": [
+                    
+                ],
+                "genebodycoverage_txt": [
+                    
+                ],
+                "inferexperiment": [
+                    
+                ],
+                "innerdistance_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance.txt:md5,a1acc9def0f64a5500d4c4cb47cbe32b"
+                    ]
+                ],
+                "innerdistance_freq": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_freq.txt:md5,3fc037501f5899b5da009c8ce02fc25e"
+                    ]
+                ],
+                "innerdistance_pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.pdf"
+                    ]
+                ],
+                "innerdistance_r": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.r:md5,05d4b21d8b3f5520eeb4d2eb9416969b"
+                    ]
+                ],
+                "junctionannotation_bed": [
+                    
+                ],
+                "junctionannotation_events_pdf": [
+                    
+                ],
+                "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
+                    
+                ],
+                "junctionannotation_pdf": [
+                    
+                ],
+                "junctionannotation_r": [
+                    
+                ],
+                "junctionannotation_xls": [
+                    
+                ],
+                "readdistribution": [
+                    
+                ],
+                "readduplication_pdf": [
+                    
+                ],
+                "readduplication_pos": [
+                    
+                ],
+                "readduplication_r": [
+                    
+                ],
+                "readduplication_seq": [
+                    
+                ],
+                "tin_txt": [
+                    
+                ],
+                "tin_xls": [
+                    
                 ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.inner_distance_freq.txt:md5,3fc037501f5899b5da009c8ce02fc25e"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.inner_distance_plot.r:md5,05d4b21d8b3f5520eeb4d2eb9416969b"
-                ]
-            ],
-            [
-                "versions.yml:md5,5d97249de0a6e2833b319a1708b42f17"
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:57:03.123225762"
+        "timestamp": "2026-02-24T19:18:45.638756357"
     },
     "sarscov2 - bam - bed - bai | infer_experiment_only": {
         "content": [
@@ -1247,9 +1495,6 @@
                 "24": [
                     
                 ],
-                "25": [
-                    "versions.yml:md5,93efe9464c94ed39e3c4af87a4c1e46f"
-                ],
                 "3": [
                     
                 ],
@@ -1357,9 +1602,6 @@
                 ],
                 "tin_xls": [
                     
-                ],
-                "versions": [
-                    "versions.yml:md5,93efe9464c94ed39e3c4af87a4c1e46f"
                 ]
             }
         ],
@@ -1367,252 +1609,321 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:56:14.657697531"
+        "timestamp": "2026-02-24T19:17:38.392717031"
     },
     "sarscov2 - bam - bed - bai": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1_bam_stat.txt:md5,2675857864c1d1139b2a19d25dc36b09"
+            {
+                "bamstat": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.bam_stat.txt:md5,2675857864c1d1139b2a19d25dc36b09"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.bam_stat.txt:md5,3faeee30a6789db2df464b6e5adc4931"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2_bam_stat.txt:md5,3faeee30a6789db2df464b6e5adc4931"
-                ]
-            ],
-            [
-                "genebody_coverage.geneBodyCoverage.r:md5,5b5fc7e0aadb1c55c7bf426845d33db5"
-            ],
-            [
-                "genebody_coverage.geneBodyCoverage.txt:md5,11ecc8f0c9644450685fe48ead48ffe4"
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
+                "genebodycoverage_curves": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.curves.pdf"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.infer_experiment.txt:md5,8418e91a12a842ca4d4a5c29819c53ab"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.inner_distance.txt:md5,a1acc9def0f64a5500d4c4cb47cbe32b"
+                "genebodycoverage_heatmap": [
+                    
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.inner_distance.txt:md5,aa5d3c29f3be2b86f000b82b16387089"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.inner_distance_freq.txt:md5,3fc037501f5899b5da009c8ce02fc25e"
+                "genebodycoverage_log": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "log.txt"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.inner_distance_freq.txt:md5,c1c43fa14b06c0af2918d75517e2ef25"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.inner_distance_plot.r:md5,18987a1584cb4e1b97837273b31c983e"
+                "genebodycoverage_r": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.r:md5,30b2d095406c849305035159acdd6499"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.inner_distance_plot.r:md5,350fc601936d8ebb108420ccdc94f882"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "genebodycoverage_txt": [
+                    [
+                        {
+                            "id": "2 samples"
+                        },
+                        "genebodycoverage.geneBodyCoverage.txt:md5,11ecc8f0c9644450685fe48ead48ffe4"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "inferexperiment": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.infer_experiment.txt:md5,f9d0bfc239df637cd8aeda40ade3c59a"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.infer_experiment.txt:md5,8418e91a12a842ca4d4a5c29819c53ab"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            ],
-            [
-                
-            ],
-            [
-                
-            ],
-            [
-                
-            ],
-            [
-                
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.read_distribution.txt:md5,56893fdc0809d968629a363551a1655f"
+                "innerdistance_distance": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.inner_distance.txt:md5,a1acc9def0f64a5500d4c4cb47cbe32b"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.inner_distance.txt:md5,aa5d3c29f3be2b86f000b82b16387089"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.read_distribution.txt:md5,42add9143f6578252764721e1b2aa24a"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.seq.DupRate.xls:md5,ee8783399eec5a18522a6f08bece338b"
+                "innerdistance_freq": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.inner_distance_freq.txt:md5,3fc037501f5899b5da009c8ce02fc25e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.inner_distance_freq.txt:md5,c1c43fa14b06c0af2918d75517e2ef25"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.seq.DupRate.xls:md5,c0e9f700729b8ea826ea16d68d416cdb"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.pos.DupRate.xls:md5,a859bc2031d46bf1cc4336205847caa3"
+                "innerdistance_pdf": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.inner_distance_plot.pdf"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.inner_distance_plot.pdf"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.pos.DupRate.xls:md5,bbdb83b3d79229e8f9d832f0439c864e"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test1.DupRate_plot.r:md5,7cd26e43823027361b87c805a0d189d4"
+                "innerdistance_r": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.inner_distance_plot.r:md5,18987a1584cb4e1b97837273b31c983e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.inner_distance_plot.r:md5,350fc601936d8ebb108420ccdc94f882"
+                    ]
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test2.DupRate_plot.r:md5,e8e103e817dbcb92050a1ae41a6db355"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
+                "junctionannotation_bed": [
+                    
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test.paired_end.methylated.sorted.summary.txt:md5,f23bb778c642ee00cdcc9d6733ff4f7b"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test1",
-                        "single_end": false
-                    },
-                    "test.paired_end.sorted.tin.xls:md5,abdbb6d51a5cd7038cd862ce241ecef1"
+                "junctionannotation_events_pdf": [
+                    
                 ],
-                [
-                    {
-                        "id": "test2",
-                        "single_end": false
-                    },
-                    "test.paired_end.methylated.sorted.tin.xls:md5,23c0dea116a61119749e4f4060736bed"
+                "junctionannotation_interact": [
+                    
+                ],
+                "junctionannotation_log": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.junction_annotation.log"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.junction_annotation.log"
+                    ]
+                ],
+                "junctionannotation_pdf": [
+                    
+                ],
+                "junctionannotation_r": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.junction_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "junctionannotation_xls": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.junction.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "readdistribution": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.read_distribution.txt:md5,56893fdc0809d968629a363551a1655f"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.read_distribution.txt:md5,42add9143f6578252764721e1b2aa24a"
+                    ]
+                ],
+                "readduplication_pdf": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.DupRate_plot.pdf"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.DupRate_plot.pdf"
+                    ]
+                ],
+                "readduplication_pos": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.pos.DupRate.xls:md5,a859bc2031d46bf1cc4336205847caa3"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.pos.DupRate.xls:md5,bbdb83b3d79229e8f9d832f0439c864e"
+                    ]
+                ],
+                "readduplication_r": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.DupRate_plot.r:md5,7cd26e43823027361b87c805a0d189d4"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.DupRate_plot.r:md5,e8e103e817dbcb92050a1ae41a6db355"
+                    ]
+                ],
+                "readduplication_seq": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.seq.DupRate.xls:md5,ee8783399eec5a18522a6f08bece338b"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.seq.DupRate.xls:md5,c0e9f700729b8ea826ea16d68d416cdb"
+                    ]
+                ],
+                "tin_txt": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test.paired_end.methylated.sorted.summary.txt:md5,f23bb778c642ee00cdcc9d6733ff4f7b"
+                    ]
+                ],
+                "tin_xls": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,abdbb6d51a5cd7038cd862ce241ecef1"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test.paired_end.methylated.sorted.tin.xls:md5,23c0dea116a61119749e4f4060736bed"
+                    ]
                 ]
-            ],
-            [
-                "versions.yml:md5,06f01970db8f497c0c58ff9d1a99792f",
-                "versions.yml:md5,36d44ac04fbebd880a708416d1977b13",
-                "versions.yml:md5,497bfd7a0ca772f3e0f94c15f00cbf48",
-                "versions.yml:md5,55bb098a2568f941ae2c8a376a7286a5",
-                "versions.yml:md5,5d97249de0a6e2833b319a1708b42f17",
-                "versions.yml:md5,93efe9464c94ed39e3c4af87a4c1e46f",
-                "versions.yml:md5,9a33d32db31911a8b0cd8bdbc528875f",
-                "versions.yml:md5,ca7dd6bc18f0ccc5f293900719b1d8c5"
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:53:27.612273711"
+        "timestamp": "2026-02-24T19:14:18.38851365"
     },
     "sarscov2 - bam - bed - bai | read_distribution_only": {
         "content": [
@@ -1677,9 +1988,6 @@
                 "24": [
                     
                 ],
-                "25": [
-                    "versions.yml:md5,06f01970db8f497c0c58ff9d1a99792f"
-                ],
                 "3": [
                     
                 ],
@@ -1781,9 +2089,6 @@
                 ],
                 "tin_xls": [
                     
-                ],
-                "versions": [
-                    "versions.yml:md5,06f01970db8f497c0c58ff9d1a99792f"
                 ]
             }
         ],
@@ -1791,7 +2096,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:58:39.233772259"
+        "timestamp": "2026-02-24T19:22:04.750132544"
     },
     "sarscov2 - bam - bed - bai | bam_stat_only": {
         "content": [
@@ -1802,7 +2107,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_bam_stat.txt:md5,2675857864c1d1139b2a19d25dc36b09"
+                        "test.bam_stat.txt:md5,2675857864c1d1139b2a19d25dc36b09"
                     ]
                 ],
                 "1": [
@@ -1856,9 +2161,6 @@
                 "24": [
                     
                 ],
-                "25": [
-                    "versions.yml:md5,36d44ac04fbebd880a708416d1977b13"
-                ],
                 "3": [
                     
                 ],
@@ -1886,7 +2188,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_bam_stat.txt:md5,2675857864c1d1139b2a19d25dc36b09"
+                        "test.bam_stat.txt:md5,2675857864c1d1139b2a19d25dc36b09"
                     ]
                 ],
                 "genebodycoverage_curves": [
@@ -1960,9 +2262,6 @@
                 ],
                 "tin_xls": [
                     
-                ],
-                "versions": [
-                    "versions.yml:md5,36d44ac04fbebd880a708416d1977b13"
                 ]
             }
         ],
@@ -1970,6 +2269,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-05T17:54:15.045803336"
+        "timestamp": "2026-02-24T19:15:25.012799945"
     }
 }

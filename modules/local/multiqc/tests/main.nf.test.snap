@@ -1,50 +1,76 @@
 {
-    "versions_multiqc": {
-        "content": [
-            [
-                "versions.yml:md5,fb414e2981ac22207d632d29efb6d93e"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-30T03:02:36.764520494"
-    },
-    "Should stub generate MultiQC report from FastQC files and return mocked HTML and data files": {
+    "sarscov2 - zip - stub": {
         "content": [
             {
                 "0": [
-                    "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            
+                        },
+                        "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "1": [
                     [
-                        
+                        {
+                            
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "2": [
                     [
-                        
+                        {
+                            
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,fb414e2981ac22207d632d29efb6d93e"
+                    [
+                        "MULTIQC",
+                        "multiqc",
+                        "1.33"
+                    ]
                 ],
                 "data": [
                     [
-                        
+                        {
+                            
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "plots": [
                     [
-                        
+                        {
+                            
+                        },
+                        [
+                            
+                        ]
                     ]
                 ],
                 "report": [
-                    "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    [
+                        {
+                            
+                        },
+                        "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
-                "versions": [
-                    "versions.yml:md5,fb414e2981ac22207d632d29efb6d93e"
+                "versions_multiqc": [
+                    [
+                        "MULTIQC",
+                        "multiqc",
+                        "1.33"
+                    ]
                 ]
             }
         ],
@@ -52,6 +78,43 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-30T03:03:34.077488175"
+        "timestamp": "2026-02-20T21:45:07.615526243"
+    },
+    "sarscov2 - zip": {
+        "content": [
+            {
+                "data": [
+                    [
+                        {
+                            
+                        },
+                        "multiqc_data"
+                    ]
+                ],
+                "plots": [
+                    
+                ],
+                "report": [
+                    [
+                        {
+                            
+                        },
+                        "multiqc_report.html"
+                    ]
+                ],
+                "versions_multiqc": [
+                    [
+                        "MULTIQC",
+                        "multiqc",
+                        "1.33"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T21:43:57.016474463"
     }
 }

@@ -9,19 +9,16 @@ include { SALMON_QUANT } from '../../../modules/local/salmon/quant/main.nf'
 workflow FASTQ_QUANT_PSEUDOALIGNMENT {
     take:
     ch_reads // channel: [ val(meta), reads ]
-    ch_kallisto_index // channel: [ kallisto_index ]
-    ch_salmon_index // channel: [ salmon_index ]
-    ch_gtf // channel: [ gtf ]
-    val_bootstrap_count // integer: Bootstrap count for Kallisto
+    ch_kallisto_index // channel: [ val(meta), kallisto_index ]
+    ch_salmon_index // channel: [ val(meta), salmon_index ]
+    ch_gtf // channel: [ val(meta), gtf ]
     val_fragment_length // integer: Fragment length for Kallisto
     val_fragment_length_sd // integer: Fragment length standard deviation for Kallisto
     val_pseudoaligner_method // string: 'kallisto' or 'salmon'
 
     main:
 
-    ch_versions = channel.empty()
     ch_quant_dir = channel.empty()
-    ch_json_info = channel.empty()
     ch_quant_log = channel.empty()
 
     if (val_pseudoaligner_method == "kallisto") {
@@ -30,13 +27,10 @@ workflow FASTQ_QUANT_PSEUDOALIGNMENT {
             ch_reads,
             ch_kallisto_index,
             ch_gtf,
-            val_bootstrap_count,
             val_fragment_length,
             val_fragment_length_sd,
         )
-        ch_versions = ch_versions.mix(KALLISTO_QUANT.out.versions.first())
         ch_quant_dir = KALLISTO_QUANT.out.quant_dir
-        ch_json_info = KALLISTO_QUANT.out.json_info
         ch_quant_log = KALLISTO_QUANT.out.log
     }
     else if (val_pseudoaligner_method == "salmon") {
@@ -45,11 +39,8 @@ workflow FASTQ_QUANT_PSEUDOALIGNMENT {
             ch_reads,
             ch_salmon_index,
             ch_gtf,
-            [],
         )
-        ch_versions = ch_versions.mix(SALMON_QUANT.out.versions.first())
         ch_quant_dir = SALMON_QUANT.out.quant_dir
-        ch_quant_log = SALMON_QUANT.out.log
     }
     else {
         error("Invalid pseudoaligner_method: ${val_pseudoaligner_method}. Must be one of: 'salmon' or 'kallisto'")
@@ -57,7 +48,5 @@ workflow FASTQ_QUANT_PSEUDOALIGNMENT {
 
     emit:
     quant_dir = ch_quant_dir // channel: [ val(meta), [ quant_dir ] ]
-    json_info = ch_json_info // channel: [ val(meta), [ json_info ] ] (Kallisto only)
-    quant_log = ch_quant_log // channel: [ val(meta), [ quant_log ] ]
-    versions = ch_versions // channel: [ versions.yml ]
+    quant_log = ch_quant_log // channel: [ val(meta), [ quant_log ] ] (Kallisto only)
 }

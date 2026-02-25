@@ -5,9 +5,10 @@ nextflow_process {
     process "FASTQC"
 
     tag "modules"
+    tag "modules_local"
     tag "fastqc"
 
-    test("Should process single-end sarscov2 FASTQ files and generate HTML and ZIP quality reports") {
+    test("sarscov2 - fastq1") {
 
         when {
             params {
@@ -30,12 +31,12 @@ nextflow_process {
                 { assert process.success },
                 { assert process.out.html.get(0).get(1) ==~ ".*/test_1_fastqc.html" },
                 { assert process.out.zip.get(0).get(1) ==~ ".*/test_1_fastqc.zip" },
-                { assert snapshot(process.out.versions).match("versions_single_end") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["html","zip"])).match() }
             )
         }
     }
 
-    test("Should process paired-end sarscov2 FASTQ files and generate HTML and ZIP quality reports for both reads") {
+    test("sarscov2 - [fastq1, fastq2]") {
 
         when {
             params {
@@ -61,13 +62,12 @@ nextflow_process {
                 { assert process.out.html.get(0).get(1).get(1) ==~ ".*/test_2_fastqc.html" },
                 { assert process.out.zip.get(0).get(1).get(0) ==~ ".*/test_1_fastqc.zip" },
                 { assert process.out.zip.get(0).get(1).get(1) ==~ ".*/test_2_fastqc.zip" },
-                { assert snapshot(process.out.versions).match("versions_paired_end") }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["html","zip"])).match() }
             )
         }
     }
 
-    test("Should stub process single-end sarscov2 FASTQ files without running actual analysis") {
-
+    test("sarscov2 - fastq1 - stub") {
         options "-stub"
         when {
             process {
@@ -90,8 +90,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub process paired-end sarscov2 FASTQ files without running actual analysis") {
-
+    test("sarscov2 - [fastq1, fastq2] - stub") {
         options "-stub"
         when {
             process {

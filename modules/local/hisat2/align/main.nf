@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process HISAT2_ALIGN {
     tag "${meta.id}"
     label 'process_low'
@@ -11,13 +9,14 @@ process HISAT2_ALIGN {
 
     input:
     tuple val(meta), path(reads)
-    path index
-    path ref
+    tuple val(meta2), path(index)
+    tuple val(meta3), path(fasta)
 
     output:
     tuple val(meta), path("*.bam"), emit: bam
     tuple val(meta), path("*.summary"), emit: summary
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('hisat2'), eval("hisat2 --version | head -n 1 | awk '{print \$3}' | sed 's/^.*version //'"), topic: versions, emit: versions_hisat2
+    tuple val("${task.process}"), val('samtools'), eval("samtools --version | head -n 1 | sed 's/samtools //'"), topic: versions, emit: versions_samtools
 
     when:
     task.ext.when == null || task.ext.when
@@ -41,7 +40,7 @@ process HISAT2_ALIGN {
     }
     """
     hisat2 \\
-        -x ${index}/${ref.getSimpleName()} \\
+        -x ${index}/${meta3.id} \\
         ${fastq_in} \\
         ${strand_flag} \\
         ${args} \\
@@ -50,11 +49,6 @@ process HISAT2_ALIGN {
         --rg "PL:Illumina" \\
         --summary-file ${prefix}.hisat2.summary \\
         | samtools view -bS - > ${prefix}.bam
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        hisat2: \$( hisat2 --version | head -n 1 | awk '{print \$3}' )
-    END_VERSIONS
     """
 
     stub:
@@ -62,10 +56,5 @@ process HISAT2_ALIGN {
     """
     touch ${prefix}.hisat2.summary
     touch ${prefix}.bam
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        hisat2: \$( hisat2 --version | head -n 1 | awk '{print \$3}' )
-    END_VERSIONS
     """
 }

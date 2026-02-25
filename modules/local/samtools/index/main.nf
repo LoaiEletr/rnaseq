@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process SAMTOOLS_INDEX {
     tag "${meta.id}"
     label 'process_low'
@@ -14,7 +12,7 @@ process SAMTOOLS_INDEX {
 
     output:
     tuple val(meta), path("*.bai"), emit: bai
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('samtools'), eval("samtools --version | head -n 1 | sed 's/samtools //'"), topic: versions, emit: versions_samtools
 
     when:
     task.ext.when == null || task.ext.when
@@ -25,20 +23,10 @@ process SAMTOOLS_INDEX {
     samtools \\
         index ${bam} \\
         ${args}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        samtools: \$( samtools --version | head -n 1 | sed 's/samtools //' )
-    END_VERSIONS
     """
 
     stub:
     """
     touch ${bam}.bai
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        samtools: \$( samtools --version | head -n 1 | sed 's/samtools //' )
-    END_VERSIONS
     """
 }

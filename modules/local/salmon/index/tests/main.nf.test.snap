@@ -1,62 +1,21 @@
 {
-    "versions": {
-        "content": [
-            [
-                "versions.yml:md5,85337fa0a286ea35073ee5260974e307"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-17T14:46:05.438324439"
-    },
-    "Should stub build Salmon index from transcriptome and return mocked index directory": {
+    "homo_sapiens - transcriptome": {
         "content": [
             {
-                "0": [
-                    [
-                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,85337fa0a286ea35073ee5260974e307"
-                ],
                 "index": [
                     [
-                        "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,85337fa0a286ea35073ee5260974e307"
+                "versions_salmon": [
+                    [
+                        "SALMON_INDEX",
+                        "salmon",
+                        "1.10.3"
+                    ]
                 ]
             }
         ],
@@ -64,6 +23,79 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T14:50:09.921588698"
+        "timestamp": "2026-02-21T00:28:25.141678881"
+    },
+    "homo_sapiens - transcriptome - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        [
+                            "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        "SALMON_INDEX",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        [
+                            "complete_ref_lens.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctable.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ctg_offsets.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "duplicate_clusters.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "mphf.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pos.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "pre_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "rank.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refAccumLengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "ref_indexing.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "reflengths.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "refseq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "seq.bin:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "versionInfo.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions_salmon": [
+                    [
+                        "SALMON_INDEX",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:30:42.744476247"
     }
 }

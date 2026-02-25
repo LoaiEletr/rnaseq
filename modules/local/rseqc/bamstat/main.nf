@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process RSEQC_BAMSTAT {
     tag "${meta.id}"
     label 'process_low'
@@ -14,7 +12,7 @@ process RSEQC_BAMSTAT {
 
     output:
     tuple val(meta), path("*.txt"), emit: txt
-    path ("versions.yml"), emit: versions
+    tuple val("${task.process}"), val('rseqc'), eval("bam_stat.py --version | sed 's/.*.py //'"), topic: versions, emit: versions_rseqc
 
     when:
     task.ext.when == null || task.ext.when
@@ -26,22 +24,12 @@ process RSEQC_BAMSTAT {
     bam_stat.py \\
         -i ${bam} \\
         ${args} \\
-        > ${prefix}_bam_stat.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( bam_stat.py --version | sed 's/.*.py //' )
-    END_VERSIONS
+        > ${prefix}.bam_stat.txt
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}_bam_stat.txt
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        rseqc: \$( bam_stat.py --version | sed 's/.*.py //' )
-    END_VERSIONS
+    touch ${prefix}.bam_stat.txt
     """
 }

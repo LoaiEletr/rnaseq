@@ -1,41 +1,271 @@
 {
-    "versions_wgcna_plant": {
+    "arabidopsis - samplesheet - pval_threshold - logfc - hub genes list | WGCNA": {
         "content": [
-            [
-                "versions.yml:md5,600eaba6ced871b12dcca374b4c3efc3"
-            ]
+            {
+                "heatmaps": [
+                    [
+                        "modules_hubgenes_green_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_purple_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf",
+                        "modules_hubgenes_greenyellow_heatmap.pdf",
+                        "modules_hubgenes_salmon_heatmap.pdf",
+                        "modules_hubgenes_black_heatmap.pdf",
+                        "modules_hubgenes_tan_heatmap.pdf",
+                        "modules_hubgenes_lightgreen_heatmap.pdf",
+                        "modules_hubgenes_lightyellow_heatmap.pdf",
+                        "modules_hubgenes_magenta_heatmap.pdf",
+                        "modules_hubgenes_red_heatmap.pdf",
+                        "modules_hubgenes_yellow_heatmap.pdf",
+                        "modules_hubgenes_green_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_purple_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf",
+                        "modules_hubgenes_greenyellow_heatmap.pdf",
+                        "modules_hubgenes_salmon_heatmap.pdf",
+                        "modules_hubgenes_black_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_tan_heatmap.pdf",
+                        "modules_hubgenes_magenta_heatmap.pdf",
+                        "modules_hubgenes_red_heatmap.pdf",
+                        "modules_hubgenes_yellow_heatmap.pdf"
+                    ]
+                ],
+                "versions_enhancedvolcano": [
+                    [
+                        "DE_VISUALIZATION",
+                        "bioconductor-enhancedvolcano",
+                        "1.24.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rcolorbrewer": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-rcolorbrewer",
+                        "1.1.3"
+                    ]
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-27T03:03:57.246291167"
+        "timestamp": "2026-02-22T01:41:29.545023104"
     },
-    "versions_masigpro_plants": {
+    "leishmaniasis - unfiltered_deg - samplesheet - pval_threshold - logfc - diffexpr_matrix | Limma": {
         "content": [
-            [
-                "versions.yml:md5,600eaba6ced871b12dcca374b4c3efc3"
-            ]
+            {
+                "heatmaps": [
+                    "DEGs_heatmap.pdf"
+                ],
+                "versions_enhancedvolcano": [
+                    [
+                        "DE_VISUALIZATION",
+                        "bioconductor-enhancedvolcano",
+                        "1.24.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rcolorbrewer": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-rcolorbrewer",
+                        "1.1.3"
+                    ]
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-27T02:54:13.427754678"
+        "timestamp": "2026-02-22T01:52:47.170917496"
     },
-    "versions_wgcna_leishmaniasis": {
+    "arabidopsis - samplesheet - cluster_file - pval_threshold - logfc - diffexpr_matrix | masigpro": {
         "content": [
-            [
-                "versions.yml:md5,600eaba6ced871b12dcca374b4c3efc3"
-            ]
+            {
+                "heatmaps": [
+                    [
+                        "cluster_1_heatmap.pdf",
+                        "cluster_2_heatmap.pdf",
+                        "cluster_3_heatmap.pdf",
+                        "cluster_4_heatmap.pdf",
+                        "cluster_5_heatmap.pdf",
+                        "cluster_6_heatmap.pdf",
+                        "cluster_7_heatmap.pdf",
+                        "cluster_8_heatmap.pdf",
+                        "cluster_9_heatmap.pdf"
+                    ]
+                ],
+                "versions_enhancedvolcano": [
+                    [
+                        "DE_VISUALIZATION",
+                        "bioconductor-enhancedvolcano",
+                        "1.24.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rcolorbrewer": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-rcolorbrewer",
+                        "1.1.3"
+                    ]
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-27T02:59:02.876418359"
+        "timestamp": "2026-02-22T01:31:25.102160013"
     },
-    "Should stub generate heatmap and volcano plot from DESeq2 diffgenes and return mocked visualization results": {
+    "leishmaniasis - samplesheet - pval_threshold - logfc - hub genes list | WGCNA": {
+        "content": [
+            {
+                "heatmaps": [
+                    [
+                        "modules_hubgenes_blue_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf"
+                    ]
+                ],
+                "versions_enhancedvolcano": [
+                    [
+                        "DE_VISUALIZATION",
+                        "bioconductor-enhancedvolcano",
+                        "1.24.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rcolorbrewer": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-rcolorbrewer",
+                        "1.1.3"
+                    ]
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T01:36:03.471346804"
+    },
+    "leishmaniasis - unfiltered_deg - samplesheet - pval_threshold - logfc - diffexpr_matrix | DESeq2": {
+        "content": [
+            {
+                "heatmaps": [
+                    "DEGs_heatmap.pdf"
+                ],
+                "versions_enhancedvolcano": [
+                    [
+                        "DE_VISUALIZATION",
+                        "bioconductor-enhancedvolcano",
+                        "1.24.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rcolorbrewer": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-rcolorbrewer",
+                        "1.1.3"
+                    ]
+                ],
+                "volcano_plot": [
+                    "volcano_sig_genes.pdf"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T01:47:01.085359571"
+    },
+    "leishmaniasis - unfiltered_deg - samplesheet - pval_threshold - logfc - diffexpr_matrix - stub | DESeq2": {
         "content": [
             {
                 "0": [
@@ -45,13 +275,63 @@
                     
                 ],
                 "2": [
-                    "versions.yml:md5,600eaba6ced871b12dcca374b4c3efc3"
+                    [
+                        "DE_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "DE_VISUALIZATION",
+                        "bioconductor-enhancedvolcano",
+                        "1.24.0"
+                    ]
+                ],
+                "4": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "5": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-rcolorbrewer",
+                        "1.1.3"
+                    ]
                 ],
                 "heatmaps": [
                     
                 ],
-                "versions": [
-                    "versions.yml:md5,600eaba6ced871b12dcca374b4c3efc3"
+                "versions_enhancedvolcano": [
+                    [
+                        "DE_VISUALIZATION",
+                        "bioconductor-enhancedvolcano",
+                        "1.24.0"
+                    ]
+                ],
+                "versions_pheatmap": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-pheatmap",
+                        "1.0.13"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rcolorbrewer": [
+                    [
+                        "DE_VISUALIZATION",
+                        "r-rcolorbrewer",
+                        "1.1.3"
+                    ]
                 ],
                 "volcano_plot": [
                     "volcano_sig_genes.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -62,30 +342,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-27T03:22:44.349289334"
-    },
-    "versions_limma": {
-        "content": [
-            [
-                "versions.yml:md5,600eaba6ced871b12dcca374b4c3efc3"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-27T03:15:23.689299456"
-    },
-    "versions_deseq2": {
-        "content": [
-            [
-                "versions.yml:md5,600eaba6ced871b12dcca374b4c3efc3"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-27T03:10:07.228938539"
+        "timestamp": "2026-02-22T01:54:39.234417067"
     }
 }

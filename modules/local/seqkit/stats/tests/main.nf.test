@@ -1,13 +1,14 @@
 nextflow_process {
     name "Test Process SEQKIT_STATS"
-    script "modules/local/seqkit/stats/main.nf"
+    script "../main.nf"
     process "SEQKIT_STATS"
 
     tag "modules"
+    tag "modules_local"
     tag "seqkit"
     tag "seqkit/stats"
 
-    test("Should calculate average read length with SeqKit and return statistics") {
+    test("sarscov2 - fastq1") {
         when {
             params {
                 outdir = "$outputDir"
@@ -31,7 +32,7 @@ nextflow_process {
         }
     }
 
-    test("Should stub calculate average read length with SeqKit and return mocked statistics") {
+    test("sarscov2 - fastq1 - stub") {
         options "-stub"
         when {
             params {

@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process MSIGDB_GSEA {
     tag "${unfiltered_deg}"
     label 'process_low'
@@ -21,40 +19,32 @@ process MSIGDB_GSEA {
 
     output:
     path "GSEA_results", emit: gsea_results, optional: true
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('r-base'), eval("Rscript -e 'cat(as.character(getRversion()))'"), topic: versions, emit: versions_rbase
+    tuple val("${task.process}"), val('bioconductor-clusterprofiler'), eval("Rscript -e \"cat(as.character(packageVersion('clusterProfiler')))\""), topic: versions, emit: versions_clusterprofiler
+    tuple val("${task.process}"), val('bioconductor-enrichplot'), eval("Rscript -e \"cat(as.character(packageVersion('enrichplot')))\""), topic: versions, emit: versions_enrichplot
+    tuple val("${task.process}"), val('r-ggplot2'), eval("Rscript -e \"cat(as.character(packageVersion('ggplot2')))\""), topic: versions, emit: versions_ggplot2
+    tuple val("${task.process}"), val('r-dplyr'), eval("Rscript -e \"cat(as.character(packageVersion('dplyr')))\""), topic: versions, emit: versions_dplyr
+    tuple val("${task.process}"), val('r-tibble'), eval("Rscript -e \"cat(as.character(packageVersion('tibble')))\""), topic: versions, emit: versions_tibble
+    tuple val("${task.process}"), val('r-msigdbr'), eval("Rscript -e \"cat(as.character(packageVersion('msigdbr')))\""), topic: versions, emit: versions_msigdbr
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     """
-    run_msigdb_gsea.R ${unfiltered_deg} ${pvalue_threshold} ${species_name} ${msigdb_categories} ${nes_threshold} ${padj_gsea} ${ntop_processes} ${rank_method}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-clusterprofiler: \$(Rscript -e "library(clusterProfiler); cat(as.character(packageVersion('clusterProfiler')))")
-        bioconductor-enrichplot: \$(Rscript -e "library(enrichplot); cat(as.character(packageVersion('enrichplot')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        r-msigdbr: \$(Rscript -e "library(msigdbr); cat(as.character(packageVersion('msigdbr')))")
-    END_VERSIONS
+    run_msigdb_gsea.R \\
+        ${unfiltered_deg} \\
+        ${pvalue_threshold} \\
+        ${species_name} \\
+        ${msigdb_categories} \\
+        ${nes_threshold} \\
+        ${padj_gsea} \\
+        ${ntop_processes} \\
+        ${rank_method}
     """
 
     stub:
     """
     mkdir GSEA_results
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
-        bioconductor-clusterprofiler: \$(Rscript -e "library(clusterProfiler); cat(as.character(packageVersion('clusterProfiler')))")
-        bioconductor-enrichplot: \$(Rscript -e "library(enrichplot); cat(as.character(packageVersion('enrichplot')))")
-        r-ggplot2: \$(Rscript -e "library(ggplot2); cat(as.character(packageVersion('ggplot2')))")
-        r-dplyr: \$(Rscript -e "library(dplyr); cat(as.character(packageVersion('dplyr')))")
-        r-tibble: \$(Rscript -e "library(tibble); cat(as.character(packageVersion('tibble')))")
-        r-msigdbr: \$(Rscript -e "library(msigdbr); cat(as.character(packageVersion('msigdbr')))")
-    END_VERSIONS
     """
 }

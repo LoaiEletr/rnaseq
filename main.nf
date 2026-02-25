@@ -37,6 +37,11 @@ params.salmon_index = getGenomeAttribute('salmon')
 params.kallisto_index = getGenomeAttribute('kallisto')
 params.bed = getGenomeAttribute('bed')
 params.gff = getGenomeAttribute('gff')
+params.fai = getGenomeAttribute('fai')
+params.dict = getGenomeAttribute('dict')
+params.interval_list = getGenomeAttribute('interval_list')
+params.snpeff_db = getGenomeAttribute('snpeff_db')
+params.snpeff_genome = getGenomeAttribute('snpeff_genome')
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,8 +59,6 @@ params.contaminant_fasta = getContaminantGenome()
 */
 
 workflow {
-
-    ch_versions = channel.empty()
 
     //
     // SUBWORKFLOW : Prepare reference genome files
@@ -76,8 +79,12 @@ workflow {
         params.hisat2_index,
         params.kallisto_index,
         params.salmon_index,
+        params.fai,
+        params.dict,
+        params.interval_list,
+        params.snpeff_db,
+        params.snpeff_genome,
     )
-    ch_versions = ch_versions.mix(PREPARE_GENOME.out.versions)
 
     //
     // SUBWORKFLOW: Run initialisation tasks
@@ -99,7 +106,6 @@ workflow {
     //
     LOAIELETR_RNASEQ(
         PIPELINE_INITIALISATION.out.samplesheet,
-        ch_versions,
         PREPARE_GENOME.out.transcriptome,
         PREPARE_GENOME.out.fasta_uncompressed,
         PREPARE_GENOME.out.gtf_compressed,
@@ -141,7 +147,6 @@ workflow {
 workflow LOAIELETR_RNASEQ {
     take:
     ch_samplesheet // channel: [ val(meta), [ reads ] ]
-    ch_versions // channel: [ versions.yml ]
     ch_transcriptome // channel: [ transcriptome.fasta ]
     ch_fasta_uncompressed // channel: [ genome.fasta ]
     ch_gtf_compressed // channel: [ genome.gtf.gz ]
@@ -163,23 +168,21 @@ workflow LOAIELETR_RNASEQ {
     //
     RNASEQ(
         ch_samplesheet,
-        ch_versions,
-        ch_transcriptome.ifEmpty([]),
-        ch_fasta_uncompressed.ifEmpty([]),
+        ch_transcriptome.ifEmpty([[:], []]),
+        ch_fasta_uncompressed.ifEmpty([[:], []]),
         ch_gtf_compressed,
-        ch_gtf_uncompressed.ifEmpty([]),
-        ch_gtf_isoform.ifEmpty([]),
-        ch_rrna_db_fasta.ifEmpty([]),
-        ch_bed.ifEmpty([]),
-        ch_gff.ifEmpty([]),
-        ch_hisat2_index.ifEmpty([]),
-        ch_kallisto_index.ifEmpty([]),
-        ch_salmon_index.ifEmpty([]),
-        ch_sortmerna_index.ifEmpty([]),
-        ch_bbsplit_index.ifEmpty([]),
+        ch_gtf_uncompressed.ifEmpty([[:], []]),
+        ch_gtf_isoform.ifEmpty([[:], []]),
+        ch_rrna_db_fasta.ifEmpty([[:], []]),
+        ch_bed.ifEmpty([[:], []]),
+        ch_gff.ifEmpty([[:], []]),
+        ch_hisat2_index.ifEmpty([[:], []]),
+        ch_kallisto_index.ifEmpty([[:], []]),
+        ch_salmon_index.ifEmpty([[:], []]),
+        ch_sortmerna_index.ifEmpty([[:], []]),
+        ch_bbsplit_index.ifEmpty([[:], []]),
     )
 
     emit:
     multiqc_report = RNASEQ.out.multiqc_report // channel: /path/to/multiqc_report.html
-    versions = RNASEQ.out.versions // channel: [ path(versions.yml) ]
 }

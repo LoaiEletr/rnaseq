@@ -1,5 +1,5 @@
 {
-    "Should stub subsample single-end FASTQ to 1M reads and return mocked sampled FASTQ file": {
+    "sarscov2 - fastq1 - stub": {
         "content": [
             {
                 "0": [
@@ -13,23 +13,9 @@
                 ],
                 "1": [
                     [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_1M.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
-                ],
-                "log": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_1M.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
                     ]
                 ],
                 "reads": [
@@ -41,8 +27,12 @@
                         "test_1M.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
+                    ]
                 ]
             }
         ],
@@ -50,127 +40,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T17:59:12.587671289"
+        "timestamp": "2026-02-21T01:19:17.768906366"
     },
-    "Should subsample paired-end FASTQ to 1M reads and return sampled FASTQ files": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        [
-                            "test_1_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
-                            "test_2_1M.fastq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
-                        ]
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        [
-                            "test_1_1M.log:md5,b82f776378e2146148ee7910dcb12fb4",
-                            "test_2_1M.log:md5,b82f776378e2146148ee7910dcb12fb4"
-                        ]
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
-                ],
-                "log": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        [
-                            "test_1_1M.log:md5,b82f776378e2146148ee7910dcb12fb4",
-                            "test_2_1M.log:md5,b82f776378e2146148ee7910dcb12fb4"
-                        ]
-                    ]
-                ],
-                "reads": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        [
-                            "test_1_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
-                            "test_2_1M.fastq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
-                        ]
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-17T17:58:24.937955882"
-    },
-    "Should subsample single-end FASTQ to 1M reads and return sampled FASTQ file": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_1_1M.log:md5,b82f776378e2146148ee7910dcb12fb4"
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
-                ],
-                "log": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_1_1M.log:md5,b82f776378e2146148ee7910dcb12fb4"
-                    ]
-                ],
-                "reads": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-17T17:57:40.08322675"
-    },
-    "Should stub subsample paired-end FASTQ to 1M reads and return mocked sampled FASTQ files": {
+    "sarscov2 - [fastq1, fastq2] - stub": {
         "content": [
             {
                 "0": [
@@ -187,29 +59,9 @@
                 ],
                 "1": [
                     [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        [
-                            "test_1_1M.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "test_2_1M.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                        ]
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
-                ],
-                "log": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        [
-                            "test_1_1M.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "test_2_1M.log:md5,d41d8cd98f00b204e9800998ecf8427e"
-                        ]
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
                     ]
                 ],
                 "reads": [
@@ -224,8 +76,12 @@
                         ]
                     ]
                 ],
-                "versions": [
-                    "versions.yml:md5,6775c9662fd10ca7e7f6a6499a2ad87a"
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
+                    ]
                 ]
             }
         ],
@@ -233,6 +89,98 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-17T18:00:01.469045701"
+        "timestamp": "2026-02-21T01:20:06.690518154"
+    },
+    "sarscov2 - fastq1": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec"
+                    ]
+                ],
+                "1": [
+                    [
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec"
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:16:05.014739328"
+    },
+    "sarscov2 - [fastq1, fastq2]": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                            "test_2_1M.fastq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_1M.fastq.gz:md5,4161df271f9bfcd25d5845a1e220dbec",
+                            "test_2_1M.fastq.gz:md5,2ebae722295ea66d84075a3b042e2b42"
+                        ]
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_SAMPLE",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:17:50.082021701"
     }
 }

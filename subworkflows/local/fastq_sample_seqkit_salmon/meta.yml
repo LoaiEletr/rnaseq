@@ -1,68 +1,50 @@
 name: "fastq_sample_seqkit_salmon"
-description: |
-  Subsample FASTQ reads and perform RNA-seq quantification with strandness detection.
-  Performs: SeqKit subsampling of reads and Salmon quantification
-  with automatic library strandness determination.
+description: Subsample FASTQ reads using SeqKit and perform RNA-seq quantification with Salmon to determine library strandness.
 keywords:
-  - fastq
   - subsampling
+  - fastq
   - quantification
-  - rna-seq
   - salmon
   - seqkit
   - strandness
-  - transcriptomics
 components:
   - seqkit/sample
   - salmon/quant
 input:
   - ch_reads:
-      type: file
+      type: list
       description: |
-        Input channel containing FASTQ files (single or paired-end)
+        The input channel containing FASTQ files (single or paired-end)
         Structure: [ val(meta), path(reads) ]
       pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
   - ch_gtf:
       type: file
       description: |
-        Channel containing GTF annotation file for Salmon quantification
-        Structure: [ path(gtf) ]
+        The input channel containing GTF annotation file
+        Structure: [ val(meta), path(gtf) ]
       pattern: "*.{gtf,gtf.gz}"
   - ch_salmon_index:
-      type: file
+      type: directory
       description: |
-        Channel containing salmon transcriptome index files
-        Structure: [ path(salmon_index) ]
-      pattern: "*"
+        The input channel containing Salmon transcriptome index
+        Structure: [ val(meta), path(index) ]
 output:
   - reads:
-      type: file
+      type: list
       description: |
         Subsampled FASTQ files from SeqKit
         Structure: [ val(meta), path(reads) ]
       pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
   - quant_dir:
-      type: file
+      type: directory
       description: |
-        Salmon quantification directories containing results
+        Directory containing Salmon quantification results
         Structure: [ val(meta), path(quant_dir) ]
   - strandness:
       type: string
       description: |
-        Detected library strandness from Salmon quantification
-        Structure: [ val(meta), str(strandness) ]
-  - quant_log:
-      type: file
-      description: |
-        Log file from Salmon quantification
-        Structure: [ val(meta), path(log) ]
-      pattern: "*.log"
-  - versions:
-      type: file
-      description: |
-        File containing software versions from all executed modules
-        Structure: [ path(versions.yml) ]
-      pattern: "versions.yml"
+        The detected library strandness value (e.g., 'IU', 'SF', 'SR')
+        Structure: [ val(meta), val(strandness) ]
 authors:
   - "@Loai3tr"
 maintainers:
