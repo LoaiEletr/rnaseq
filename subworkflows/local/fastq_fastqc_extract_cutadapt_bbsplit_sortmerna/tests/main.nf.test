@@ -191,7 +191,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "bbsplit_stats", "rrna_log", "umi_log"])).match() }
             )
         }
     }

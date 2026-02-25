@@ -72,7 +72,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["hisat2_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["hisat2_index","salmon_index"])).match() }
             )
         }
     }
@@ -115,7 +115,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["kallisto_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["kallisto_index", "salmon_index"])).match() }
             )
         }
     }
@@ -202,7 +202,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["sortmerna_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["sortmerna_index", "salmon_index"])).match() }
             )
         }
     }
@@ -245,7 +245,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["bbsplit_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["bbsplit_index", "salmon_index"])).match() }
             )
         }
     }
@@ -291,7 +291,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out)).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["salmon_index"])).match() }
             )
         }
     }

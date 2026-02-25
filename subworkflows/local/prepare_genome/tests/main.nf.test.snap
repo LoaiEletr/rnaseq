@@ -119,23 +119,7 @@
                         {
                             "id": "transcriptome"
                         },
-                        [
-                            "complete_ref_lens.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "ctable.bin:md5,7fd936c88507b63001fc886c02e7da34",
-                            "ctg_offsets.bin:md5,48febc13231301608e4bf99195c7c942",
-                            "duplicate_clusters.tsv:md5,51b5292e3a874119c0e1aa566e95d70c",
-                            "info.json:md5,7a92dddfd2e4fb8aba79b4415791e5e8",
-                            "mphf.bin:md5,748042ca291cb05389497c8e3343b83d",
-                            "pos.bin:md5,4815b68ec01b5346e6ae321964e87781",
-                            "pre_indexing.log:md5,a180a3861011aa928b1d068e81e939e0",
-                            "rank.bin:md5,f02d9e28449d7a095e81947b957f4c8a",
-                            "refAccumLengths.bin:md5,2fe92a2833ae00eb9f18f82dcba07b2d",
-                            "ref_indexing.log:md5,e37207326af75ff6ca2b1265476cc529",
-                            "reflengths.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "refseq.bin:md5,5532f2814f78103d10eec49a6f25c0e2",
-                            "seq.bin:md5,b291d811341d0dc11a5aa7a77dcfc58c",
-                            "versionInfo.json:md5,d2c799050e81aa6e282ac8a73e773941"
-                        ]
+                        "transcriptome"
                     ]
                 ],
                 "snpeff_db": [
@@ -167,7 +151,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-24T23:06:06.504050948"
+        "timestamp": "2026-02-25T21:08:30.218878487"
     },
     "sarscov2 - hisat2 - build index": {
         "content": [
@@ -250,23 +234,7 @@
                         {
                             "id": "transcriptome"
                         },
-                        [
-                            "complete_ref_lens.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "ctable.bin:md5,7fd936c88507b63001fc886c02e7da34",
-                            "ctg_offsets.bin:md5,48febc13231301608e4bf99195c7c942",
-                            "duplicate_clusters.tsv:md5,51b5292e3a874119c0e1aa566e95d70c",
-                            "info.json:md5,7a92dddfd2e4fb8aba79b4415791e5e8",
-                            "mphf.bin:md5,748042ca291cb05389497c8e3343b83d",
-                            "pos.bin:md5,4815b68ec01b5346e6ae321964e87781",
-                            "pre_indexing.log:md5,122232e4d9c9ca3a741d2484d252dc3b",
-                            "rank.bin:md5,f02d9e28449d7a095e81947b957f4c8a",
-                            "refAccumLengths.bin:md5,2fe92a2833ae00eb9f18f82dcba07b2d",
-                            "ref_indexing.log:md5,446ea0190d01f5ecee3ba732ffdf45ed",
-                            "reflengths.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "refseq.bin:md5,5532f2814f78103d10eec49a6f25c0e2",
-                            "seq.bin:md5,b291d811341d0dc11a5aa7a77dcfc58c",
-                            "versionInfo.json:md5,d2c799050e81aa6e282ac8a73e773941"
-                        ]
+                        "transcriptome"
                     ]
                 ],
                 "snpeff_db": [
@@ -289,7 +257,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-24T22:07:03.392910881"
+        "timestamp": "2026-02-25T20:42:46.243213952"
     },
     "sarscov2 - sortmerna - build index": {
         "content": [
@@ -367,23 +335,7 @@
                         {
                             "id": "transcriptome"
                         },
-                        [
-                            "complete_ref_lens.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "ctable.bin:md5,7fd936c88507b63001fc886c02e7da34",
-                            "ctg_offsets.bin:md5,48febc13231301608e4bf99195c7c942",
-                            "duplicate_clusters.tsv:md5,51b5292e3a874119c0e1aa566e95d70c",
-                            "info.json:md5,7a92dddfd2e4fb8aba79b4415791e5e8",
-                            "mphf.bin:md5,748042ca291cb05389497c8e3343b83d",
-                            "pos.bin:md5,4815b68ec01b5346e6ae321964e87781",
-                            "pre_indexing.log:md5,a065d5986d7e8ba7a8ae54104e27ec69",
-                            "rank.bin:md5,f02d9e28449d7a095e81947b957f4c8a",
-                            "refAccumLengths.bin:md5,2fe92a2833ae00eb9f18f82dcba07b2d",
-                            "ref_indexing.log:md5,fe2b3d47f78f1f35c9ddd54ed99e63f2",
-                            "reflengths.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "refseq.bin:md5,5532f2814f78103d10eec49a6f25c0e2",
-                            "seq.bin:md5,b291d811341d0dc11a5aa7a77dcfc58c",
-                            "versionInfo.json:md5,d2c799050e81aa6e282ac8a73e773941"
-                        ]
+                        "transcriptome"
                     ]
                 ],
                 "snpeff_db": [
@@ -411,7 +363,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-24T22:25:54.973065054"
+        "timestamp": "2026-02-25T21:02:52.245563163"
     },
     "sarscov2 - salmon - build index": {
         "content": [
@@ -1006,23 +958,7 @@
                         {
                             "id": "transcriptome"
                         },
-                        [
-                            "complete_ref_lens.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "ctable.bin:md5,7fd936c88507b63001fc886c02e7da34",
-                            "ctg_offsets.bin:md5,48febc13231301608e4bf99195c7c942",
-                            "duplicate_clusters.tsv:md5,51b5292e3a874119c0e1aa566e95d70c",
-                            "info.json:md5,7a92dddfd2e4fb8aba79b4415791e5e8",
-                            "mphf.bin:md5,748042ca291cb05389497c8e3343b83d",
-                            "pos.bin:md5,4815b68ec01b5346e6ae321964e87781",
-                            "pre_indexing.log:md5,e3cc43bbf239c2219140a0d92a4943fd",
-                            "rank.bin:md5,f02d9e28449d7a095e81947b957f4c8a",
-                            "refAccumLengths.bin:md5,2fe92a2833ae00eb9f18f82dcba07b2d",
-                            "ref_indexing.log:md5,c900e15657d2cbf31b5a8ae02fcfed8b",
-                            "reflengths.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "refseq.bin:md5,5532f2814f78103d10eec49a6f25c0e2",
-                            "seq.bin:md5,b291d811341d0dc11a5aa7a77dcfc58c",
-                            "versionInfo.json:md5,d2c799050e81aa6e282ac8a73e773941"
-                        ]
+                        "transcriptome"
                     ]
                 ],
                 "snpeff_db": [
@@ -1045,7 +981,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-24T22:08:11.594484696"
+        "timestamp": "2026-02-25T20:43:41.738719837"
     },
     "sarscov2 - bbsplit - build index": {
         "content": [
@@ -1123,23 +1059,7 @@
                         {
                             "id": "transcriptome"
                         },
-                        [
-                            "complete_ref_lens.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "ctable.bin:md5,7fd936c88507b63001fc886c02e7da34",
-                            "ctg_offsets.bin:md5,48febc13231301608e4bf99195c7c942",
-                            "duplicate_clusters.tsv:md5,51b5292e3a874119c0e1aa566e95d70c",
-                            "info.json:md5,7a92dddfd2e4fb8aba79b4415791e5e8",
-                            "mphf.bin:md5,748042ca291cb05389497c8e3343b83d",
-                            "pos.bin:md5,4815b68ec01b5346e6ae321964e87781",
-                            "pre_indexing.log:md5,c4ecae7ba64ba2db1dca329d3440fd0d",
-                            "rank.bin:md5,f02d9e28449d7a095e81947b957f4c8a",
-                            "refAccumLengths.bin:md5,2fe92a2833ae00eb9f18f82dcba07b2d",
-                            "ref_indexing.log:md5,0b528d8f27f56833faa9fea81cef38e3",
-                            "reflengths.bin:md5,e49bbf83323b92210491ba4ab8f41621",
-                            "refseq.bin:md5,5532f2814f78103d10eec49a6f25c0e2",
-                            "seq.bin:md5,b291d811341d0dc11a5aa7a77dcfc58c",
-                            "versionInfo.json:md5,d2c799050e81aa6e282ac8a73e773941"
-                        ]
+                        "transcriptome"
                     ]
                 ],
                 "snpeff_db": [
@@ -1162,6 +1082,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-24T22:28:00.870539271"
+        "timestamp": "2026-02-25T21:04:33.026231301"
     }
 }

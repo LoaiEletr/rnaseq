@@ -71,7 +71,7 @@ nextflow_process {
                 input[1] = MAKE_BAMLIST.out.txt.map {meta, bam -> [[:], bam]}.groupTuple()
                 input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
                 input[3] = RMATS_PREP.out.prep_tmp
-                iinput[4] = [[:], 50]
+                input[4] = [[:], 50]
                 input[5] = "post"
                 """
             }

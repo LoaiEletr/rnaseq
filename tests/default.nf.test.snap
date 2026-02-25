@@ -3,7 +3,7 @@
         "content": [
             {
                 "CUTADAPT": {
-                    "cutadapt": 5.2
+                    "cutadapt": "5.2"
                 },
                 "DESEQ2_DE": {
                     "bioconductor-deseq2": "1.46.0",
@@ -198,34 +198,33 @@
                 "quantification/kallisto/ERR188044",
                 "quantification/kallisto/ERR188044/abundance.h5",
                 "quantification/kallisto/ERR188044/abundance.tsv",
+                "quantification/kallisto/ERR188044/kallisto_ERR188044_quant.log",
                 "quantification/kallisto/ERR188044/run_info.json",
                 "quantification/kallisto/ERR188104",
                 "quantification/kallisto/ERR188104/abundance.h5",
                 "quantification/kallisto/ERR188104/abundance.tsv",
+                "quantification/kallisto/ERR188104/kallisto_ERR188104_quant.log",
                 "quantification/kallisto/ERR188104/run_info.json",
                 "quantification/kallisto/ERR188234",
                 "quantification/kallisto/ERR188234/abundance.h5",
                 "quantification/kallisto/ERR188234/abundance.tsv",
+                "quantification/kallisto/ERR188234/kallisto_ERR188234_quant.log",
                 "quantification/kallisto/ERR188234/run_info.json",
                 "quantification/kallisto/ERR188245",
                 "quantification/kallisto/ERR188245/abundance.h5",
                 "quantification/kallisto/ERR188245/abundance.tsv",
+                "quantification/kallisto/ERR188245/kallisto_ERR188245_quant.log",
                 "quantification/kallisto/ERR188245/run_info.json",
                 "quantification/kallisto/ERR188257",
                 "quantification/kallisto/ERR188257/abundance.h5",
                 "quantification/kallisto/ERR188257/abundance.tsv",
+                "quantification/kallisto/ERR188257/kallisto_ERR188257_quant.log",
                 "quantification/kallisto/ERR188257/run_info.json",
                 "quantification/kallisto/ERR188273",
                 "quantification/kallisto/ERR188273/abundance.h5",
                 "quantification/kallisto/ERR188273/abundance.tsv",
+                "quantification/kallisto/ERR188273/kallisto_ERR188273_quant.log",
                 "quantification/kallisto/ERR188273/run_info.json",
-                "quantification/kallisto/logs",
-                "quantification/kallisto/logs/kallisto_ERR188044_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188104_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188234_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188245_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188257_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188273_quant.log",
                 "quantification/merged_matrices",
                 "quantification/merged_matrices/tx2gene.tsv",
                 "quantification/merged_matrices/tximport_results.rds"
@@ -238,13 +237,13 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-19T02:41:04.255545766"
+        "timestamp": "2026-02-25T08:08:13.821702141"
     },
     "-profile test": {
         "content": [
             {
                 "CUTADAPT": {
-                    "cutadapt": 5.2
+                    "cutadapt": "5.2"
                 },
                 "DESEQ2_DE": {
                     "bioconductor-deseq2": "1.46.0",
@@ -587,34 +586,33 @@
                 "quantification/kallisto/ERR188044",
                 "quantification/kallisto/ERR188044/abundance.h5",
                 "quantification/kallisto/ERR188044/abundance.tsv",
+                "quantification/kallisto/ERR188044/kallisto_ERR188044_quant.log",
                 "quantification/kallisto/ERR188044/run_info.json",
                 "quantification/kallisto/ERR188104",
                 "quantification/kallisto/ERR188104/abundance.h5",
                 "quantification/kallisto/ERR188104/abundance.tsv",
+                "quantification/kallisto/ERR188104/kallisto_ERR188104_quant.log",
                 "quantification/kallisto/ERR188104/run_info.json",
                 "quantification/kallisto/ERR188234",
                 "quantification/kallisto/ERR188234/abundance.h5",
                 "quantification/kallisto/ERR188234/abundance.tsv",
+                "quantification/kallisto/ERR188234/kallisto_ERR188234_quant.log",
                 "quantification/kallisto/ERR188234/run_info.json",
                 "quantification/kallisto/ERR188245",
                 "quantification/kallisto/ERR188245/abundance.h5",
                 "quantification/kallisto/ERR188245/abundance.tsv",
+                "quantification/kallisto/ERR188245/kallisto_ERR188245_quant.log",
                 "quantification/kallisto/ERR188245/run_info.json",
                 "quantification/kallisto/ERR188257",
                 "quantification/kallisto/ERR188257/abundance.h5",
                 "quantification/kallisto/ERR188257/abundance.tsv",
+                "quantification/kallisto/ERR188257/kallisto_ERR188257_quant.log",
                 "quantification/kallisto/ERR188257/run_info.json",
                 "quantification/kallisto/ERR188273",
                 "quantification/kallisto/ERR188273/abundance.h5",
                 "quantification/kallisto/ERR188273/abundance.tsv",
+                "quantification/kallisto/ERR188273/kallisto_ERR188273_quant.log",
                 "quantification/kallisto/ERR188273/run_info.json",
-                "quantification/kallisto/logs",
-                "quantification/kallisto/logs/kallisto_ERR188044_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188104_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188234_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188245_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188257_quant.log",
-                "quantification/kallisto/logs/kallisto_ERR188273_quant.log",
                 "quantification/merged_matrices",
                 "quantification/merged_matrices/tx2gene.tsv",
                 "quantification/merged_matrices/tximport_results.rds"
@@ -627,6 +625,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-19T02:17:58.85902368"
+        "timestamp": "2026-02-25T09:37:40.069096308"
     }
 }

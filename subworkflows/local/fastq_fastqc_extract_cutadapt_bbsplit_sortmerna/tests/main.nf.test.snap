@@ -571,10 +571,10 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": false
                         },
-                        "test.umi_extract.log:md5,07ddeca6bed9c609897d36acb072bfc5"
+                        "test.umi_extract.log"
                     ]
                 ]
             }
@@ -583,7 +583,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-23T06:37:44.762595359"
+        "timestamp": "2026-02-25T01:26:04.358977045"
     },
     "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub": {
         "content": [

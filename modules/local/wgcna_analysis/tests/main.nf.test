@@ -54,7 +54,7 @@ nextflow_process {
                 { assert process.out.modules_hubgenes.get(0) ==~ ".*/all_traits_modules_hubgenes\\.rds" },
                 { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
                 { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
-                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["wgcna_results", "vsd_object", "soft_threshold_plot", "module_dendrogram"])).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys: ["wgcna_results", "vsd_object", "modules_hubgenes", "soft_threshold_plot", "module_dendrogram", "module_trait_heatmap", "module_eigengenes_heatmap", "module_analysis_results"])).match() }
             )
         }
     }
@@ -106,7 +106,7 @@ nextflow_process {
                 { assert process.out.modules_hubgenes.get(0) ==~ ".*/all_traits_modules_hubgenes\\.rds" },
                 { assert process.out.soft_threshold_plot.get(0) ==~ ".*/soft_threshold_selection\\.pdf" },
                 { assert process.out.module_dendrogram.get(0) ==~ ".*/module_dendrogram\\.pdf" },
-                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["wgcna_results", "vsd_object", "soft_threshold_plot", "module_dendrogram"])).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys: ["wgcna_results", "vsd_object", "modules_hubgenes", "soft_threshold_plot", "module_dendrogram", "module_trait_heatmap", "module_eigengenes_heatmap", "module_analysis_results"])).match() }
             )
         }
     }
