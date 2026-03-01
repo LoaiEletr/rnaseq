@@ -6,7 +6,10 @@
 
 include { PICARD_MARKDUPLICATES } from '../../../modules/local/picard/markduplicates'
 include { GATK4_SPLITNCIGARREADS } from '../../../modules/local/gatk4/splitncigarreads'
-include { SAMTOOLS_MERGE } from '../../../modules/local/samtools/merge'
+include {
+    SAMTOOLS_MERGE as SAMTOOLS_MERGE_SPLIT ;
+    SAMTOOLS_MERGE as SAMTOOLS_MERGE_BQSR
+} from '../../../modules/local/samtools/merge'
 include {
     SAMTOOLS_INDEX as SAMTOOLS_INDEX_DEDUP ;
     SAMTOOLS_INDEX as SAMTOOLS_INDEX_MERGED ;
@@ -27,6 +30,7 @@ workflow BAM_DEDUP_RECALIBRATE_PICARD_GATK {
     ch_known_sites_tbi // channel: [ val(meta), [ tbi ] ]
     skip_picard_markduplicates // boolean: true/false
     skip_baserecalibration // boolean: true/false
+    skip_interval_splitting // boolean: true/false
 
     main:
 
@@ -46,27 +50,31 @@ workflow BAM_DEDUP_RECALIBRATE_PICARD_GATK {
 
     // 2. Split reads with Ns in CIGAR (RNA-seq specific processing)
     GATK4_SPLITNCIGARREADS(
-        ch_picard_bam.join(ch_picard_bai).combine(ch_intervals.map { it[1] }),
+        ch_picard_bam.join(ch_picard_bai).combine(ch_intervals.map { it[1] }.flatten()),
         ch_fasta,
         ch_fai,
         ch_dict,
     )
 
-    // 3. Merge and index split BAM files
-    SAMTOOLS_MERGE(GATK4_SPLITNCIGARREADS.out.bam.groupTuple())
-    ch_merged_bam = SAMTOOLS_MERGE.out.bam
+    // 3. Merge and index split BAM files (if skip_interval_splitting is enabled)
+    ch_merged_bam = GATK4_SPLITNCIGARREADS.out.bam
+    if (!skip_interval_splitting) {
+        SAMTOOLS_MERGE_SPLIT(GATK4_SPLITNCIGARREADS.out.bam.groupTuple())
+        ch_merged_bam = SAMTOOLS_MERGE_SPLIT.out.bam
+    }
 
+    // 4. Index BAM files
     SAMTOOLS_INDEX_MERGED(ch_merged_bam)
     ch_merged_bai = SAMTOOLS_INDEX_MERGED.out.bai
 
-    // 4. Generate BQSR recalibration table
+    // 5. Generate BQSR recalibration table
     ch_recalibrate_bam = ch_merged_bam
     ch_recalibrate_bai = ch_merged_bai
     ch_recalibrate_table = channel.empty()
 
     if (!skip_baserecalibration) {
         GATK4_BASERECALIBRATOR(
-            ch_recalibrate_bam.join(ch_recalibrate_bai).combine(ch_intervals.map { it[1] }),
+            ch_recalibrate_bam.join(ch_recalibrate_bai).combine(ch_intervals.map { it[1] }.flatten()),
             ch_fasta,
             ch_fai,
             ch_dict,
@@ -75,15 +83,24 @@ workflow BAM_DEDUP_RECALIBRATE_PICARD_GATK {
         )
         ch_recalibrate_table = GATK4_BASERECALIBRATOR.out.table
 
-        // 5. Apply base quality score recalibration
+        // 6. Apply base quality score recalibration
         GATK4_APPLYBQSR(
-            ch_recalibrate_bam.join(ch_recalibrate_bai).join(ch_recalibrate_table).combine(ch_intervals.map { it[1] }),
+            ch_recalibrate_bam.join(ch_recalibrate_bai).join(ch_recalibrate_table).combine(ch_intervals.map { it[1] }.flatten()),
             ch_fasta,
             ch_fai,
             ch_dict,
         )
 
+        // 7. Merge split BAM files (if skip_interval_splitting is enabled)
         ch_recalibrate_bam = GATK4_APPLYBQSR.out.bam
+        if (!skip_interval_splitting) {
+            SAMTOOLS_MERGE_BQSR(
+                ch_recalibrate_bam.groupTuple()
+            )
+            ch_recalibrate_bam = SAMTOOLS_MERGE_BQSR.out.bam
+        }
+
+        // 8. Index BAM files
         SAMTOOLS_INDEX_BQSR(ch_recalibrate_bam)
         ch_recalibrate_bai = SAMTOOLS_INDEX_BQSR.out.bai
     }
