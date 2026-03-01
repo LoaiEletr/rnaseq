@@ -40,6 +40,10 @@ params.gff = getGenomeAttribute('gff')
 params.fai = getGenomeAttribute('fai')
 params.dict = getGenomeAttribute('dict')
 params.interval_list = getGenomeAttribute('interval_list')
+params.dbsnp = getGenomeAttribute('dbsnp')
+params.dbsnp_tbi = getGenomeAttribute('dbsnp_tbi')
+params.knownsites = getGenomeAttribute('knownsites')
+params.knownsites_tbi = getGenomeAttribute('knownsites_tbi')
 params.snpeff_db = getGenomeAttribute('snpeff_db')
 params.snpeff_genome = getGenomeAttribute('snpeff_genome')
 
@@ -82,6 +86,10 @@ workflow {
         params.fai,
         params.dict,
         params.interval_list,
+        params.dbsnp,
+        params.dbsnp_tbi,
+        params.knownsites,
+        params.knownsites_tbi,
         params.snpeff_db,
         params.snpeff_genome,
     )
@@ -101,6 +109,48 @@ workflow {
         params.show_hidden,
     )
 
+    // --- GVC (Germline Variant Calling) Specific Validations ---
+    def requested_methods = params.analysis_method ? params.analysis_method.split(",").collect { it.trim() } : []
+    if (requested_methods.contains("GVC") && params.aligner == "hisat2") {
+
+        // Handle comma-separated known_sites
+        def known_sites_list = params.knownsites ? params.knownsites.split(',').collect { it.trim() }.findAll { it } : []
+
+        // Handle dbSNP Warnings
+        if (!params.dbsnp) {
+            def manual_species = ["fruitfly", "worm", "monkey"]
+
+            if (manual_species.contains(params.species)) {
+                log.warn(
+                    """
+                ⚠️  MANUAL dbSNP RECOMMENDED: Built-in dbSNP resources are not available for '${params.species}'.
+                   When running GVC for this species, it is highly recommended to provide a VCF via: --dbsnp
+                """.stripIndent()
+                )
+            }
+            else {
+                log.warn(
+                    """
+                ⚠️  MISSING dbSNP: No dbSNP file provided. HaplotypeCaller will run, but variants
+                   will not be labeled with rsIDs. Recommended: --dbsnp 'path/to/dbsnp.vcf'
+                """.stripIndent()
+                )
+            }
+        }
+
+        // Ensure Known Sites are provided for BQSR
+        if (known_sites_list.isEmpty() && !params.skip_baserecalibration) {
+            error(
+                """
+            ❌ MISSING KNOWN SITES: BQSR requires at least one known variant site file to mask real biology.
+               Please either:
+                 • Provide sites (comma-separated): --known_sites 'site1.vcf,site2.vcf'
+                 • OR skip BQSR using: --skip_baserecalibration
+            """.stripIndent()
+            )
+        }
+    }
+
     //
     // WORKFLOW: Run main workflow
     //
@@ -119,6 +169,16 @@ workflow {
         PREPARE_GENOME.out.salmon_index,
         PREPARE_GENOME.out.sortmerna_index,
         PREPARE_GENOME.out.bbsplit_index,
+        PREPARE_GENOME.out.fai,
+        PREPARE_GENOME.out.dict,
+        PREPARE_GENOME.out.intervallist,
+        PREPARE_GENOME.out.intervals_split,
+        PREPARE_GENOME.out.knownsites,
+        PREPARE_GENOME.out.knownsites_tbi,
+        PREPARE_GENOME.out.dbsnp,
+        PREPARE_GENOME.out.dbsnp_tbi,
+        PREPARE_GENOME.out.snpeff_db,
+        PREPARE_GENOME.out.snpeff_genome,
     )
 
     //
@@ -160,6 +220,16 @@ workflow LOAIELETR_RNASEQ {
     ch_salmon_index // channel: [ salmon_index_files ]
     ch_sortmerna_index // channel: [ sortmerna_index_files ]
     ch_bbsplit_index // channel: [ bbsplit_index_files ]
+    ch_fai // channel: [ val(meta), [ fai ] ]
+    ch_dict // channel: [ val(meta), [ dict ] ]
+    ch_intervallist // channel: [ val(meta), [ interval_list ] ]
+    ch_intervals_split // channel: [ val(meta), [ interval_list ] ]
+    ch_knownsites // channel: [ val(meta), [ knownsites ] ]
+    ch_knownsites_tbi // channel: [ val(meta), [ knownsites_tbi ] ]
+    ch_dbsnp // channel: [ val(meta), [ dbsnp ] ]
+    ch_dbsnp_tbi // channel: [ val(meta), [ dbsnp_tbi ] ]
+    ch_snpeff_db // channel: [ val(meta), [ snpeff_db ] ]
+    ch_snpeff_genome // channel: [ val(meta), [ snpeff_genome ] ]
 
     main:
 
@@ -181,6 +251,16 @@ workflow LOAIELETR_RNASEQ {
         ch_salmon_index.ifEmpty([[:], []]),
         ch_sortmerna_index.ifEmpty([[:], []]),
         ch_bbsplit_index.ifEmpty([[:], []]),
+        ch_fai.ifEmpty([[:], []]),
+        ch_dict.ifEmpty([[:], []]),
+        ch_intervallist.ifEmpty([[:], []]),
+        ch_intervals_split.ifEmpty([[:], []]),
+        ch_knownsites.ifEmpty([[:], []]),
+        ch_knownsites_tbi.ifEmpty([[:], []]),
+        ch_dbsnp.ifEmpty([[:], []]),
+        ch_dbsnp_tbi.ifEmpty([[:], []]),
+        ch_snpeff_db.ifEmpty([[:], []]),
+        ch_snpeff_genome.ifEmpty([[:], []]),
     )
 
     emit:

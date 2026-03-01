@@ -9,6 +9,8 @@
 //
 include { HISAT2_ALIGN } from '../modules/local/hisat2/align'
 include { SEQKIT_SAMPLE } from '../modules/local/seqkit/sample'
+include { BCFTOOLS_ISEC } from '../modules/local/bcftools/isec'
+include { SNPEFF_SNPEFF } from '../modules/local/snpeff/snpeff'
 include { MULTIQC } from '../modules/local/multiqc'
 
 //
@@ -33,6 +35,8 @@ include { COUNTS_MATRIXGENERATION } from '../subworkflows/local/counts_matrixgen
 include { COUNTS_COEXPRESSION_NETWORK_PPI_ENRICHMENT } from '../subworkflows/local/counts_coexpression_network_ppi_enrichment'
 include { COUNTS_DIFFEXPR_QC_ENRICHMENT_VISUALIZATION } from '../subworkflows/local/counts_diffexpr_qc_enrichment_visualization'
 include { COUNTS_ISOFORM_SWITCH_ENRICHMENT } from '../subworkflows/local/counts_isoform_switch_enrichment'
+include { BAM_DEDUP_RECALIBRATE_PICARD_GATK } from '../subworkflows/local/bam_dedup_recalibrate_picard_gatk'
+include { VCF_CALL_FILTER_GATK } from '../subworkflows/local/vcf_call_filter_gatk'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,6 +60,16 @@ workflow RNASEQ {
     ch_salmon_index // channel: [ salmon_index ]
     ch_sortmerna_index // channel: [ sortmerna_index ]
     ch_bbsplit_index // channel: [ bbsplit_index ]
+    ch_fai // channel: [ val(meta), [ fai ] ]
+    ch_dict // channel: [ val(meta), [ dict ] ]
+    ch_intervallist // channel: [ val(meta), [ interval_list ] ]
+    ch_intervals_split // channel: [ val(meta), [ interval_list ] ]
+    ch_knownsites // channel: [ val(meta), [ knownsites ] ]
+    ch_knownsites_tbi // channel: [ val(meta), [ knownsites_tbi ] ]
+    ch_dbsnp // channel: [ val(meta), [ dbsnp ] ]
+    ch_dbsnp_tbi // channel: [ val(meta), [ dbsnp_tbi ] ]
+    ch_snpeff_db // channel: [ val(meta), [ snpeff_db ] ]
+    ch_snpeff_genome // channel: [ val(meta), [ snpeff_genome ] ]
 
     main:
 
@@ -115,6 +129,7 @@ workflow RNASEQ {
     // Initialize channels for specific alignment outputs
     ch_hisat2_summary = channel.empty()
     ch_bam = channel.empty()
+    ch_bai = channel.empty()
     ch_umi_log = channel.empty()
     ch_counts = channel.empty()
     ch_counts_summary = channel.empty()
@@ -150,6 +165,7 @@ workflow RNASEQ {
             params.analysis_method.split(","),
         )
         ch_bam = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.bam
+        ch_bai = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.bai
         ch_counts = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.counts
         ch_counts_summary = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.summary
         ch_umi_log = BAM_SORT_INDEX_DEDUP_SAMTOOLS_UMITOOLS_FEATURECOUNTS.out.umi_log
@@ -306,6 +322,90 @@ workflow RNASEQ {
         )
     }
 
+    // Germline Variant Calling via GATK4 (GVC - HISAT2 only)
+
+    // Initialize channels for specific variant calling outputs
+    ch_final_vcf = channel.empty()
+    ch_picard_metrics = channel.empty()
+    ch_recalibrate_table = channel.empty()
+
+    if ("GVC" in params.analysis_method.split(",") && params.aligner == "hisat2") {
+        BAM_DEDUP_RECALIBRATE_PICARD_GATK(
+            ch_bam,
+            ch_bai,
+            ch_fasta_uncompressed,
+            ch_fai,
+            ch_dict,
+            ch_intervals_split,
+            ch_knownsites,
+            ch_knownsites_tbi,
+            params.skip_picard_markduplicates,
+            params.skip_baserecalibration,
+            params.skip_interval_splitting,
+        )
+        ch_bam = BAM_DEDUP_RECALIBRATE_PICARD_GATK.out.bam
+        ch_bai = BAM_DEDUP_RECALIBRATE_PICARD_GATK.out.bai
+        ch_picard_metrics = BAM_DEDUP_RECALIBRATE_PICARD_GATK.out.picard_metrics
+        ch_recalibrate_table = BAM_DEDUP_RECALIBRATE_PICARD_GATK.out.recalibrate_table
+
+        VCF_CALL_FILTER_GATK(
+            ch_bam,
+            ch_bai,
+            ch_fasta_uncompressed,
+            ch_fai,
+            ch_dict,
+            ch_intervallist,
+            ch_bed,
+            ch_dbsnp,
+            ch_dbsnp_tbi,
+            params.skip_variantfiltration,
+        )
+        ch_vcf = VCF_CALL_FILTER_GATK.out.vcf
+        ch_vcf_tbi = VCF_CALL_FILTER_GATK.out.tbi
+
+        ch_isec_input = ch_vcf
+            .join(ch_vcf_tbi)
+            .map { meta, vcf, tbi -> [1, vcf, tbi, meta.id] }
+            .groupTuple()
+            .map { dummy, vcfs, tbis, ids ->
+                [[id: ids.join('_')], vcfs, tbis]
+            }
+
+        ch_isec_input.view()
+        BCFTOOLS_ISEC(
+            ch_isec_input,
+            [[:], []],
+            ch_bed,
+        )
+
+        ch_unique_vcf = BCFTOOLS_ISEC.out.results.map { meta, folder ->
+            // 1. Identify which condition is NOT control
+            def conds = meta.id.split('_')
+            def treatment = conds.find { it != 'control' }
+            def control = conds.find { it == 'control' }
+
+            // 2. Find the VCF unique to the treatment
+            def unique_file = folder
+                .listFiles()
+                .find {
+                    it.name.contains("${treatment}") && it.name.contains('unique') && !it.name.endsWith('.tbi')
+                }
+
+            // 3. Create a highly descriptive ID
+            def new_id = "${treatment}_absent_in_${control}"
+
+            return [[id: new_id], unique_file]
+        }
+        ch_vcf_all = ch_vcf.mix(ch_unique_vcf)
+
+        SNPEFF_SNPEFF(
+            ch_vcf_all,
+            ch_snpeff_genome,
+            ch_snpeff_db,
+        )
+        ch_final_vcf = SNPEFF_SNPEFF.out.vcf
+    }
+
     // -------------------------------------------------------------------------
     //  STAGE 4: MultiQC and Versioning
     // -------------------------------------------------------------------------
@@ -367,6 +467,10 @@ workflow RNASEQ {
         ch_multiqc_files = ch_multiqc_files.mix(ch_inferexperiment.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(ch_readdistribution.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(ch_tin.collect { it[1] }.ifEmpty([]))
+
+        // Collate vairant calling metrics
+        ch_multiqc_files = ch_multiqc_files.mix(ch_picard_metrics.collect { it[1] }.ifEmpty([]))
+        ch_multiqc_files = ch_multiqc_files.mix(ch_recalibrate_table.collect { it[1] }.ifEmpty([]))
 
         MULTIQC(
             ch_multiqc_files.collect().map { [[:], it] },
