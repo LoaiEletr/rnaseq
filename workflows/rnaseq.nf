@@ -148,7 +148,6 @@ workflow RNASEQ {
 
     // Case A: Standard Alignment (HISAT2)
     if (params.aligner == "hisat2") {
-        ch_fasta_uncompressed.view()
 
         HISAT2_ALIGN(
             ch_reads,
@@ -371,7 +370,6 @@ workflow RNASEQ {
                 [[id: ids.join('_')], vcfs, tbis]
             }
 
-        ch_isec_input.view()
         BCFTOOLS_ISEC(
             ch_isec_input,
             [[:], []],

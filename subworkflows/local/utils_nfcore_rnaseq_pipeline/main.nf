@@ -440,7 +440,6 @@ def getGenomeAttribute(attribute) {
             return params.genomes[params.species][params.genome][attribute]
         }
     }
-    log.warn("⚠️  Genome attribute '${attribute}' not found for species=${params.species}, genome=${params.genome}")
     return null
 }
 
