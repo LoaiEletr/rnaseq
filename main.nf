@@ -207,19 +207,19 @@ workflow {
 workflow LOAIELETR_RNASEQ {
     take:
     ch_samplesheet // channel: [ val(meta), [ reads ] ]
-    ch_transcriptome // channel: [ transcriptome.fasta ]
-    ch_fasta_uncompressed // channel: [ genome.fasta ]
-    ch_gtf_compressed // channel: [ genome.gtf.gz ]
-    ch_gtf_uncompressed // channel: [ genome.gtf ]
-    ch_gtf_isoform // channel: [ isoform.gtf ]
-    ch_rrna_db_fasta // channel: [ rrna.fasta ]
-    ch_bed // channel: [ genes.bed ]
-    ch_gff // channel: [ genes.gff ]
-    ch_hisat2_index // channel: [ hisat2_index_files ]
-    ch_kallisto_index // channel: [ kallisto_index_files ]
-    ch_salmon_index // channel: [ salmon_index_files ]
-    ch_sortmerna_index // channel: [ sortmerna_index_files ]
-    ch_bbsplit_index // channel: [ bbsplit_index_files ]
+    ch_transcriptome // channel: [ val(meta), [ fasta ] ]
+    ch_fasta_uncompressed // channel: [ val(meta), [ fasta ] ]
+    ch_gtf_compressed // channel: [ val(meta), [ gtf ] ]
+    ch_gtf_uncompressed // channel: [ val(meta), [ gtf ] ]
+    ch_gtf_isoform // channel: [ val(meta), [ gtf ] ]
+    ch_rrna_db_fasta // channel: [ val(meta), [ fasta ] ]
+    ch_bed // channel: [ val(meta), [ bed ] ]
+    ch_gff // channel: [ val(meta), [ gff ] ]
+    ch_hisat2_index // channel: [ val(meta), [ hisat2_index ] ]
+    ch_kallisto_index // channel: [ val(meta), [ kallisto_index ] ]
+    ch_salmon_index // channel: [ val(meta), [ salmon_index ] ]
+    ch_sortmerna_index // channel: [ val(meta), [ sortmerna_index ] ]
+    ch_bbsplit_index // channel: [ val(meta), [ bbsplit_index ] ]
     ch_fai // channel: [ val(meta), [ fai ] ]
     ch_dict // channel: [ val(meta), [ dict ] ]
     ch_intervallist // channel: [ val(meta), [ interval_list ] ]
@@ -240,7 +240,7 @@ workflow LOAIELETR_RNASEQ {
         ch_samplesheet,
         ch_transcriptome.ifEmpty([[:], []]),
         ch_fasta_uncompressed.ifEmpty([[:], []]),
-        ch_gtf_compressed,
+        ch_gtf_compressed.ifEmpty([[:], []]),
         ch_gtf_uncompressed.ifEmpty([[:], []]),
         ch_gtf_isoform.ifEmpty([[:], []]),
         ch_rrna_db_fasta.ifEmpty([[:], []]),
