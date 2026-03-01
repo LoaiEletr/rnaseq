@@ -99,7 +99,7 @@ workflow PREPARE_GENOME {
     ch_contaminant_fasta = val_contaminant_fasta && !params.skip_bbsplit ? channel.value(file(val_contaminant_fasta, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
     ch_rrna_db = val_rrna_db && !params.skip_sortmerna ? channel.value(file(val_rrna_db, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
     ch_dbsnp = val_dbsnp && "GVC" in params.analysis_method.split(",") ? channel.value(file(val_dbsnp, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
-    ch_knownsites = val_knownsites && "GVC" in params.analysis_method.split(",") ? channel.value(file(val_knownsites, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
+    ch_knownsites = val_knownsites && "GVC" in params.analysis_method.split(",") ? channel.fromPath(val_knownsites.split(','), checkIfExists: true).collect().map { files -> [[id: 'knownsites'], files] } : channel.empty()
     ch_snpeff_genome = val_snpeff_genome && "GVC" in params.analysis_method.split(",") ? channel.value([[id: "${val_snpeff_genome}"], val_snpeff_genome]) : channel.empty()
 
     if (params.aligner == "hisat2") {
@@ -260,13 +260,13 @@ workflow PREPARE_GENOME {
             if (val_knownsites) {
 
                 if (val_knownsites_tbi) {
-                    ch_knownsites_tbi = channel.value(file(val_knownsites_tbi, checkIfExists: true)).map { [[id: it.baseName], it] }.collect()
+                    ch_knownsites_tbi = channel.fromPath(val_knownsites_tbi.split(','), checkIfExists: true).collect().map { indices -> [[id: 'knownsites'], indices] }
                 }
                 else {
                     TABIX_TABIX_KNOWNSITES(
                         ch_knownsites
                     )
-                    ch_knownsites_tbi = TABIX_TABIX_KNOWNSITES.out.index
+                    ch_knownsites_tbi = TABIX_TABIX_KNOWNSITES.out.index.collect { it[1] }.map { indices -> [[id: 'knownsites'], indices] }
                 }
             }
         }
