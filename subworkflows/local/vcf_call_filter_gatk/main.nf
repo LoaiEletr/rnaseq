@@ -7,7 +7,10 @@
 include { GATK4_HAPLOTYPECALLER } from '../../../modules/local/gatk4/haplotypecaller'
 include { BCFTOOLS_MERGE } from '../../../modules/local/bcftools/merge'
 include { GATK4_VARIANTFILTRATION } from '../../../modules/local/gatk4/variantfiltration'
-include { TABIX_TABIX } from '../../../modules/local/tabix/tabix'
+include {
+    TABIX_TABIX as TABIX_TABIX_RAW ;
+    TABIX_TABIX as TABIX_TABIX_FILTERED
+} from '../../../modules/local/tabix/tabix'
 
 workflow VCF_CALL_FILTER_GATK {
     take:
@@ -46,22 +49,28 @@ workflow VCF_CALL_FILTER_GATK {
     )
 
     // 3. Index raw VCF files
-    TABIX_TABIX(
+    TABIX_TABIX_RAW(
         BCFTOOLS_MERGE.out.vcf
     )
 
     // 4. Apply hard filters to the raw variants
     ch_vcf_final = BCFTOOLS_MERGE.out.vcf
-    ch_tbi_final = TABIX_TABIX.out.index
+    ch_tbi_final = TABIX_TABIX_RAW.out.index
 
     if (!skip_variantfiltration) {
         GATK4_VARIANTFILTRATION(
-            BCFTOOLS_MERGE.out.vcf.join(TABIX_TABIX.out.index),
+            ch_vcf_final.join(ch_tbi_final),
             ch_fasta,
             ch_fai,
             ch_dict,
         )
         ch_vcf_final = GATK4_VARIANTFILTRATION.out.vcf
+
+        // 5. Index filtered VCF files
+        TABIX_TABIX_FILTERED(
+            ch_vcf_final
+        )
+        ch_tbi_final = TABIX_TABIX_FILTERED.out.index
     }
 
     emit:
