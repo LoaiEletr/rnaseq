@@ -26,12 +26,16 @@
                             "id": "test_vcfs"
                         },
                         [
-                            "0000.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                            "0000.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "0001.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                            "0001.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
                             "README.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "sites.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            "sites.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test2_common.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test2_common.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test2_unique.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test2_unique.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_common.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_common.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_unique.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_unique.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                         ]
                     ]
                 ],
@@ -48,12 +52,16 @@
                             "id": "test_vcfs"
                         },
                         [
-                            "0000.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                            "0000.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "0001.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                            "0001.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
                             "README.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                            "sites.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            "sites.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test2_common.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test2_common.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test2_unique.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test2_unique.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_common.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_common.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_unique.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_unique.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                         ]
                     ]
                 ],
@@ -70,6 +78,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-28T01:44:10.799458112"
+        "timestamp": "2026-03-01T02:49:02.471456785"
     }
 }
