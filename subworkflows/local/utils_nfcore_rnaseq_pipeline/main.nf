@@ -99,7 +99,6 @@ workflow PIPELINE_INITIALISATION {
 
     //
     // Create channel from YOUR CUSTOM input samplesheet format
-    // MATCHING YOUR WORKFLOW'S EXPECTATIONS EXACTLY
     //
     ch_samplesheet = channel.fromList(samplesheetToList(params.input, "${projectDir}/assets/schema_input.json"))
         .map { meta, fastq_1, fastq_2 ->
@@ -317,8 +316,11 @@ def validateInputParameters() {
     def valid_kits = ["quantseq", "corall", "takara"]
     def valid_rrnas = ["fast", "default", "sensitive", "sensitive_rfam"]
 
-    if (!valid_kits.contains(params.lib_kit)) {
-        error("❌ INVALID LIB KIT: ${params.lib_kit}\nOptions: ${valid_kits.join(', ')}")
+    // Only check if params.lib_kit was actually provided
+    if (params.lib_kit) {
+        if (!valid_kits.contains(params.lib_kit.toLowerCase())) {
+            error("❌ INVALID LIB KIT: ${params.lib_kit}\nOptions: ${valid_kits.join(', ')}")
+        }
     }
     if (!valid_rrnas.contains(params.rrna_db_type)) {
         error("❌ INVALID rRNA DB TYPE: ${params.rrna_db_type}\nOptions: ${valid_rrnas.join(', ')}")
@@ -438,7 +440,6 @@ def getGenomeAttribute(attribute) {
             return params.genomes[params.species][params.genome][attribute]
         }
     }
-    log.warn("Genome attribute '${attribute}' not found for species=${params.species}, genome=${params.genome}")
     return null
 }
 
@@ -525,6 +526,9 @@ def toolCitationText() {
         !params.skip_trimming ? "Cutadapt (<a href=\"https://doi.org/10.14806/ej.17.1.200\" target=\"_blank\">Martin, 2011</a>)," : "",
         params.aligner == "hisat2" ? "SAMtools (<a href=\"https://doi.org/10.1093/bioinformatics/btp352\" target=\"_blank\">Li <em>et al.</em>, 2009</a>)," : "",
         params.aligner == "hisat2" && "DEG" in params.analysis_method.split(",") ? "featureCounts (<a href=\"https://doi.org/10.1093/bioinformatics/btt656\" target=\"_blank\">Liao <em>et al.</em>, 2014</a>)," : "",
+        params.aligner == "hisat2" && "GVC" in params.analysis_method.split(",") ? "BCFtools (<a href=\"https://doi.org/10.1093/gigascience/giab008\" target=\"_blank\">Danecek <em>et al.</em>, 2021</a>)," : "",
+        params.aligner == "hisat2" && "GVC" in params.analysis_method.split(",") && !params.skip_picard_markduplicates ? "Picard (<a href=\"http://broadinstitute.github.io/picard/\" target=\"_blank\">Broad Institute, 2019</a>)," : "",
+        params.aligner == "hisat2" && "GVC" in params.analysis_method.split(",") ? "GATK HaplotypeCaller (<a href=\"https://doi.org/10.1101/201178\" target=\"_blank\">Poplin <em>et al.</em>, 2017</a>; <a href=\"https://www.oreilly.com/library/view/genomics-in-the/9781492045595/\" target=\"_blank\">Van der Auwera &amp; O'Connor, 2020</a>)," : "",
         "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "rMATS-turbo (<a href=\"https://doi.org/10.1038/s41596-023-00944-2\" target=\"_blank\">Wang <em>et al.</em>, 2024</a>)," : "",
         "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "rMATS2SashimiPlot (<a href=\"https://doi.org/10.5281/ZENODO.10008656\" target=\"_blank\">Shieh <em>et al.</em>, 2023</a>)," : "",
         params.aligner == "hisat2" && (params.rseqc_modules ? params.rseqc_modules.split(",").any { it in ["bam_stat", "genebody_coverage", "infer_experiment", "inner_distance", "junction_annotation", "read_distribution", "read_duplication", "tin"] } : null) ? "RSeQC (<a href=\"https://doi.org/10.1093/bioinformatics/bts356\" target=\"_blank\">Wang <em>et al.</em>, 2012</a>)," : "",
@@ -584,6 +588,10 @@ def toolBibliographyText() {
         !params.skip_trimming ? "<li>Martin, M. (2011). Cutadapt removes adapter sequences from high-throughput sequencing reads. <em>EMBnet.Journal</em>, <em>17</em>(1), 10. doi: <a href=\"https://doi.org/10.14806/ej.17.1.200\" target=\"_blank\">10.14806/ej.17.1.200</a></li>" : "",
         params.aligner == "hisat2" ? "<li>Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., … 1000 Genome Project Data Processing Subgroup. (2009). The Sequence Alignment/Map format and SAMtools. <em>Bioinformatics (Oxford, England)</em>, <em>25</em>(16), 2078–2079. doi: <a href=\"https://doi.org/10.1093/bioinformatics/btp352\" target=\"_blank\">10.1093/bioinformatics/btp352</a></li>" : "",
         params.aligner == "hisat2" && "DEG" in params.analysis_method.split(",") ? "<li>Liao, Y., Smyth, G. K., &amp; Shi, W. (2014). featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. <em>Bioinformatics (Oxford, England)</em>, <em>30</em>(7), 923–930. doi: <a href=\"https://doi.org/10.1093/bioinformatics/btt656\" target=\"_blank\">10.1093/bioinformatics/btt656</a></li>" : "",
+        params.aligner == "hisat2" && "GVC" in params.analysis_method.split(",") ? "<li>Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O., ... &amp; Li, H. (2021). Twelve years of SAMtools and BCFtools. <em>GigaScience</em>, <em>10</em>(2), giab008. doi: <a href=\"https://doi.org/10.1093/gigascience/giab008\" target=\"_blank\">10.1093/gigascience/giab008</a></li>" : "",
+        params.aligner == "hisat2" && "GVC" in params.analysis_method.split(",") && !params.skip_picard_markduplicates ? "<li>Broad Institute. (2019). Picard toolkit. <em>GitHub Repository</em>. Available at: <a href=\"http://broadinstitute.github.io/picard/\" target=\"_blank\">http://broadinstitute.github.io/picard/</a></li>" : "",
+        params.aligner == "hisat2" && "GVC" in params.analysis_method.split(",") ? "<li>Poplin, R., et al. (2017). Scaling accurate genetic variant discovery to tens of thousands of samples. <em>bioRxiv</em>. doi: <a href=\"https://doi.org/10.1101/201178\" target=\"_blank\">10.1101/201178</a></li>" : "",
+        params.aligner == "hisat2" && "GVC" in params.analysis_method.split(",") ? "<li>Van der Auwera, G. A., &amp; O'Connor, B. D. (2020). <em>Genomics in the Cloud: Using Docker, GATK, and WDL in Terra</em>. O'Reilly Media.</li>" : "",
         "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "<li>Wang, Y., Xie, Z., Kutschera, E., Adams, J. I., Kadash-Edmondson, K. E., &amp; Xing, Y. (2024). rMATS-turbo: an efficient and flexible computational tool for alternative splicing analysis of large-scale RNA-seq data. <em>Nature Protocols</em>, <em>19</em>(4), 1083–1104. doi: <a href=\"https://doi.org/10.1038/s41596-023-00944-2\" target=\"_blank\">10.1038/s41596-023-00944-2</a></li>" : "",
         "AS" in params.analysis_method.split(",") && params.aligner == "hisat2" ? "<li>Shieh, Kutschera, E., Tseng, Y.-T., DM_, Lin, I.-H., &amp; Samani, E. (2023). <em>Xinglab/rmats2sashimiplot: v3.0.0</em>. doi: <a href=\"https://doi.org/10.5281/ZENODO.10008656\" target=\"_blank\">10.5281/ZENODO.10008656</a></li>" : "",
         params.aligner == "hisat2" && (params.rseqc_modules ? params.rseqc_modules.split(",").any { it in ["bam_stat", "genebody_coverage", "infer_experiment", "inner_distance", "junction_annotation", "read_distribution", "read_duplication", "tin"] } : null) ? "<li>Wang, L., Wang, S., &amp; Li, W. (2012). RSeQC: quality control of RNA-seq experiments. <em>Bioinformatics (Oxford, England)</em>, <em>28</em>(16), 2184–2185. doi: <a href=\"https://doi.org/10.1093/bioinformatics/bts356\" target=\"_blank\">10.1093/bioinformatics/bts356</a></li>" : "",

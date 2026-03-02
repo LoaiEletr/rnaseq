@@ -26,6 +26,7 @@ process GATK4_HAPLOTYPECALLER {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def dbsnp_command = dbsnp ? "--dbsnp ${dbsnp}" : ""
     def avail_mem = task.memory.mega
     """
     gatk --java-options "-Xmx${avail_mem}M -XX:-UsePerfData" \\
@@ -35,7 +36,7 @@ process GATK4_HAPLOTYPECALLER {
         --output ${prefix}.vcf.gz \\
         --reference ${fasta} \\
         --native-pair-hmm-threads ${task.cpus} \\
-        --dbsnp ${dbsnp} \\
+        ${dbsnp_command} \\
         --intervals ${intervals} \\
         --tmp-dir .
     """

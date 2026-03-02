@@ -63,6 +63,32 @@ process BCFTOOLS_ISEC {
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
+    def vcf0_base = vcfs[0].name.tokenize('.')[0]
+    def vcf1_base = vcfs[1].name.tokenize('.')[0]
+    def rename_command = file_list
+        ? ''
+        : """
+    # 1. Update the internal text of the README so the names match your new files
+    if [ -f ${prefix}/README.txt ]; then
+        sed -i "s|0000.vcf.gz|${vcf0_base}_unique.vcf.gz|g" ${prefix}/README.txt
+        sed -i "s|0001.vcf.gz|${vcf1_base}_unique.vcf.gz|g" ${prefix}/README.txt
+        sed -i "s|0002.vcf.gz|${vcf0_base}_common.vcf.gz|g" ${prefix}/README.txt
+        sed -i "s|0003.vcf.gz|${vcf1_base}_common.vcf.gz|g" ${prefix}/README.txt
+    fi
+
+    # 2. Rename the actual VCF files and their TBI indices
+    mv ${prefix}/0000.vcf.gz ${prefix}/${vcf0_base}_unique.vcf.gz
+    mv ${prefix}/0000.vcf.gz.tbi ${prefix}/${vcf0_base}_unique.vcf.gz.tbi
+
+    mv ${prefix}/0001.vcf.gz ${prefix}/${vcf1_base}_unique.vcf.gz
+    mv ${prefix}/0001.vcf.gz.tbi ${prefix}/${vcf1_base}_unique.vcf.gz.tbi
+
+    mv ${prefix}/0002.vcf.gz ${prefix}/${vcf0_base}_common.vcf.gz
+    mv ${prefix}/0002.vcf.gz.tbi ${prefix}/${vcf0_base}_common.vcf.gz.tbi
+
+    mv ${prefix}/0003.vcf.gz ${prefix}/${vcf1_base}_common.vcf.gz
+    mv ${prefix}/0003.vcf.gz.tbi ${prefix}/${vcf1_base}_common.vcf.gz.tbi
+    """.stripIndent()
     """
     mkdir ${prefix}
     touch ${prefix}/README.txt
@@ -71,5 +97,10 @@ process BCFTOOLS_ISEC {
     touch ${prefix}/0000.vcf.gz.tbi
     echo "" | gzip > ${prefix}/0001.vcf.gz
     touch ${prefix}/0001.vcf.gz.tbi
+    echo "" | gzip > ${prefix}/0002.vcf.gz
+    touch ${prefix}/0002.vcf.gz.tbi
+    echo "" | gzip > ${prefix}/0003.vcf.gz
+    touch ${prefix}/0003.vcf.gz.tbi
+    ${rename_command}
     """
 }

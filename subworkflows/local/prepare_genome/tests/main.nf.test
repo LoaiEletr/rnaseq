@@ -30,6 +30,8 @@ nextflow_workflow {
     tag "gatk4/intervallisttools"
     tag "snpeff"
     tag "snpeff/download"
+    tag "tabix"
+    tag "tabix/tabix"
     tag "samtools"
     tag "samtools/faidx"
 
@@ -66,13 +68,17 @@ nextflow_workflow {
                 input[17] = null
                 input[18] = null
                 input[19] = null
+                input[20] = null
+                input[21] = null
+                input[22] = null
+                input[23] = 'R64-1-1.99'
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["hisat2_index","salmon_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["hisat2_index","salmon_index", "snpeff_db"])).match() }
             )
         }
     }
@@ -109,13 +115,17 @@ nextflow_workflow {
                 input[17] = null
                 input[18] = null
                 input[19] = null
+                input[20] = null
+                input[21] = null
+                input[22] = null
+                input[23] = 'R64-1-1.99'
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["kallisto_index", "salmon_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["kallisto_index", "salmon_index", "snpeff_db"])).match() }
             )
         }
     }
@@ -152,13 +162,17 @@ nextflow_workflow {
                 input[17] = null
                 input[18] = null
                 input[19] = null
+                input[20] = null
+                input[21] = null
+                input[22] = null
+                input[23] = 'R64-1-1.99'
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["salmon_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["salmon_index", "snpeff_db"])).match() }
             )
         }
     }
@@ -196,13 +210,17 @@ nextflow_workflow {
                 input[17] = null
                 input[18] = null
                 input[19] = null
+                input[20] = null
+                input[21] = null
+                input[22] = null
+                input[23] = 'R64-1-1.99'
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["sortmerna_index", "salmon_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["sortmerna_index", "salmon_index", "snpeff_db"])).match() }
             )
         }
     }
@@ -239,13 +257,17 @@ nextflow_workflow {
                 input[17] = null
                 input[18] = null
                 input[19] = null
+                input[20] = null
+                input[21] = null
+                input[22] = null
+                input[23] = 'R64-1-1.99'
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["bbsplit_index", "salmon_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["bbsplit_index", "salmon_index", "snpeff_db"])).match() }
             )
         }
     }
@@ -284,14 +306,18 @@ nextflow_workflow {
                 input[16] = null
                 input[17] = null
                 input[18] = null
-                input[19] = 'R64-1-1.99'
+                input[19] = null
+                input[20] = null
+                input[21] = null
+                input[22] = null
+                input[23] = 'R64-1-1.99'
                 """
             }
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["salmon_index"])).match() }
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["salmon_index", "snpeff_db"])).match() }
             )
         }
     }
@@ -332,7 +358,11 @@ nextflow_workflow {
                 input[16] = null
                 input[17] = null
                 input[18] = null
-                input[19] = 'R64-1-1.99'
+                input[19] = null
+                input[20] = null
+                input[21] = null
+                input[22] = null
+                input[23] = 'R64-1-1.99'
                 """
             }
         }

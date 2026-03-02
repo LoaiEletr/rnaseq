@@ -24,6 +24,7 @@ nextflow_workflow {
                 outdir = "$outputDir"
                 skip_picard_markduplicates = false
                 skip_baserecalibration = false
+                skip_interval_splitting = false
             }
             workflow {
                 """
@@ -31,14 +32,14 @@ nextflow_workflow {
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
                 ])
                 input[1] = channel.of([
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
                 ])
                 input[2] = channel.value([
@@ -55,7 +56,8 @@ nextflow_workflow {
                 ])
                 input[5] = channel.value([
                     [ id:'genome' ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
                 ])
                 input[6] = channel.value([
                     [ id:'vcf' ],
@@ -67,6 +69,7 @@ nextflow_workflow {
                 ])
                 input[8] = params.skip_picard_markduplicates
                 input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
                 """
             }
         }
@@ -84,6 +87,7 @@ nextflow_workflow {
                 outdir = "$outputDir"
                 skip_picard_markduplicates = true
                 skip_baserecalibration = false
+                skip_interval_splitting = false
             }
             workflow {
                 """
@@ -91,14 +95,14 @@ nextflow_workflow {
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
                 ])
                 input[1] = channel.of([
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
                 ])
                 input[2] = channel.value([
@@ -115,7 +119,8 @@ nextflow_workflow {
                 ])
                 input[5] = channel.value([
                     [ id:'genome' ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
                 ])
                 input[6] = channel.value([
                     [ id:'vcf' ],
@@ -127,6 +132,7 @@ nextflow_workflow {
                 ])
                 input[8] = params.skip_picard_markduplicates
                 input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
                 """
             }
         }
@@ -144,6 +150,7 @@ nextflow_workflow {
                 outdir = "$outputDir"
                 skip_picard_markduplicates = false
                 skip_baserecalibration = true
+                skip_interval_splitting = false
             }
             workflow {
                 """
@@ -151,14 +158,14 @@ nextflow_workflow {
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
                 ])
                 input[1] = channel.of([
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
                 ])
                 input[2] = channel.value([
@@ -175,7 +182,8 @@ nextflow_workflow {
                 ])
                 input[5] = channel.value([
                     [ id:'genome' ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
                 ])
                 input[6] = channel.value([
                     [ id:'vcf' ],
@@ -187,6 +195,7 @@ nextflow_workflow {
                 ])
                 input[8] = params.skip_picard_markduplicates
                 input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
                 """
             }
         }
@@ -205,6 +214,7 @@ nextflow_workflow {
                 outdir = "$outputDir"
                 skip_picard_markduplicates = false
                 skip_baserecalibration = false
+                skip_interval_splitting = false
             }
             workflow {
                 """
@@ -212,14 +222,14 @@ nextflow_workflow {
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
                 ])
                 input[1] = channel.of([
                     [ id:'test' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
                 ],
-                    [[ id:'test' ],
+                    [[ id:'test2' ],
                     file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
                 ])
                 input[2] = channel.value([
@@ -236,7 +246,8 @@ nextflow_workflow {
                 ])
                 input[5] = channel.value([
                     [ id:'genome' ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
                 ])
                 input[6] = channel.value([
                     [ id:'vcf' ],
@@ -248,6 +259,7 @@ nextflow_workflow {
                 ])
                 input[8] = params.skip_picard_markduplicates
                 input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
                 """
             }
         }

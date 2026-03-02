@@ -25,6 +25,11 @@ include {
     UNTAR as UNTAR_SNPEFF_DB
 } from '../../../modules/local/untar'
 
+include {
+    TABIX_TABIX as TABIX_TABIX_KNOWNSITES ;
+    TABIX_TABIX as TABIX_TABIX_DBSNP
+} from '../../../modules/local/tabix/tabix'
+
 include { GXF2BED } from '../../../modules/local/gxf2bed'
 include { KALLISTO_INDEX } from '../../../modules/local/kallisto/index'
 include { SALMON_INDEX } from '../../../modules/local/salmon/index'
@@ -60,6 +65,10 @@ workflow PREPARE_GENOME {
     val_fai // string: Path to Samtools Fasta Index (.fai)
     val_dict // string: Path to GATK Sequence Dictionary (.dict)
     val_intervallist // string: Path to GATK Interval List (.interval_list)
+    val_dbsnp // string: Path to dbSNP database file
+    val_dbsnp_tbi // string: Path to dbSNP database index file
+    val_knownsites // string: Path to known sites file
+    val_knownsites_tbi // string: Path to known sites index file
     val_snpeff_db // string: Path to SnpEff database folder or tar archive
     val_snpeff_genome // string: SnpEff genome build version (e.g., 'GRCh38.105')
 
@@ -79,6 +88,8 @@ workflow PREPARE_GENOME {
     ch_intervallist = channel.empty()
     ch_intervals_split = channel.empty()
     ch_snpeff_db = channel.empty()
+    ch_dbsnp_tbi = channel.empty()
+    ch_knownsites_tbi = channel.empty()
 
     // Convert string paths to file channels [meta, file]
     ch_fasta = val_fasta ? channel.value(file(val_fasta, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
@@ -87,6 +98,9 @@ workflow PREPARE_GENOME {
     ch_gtf_isoform = val_gtf_isoform && ("DIU" in params.analysis_method.split(",") || "AS" in params.analysis_method.split(",")) && params.pseudo_aligner in ["kallisto", "salmon"] ? channel.value(file(val_gtf_isoform, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
     ch_contaminant_fasta = val_contaminant_fasta && !params.skip_bbsplit ? channel.value(file(val_contaminant_fasta, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
     ch_rrna_db = val_rrna_db && !params.skip_sortmerna ? channel.value(file(val_rrna_db, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
+    ch_dbsnp = val_dbsnp && "GVC" in params.analysis_method.split(",") ? channel.value(file(val_dbsnp, checkIfExists: true)).map { [[id: it.baseName], it] }.collect() : channel.empty()
+    ch_knownsites = val_knownsites && "GVC" in params.analysis_method.split(",") ? channel.fromPath(val_knownsites.split(','), checkIfExists: true).collect().map { files -> [[id: 'knownsites'], files] } : channel.empty()
+    ch_snpeff_genome = val_snpeff_genome && "GVC" in params.analysis_method.split(",") ? channel.value([[id: "${val_snpeff_genome}"], val_snpeff_genome]) : channel.empty()
 
     if (params.aligner == "hisat2") {
         // Uncompress genome FASTA
@@ -205,6 +219,7 @@ workflow PREPARE_GENOME {
             }
 
             // SPLITTING
+            ch_intervals_split = ch_intervallist
             if (!params.skip_interval_splitting) {
                 GATK4_INTERVALLISTTOOLS(ch_intervallist)
                 ch_intervals_split = GATK4_INTERVALLISTTOOLS.out.interval_list
@@ -221,8 +236,38 @@ workflow PREPARE_GENOME {
                 }
             }
             else {
-                SNPEFF_DOWNLOAD([[id: val_snpeff_genome], val_snpeff_genome])
+                SNPEFF_DOWNLOAD(
+                    ch_snpeff_genome
+                )
                 ch_snpeff_db = SNPEFF_DOWNLOAD.out.cache
+            }
+
+            // DBSNP INDEX
+            if (val_dbsnp) {
+
+                if (val_dbsnp_tbi) {
+                    ch_dbsnp_tbi = channel.value(file(val_dbsnp_tbi, checkIfExists: true)).map { [[id: it.baseName], it] }.collect()
+                }
+                else {
+                    TABIX_TABIX_DBSNP(
+                        ch_dbsnp
+                    )
+                    ch_dbsnp_tbi = TABIX_TABIX_DBSNP.out.index
+                }
+            }
+
+            // KNOWNSITES INDEX
+            if (val_knownsites) {
+
+                if (val_knownsites_tbi) {
+                    ch_knownsites_tbi = channel.fromPath(val_knownsites_tbi.split(','), checkIfExists: true).collect().map { indices -> [[id: 'knownsites'], indices] }
+                }
+                else {
+                    TABIX_TABIX_KNOWNSITES(
+                        ch_knownsites
+                    )
+                    ch_knownsites_tbi = TABIX_TABIX_KNOWNSITES.out.index.collect { it[1] }.map { indices -> [[id: 'knownsites'], indices] }
+                }
             }
         }
     }
@@ -308,7 +353,12 @@ workflow PREPARE_GENOME {
     dict = ch_dict // channel: [ val(meta), [ dict ] ]
     intervallist = ch_intervallist // channel: [ val(meta), [ interval_list ] ]
     intervals_split = ch_intervals_split // channel: [ val(meta), [ interval_list ] ]
+    knownsites = ch_knownsites // channel: [ val(meta), [ knownsites ] ]
+    knownsites_tbi = ch_knownsites_tbi // channel: [ val(meta), [ knownsites_tbi ] ]
+    dbsnp = ch_dbsnp // channel: [ val(meta), [ dbsnp ] ]
+    dbsnp_tbi = ch_dbsnp_tbi // channel: [ val(meta), [ dbsnp_tbi ] ]
     snpeff_db = ch_snpeff_db // channel: [ val(meta), [ snpeff_db ] ]
+    snpeff_genome = ch_snpeff_genome // channel: [ val(meta), [ snpeff_genome ] ]
     hisat2_index = ch_hisat2_index // channel: [ val(meta), [ hisat2_index ] ]
     kallisto_index = ch_kallisto_index // channel: [ val(meta), [ kallisto_index ] ]
     salmon_index = ch_salmon_index // channel: [ val(meta), [ salmon_index ] ]

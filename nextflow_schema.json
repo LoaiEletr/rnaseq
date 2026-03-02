@@ -124,44 +124,6 @@
                     "help_text": "Base URL for downloading Ensembl reference files. Used when auto-fetching genome/annotation files.",
                     "fa_icon": "fas fa-cloud-download-alt"
                 },
-                "fai": {
-                    "type": "string",
-                    "description": "Path to Samtools Fasta Index (.fai) file for the reference genome",
-                    "exists": true,
-                    "fa_icon": "fas fa-file-alt",
-                    "help_text": "Required for GVC (Genomic Variant Calling) analysis if `--genome` is not specified. When `--genome` is provided, this file will be automatically retrieved from the genome configuration. The .fai index enables fast random access to the reference FASTA file.",
-                    "format": "file-path"
-                },
-                "dict": {
-                    "type": "string",
-                    "description": "Path to GATK Sequence Dictionary (.dict) file for the reference genome",
-                    "exists": true,
-                    "fa_icon": "fas fa-file-alt",
-                    "help_text": "Required for GVC (Genomic Variant Calling) analysis if `--genome` is not specified. When `--genome` is provided, this file will be automatically retrieved from the genome configuration. The .dict file contains metadata about the reference sequences and is required by GATK tools.",
-                    "format": "file-path"
-                },
-                "interval_list": {
-                    "type": "string",
-                    "description": "Path to GATK Interval List (.interval_list) file for targeted analysis",
-                    "exists": true,
-                    "fa_icon": "fas fa-list",
-                    "help_text": "Required for GVC (Genomic Variant Calling) analysis if `--genome` is not specified. When `--genome` is provided, this file will be automatically retrieved from the genome configuration. This defines genomic regions for targeted variant calling (e.g., exome capture targets).",
-                    "format": "file-path"
-                },
-                "snpeff_db": {
-                    "type": "string",
-                    "description": "Path to SnpEff database folder or tar archive for variant annotation",
-                    "exists": true,
-                    "fa_icon": "fas fa-database",
-                    "help_text": "Required for variant annotation in GVC analysis if `--genome` is not specified. When `--genome` is provided, the appropriate SnpEff database will be automatically determined from the genome configuration. If not provided and no genome config exists, SnpEff will attempt to download the database specified by `--snpeff_genome`.",
-                    "format": "path"
-                },
-                "snpeff_genome": {
-                    "type": "string",
-                    "description": "SnpEff genome build version (e.g., 'GRCh38.99') for variant annotation",
-                    "fa_icon": "fas fa-dna",
-                    "help_text": "Required for variant annotation in GVC analysis if `--genome` is not specified. When `--genome` is provided, this value will be automatically set from the genome configuration. Examples include 'GRCh38.99' for human or 'GRCm39.99' for mouse."
-                },
                 "igenomes_base": {
                     "type": "string",
                     "format": "directory-path",
@@ -295,10 +257,79 @@
                     "description": "RSeQC modules to run.",
                     "help_text": "Comma-separated RSeQC modules: 'geneBodyCoverage', 'inferExperiment', etc.",
                     "fa_icon": "fas fa-toolbox"
+                },
+                "remove_duplicates": {
+                    "type": "boolean",
+                    "description": "Physically remove duplicate reads from the BAM file",
+                    "fa_icon": "fas fa-trash-alt",
+                    "help_text": "If true, duplicate reads will be removed rather than just marked. This is passed to Picard MarkDuplicates via the REMOVE_DUPLICATES=true argument."
+                },
+                "skip_picard_markduplicates": {
+                    "type": "boolean",
+                    "description": "Skip identification and marking of duplicate reads",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "skip_baserecalibration": {
+                    "type": "boolean",
+                    "description": "Skip GATK Base Quality Score Recalibration (BQSR)",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "skip_variantfiltration": {
+                    "type": "boolean",
+                    "description": "Skip GATK hard-filtering of variant calls",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "skip_interval_splitting": {
+                    "type": "boolean",
+                    "description": "Skip splitting of intervals for parallel processing",
+                    "fa_icon": "fas fa-cut",
+                    "help_text": "By default, the pipeline splits the interval list into smaller chunks to run GATK tools in parallel across multiple CPUs. Setting this to true will process the entire interval list in a single job."
                 }
             },
             "fa_icon": "fas fa-sliders-h",
             "required": ["analysis_method"]
+        },
+        "umi_processing": {
+            "title": "UMI Processing Options",
+            "type": "object",
+            "description": "Options for Unique Molecular Identifier (UMI) extraction and deduplication.",
+            "fa_icon": "fas fa-fingerprint",
+            "properties": {
+                "lib_kit": {
+                    "type": "string",
+                    "description": "Library preparation kit.",
+                    "help_text": "This parameter is mandatory if with_umi true. Kit type: 'quantseq', 'corall', 'takara'.",
+                    "fa_icon": "fas fa-vials"
+                },
+                "umitools_bc_pattern": {
+                    "type": "string",
+                    "description": "UMI barcode pattern for read 1.",
+                    "help_text": "Overrides the default pattern provided by --lib_kit. Example: '^(?P<umi_1>.{8}).*'",
+                    "fa_icon": "fas fa-barcode"
+                },
+                "umitools_bc_pattern2": {
+                    "type": "string",
+                    "description": "UMI barcode pattern for read 2.",
+                    "fa_icon": "fas fa-barcode"
+                },
+                "umi_separator": {
+                    "type": "string",
+                    "description": "Separator used to append UMI to read name.",
+                    "fa_icon": "fas fa-grip-lines"
+                },
+                "umi_extract_method": {
+                    "type": "string",
+                    "description": "Method to extract UMI.",
+                    "help_text": "Options: 'string' (regex) or 'read_id'.",
+                    "fa_icon": "fas fa-cut"
+                },
+                "umi_post_extract_method": {
+                    "type": "string",
+                    "description": "Method for UMI deduplication.",
+                    "help_text": "Corresponds to --extract-umi-method in UMITOOLS_DEDUP.",
+                    "fa_icon": "fas fa-align-center"
+                }
+            }
         },
         "alignment_quantification": {
             "title": "Alignment & Quantification",
@@ -318,13 +349,6 @@
                     "description": "Read alignment tool.",
                     "help_text": "Genomic alignment tool: 'hisat2'.",
                     "fa_icon": "fas fa-crosshairs"
-                },
-                "lib_kit": {
-                    "type": "string",
-                    "description": "Library preparation kit.",
-                    "help_text": "This parameter is mandatory if with_umi true. Kit type: 'quantseq', 'corall', 'takara'.",
-                    "fa_icon": "fas fa-vials",
-                    "default": "takara"
                 },
                 "rrna_db_type": {
                     "type": "string",
@@ -655,6 +679,126 @@
             },
             "fa_icon": "fas fa-project-diagram"
         },
+        "germline_variant_calling": {
+            "title": "Germline Variant Calling Analysis",
+            "type": "object",
+            "description": "Parameters for GATK4-based variant discovery, recalibration, and annotation",
+            "fa_icon": "fas fa-microscope",
+            "properties": {
+                "fai": {
+                    "type": "string",
+                    "description": "Path to Samtools Fasta Index (.fai) file",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "Enables fast random access to the reference FASTA.",
+                    "format": "file-path"
+                },
+                "dict": {
+                    "type": "string",
+                    "description": "Path to GATK Sequence Dictionary (.dict) file",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "Contains sequence metadata required by GATK tools.",
+                    "format": "file-path"
+                },
+                "interval_list": {
+                    "type": "string",
+                    "description": "Path to GATK Interval List (.interval_list) file",
+                    "exists": true,
+                    "fa_icon": "fas fa-list",
+                    "help_text": "Defines genomic regions for targeted variant calling (e.g., exome capture targets).",
+                    "format": "file-path"
+                },
+                "dbsnp": {
+                    "type": "string",
+                    "description": "Path to VCF file containing known SNPs (e.g., dbSNP)",
+                    "exists": true,
+                    "fa_icon": "fas fa-barcode",
+                    "help_text": "Used for variant annotation. Must be a VCF file (e.g., 'dbsnp_146.hg38.vcf.gz').",
+                    "format": "path"
+                },
+                "dbsnp_tbi": {
+                    "type": "string",
+                    "description": "Path to VCF index for the dbSNP file",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-code",
+                    "help_text": "Required for indexing the dbSNP VCF.",
+                    "format": "path"
+                },
+                "knownsites": {
+                    "type": "string",
+                    "description": "Path to VCF file(s) containing known indels for BQSR",
+                    "exists": true,
+                    "fa_icon": "fas fa-layer-group",
+                    "help_text": "Comma-separated list of VCFs used to mask known indels during recalibration.",
+                    "format": "path"
+                },
+                "knownsites_tbi": {
+                    "type": "string",
+                    "description": "Path to VCF index file(s) for the known sites",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-code",
+                    "help_text": "Must match the files provided in `--knownsites`.",
+                    "format": "path"
+                },
+                "snpeff_db": {
+                    "type": "string",
+                    "description": "Path to SnpEff database folder or tar archive",
+                    "exists": true,
+                    "fa_icon": "fas fa-database",
+                    "help_text": "Path to SnpEff database. If not provided, SnpEff will attempt to download based on `--snpeff_genome`.",
+                    "format": "path"
+                },
+                "snpeff_genome": {
+                    "type": "string",
+                    "description": "SnpEff genome build version (e.g., 'GRCh38.99')",
+                    "fa_icon": "fas fa-dna",
+                    "help_text": "The specific SnpEff database version to use for annotation (e.g., 'GRCm39.99')."
+                },
+                "gatk_interval_scatter_count": {
+                    "type": "integer",
+                    "default": 4,
+                    "description": "Number of intervals to scatter for parallel processing",
+                    "fa_icon": "fas fa-grip-lines",
+                    "help_text": "Determines how many chunks the interval list is split into for parallelized GATK execution. Increasing this number increases parallelism but also overhead."
+                },
+                "gatk_hc_call_conf": {
+                    "type": "integer",
+                    "default": 20,
+                    "description": "Confidence threshold for calling variants (HaplotypeCaller)",
+                    "fa_icon": "fas fa-check-double",
+                    "help_text": "The minimum phred-scaled confidence threshold at which variants should be called. Variants with a score below this will be filtered out."
+                },
+                "gatk_vf_window_size": {
+                    "type": "integer",
+                    "default": 35,
+                    "description": "Window size for GATK VariantFiltration cluster analysis",
+                    "fa_icon": "fas fa-arrows-alt-h",
+                    "help_text": "Defines the window size (in base pairs) to evaluate clusters of variants during hard filtering."
+                },
+                "gatk_vf_cluster_size": {
+                    "type": "integer",
+                    "default": 3,
+                    "description": "Maximum number of variants allowed within the specified window",
+                    "fa_icon": "fas fa-braille",
+                    "help_text": "If more than this number of variants are found within the window size, they are filtered out as a cluster."
+                },
+                "gatk_vf_fs_filter": {
+                    "type": "number",
+                    "default": 30.0,
+                    "description": "FisherStrand (FS) filter threshold for VariantFiltration",
+                    "fa_icon": "fas fa-filter",
+                    "help_text": "Phred-scaled p-value using Fisher's Exact Test to detect strand bias. Higher values indicate more bias. GATK standard for RNA-seq is typically 30.0."
+                },
+                "gatk_vf_qd_filter": {
+                    "type": "number",
+                    "default": 2.0,
+                    "description": "QualByDepth (QD) filter threshold for VariantFiltration",
+                    "fa_icon": "fas fa-filter",
+                    "help_text": "Variant confidence normalized by depth. Low QD values suggest the call is likely an artifact."
+                }
+            }
+        },
         "institutional_config_options": {
             "title": "Institutional config options",
             "type": "object",
@@ -816,6 +960,9 @@
             "$ref": "#/$defs/analysis_selection_quality_control"
         },
         {
+            "$ref": "#/$defs/umi_processing"
+        },
+        {
             "$ref": "#/$defs/alignment_quantification"
         },
         {
@@ -835,6 +982,9 @@
         },
         {
             "$ref": "#/$defs/functional_enrichment_analysis"
+        },
+        {
+            "$ref": "#/$defs/germline_variant_calling"
         },
         {
             "$ref": "#/$defs/institutional_config_options"

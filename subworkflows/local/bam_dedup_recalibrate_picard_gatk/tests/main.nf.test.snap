@@ -5,12 +5,24 @@
                 "bai": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam.bai"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
                         "test.bam.bai"
                     ]
                 ],
                 "bam": [
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2.bam"
+                    ],
                     [
                         {
                             "id": "test"
@@ -21,9 +33,9 @@
                 "picard_metrics": [
                     [
                         {
-                            "id": "test"
+                            "id": "test2"
                         },
-                        "test.MarkDuplicates.metrics.txt"
+                        "test2.MarkDuplicates.metrics.txt"
                     ],
                     [
                         {
@@ -39,9 +51,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-19T07:20:03.561097595"
+        "timestamp": "2026-03-01T04:18:07.670560954"
     },
     "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi | skip_picard_markduplicates": {
         "content": [
@@ -49,17 +61,29 @@
                 "bai": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam.bai"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam.bai"
+                        "test.bam.bai"
                     ]
                 ],
                 "bam": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam"
+                        "test.bam"
                     ]
                 ],
                 "picard_metrics": [
@@ -68,18 +92,36 @@
                 "recalibrate_table": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,85a69e90e13760e3c07e572c083a477a"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,85a69e90e13760e3c07e572c083a477a"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.baserecalibrator.table:md5,b0df9f97745352ce56e570cb1ce6b249"
+                        "test.baserecalibrator.table:md5,d8e92d3b2ac8e02e524f0f6f894ff397"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,d8e92d3b2ac8e02e524f0f6f894ff397"
                     ]
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-19T07:16:14.31210298"
+        "timestamp": "2026-03-01T04:02:54.395992911"
     },
     "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi": {
         "content": [
@@ -87,25 +129,37 @@
                 "bai": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam.bai"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam.bai"
+                        "test.bam.bai"
                     ]
                 ],
                 "bam": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam"
+                        "test.bam"
                     ]
                 ],
                 "picard_metrics": [
                     [
                         {
-                            "id": "test"
+                            "id": "test2"
                         },
-                        "test.MarkDuplicates.metrics.txt"
+                        "test2.MarkDuplicates.metrics.txt"
                     ],
                     [
                         {
@@ -117,18 +171,36 @@
                 "recalibrate_table": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,ab7364f5a75f1fc5d5c131b247410796"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,ab7364f5a75f1fc5d5c131b247410796"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.baserecalibrator.table:md5,ce7ef8753205558e437102a2569fe757"
+                        "test.baserecalibrator.table:md5,357cb15db18ffa25a99107a49b62bd91"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,357cb15db18ffa25a99107a49b62bd91"
                     ]
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-19T07:12:05.941699986"
+        "timestamp": "2026-03-01T03:42:12.54480888"
     },
     "homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi - stub": {
         "content": [
@@ -136,25 +208,37 @@
                 "0": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
                     [
                         {
-                            "id": "test"
+                            "id": "test2"
                         },
-                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test2.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
@@ -166,6 +250,24 @@
                 "3": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
                         "test.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -174,25 +276,37 @@
                 "bai": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "bam": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
-                        "test.recal.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "picard_metrics": [
                     [
                         {
-                            "id": "test"
+                            "id": "test2"
                         },
-                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test2.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
@@ -204,6 +318,24 @@
                 "recalibrate_table": [
                     [
                         {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
                             "id": "test"
                         },
                         "test.baserecalibrator.table:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -213,8 +345,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-19T07:23:17.743577698"
+        "timestamp": "2026-03-01T04:24:13.636740571"
     }
 }

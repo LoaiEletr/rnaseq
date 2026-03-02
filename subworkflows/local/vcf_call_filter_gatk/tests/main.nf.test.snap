@@ -8,14 +8,14 @@
                             "condition": "control",
                             "id": "control"
                         },
-                        "control.vcf.gz.tbi"
+                        "control.haplotypecaller.filtered.vcf.gz.tbi"
                     ],
                     [
                         {
                             "condition": "treat",
                             "id": "treat"
                         },
-                        "treat.vcf.gz.tbi"
+                        "treat.haplotypecaller.filtered.vcf.gz.tbi"
                     ]
                 ],
                 "vcf": [
@@ -38,9 +38,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-19T06:29:25.876402312"
+        "timestamp": "2026-03-02T03:28:11.708442229"
     },
     "homo_sapiens - bam - bai - fasta - fai - dict - intervals - bed - dbsnp - dbsnp_tbi | skip_variantfiltration": {
         "content": [
@@ -110,14 +110,14 @@
                             "id": "control",
                             "condition": "control"
                         },
-                        "control.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "control.haplotypecaller.filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
                             "id": "treat",
                             "condition": "treat"
                         },
-                        "treat.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "treat.haplotypecaller.filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "tbi": [
@@ -126,14 +126,14 @@
                             "id": "control",
                             "condition": "control"
                         },
-                        "control.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "control.haplotypecaller.filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
                             "id": "treat",
                             "condition": "treat"
                         },
-                        "treat.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "treat.haplotypecaller.filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vcf": [
@@ -156,8 +156,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-19T06:41:19.786063027"
+        "timestamp": "2026-03-02T03:36:21.940569417"
     }
 }

@@ -90,9 +90,10 @@ process SALMON_QUANT {
         --geneMap ${gtf} \\
         -p ${task.cpus} \\
         ${fastq_in} \\
-        -o ${prefix}
+        -o ${prefix} \\
+        2>| >( tee salmon_${prefix}_quant.log >&2 )
 
-    SALMON_STRANDNESS=\$(grep "most likely library type as" ${prefix}_quant.log | awk -F'as ' '{print \$2}' || echo "Not detected")
+    SALMON_STRANDNESS=\$(grep "most likely library type as" salmon_${prefix}_quant.log | awk -F'as ' '{print \$2}' || echo "Not detected")
     """
 
     stub:
