@@ -401,7 +401,7 @@ if (is.list(vstData)) {
     }
     cat("✓ MaSigPro heatmaps generated\n")
 
-} else if (is.vector(vstData) || nrow(vstData) < 2 || ncol(vstData) < 2) {
+} else if (is.null(vstData) || is.vector(vstData) || nrow(vstData) < 2 || ncol(vstData) < 2) {
 
     pdf(errorPlotPath, width = 6, height = 4)
     plot.new()
