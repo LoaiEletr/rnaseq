@@ -19,7 +19,7 @@
                             "lib_type": "forward",
                             "single_end": true
                         },
-                        "test.hisat2.summary:md5,b6e0e1bf6cfbc4a497a8dc7873ff039e"
+                        "test.hisat2.summary:md5,9bc9151e231ce160d646fd64c7ff8c19"
                     ]
                 ],
                 "versions_hisat2": [
@@ -40,9 +40,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T05:17:17.737860234"
+        "timestamp": "2026-03-14T23:36:20.296412155"
     },
     "homo_sapiens - [fastq1, fastq2] - index - fasta": {
         "content": [
@@ -64,7 +64,7 @@
                             "lib_type": "reverse",
                             "single_end": false
                         },
-                        "test.hisat2.summary:md5,c4f391ce653d392e5dcd1b766a430695"
+                        "test.hisat2.summary:md5,aeee6f5e6b1d0204d2e4bd8b646f644a"
                     ]
                 ],
                 "versions_hisat2": [
@@ -85,9 +85,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T05:20:05.323038754"
+        "timestamp": "2026-03-14T23:38:55.257368405"
     },
     "homo_sapiens - [fastq1, fastq2] - index - fasta - stub": {
         "content": [
