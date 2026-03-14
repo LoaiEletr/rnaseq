@@ -294,10 +294,6 @@ workflow RNASEQ {
             ch_bam,
             ch_subsampled_reads,
             ch_gtf_uncompressed,
-            params.statoff,
-            params.novelss,
-            params.allowclipping,
-            params.individualcounts,
             params.event_types,
             params.pvalue_threshold,
             params.delta_psi,
@@ -327,6 +323,7 @@ workflow RNASEQ {
     ch_final_vcf = channel.empty()
     ch_picard_metrics = channel.empty()
     ch_recalibrate_table = channel.empty()
+    ch_snpeff_report = channel.empty()
 
     if ("GVC" in params.analysis_method.split(",") && params.aligner == "hisat2") {
         BAM_DEDUP_RECALIBRATE_PICARD_GATK(
@@ -401,6 +398,7 @@ workflow RNASEQ {
             ch_snpeff_genome,
             ch_snpeff_db,
         )
+        ch_snpeff_report = SNPEFF_SNPEFF.out.report
         ch_final_vcf = SNPEFF_SNPEFF.out.vcf
     }
 
@@ -457,7 +455,7 @@ workflow RNASEQ {
         ch_multiqc_files = ch_multiqc_files.mix(ch_counts_summary.collect { it[1] }.ifEmpty([]))
 
         // Collate RSeQC metrics
-        ch_multiqc_files = ch_multiqc_files.mix(ch_genebodycoverage.collect().ifEmpty([]))
+        ch_multiqc_files = ch_multiqc_files.mix(ch_genebodycoverage.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(ch_bamstat.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(ch_innerdistance.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(ch_junctionannotation.collect { it[1] }.ifEmpty([]))
@@ -469,6 +467,7 @@ workflow RNASEQ {
         // Collate vairant calling metrics
         ch_multiqc_files = ch_multiqc_files.mix(ch_picard_metrics.collect { it[1] }.ifEmpty([]))
         ch_multiqc_files = ch_multiqc_files.mix(ch_recalibrate_table.collect { it[1] }.ifEmpty([]))
+        ch_multiqc_files = ch_multiqc_files.mix(ch_snpeff_report.collect { it[3] }.ifEmpty([]))
 
         MULTIQC(
             ch_multiqc_files.collect().map { [[:], it] },
