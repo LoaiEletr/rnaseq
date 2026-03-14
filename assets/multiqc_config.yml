@@ -19,18 +19,24 @@ report_section_order:
     order: 4003
   fastqc_trimmed:
     order: 4002
-  bbmap/bbsplit:
+  bbmap:
     order: 4001
+  sortmerna:
+    order: 4000
   # Alignment
   hisat2:
     order: 3000
   # Post-alignment QC
-  samtools:
-    order: 3000
-  rseqc:
-    order: 3000
   umitools:
-    order: 3000
+    order: 2999
+  rseqc:
+    order: 2998
+  picard:
+    order: 2997
+  gatk:
+    order: 2996
+  snpeff:
+    order: 2995
   # Quantification
   featurecounts:
     order: 2000
@@ -79,12 +85,16 @@ extra_fn_clean_exts:
   - ".umi_dedup"
   - ".cutadapt"
   - "_chrX"
+  - "_primary"
+  - "_non_rRNA_reads_fwd"
+  - "_non_rRNA_reads_rev"
   - "_bam_stat"
   - ".read_distribution"
   - ".infer_experiment"
   - ".summary"
   - ".bbsplit_stats"
   - ".umi_extract"
+  - ".baserecalibrator.table"
 
 # Customise the module search patterns to speed up execution time
 #  - Skip module sub-tools that we are not interested in
