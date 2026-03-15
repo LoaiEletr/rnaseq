@@ -173,6 +173,6 @@ output:
       description: GSEA results.
       Structure: [path(gsea_results)]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

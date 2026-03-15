@@ -96,6 +96,6 @@ output:
         Structure: [ path(versions.yml) ]
       pattern: "versions.yml"
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

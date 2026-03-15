@@ -86,6 +86,6 @@ output:
         Structure: [ val(meta), [ tbi ] ]
       pattern: "*.{tbi}"
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

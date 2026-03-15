@@ -79,6 +79,6 @@ output:
         Summary file from featureCounts.
         Structure: [ val(meta), path(summary) ]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

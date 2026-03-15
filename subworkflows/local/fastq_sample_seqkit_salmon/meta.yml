@@ -46,6 +46,6 @@ output:
         The detected library strandness value (e.g., 'IU', 'SF', 'SR')
         Structure: [ val(meta), val(strandness) ]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

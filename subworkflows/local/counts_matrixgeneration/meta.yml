@@ -38,6 +38,6 @@ output:
         Structure: [ path(rds) ]
       pattern: "*.rds"
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

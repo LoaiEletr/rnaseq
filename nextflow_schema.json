@@ -228,6 +228,14 @@
                     "help_text": "Skip adapter trimming with cutadapt.",
                     "fa_icon": "fas fa-cut"
                 },
+                "adapters": {
+                    "type": "string",
+                    "description": "Adapter sequences to trim (FASTA format).",
+                    "exists": true,
+                    "help_text": "Path to FASTA file containing adapter sequences to trim. If not provided, the pipeline will automatically:\n- Detect whether data is single-end or paired-end from the input samplesheet\n- Use default adapter files from the pipeline's assets folder:\n  * For paired-end data: `assets/adapters-PE.fa`\n  * For single-end data: `assets/adapters-SE.fa`",
+                    "fa_icon": "fas fa-cut",
+                    "format": "file-path"
+                },
                 "skip_fastqc": {
                     "type": "boolean",
                     "description": "Skip FastQC.",

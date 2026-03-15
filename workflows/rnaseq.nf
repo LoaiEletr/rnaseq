@@ -81,9 +81,11 @@ workflow RNASEQ {
     // Select appropriate adapter file based on endedness
     ch_adapters = ch_input
         .map { meta_map, fastqs ->
-            meta_map.single_end
-                ? [[id: "adapters-SE"], file("${projectDir}/assets/adapters-SE.fa")]
-                : [[id: "adapters-PE"], file("${projectDir}/assets/adapters-PE.fa")]
+            params.adapters
+                ? [[id: "adapters"], file(params.adapters)]
+                : (meta_map.single_end
+                    ? [[id: "adapters-SE"], file("${projectDir}/assets/adapters-SE.fa")]
+                    : [[id: "adapters-PE"], file("${projectDir}/assets/adapters-PE.fa")])
         }
         .first()
 

@@ -52,6 +52,6 @@ output:
         Log files generated during quantification (Kallisto only)
         Structure: [ val(meta), path(log) ]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"
