@@ -47,6 +47,7 @@ process HISAT2_ALIGN {
         --rg-id ${meta.id} \\
         --rg "SM:${meta.id}" \\
         --rg "PL:Illumina" \\
+        --new-summary \\
         --summary-file ${prefix}.hisat2.summary \\
         | samtools view -bS - > ${prefix}.bam
     """
