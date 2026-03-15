@@ -73,7 +73,7 @@
                     "r-base": "4.4.0"
                 },
                 "Workflow": {
-                    "LoaiEletr/rnaseq": "v1.0.0dev"
+                    "LoaiEletr/rnaseq": "v1.0.0"
                 }
             },
             [
@@ -313,7 +313,7 @@
                     "r-base": "4.4.0"
                 },
                 "Workflow": {
-                    "LoaiEletr/rnaseq": "v1.0.0dev"
+                    "LoaiEletr/rnaseq": "v1.0.0"
                 }
             },
             [
