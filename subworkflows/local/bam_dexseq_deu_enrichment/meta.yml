@@ -96,6 +96,6 @@ output:
       description: KEGG enrichment results for DEU genes.
       Structure: [path(kegg_results)]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

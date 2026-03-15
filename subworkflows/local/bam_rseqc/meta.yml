@@ -169,6 +169,6 @@ output:
       Structure: [val(meta), path(xls)]
       pattern: "*.tin.xls"
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

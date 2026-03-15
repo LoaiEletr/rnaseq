@@ -188,6 +188,6 @@ output:
       description: Directory containing BBSplit index.
       Structure: [val(meta), path(bbsplit_index)]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

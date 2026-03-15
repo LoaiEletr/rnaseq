@@ -117,6 +117,6 @@ output:
         Log files from SortMeRNA
         Structure: [ val(meta), path(log) ]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

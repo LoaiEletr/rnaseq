@@ -91,6 +91,6 @@ topics:
           type: string
           description: The command used to generate the version of the tool
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"

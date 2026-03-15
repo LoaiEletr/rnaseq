@@ -119,6 +119,6 @@ output:
         KEGG pathway enrichment analysis results.
         Structure: [ path(kegg_results) ]
 authors:
-  - "@Loai3tr"
+  - "@LoaiEletr"
 maintainers:
-  - "@Loai3tr"
+  - "@LoaiEletr"
