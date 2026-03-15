@@ -76,8 +76,8 @@ jobs:
           - isMain: false
             profile: "singularity"
         NXF_VER:
-          # - "25.10.2"  # Temporarily disabled to stay under GitHub's 256 matrix limit
-          - "latest-everything"
+          - "25.10.2"
+          # - "latest-everything" # Temporarily disabled to stay under GitHub's 256 matrix limit
     env:
       NXF_ANSI_LOG: false
       TOTAL_SHARDS: ${{ needs.nf-test-changes.outputs.total_shards }}
