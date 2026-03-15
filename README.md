@@ -140,7 +140,7 @@ Each row represents a biological replicate. The pipeline auto-detects whether a 
 > [!WARNING]
 > Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
 
-Now, you can run the pipeline using:
+Now, you can run the pipeline by downloading it and pointing Nextflow to the local directory:
 
 ```bash
 nextflow run LoaiEletr/rnaseq \
