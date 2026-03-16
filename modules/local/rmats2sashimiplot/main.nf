@@ -4,8 +4,8 @@ process RMATS2SASHIMIPLOT {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/rmats2sashimiplot:3.0.0--py39hdff8610_2'
-        : 'biocontainers/rmats2sashimiplot:3.0.0--py310ha6fa2df_2'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e1/e11f3cff1d2216098d460c978eaeff3cfbc1847fc0c39e57eaf27966442c97b6/data'
+        : 'community.wave.seqera.io/library/rmats2sashimiplot:3.0.0--efea77000abc79df'}"
 
     input:
     tuple val(meta), path(rmats_sigevent), path(bam_list1), path(bam_list2)

@@ -4,8 +4,8 @@ process HISAT2_ALIGN {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:0e773bb207600fcb4d38202226eb20a33c7909b6-0'
-        : 'biocontainers/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:2cdf6bf1e92acbeb9b2834b1c58754167173a410-0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/16/169137662076ae5901d55f7655100f329af2e5301a0b6e77d3f80c079f155335/data'
+        : 'community.wave.seqera.io/library/hisat2_samtools:3c85db656ffe50a2'}"
 
     input:
     tuple val(meta), path(reads)

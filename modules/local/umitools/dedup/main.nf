@@ -4,8 +4,8 @@ process UMITOOLS_DEDUP {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/umi_tools:1.1.4--py39hf95cd2a_2'
-        : 'biocontainers/umi_tools:1.1.4--py39hf95cd2a_2'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/38/38136a834cc8aecb5a477640910df9472eb83e90118059bd1a0459aec685b731/data'
+        : 'community.wave.seqera.io/library/umi_tools:1.1.6--2c79f13606642e4c'}"
 
     input:
     tuple val(meta), path(bam), path(bai)

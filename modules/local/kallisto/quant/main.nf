@@ -4,8 +4,8 @@ process KALLISTO_QUANT {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/kallisto:0.51.1--h2b92561_2'
-        : 'biocontainers/kallisto:0.51.1--h2b92561_2'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/70/70a7a1b2f5dc1ca0e801e958ab14ea029f662f1ead026ba9cdff59f99995f19c/data'
+        : 'community.wave.seqera.io/library/kallisto:0.51.1--b63691b6841c7a52'}"
 
     input:
     tuple val(meta), path(reads)

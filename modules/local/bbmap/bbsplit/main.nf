@@ -4,8 +4,8 @@ process BBMAP_BBSPLIT {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/bbmap:39.13--he5f24ec_1'
-        : 'biocontainers/bbmap:39.50--he5f24ec_0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3c/3cb6e0efbe51e11bbdee0825627375d812664e316cd339af59252a75400f8db2/data'
+        : 'community.wave.seqera.io/library/bbmap:39.50--ab75608eec7594bc'}"
 
     input:
     tuple val(meta), path(reads)

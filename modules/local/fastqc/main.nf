@@ -4,8 +4,8 @@ process FASTQC {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/fastqc:0.12.1--hdfd78af_0'
-        : 'biocontainers/fastqc:0.12.1--hdfd78af_0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e0/e0c976cb2eca5fee72618a581537a4f8ea42fcae24c9b201e2e0f764fd28648a/data'
+        : 'community.wave.seqera.io/library/fastqc:0.12.1--af7a5314d5015c29'}"
 
     input:
     tuple val(meta), path(reads)

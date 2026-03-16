@@ -4,8 +4,8 @@ process RMATS {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/rmats:4.3.0--py39hbadf43b_5'
-        : 'biocontainers/rmats:4.3.0--py39hbadf43b_5'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8b/8b7a2184a4c9e054a13811c086f2d6095637be0f519191db74c35650085f5c20/data'
+        : 'community.wave.seqera.io/library/rmats:4.3.0--177f3a2035a879e5'}"
 
     input:
     tuple val(meta), path(bam_files)

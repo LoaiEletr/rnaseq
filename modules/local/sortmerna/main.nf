@@ -4,7 +4,7 @@ process SORTMERNA {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/sortmerna:4.3.4--h9ee0642_0'
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2b/2bb6a75d1ac1f321bae03ad8ec6b6ce9e2303516c016d2c7d758da1b5a65f963/data'
         : 'community.wave.seqera.io/library/sortmerna:4.3.6--4946a3f74bc12d4d'}"
 
     input:

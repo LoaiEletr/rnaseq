@@ -42,7 +42,7 @@
                     [
                         "RSEQC_READDUPLICATION",
                         "rseqc",
-                        "2.6.4"
+                        "5.0.4"
                     ]
                 ]
             }
@@ -96,7 +96,7 @@
                     [
                         "RSEQC_READDUPLICATION",
                         "rseqc",
-                        "2.6.4"
+                        "5.0.4"
                     ]
                 ],
                 "pdf": [
@@ -139,7 +139,7 @@
                     [
                         "RSEQC_READDUPLICATION",
                         "rseqc",
-                        "2.6.4"
+                        "5.0.4"
                     ]
                 ]
             }

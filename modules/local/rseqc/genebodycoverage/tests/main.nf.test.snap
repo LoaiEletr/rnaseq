@@ -41,7 +41,7 @@
                     [
                         "RSEQC_GENEBODYCOVERAGE",
                         "rseqc",
-                        "2.6.4"
+                        "5.0.4"
                     ]
                 ]
             }
@@ -99,7 +99,7 @@
                     [
                         "RSEQC_GENEBODYCOVERAGE",
                         "rseqc",
-                        "2.6.4"
+                        "5.0.4"
                     ]
                 ],
                 "curves": [
@@ -146,7 +146,7 @@
                     [
                         "RSEQC_GENEBODYCOVERAGE",
                         "rseqc",
-                        "2.6.4"
+                        "5.0.4"
                     ]
                 ]
             }

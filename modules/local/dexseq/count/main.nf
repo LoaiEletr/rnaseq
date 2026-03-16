@@ -4,8 +4,8 @@ process DEXSEQ_COUNT {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/htseq:2.0.5--py39h8931b72_3'
-        : 'biocontainers/htseq:2.0.9--py312h8f4af18_0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/06/068ebe7b3287bb1487cfd2276ce8bbb09be5921e7c4e3e5881813bd6d2792077/data'
+        : 'community.wave.seqera.io/library/htseq:2.0.9--4a65a9021e1142a5'}"
 
     input:
     tuple val(meta), path(bam)

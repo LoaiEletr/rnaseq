@@ -4,8 +4,8 @@ process SAMTOOLS_MERGE {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/samtools:1.21--h96c455f_1'
-        : 'biocontainers/samtools:1.23--h96c455f_0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b9/b946e2f0e77ec69853787dfc8b312bd7e9d5c65a11a613ce918469a9566992e3/data'
+        : 'community.wave.seqera.io/library/samtools:1.23--12d9384dd0649f36'}"
 
     input:
     tuple val(meta), path(bams, stageAs: "?/*")

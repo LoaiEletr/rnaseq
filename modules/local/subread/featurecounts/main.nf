@@ -4,8 +4,8 @@ process SUBREAD_FEATURECOUNTS {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/subread:2.0.8--h577a1d6_0'
-        : 'biocontainers/subread:2.1.1--h577a1d6_0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/43/433e9fa4cd4b97b46f89f9c8bc15bcdc32e761c464c2153dca51634578e50ed2/data'
+        : 'community.wave.seqera.io/library/subread:2.1.1--0ac4d7e46cd0c5d7'}"
 
     input:
     tuple val(meta), path(bam)

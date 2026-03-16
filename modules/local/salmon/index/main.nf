@@ -4,8 +4,8 @@ process SALMON_INDEX {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/salmon:1.10.3--haf24da9_3'
-        : 'biocontainers/salmon:1.10.3--h45fbf2d_5'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a5/a5e24e2abde97d6311c635dda69207a803a8a07bb62b6bbbf3e0675008634f37/data'
+        : 'community.wave.seqera.io/library/salmon:1.10.3--fcd0755dd8abb423'}"
 
     input:
     tuple val(meta), path(transcriptome)

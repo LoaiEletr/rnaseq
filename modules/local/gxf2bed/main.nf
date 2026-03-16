@@ -4,8 +4,8 @@ process GXF2BED {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/gxf2bed:0.2.4--ha6fb395_0'
-        : 'biocontainers/gxf2bed:0.2.7--ha6fb395_0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/93/93bc201ef43d1be7fd3cab3635f7bf7dd7bcc55ad753c726bf3b7bcbb3f6f802/data'
+        : 'community.wave.seqera.io/library/gxf2bed:0.2.7--1aa890a939753630'}"
 
     input:
     tuple val(meta), path(gtf)

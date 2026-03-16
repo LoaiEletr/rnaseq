@@ -4,8 +4,8 @@ process CUTADAPT {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/cutadapt:5.0--py39hbcbf7aa_0'
-        : 'biocontainers/cutadapt:5.2--py310h1fe012e_0'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2e/2ec131de77aafcf8578e3f0013d9a154b29c1b17afcd6b9ff784e16bb917e4ad/data'
+        : 'community.wave.seqera.io/library/cutadapt:5.2--6b9a64599468f0c4'}"
 
     input:
     tuple val(meta), path(reads)
