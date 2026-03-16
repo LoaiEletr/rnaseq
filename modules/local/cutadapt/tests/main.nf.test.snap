@@ -138,41 +138,14 @@
     "homo_sapiens - fastq1 - adapters": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
-                        },
-                        "test.cutadapt.fastq.gz:md5,f3f66fca1c1450afe4c95fcf02ea6bab"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
-                        },
-                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
-                    ]
-                ],
-                "2": [
-                    [
-                        "CUTADAPT",
-                        "cutadapt",
-                        "5.2"
-                    ]
-                ],
                 "json": [
                     [
                         {
                             "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": true
                         },
-                        "test.cutadapt.json:md5,242031ad2b9d1283601b561fb25d6781"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "reads": [
@@ -196,51 +169,21 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T02:07:35.557650178"
+        "timestamp": "2026-03-16T05:23:55.832322419"
     },
     "homo_sapiens - [fastq1, fastq2] - adapters": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false,
-                            "sequencer": "NovaSeq"
-                        },
-                        [
-                            "test.cutadapt_1.fastq.gz:md5,ffc8a86a4bc5accbd8acba7b6870ff26",
-                            "test.cutadapt_2.fastq.gz:md5,bb48a4dbf374729c4827fd2e5b98663d"
-                        ]
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false,
-                            "sequencer": "NovaSeq"
-                        },
-                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
-                    ]
-                ],
-                "2": [
-                    [
-                        "CUTADAPT",
-                        "cutadapt",
-                        "5.2"
-                    ]
-                ],
                 "json": [
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "NovaSeq"
+                            "sequencer": "NovaSeq",
+                            "single_end": false
                         },
-                        "test.cutadapt.json:md5,d94007a7ced14607df5a42da7e6721d5"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "reads": [
@@ -267,8 +210,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T02:09:10.695718795"
+        "timestamp": "2026-03-16T05:26:11.35546742"
     }
 }

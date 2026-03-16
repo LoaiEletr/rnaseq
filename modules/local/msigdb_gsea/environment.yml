@@ -3,6 +3,8 @@ channels:
   - bioconda
 dependencies:
   - conda-forge::r-base=4.4.0
+  - bioconda::bioconductor-clusterprofiler=4.14.0
+  - bioconda::bioconductor-enrichplot=1.26.1
   - conda-forge::r-dplyr=1.1.4
   - conda-forge::r-ggplot2=4.0.1
   - conda-forge::r-msigdbr=25.1.1
