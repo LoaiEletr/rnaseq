@@ -4,8 +4,8 @@ process UMITOOLS_EXTRACT {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/38/38136a834cc8aecb5a477640910df9472eb83e90118059bd1a0459aec685b731/data'
-        : 'community.wave.seqera.io/library/umi_tools:1.1.6--2c79f13606642e4c'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fe/feb4b2af2e4e05b8a5e2f008e25b09508fff8fda2dd802c084617c6e16121210/data'
+        : 'community.wave.seqera.io/library/umi_tools:1.1.4--8e2e1269f867d804'}"
 
     input:
     tuple val(meta), path(reads)

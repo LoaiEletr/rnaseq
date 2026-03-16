@@ -45,7 +45,7 @@ nextflow_process {
                 { assert process.out.gene_plots.get(0) ==~ ".*/top_DEU_plots" },
                 { assert process.out.significant_genes.get(0) ==~ ".*/significant_DEU_gene_ids\\.rds" },
                 { assert process.out.report.get(0) ==~ ".*/DEXSeqReport" },
-                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["results_table", "significant_results", "ma_plot", "gene_plots"])).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["results_table", "significant_results", "ma_plot", "gene_plots", "report"])).match() }
             )
         }
     }

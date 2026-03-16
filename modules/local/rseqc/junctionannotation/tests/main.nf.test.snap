@@ -146,9 +146,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T23:47:53.566049421"
+        "timestamp": "2026-03-16T10:34:55.648398847"
     },
     "sarscov2 - bam - bed": {
         "content": [
@@ -177,7 +177,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.junction_annotation.log:md5,9da2baa3710aef8a7ac5d5592bd861ac"
+                        "test.junction_annotation.log:md5,ef37d06d169a1adbeec23fddf82aee2b"
                     ]
                 ],
                 "3": [
@@ -217,7 +217,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.junction_annotation.log:md5,9da2baa3710aef8a7ac5d5592bd861ac"
+                        "test.junction_annotation.log:md5,ef37d06d169a1adbeec23fddf82aee2b"
                     ]
                 ],
                 "rscript": [
@@ -249,8 +249,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T23:46:56.565537851"
+        "timestamp": "2026-03-16T10:33:05.838930593"
     }
 }

@@ -87,7 +87,7 @@
                             "single_end": false,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.json:md5,8f122487d48ee67ae3f90fbbd272ccd0"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "umi_log": [
@@ -373,7 +373,7 @@
                             "single_end": false,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.json:md5,8f122487d48ee67ae3f90fbbd272ccd0"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "umi_log": [
@@ -847,7 +847,7 @@
                             "single_end": false,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.json:md5,8f122487d48ee67ae3f90fbbd272ccd0"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "umi_log": [
@@ -949,7 +949,7 @@
                             "single_end": false,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.json:md5,8f122487d48ee67ae3f90fbbd272ccd0"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "umi_log": [
@@ -1058,7 +1058,7 @@
                             "single_end": false,
                             "sequencer": "HiSeq"
                         },
-                        "test.cutadapt.json:md5,8f122487d48ee67ae3f90fbbd272ccd0"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "umi_log": [

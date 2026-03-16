@@ -123,7 +123,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.umi_dedup.bam:md5,c9da2ee4f07f5c6922251bd01d6bcb01"
+                        "test.umi_dedup.bam"
                     ]
                 ],
                 "log": [
@@ -173,9 +173,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-21T02:28:28.417991779"
+        "timestamp": "2026-03-16T10:36:38.775973913"
     },
     "sarscov2 - [bam, bai] | paired-end": {
         "content": [
@@ -186,7 +186,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.umi_dedup.bam:md5,350e942a0d45e8356fa24bc8c47dc1ed"
+                        "test.umi_dedup.bam"
                     ]
                 ],
                 "log": [
@@ -236,9 +236,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-21T02:29:53.160161401"
+        "timestamp": "2026-03-16T10:38:07.299258149"
     },
     "sarscov2 - [bam, bai] - stub | single-end": {
         "content": [

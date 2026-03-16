@@ -34,7 +34,7 @@ nextflow_process {
                 { assert process.out.tsv_edit_distance.get(0).get(1) ==~ ".*/*edit_distance\\.tsv" },
                 { assert process.out.tsv_per_umi.get(0).get(1) ==~ ".*/*per_umi\\.tsv" },
                 { assert process.out.tsv_umi_per_position.get(0).get(1) ==~ ".*/*per_position\\.tsv" },
-                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log", "tsv_edit_distance"])).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["bam","log", "tsv_edit_distance"])).match() }
             )
         }
     }
@@ -64,7 +64,7 @@ nextflow_process {
                 { assert process.out.tsv_edit_distance.get(0).get(1) ==~ ".*/*edit_distance\\.tsv" },
                 { assert process.out.tsv_per_umi.get(0).get(1) ==~ ".*/*per_umi\\.tsv" },
                 { assert process.out.tsv_umi_per_position.get(0).get(1) ==~ ".*/*per_position\\.tsv" },
-                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log", "tsv_edit_distance"])).match() }
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["bam","log", "tsv_edit_distance"])).match() }
             )
         }
     }

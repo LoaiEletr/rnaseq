@@ -8,7 +8,7 @@ nextflow_process {
     tag "rseqc"
     tag "rseqc/innerdistance"
 
-    test("homo_sapiens - bam - bed") {
+    test("sarscov2 - bam - bed") {
         when {
             params {
                 outdir = "$outputDir"
@@ -17,9 +17,9 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                     [ id: 'test', single_end: false ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                 ])
-                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.bed', checkIfExists: true)]
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
                 """
             }
         }
@@ -35,7 +35,7 @@ nextflow_process {
         }
     }
 
-    test("homo_sapiens - bam - bed - stub") {
+    test("sarscov2 - bam - bed - stub") {
         options "-stub"
         when {
             params {
@@ -45,9 +45,9 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                     [ id: 'test', single_end: false ],
-                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
                 ])
-                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.bed', checkIfExists: true)]
+                input[1] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
                 """
             }
         }

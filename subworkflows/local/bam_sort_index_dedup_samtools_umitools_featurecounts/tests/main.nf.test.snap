@@ -166,9 +166,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T02:30:25.850435479"
+        "timestamp": "2026-03-16T11:23:23.537084088"
     },
     "sarscov2 - bam - gtf": {
         "content": [
@@ -229,9 +229,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T02:28:50.31983952"
+        "timestamp": "2026-03-16T11:21:13.015772234"
     },
     "sarscov2 - bam - gtf | with_umi": {
         "content": [
@@ -320,9 +320,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T02:27:27.264459284"
+        "timestamp": "2026-03-16T11:19:32.800835298"
     },
     "sarscov2 - bam - gtf - stub": {
         "content": [
@@ -435,8 +435,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T02:31:39.459539291"
+        "timestamp": "2026-03-16T11:24:38.751220148"
     }
 }

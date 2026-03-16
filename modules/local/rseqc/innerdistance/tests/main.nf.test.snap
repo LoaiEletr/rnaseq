@@ -1,5 +1,5 @@
 {
-    "homo_sapiens - bam - bed - stub": {
+    "sarscov2 - bam - bed - stub": {
         "content": [
             {
                 "0": [
@@ -92,11 +92,11 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T23:33:06.67367808"
+        "timestamp": "2026-03-16T11:28:36.212685796"
     },
-    "homo_sapiens - bam - bed": {
+    "sarscov2 - bam - bed": {
         "content": [
             {
                 "distance": [
@@ -105,7 +105,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.inner_distance.txt:md5,2c4ab5898d4a2cbae089d8e96cd3aaf1"
+                        "test.inner_distance.txt:md5,a1acc9def0f64a5500d4c4cb47cbe32b"
                     ]
                 ],
                 "freq": [
@@ -114,7 +114,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.inner_distance_freq.txt:md5,795f08e1706a3ec875f4f79918c44350"
+                        "test.inner_distance_freq.txt:md5,3fc037501f5899b5da009c8ce02fc25e"
                     ]
                 ],
                 "pdf": [
@@ -132,7 +132,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.inner_distance_plot.r:md5,b8517398f1fb9ea0824e2d7843a709d2"
+                        "test.inner_distance_plot.r:md5,5859fbd5b42046d47e8b9aa85077f4ea"
                     ]
                 ],
                 "versions_rseqc": [
@@ -146,8 +146,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-20T23:32:08.870014072"
+        "timestamp": "2026-03-16T11:27:27.073433337"
     }
 }

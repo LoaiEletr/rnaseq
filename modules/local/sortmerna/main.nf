@@ -39,6 +39,7 @@ process SORTMERNA {
         sortmerna \\
             --ref ${reference_dir}/${ref_file} \\
             ${args} \\
+            --workdir ./ \\
             --index 1 \\
             --idx-dir ${prefix} \\
             -v

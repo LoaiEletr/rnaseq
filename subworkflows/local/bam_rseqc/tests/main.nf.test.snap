@@ -101,9 +101,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:16:30.554925801"
+        "timestamp": "2026-03-16T10:57:25.802168886"
     },
     "sarscov2 - bam - bed - bai | junction_annotation_only": {
         "content": [
@@ -298,9 +298,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:20:50.626540347"
+        "timestamp": "2026-03-16T11:04:27.468356521"
     },
     "sarscov2 - bam - bed - bai | tin_only": {
         "content": [
@@ -483,9 +483,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:24:58.659496287"
+        "timestamp": "2026-03-16T11:11:39.18391338"
     },
     "sarscov2 - bam - bed - bai | read_duplication_only": {
         "content": [
@@ -593,9 +593,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:23:54.849206371"
+        "timestamp": "2026-03-16T11:09:09.652600521"
     },
     "sarscov2 - bam - bed - bai - stub": {
         "content": [
@@ -1324,9 +1324,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:27:27.864169023"
+        "timestamp": "2026-03-16T11:15:49.963467899"
     },
     "sarscov2 - bam - bed - bai | inner_distance_only": {
         "content": [
@@ -1385,7 +1385,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.inner_distance_plot.r:md5,05d4b21d8b3f5520eeb4d2eb9416969b"
+                        "test.inner_distance_plot.r:md5,5859fbd5b42046d47e8b9aa85077f4ea"
                     ]
                 ],
                 "junctionannotation_bed": [
@@ -1434,9 +1434,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:18:45.638756357"
+        "timestamp": "2026-03-16T11:02:01.708333948"
     },
     "sarscov2 - bam - bed - bai | infer_experiment_only": {
         "content": [
@@ -1607,9 +1607,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:17:38.392717031"
+        "timestamp": "2026-03-16T10:59:46.457092394"
     },
     "sarscov2 - bam - bed - bai": {
         "content": [
@@ -1735,14 +1735,14 @@
                             "id": "test1",
                             "single_end": false
                         },
-                        "test1.inner_distance_plot.r:md5,18987a1584cb4e1b97837273b31c983e"
+                        "test1.inner_distance_plot.r:md5,a816c03f28e1971db08a4f834bafd0a3"
                     ],
                     [
                         {
                             "id": "test2",
                             "single_end": false
                         },
-                        "test2.inner_distance_plot.r:md5,350fc601936d8ebb108420ccdc94f882"
+                        "test2.inner_distance_plot.r:md5,db557305e1f06e0fba6bc1eb258de8fc"
                     ]
                 ],
                 "junctionannotation_bed": [
@@ -1898,7 +1898,7 @@
                             "id": "test2",
                             "single_end": false
                         },
-                        "test.paired_end.methylated.sorted.summary.txt:md5,f23bb778c642ee00cdcc9d6733ff4f7b"
+                        "test.paired_end.methylated.sorted.summary.txt:md5,7cc387bf72108f2d9e2f8eec87db9a23"
                     ]
                 ],
                 "tin_xls": [
@@ -1914,16 +1914,16 @@
                             "id": "test2",
                             "single_end": false
                         },
-                        "test.paired_end.methylated.sorted.tin.xls:md5,23c0dea116a61119749e4f4060736bed"
+                        "test.paired_end.methylated.sorted.tin.xls:md5,cabaf2f52030a0a31ee15eae8e5a4f24"
                     ]
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:14:18.38851365"
+        "timestamp": "2026-03-16T10:53:24.595668612"
     },
     "sarscov2 - bam - bed - bai | read_distribution_only": {
         "content": [
@@ -2094,9 +2094,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:22:04.750132544"
+        "timestamp": "2026-03-16T11:06:47.223795883"
     },
     "sarscov2 - bam - bed - bai | bam_stat_only": {
         "content": [
@@ -2267,8 +2267,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-24T19:15:25.012799945"
+        "timestamp": "2026-03-16T10:55:18.503583836"
     }
 }
