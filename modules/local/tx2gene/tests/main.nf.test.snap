@@ -228,7 +228,7 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,294b4b8c360a715ae960517c835eb454"
+                    "tx2gene.tsv:md5,3d12ede19a760f804084cb81784e2ae7"
                 ],
                 "1": [
                     [
@@ -245,7 +245,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,294b4b8c360a715ae960517c835eb454"
+                    "tx2gene.tsv:md5,3d12ede19a760f804084cb81784e2ae7"
                 ],
                 "versions_biomart": [
                     [
@@ -265,9 +265,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:23:37.468640307"
+        "timestamp": "2026-03-17T08:40:05.343985862"
     },
     "zebrafish - species_name": {
         "content": [
@@ -588,7 +588,7 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,8ab716b831ae561c28ac3bff6da1a8db"
+                    "tx2gene.tsv:md5,af67af581318cc1c12918246e2344e65"
                 ],
                 "1": [
                     [
@@ -605,7 +605,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,8ab716b831ae561c28ac3bff6da1a8db"
+                    "tx2gene.tsv:md5,af67af581318cc1c12918246e2344e65"
                 ],
                 "versions_biomart": [
                     [
@@ -625,8 +625,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:25:01.691809015"
+        "timestamp": "2026-03-17T08:42:18.470572978"
     }
 }

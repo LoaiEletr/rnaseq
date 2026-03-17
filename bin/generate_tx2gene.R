@@ -59,14 +59,14 @@ mart <- tryCatch({
             useMart("ensemblgenomes", dataset = dataset)
         }, error = function(e) {
             tryCatch({
-                useMart("plants_mart", dataset = dataset, host = "https://plants.ensembl.org")
+                useMart("plants_mart", dataset = dataset, host = "https://may2024-plants.ensembl.org")
             }, error = function(e2) {
                 useMart("ensemblgenomes_mart", dataset = dataset, host = "https://ensemblgenomes.org")
             })
         })
     } else {
         ## Standard Ensembl for vertebrates
-        useMart("ensembl", dataset = dataset)
+        useMart("ensembl", dataset = dataset, host = "https://may2025.archive.ensembl.org")
     }
 }, error = function(e) {
     cat("Failed to connect to BioMart:", e$message, "\n")
@@ -75,7 +75,7 @@ mart <- tryCatch({
     if (speciesName == "arabidopsis") {
         cat("Trying alternative Arabidopsis connection...\n")
         tryCatch({
-            useMart("plants_mart", host = "https://plants.ensembl.org")
+            useMart("plants_mart", host = "https://may2024-plants.ensembl.org")
         }, error = function(e2) {
             stop("Could not connect to BioMart for ", speciesName, call. = FALSE)
         })

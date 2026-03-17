@@ -227,13 +227,13 @@ convertSymbols <- function(genes) {
             useMart("ensemblgenomes", dataset = speciesInfo$biomart)
         }, error = function(e) {
             tryCatch({
-                useMart("plants_mart", dataset = speciesInfo$biomart, host = "https://plants.ensembl.org")
+                useMart("plants_mart", dataset = speciesInfo$biomart, host = "https://may2024-plants.ensembl.org")
             }, error = function(e2) {
                 useMart("ensemblgenomes_mart", dataset = speciesInfo$biomart, host = "https://ensemblgenomes.org")
             })
         })
     } else {
-        useMart("ensembl", dataset = speciesInfo$biomart)
+        useMart("ensembl", dataset = speciesInfo$biomart, host = "https://may2025.archive.ensembl.org")
     }
 
     if (!inherits(mart, "Mart")) {
