@@ -84,8 +84,8 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": false
                         },
                         "test.cutadapt.json"
                     ]
@@ -97,9 +97,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T05:36:48.545599269"
+        "timestamp": "2026-03-17T03:15:26.871362381"
     },
     "sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub": {
         "content": [
@@ -370,8 +370,8 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": false
                         },
                         "test.cutadapt.json"
                     ]
@@ -383,9 +383,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T04:04:38.617121405"
+        "timestamp": "2026-03-17T00:26:19.693092962"
     },
     "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_cutadapt": {
         "content": [
@@ -561,10 +561,10 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": false
                         },
-                        "test.cutadapt.json:md5,8ebd86f8f04daf5c36867f8017e7bd06"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "umi_log": [
@@ -581,9 +581,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-25T01:26:04.358977045"
+        "timestamp": "2026-03-17T01:32:04.307503446"
     },
     "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub": {
         "content": [
@@ -844,8 +844,8 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": false
                         },
                         "test.cutadapt.json"
                     ]
@@ -857,9 +857,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T04:21:54.050234202"
+        "timestamp": "2026-03-17T01:04:22.680031428"
     },
     "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - sortmerna index - rrna_db_type | skip_bbsplit": {
         "content": [
@@ -946,8 +946,8 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": false
                         },
                         "test.cutadapt.json"
                     ]
@@ -959,9 +959,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T05:20:27.276272862"
+        "timestamp": "2026-03-17T02:52:47.606998832"
     },
     "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_umi_extract": {
         "content": [
@@ -1055,8 +1055,8 @@
                     [
                         {
                             "id": "test",
-                            "single_end": false,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": false
                         },
                         "test.cutadapt.json"
                     ]
@@ -1068,9 +1068,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T04:43:58.810711383"
+        "timestamp": "2026-03-17T02:01:29.10301008"
     },
     "sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type": {
         "content": [
@@ -1149,10 +1149,10 @@
                     [
                         {
                             "id": "test",
-                            "single_end": true,
-                            "sequencer": "HiSeq"
+                            "sequencer": "HiSeq",
+                            "single_end": true
                         },
-                        "test.cutadapt.json:md5,90344431cad4c05e40091663e561246e"
+                        "test.cutadapt.json"
                     ]
                 ],
                 "umi_log": [
@@ -1162,8 +1162,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T05:53:34.955266228"
+        "timestamp": "2026-03-17T04:03:29.290273183"
     }
 }
