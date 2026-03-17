@@ -1,0 +1,105 @@
+name: "bam_bamlist_avglen_rmats"
+description: |
+  Complete differential splicing analysis workflow using rMATS.
+  Performs: BAM list preparation, average read length calculation, rMATS differential splicing analysis,
+  significant event filtering, and Sashimi plot generation for visualization.
+keywords:
+  - differential-splicing
+  - rmats
+  - splicing
+  - alternative-splicing
+  - sashimi-plots
+  - bam
+  - rna-seq
+  - splicing-analysis
+  - gene-expression
+components:
+  - make/bamlist
+  - seqkit/stats
+  - rmats
+  - filter/sigevents
+  - rmats2sashimiplot
+input:
+  - ch_bam:
+      type: file
+      description: |
+        Input channel containing BAM files grouped by condition
+        Structure: [ val(meta), path(bams) ]
+        Meta must contain: condition, lib_type, single_end
+      pattern: "*.{bam,bam.gz}"
+  - ch_fastq_subsample:
+      type: file
+      description: |
+        Channel containing subsampled FASTQ files for read length calculation
+        Structure: [ val(meta), path(fastq) ]
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+  - ch_gtf:
+      type: file
+      description: |
+        Channel containing GTF annotation file for rMATS analysis
+        Structure: [ val(meta), path(gtf) ]
+      pattern: "*.{gtf,gtf.gz}"
+  - val_statoff:
+      type: boolean
+      description: |
+        Turn off statistical analysis (skip FDR calculation)
+        Structure: true/false
+  - val_novelss:
+      type: boolean
+      description: |
+        Detect novel splicing sites
+        Structure: true/false
+  - val_allowclipping:
+      type: boolean
+      description: |
+        Allow clipped alignments in rMATS analysis
+        Structure: true/false
+  - val_individualcounts:
+      type: boolean
+      description: |
+        Output individual read counts for each replicate
+        Structure: true/false
+  - val_event_types:
+      type: string
+      description: |
+        Comma-separated list of splicing event types to analyze
+        Structure: comma-separated string (e.g., "SE,RI,MXE,A5SS,A3SS")
+  - val_fdr_cutoff:
+      type: float
+      description: |
+        False Discovery Rate (FDR) cutoff for filtering significant events
+        Structure: float (e.g., 0.05)
+  - val_delta_psi:
+      type: float
+      description: |
+        Minimum absolute ΔPSI (Percent Spliced In) cutoff for filtering
+        Structure: float (e.g., 0.1)
+output:
+  - rmats_prep_tmp:
+      type: file
+      description: |
+        Temporary files from rMATS preparation step
+        Structure: [ val(meta), path(prep_tmp) ]
+      pattern: "*"
+  - rmats_output:
+      type: file
+      description: |
+        Complete rMATS analysis output files with all splicing events
+        Structure: [ val(meta), path(post_output) ]
+      pattern: "*"
+  - sigevents_txt:
+      type: file
+      description: |
+        Filtered significant splicing events meeting FDR and ΔPSI cutoffs
+        Structure: [ val(event_type), path(sig_rmats) ]
+      pattern: "*_filtered.txt"
+  - rmats2sashimi_output:
+      type: file
+      description: |
+        Sashimi plot visualizations for significant splicing events
+        Structure: [ val(meta), path(sashimi_output) ]
+      pattern: "*"
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

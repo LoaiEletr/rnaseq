@@ -1,0 +1,132 @@
+name: bbmap_bbsplit
+description: |
+  Performs reference-guided read separation using BBMap's bbsplit tool.
+  Can either build a reference index or split reads based on provided references.
+keywords:
+  - read separation
+  - reference guided
+  - bbmap
+  - bbsplit
+tools:
+  - bbmap:
+      description: "BBTools suite - a set of bioinformatics tools for DNA/RNA-seq data analysis"
+      homepage: "https://jgi.doe.gov/data-and-tools/software-tools/bbtools/"
+      documentation: "https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/"
+      tool_dev_url: "https://sourceforge.net/projects/bbmap/"
+      licence: ["BSD-3-Clause-LBNL"]
+      identifier: "bbmap"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - reads:
+        type: file
+        description: Input FASTQ file(s) to be split by reference
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - index:
+        type: file
+        description: Pre-built bbsplit index directory
+        pattern: "bbsplit/"
+        ontologies: []
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - primary_ref:
+        type: file
+        description: Primary reference genome in FASTA format
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - other_ref:
+        type: file
+        description: Other reference genome(s) in FASTA format
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+  - - only_build_index:
+        type: boolean
+        description: |
+          true: Only build index from references
+          false: Split reads using references or existing index
+        ontologies: []
+
+output:
+  reads:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*primary*.fastq.gz":
+          type: file
+          description: FASTQ file(s) containing reads assigned to primary reference
+          pattern: "*primary*.fastq.gz"
+          ontologies:
+            - edam: "http://edamontology.org/format_1930" # FASTQ
+  index:
+    - - meta2:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - bbsplit:
+          type: file
+          description: Directory containing built bbsplit index
+          pattern: "bbsplit/"
+          ontologies: []
+  stats:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*stats.txt":
+          type: file
+          description: Statistics file containing read assignment information
+          pattern: "*stats.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_1964" # plain text format
+  versions_bbmap:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bbmap:
+          type: string
+          description: The name of the tool
+      - "bbversion.sh --version | head -n 1":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bbmap:
+          type: string
+          description: The name of the tool
+      - "bbversion.sh --version | head -n 1":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

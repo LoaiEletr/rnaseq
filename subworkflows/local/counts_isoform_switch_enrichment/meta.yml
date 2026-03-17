@@ -1,0 +1,101 @@
+name: "counts_isoform_switch_enrichment"
+description: |
+  Perform isoform switch analysis (DIU/AS) and functional enrichment.
+  Uses IsoformSwitchAnalyzeR to identify switching isoforms, followed by
+  optional GO and KEGG enrichment analysis.
+keywords:
+  - isoform-switch
+  - alternative-splicing
+  - differential-isoform-usage
+  - transcriptomics
+  - functional-enrichment
+components:
+  - isoformswitchanalyzer
+  - go/enrichment
+  - kegg/enrichment
+input:
+  - ch_counts:
+      type: list
+      description: |
+        Input channel containing quantification results from all samples.
+        Structure: [ path(quant_results) ]
+  - ch_samplesheet:
+      type: file
+      description: |
+        Channel containing sample metadata/samplesheet.
+        Structure: [ path(samplesheet) ]
+      pattern: "*.{csv,tsv,txt}"
+  - ch_gtf:
+      type: file
+      description: |
+        Genome annotation file in GTF format.
+        Structure: [ val(meta), path(gtf) ]
+      pattern: "*.{gtf,gtf.gz}"
+  - ch_transcriptome:
+      type: file
+      description: |
+        Transcriptome FASTA file.
+        Structure: [ val(meta), path(transcriptome) ]
+      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+  - val_quant_type:
+      type: string
+      description: |
+        Quantification tool used ('kallisto' or 'salmon').
+        Structure: string
+  - val_method:
+      type: string
+      description: |
+        Analysis method(s) for switch detection (e.g., "DIU", "AS").
+  - val_pvalue_threshold:
+      type: float
+      description: P-value threshold for statistical significance.
+  - val_dif_cutoff:
+      type: float
+      description: Difference in Isoform Fraction (dIF) or log fold change threshold.
+  - val_ntop_isoforms:
+      type: integer
+      description: Number of top switching isoforms to report/visualize.
+  - val_species_name:
+      type: string
+      description: |
+        Species name for enrichment analysis.
+        Structure: [ "human" | "mouse" | "rat" | "yeast" | "fruitfly" | "zebrafish" | "worm" | "arabidopsis" | "chicken" | "cow" | "pig" | "dog" | "monkey" ]
+  - val_ntop_processes:
+      type: integer
+      description: Number of top biological processes/pathways to visualize.
+  - val_enrichment_method:
+      type: string
+      description: |
+        Enrichment method(s) to perform.
+        Structure: [ "GO" | "KEGG" | "GO,KEGG" ]
+output:
+  - isoform_results:
+      type: directory
+      description: |
+        Directory containing IsoformSwitchAnalyzeR results and plots.
+        Structure: [ path(isoform_output) ]
+  - significant_geneids:
+      type: file
+      description: |
+        File containing gene IDs with significant switches.
+        Structure: [ path(significant_geneids) ]
+  - go_enrichment:
+      type: directory
+      description: |
+        GO enrichment analysis results.
+        Structure: [ path(go_results) ]
+  - kegg_enrichment:
+      type: directory
+      description: |
+        KEGG pathway enrichment analysis results.
+        Structure: [ path(kegg_results) ]
+  - versions:
+      type: file
+      description: |
+        File containing software versions.
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

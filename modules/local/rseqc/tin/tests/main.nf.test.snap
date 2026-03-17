@@ -1,0 +1,124 @@
+{
+    "sarscov2 - bam - bed - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "5.0.4"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_rseqc": [
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "5.0.4"
+                    ]
+                ],
+                "xls": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:17:49.348861453"
+    },
+    "sarscov2 - bam - bed": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,6b1b1b0dc1dc265342ba8c3f27fa60e6"
+                    ]
+                ],
+                "2": [
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "5.0.4"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.summary.txt:md5,9d98447e178b89a89f6f5aba7a772fe6"
+                    ]
+                ],
+                "versions_rseqc": [
+                    [
+                        "RSEQC_TIN",
+                        "rseqc",
+                        "5.0.4"
+                    ]
+                ],
+                "xls": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.paired_end.sorted.tin.xls:md5,6b1b1b0dc1dc265342ba8c3f27fa60e6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:16:55.916843427"
+    }
+}

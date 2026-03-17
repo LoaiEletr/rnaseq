@@ -1,0 +1,280 @@
+{
+    "sarscov2 - [fastq1, fastq2] - index - gtf": {
+        "content": [
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test"
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "Not detected"
+                    ]
+                ],
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:54:23.920799244"
+    },
+    "sarscov2 - fastq1 - index - gtf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "IU"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "IU"
+                    ]
+                ],
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:55:16.95597766"
+    },
+    "sarscov2 - [fastq1, fastq2] - index - gtf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "IU"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "IU"
+                    ]
+                ],
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:56:13.548556049"
+    },
+    "sarscov2 - fastq1 - index - gtf": {
+        "content": [
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test"
+                    ]
+                ],
+                "strandness": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "Not detected"
+                    ]
+                ],
+                "versions_salmon": [
+                    [
+                        "SALMON_QUANT",
+                        "salmon",
+                        "1.10.3"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T00:53:23.383772128"
+    }
+}

@@ -1,0 +1,112 @@
+name: kallisto_quant
+description: |
+  Quantifies transcript abundances from RNA-seq reads using kallisto with strand-specific options.
+keywords:
+  - kallisto
+  - quantification
+  - rna-seq
+  - transcript
+tools:
+  - kallisto:
+      description: "Near-optimal RNA-Seq quantification"
+      homepage: "https://pachterlab.github.io/kallisto/"
+      documentation: "https://pachterlab.github.io/kallisto/manual"
+      tool_dev_url: "https://github.com/pachterlab/kallisto"
+      licence: ["BSD-2-Clause"]
+      identifier: "kallisto"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false, lib_type:'IU' ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s) for quantification.
+          Single file for single-end, two files for paired-end data.
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'transcriptome_index' ]`
+    - index:
+        type: file
+        description: Kallisto index file for pseudoalignment
+        pattern: "*.idx"
+        ontologies: []
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome_gtf' ]`
+    - gtf:
+        type: file
+        description: GTF annotation file for transcript-to-gene mapping
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
+  - - fragment_length:
+        type: integer
+        description: Estimated average fragment length (required for single-end data)
+        ontologies: []
+  - - fragment_length_sd:
+        type: integer
+        description: Estimated standard deviation of fragment length (required for single-end data)
+        ontologies: []
+
+output:
+  quant_dir:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "${prefix}":
+          type: file
+          description: Directory containing kallisto quantification results
+          pattern: "${prefix}"
+          ontologies: []
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "${prefix}/*.log":
+          type: file
+          description: Log file from kallisto quantification
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678" # LOG
+  versions_kallisto:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - kallisto:
+          type: string
+          description: The name of the tool
+      - "kallisto version | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - kallisto:
+          type: string
+          description: The name of the tool
+      - "kallisto version | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

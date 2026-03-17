@@ -1,0 +1,123 @@
+nextflow_process {
+    name "Test Process UMITOOLS_DEDUP"
+    script "../main.nf"
+    process "UMITOOLS_DEDUP"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_local"
+    tag "umitools"
+    tag "umitools/dedup"
+
+    test("sarscov2 - [bam, bai] | single-end") {
+        when {
+            params {
+                outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' , single_end: true ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.bam.get(0).get(1) ==~ ".*/test\\.umi_dedup\\.bam" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_dedup\\.log" },
+                { assert process.out.tsv_edit_distance.get(0).get(1) ==~ ".*/*edit_distance\\.tsv" },
+                { assert process.out.tsv_per_umi.get(0).get(1) ==~ ".*/*per_umi\\.tsv" },
+                { assert process.out.tsv_umi_per_position.get(0).get(1) ==~ ".*/*per_position\\.tsv" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["bam","log", "tsv_edit_distance"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [bam, bai] | paired-end") {
+        when {
+            params {
+                outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' , single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.bam.get(0).get(1) ==~ ".*/test\\.umi_dedup\\.bam" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_dedup\\.log" },
+                { assert process.out.tsv_edit_distance.get(0).get(1) ==~ ".*/*edit_distance\\.tsv" },
+                { assert process.out.tsv_per_umi.get(0).get(1) ==~ ".*/*per_umi\\.tsv" },
+                { assert process.out.tsv_umi_per_position.get(0).get(1) ==~ ".*/*per_position\\.tsv" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["bam","log", "tsv_edit_distance"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [bam, bai] - stub | single-end") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' , single_end: true ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.single_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [bam, bai] - stub | paired-end") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                umi_post_extract_method = 'read_id'
+                umi_separator = ':'
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' , single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

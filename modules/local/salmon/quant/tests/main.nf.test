@@ -1,0 +1,131 @@
+nextflow_process {
+    name "Test Process SALMON_QUANT"
+    script "../main.nf"
+    process "SALMON_QUANT"
+
+    tag "modules"
+    tag "modules_local"
+    tag "salmon"
+    tag "salmon/quant"
+
+    setup {
+        run("SALMON_INDEX") {
+            script "modules/local/salmon/index/main.nf"
+            process {
+                """
+                input[0] = [[id: 'transcriptome'], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
+                """
+            }
+        }
+    }
+
+    test("sarscov2 - fastq1 - index - gtf") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'forward', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SALMON_INDEX.out.index
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.quant_dir.get(0).get(1) ==~ ".*/test" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["quant_dir"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - index - gtf") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'reverse', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SALMON_INDEX.out.index
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.quant_dir.get(0).get(1) ==~ ".*/test" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["quant_dir"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fastq1 - index - gtf - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'forward', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SALMON_INDEX.out.index
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - index - gtf - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', lib_type: 'reverse', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = SALMON_INDEX.out.index
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

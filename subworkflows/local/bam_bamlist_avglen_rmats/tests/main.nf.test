@@ -1,0 +1,124 @@
+nextflow_workflow {
+
+    name "Test Workflow BAM_BAMLIST_AVGLEN_RMATS"
+    script "../main.nf"
+    workflow "BAM_BAMLIST_AVGLEN_RMATS"
+    config './nextflow.config'
+
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "subworkflows/bam_bamlist_avglen_rmats"
+    tag "make_bamlist"
+    tag "seqkit"
+    tag "seqkit/stats"
+    tag "rmats"
+    tag "filter_sigevents"
+    tag "rmats2sashimiplot"
+
+    test("sarscov2 - bam - fastq - gtf") {
+        when {
+            params {
+                outdir = "$outputDir"
+                statoff = false
+                novelss = false
+                allowclipping = false
+                individualcounts = false
+                event_types = "MXE,SE"
+                fdr_cutoff = 0.05
+                delta_psi = 0.1
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ condition: 'treatment', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                    ],
+                    [
+                        [ condition: 'treatment', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
+                    ],
+                    [
+                        [ condition: 'control', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam', checkIfExists: true)
+                    ],
+                    [
+                        [ condition: 'control', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.bam', checkIfExists: true)
+                    ]
+                )
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = Channel.of(*params.event_types.split(","))
+                input[4] = params.fdr_cutoff
+                input[5] = params.delta_psi
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["rmats_prep_tmp", "rmats_output"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - fastq - gtf - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                statoff = false
+                novelss = false
+                allowclipping = false
+                individualcounts = false
+                event_types = "MXE,SE"
+                fdr_cutoff = 0.05
+                delta_psi = 0.1
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ condition: 'treatment', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                    ],
+                    [
+                        [ condition: 'treatment', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.bam', checkIfExists: true)
+                    ],
+                    [
+                        [ condition: 'control', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam', checkIfExists: true)
+                    ],
+                    [
+                        [ condition: 'control', lib_type: 'forward', single_end: false ],
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.bam', checkIfExists: true)
+                    ]
+                )
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.gtf', checkIfExists: true)]
+                input[3] = Channel.of(*params.event_types.split(","))
+                input[4] = params.fdr_cutoff
+                input[5] = params.delta_psi
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

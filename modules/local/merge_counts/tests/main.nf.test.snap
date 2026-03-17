@@ -1,0 +1,54 @@
+{
+    "sarscov2 - counts - stub": {
+        "content": [
+            {
+                "0": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    [
+                        "MERGE_COUNTS",
+                        "r-base",
+                        "4.4.1"
+                    ]
+                ],
+                "counts_table": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_rbase": [
+                    [
+                        "MERGE_COUNTS",
+                        "r-base",
+                        "4.4.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T01:17:15.200425169"
+    },
+    "sarscov2 - counts": {
+        "content": [
+            {
+                "counts_table": [
+                    "merged_counts.rds"
+                ],
+                "versions_rbase": [
+                    [
+                        "MERGE_COUNTS",
+                        "r-base",
+                        "4.4.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T01:15:23.006279999"
+    }
+}

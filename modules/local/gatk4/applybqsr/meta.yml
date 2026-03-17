@@ -1,0 +1,115 @@
+name: "gatk4_applybqsr"
+description: Recalibrate base quality scores based on a recalibration table produced by GATK4 BaseRecalibrator.
+keywords:
+  - gatk4
+  - applybqsr
+  - bqsr
+  - recalibration
+  - bam
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK) is a structured software package for analysis of high-throughput sequencing data."
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360037055372-ApplyBQSR"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:gatk
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: BAM/CRAM file
+        pattern: "*.{bam,cram}"
+    - bai:
+        type: file
+        description: BAM/CRAM index file
+        pattern: "*.{bai,crai}"
+    - bqsr_table:
+        type: file
+        description: Recalibration table from BaseRecalibrator
+        pattern: "*.table"
+    - intervals:
+        type: file
+        description: Interval file (BED or Interval List)
+        pattern: "*.{bed,interval_list}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome' ]`
+    - fasta:
+        type: file
+        description: Reference FASTA file
+        pattern: "*.{fasta,fa}"
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'index' ]`
+    - fai:
+        type: file
+        description: Reference FASTA index file
+        pattern: "*.fai"
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing dictionary information
+          e.g. `[ id:'dict' ]`
+    - dict:
+        type: file
+        description: Sequence dictionary file
+        pattern: "*.dict"
+
+output:
+  bam:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.bam":
+          type: file
+          description: Recalibrated BAM file
+          pattern: "*.bam"
+  bai:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.bai":
+          type: file
+          description: Index for the recalibrated BAM file
+          pattern: "*.bai"
+  versions_gatk4:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

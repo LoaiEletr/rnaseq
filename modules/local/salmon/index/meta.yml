@@ -1,0 +1,68 @@
+name: salmon_index
+description: |
+  Builds a Salmon transcriptome index using a decoy-aware or standard quasi-mapping approach.
+keywords:
+  - salmon
+  - index
+  - transcriptome
+  - quasi-mapping
+tools:
+  - salmon:
+      description: "Fast, bias-aware quantification of transcript expression"
+      homepage: "https://combine-lab.github.io/salmon/"
+      documentation: "https://salmon.readthedocs.io/"
+      tool_dev_url: "https://github.com/COMBINE-lab/salmon"
+      doi: "10.1038/nmeth.4197"
+      licence: ["GPL-3.0-only"]
+      identifier: "salmon"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing information about the transcriptome
+          e.g. `[ id:'human_gencode_v44' ]`
+    - transcriptome:
+        type: file
+        description: Transcriptome sequences in FASTA format
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+
+output:
+  index:
+    - - meta:
+          type: map
+          description: Groovy Map containing index information
+      - "${prefix}":
+          type: directory
+          description: Directory containing the Salmon transcriptome index files
+          pattern: "*/"
+          ontologies: []
+  versions_salmon:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - salmon:
+          type: string
+          description: The name of the tool
+      - "salmon --version | sed 's/salmon //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - salmon:
+          type: string
+          description: The name of the tool
+      - "salmon --version | sed 's/salmon //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

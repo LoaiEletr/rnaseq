@@ -1,0 +1,111 @@
+name: "gatk4_splitncigarreads"
+description: Splits reads with Ns in their CIGAR string (e.g., RNA-seq reads spanning introns) for GATK best practices.
+keywords:
+  - gatk4
+  - splitncigarreads
+  - rnaseq
+  - bam
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK) is a structured software package for analysis of high-throughput sequencing data."
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360037593691-SplitNCigarReads"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:gatk
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: BAM file
+        pattern: "*.bam"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+    - bai:
+        type: file
+        description: BAM index file
+        pattern: "*.bai"
+        ontologies:
+          - edam: "http://edamontology.org/format_3327" # BAI
+    - intervals:
+        type: file
+        description: Interval file (BED or Interval List)
+        pattern: "*.{bed,interval_list}"
+        ontologies: []
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome' ]`
+    - fasta:
+        type: file
+        description: Reference FASTA file
+        pattern: "*.{fasta,fa}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome' ]
+    - fai:
+        type: file
+        description: Reference FASTA index file
+        pattern: "*.fai"
+        ontologies: []
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing dictionary information
+          e.g. `[ id:'dict' ]
+    - dict:
+        type: file
+        description: Sequence dictionary file
+        pattern: "*.dict"
+        ontologies: []
+
+output:
+  bam:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.bam":
+          type: file
+          description: BAM file with N-CIGAR reads split
+          pattern: "*.bam"
+          ontologies:
+            - edam: "http://edamontology.org/format_2572" # BAM
+  versions_gatk4:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

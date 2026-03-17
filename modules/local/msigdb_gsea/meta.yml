@@ -1,0 +1,163 @@
+name: "msigdb_gsea"
+description: |
+  Performs Gene Set Enrichment Analysis (GSEA) using the Molecular Signatures Database (MSigDB).
+  Analyzes pre-ranked gene lists for enrichment in biological pathways across multiple
+  MSigDB collections using clusterProfiler.
+keywords:
+  - gsea
+  - gene set enrichment
+  - msigdb
+  - pathways
+  - functional analysis
+tools:
+  - bioconductor_clusterprofiler:
+      description: "Statistical analysis and visualization of functional profiles for genes and gene clusters"
+      homepage: "https://bioconductor.org/packages/clusterProfiler/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html"
+      tool_dev_url: "https://github.com/YuLab-SMU/clusterProfiler"
+      doi: "10.1016/j.xinn.2021.100141"
+      licence: ["Artistic-2.0"]
+      identifier: "clusterProfiler"
+
+input:
+  - - unfiltered_deg:
+        type: file
+        description: RDS file containing unfiltered differential expression results (stats and logFC).
+        pattern: "*.rds"
+        ontologies: []
+  - - pvalue_threshold:
+        type: float
+        description: P-value threshold for initial filtering before ranking.
+        ontologies: []
+  - - species_name:
+        type: string
+        description: Latin species name (e.g., "Homo sapiens") for MSigDB retrieval.
+        ontologies: []
+  - - msigdb_categories:
+        type: string
+        description: MSigDB collections to use (e.g., "H,C2,C5").
+        ontologies: []
+  - - nes_threshold:
+        type: float
+        description: Normalized Enrichment Score (NES) cutoff for reporting significance.
+        ontologies: []
+  - - padj_gsea:
+        type: float
+        description: Adjusted p-value threshold for GSEA significance.
+        ontologies: []
+  - - ntop_processes:
+        type: integer
+        description: Number of top enriched pathways to visualize in plots.
+        ontologies: []
+  - - rank_method:
+        type: string
+        description: Metric used to rank genes (e.g., "logFC", "signed_pvalue").
+        ontologies: []
+
+output:
+  gsea_results:
+    - GSEA_results:
+        type: directory
+        description: Directory containing GSEA tables and visualization plots.
+        pattern: "GSEA_results/"
+        ontologies: []
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_clusterprofiler:
+    - - "${task.process}":
+          type: string
+      - bioconductor-clusterprofiler:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+  versions_enrichplot:
+    - - "${task.process}":
+          type: string
+      - bioconductor-enrichplot:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''enrichplot'')))"':
+          type: eval
+  versions_ggplot2:
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+  versions_dplyr:
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+  versions_tibble:
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+  versions_msigdbr:
+    - - "${task.process}":
+          type: string
+      - r-msigdbr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''msigdbr'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-clusterprofiler:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-enrichplot:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''enrichplot'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-msigdbr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''msigdbr'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

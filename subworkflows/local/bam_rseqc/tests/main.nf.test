@@ -1,0 +1,336 @@
+nextflow_workflow {
+
+    name "Test Workflow BAM_RSEQC"
+    script "../main.nf"
+    workflow "BAM_RSEQC"
+
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "subworkflows/bam_rseqc"
+    tag "rseqc"
+    tag "rseqc/bamstat"
+    tag "rseqc/genebodycoverage"
+    tag "rseqc/inferexperiment"
+    tag "rseqc/innerdistance"
+    tag "rseqc/junctionannotation"
+    tag "rseqc/readdistribution"
+    tag "rseqc/readduplication"
+    tag "rseqc/tin"
+
+    test("sarscov2 - bam - bed - bai") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["bam_stat", "genebody_coverage", "inner_distance", "infer_experiment",
+                                "junction_annotation", "read_distribution", "read_duplication", "tin"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test1', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ],
+                [
+                    [ id: 'test2', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test1', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ],
+                [
+                    [ id: 'test2', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["genebodycoverage_curves", "genebodycoverage_heatmap", "genebodycoverage_log", "innerdistance_pdf", "junctionannotation_log", "readduplication_pdf"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | bam_stat_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["bam_stat"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | genebody_coverage_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["genebody_coverage"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test1', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ],
+                [
+                    [ id: 'test2', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test1', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ],
+                [
+                    [ id: 'test2', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["genebodycoverage_curves", "genebodycoverage_heatmap", "genebodycoverage_log", "innerdistance_pdf", "junctionannotation_log", "readduplication_pdf"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | infer_experiment_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["infer_experiment"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | inner_distance_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["inner_distance"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["genebodycoverage_curves", "genebodycoverage_heatmap", "genebodycoverage_log", "innerdistance_pdf", "junctionannotation_log", "readduplication_pdf"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | junction_annotation_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["junction_annotation"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | read_distribution_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["read_distribution"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | read_duplication_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["read_duplication"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["genebodycoverage_curves", "genebodycoverage_heatmap", "genebodycoverage_log", "innerdistance_pdf", "junctionannotation_log", "readduplication_pdf"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai | tin_only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["tin"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - bam - bed - bai - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                rseqc_modules = ["bam_stat", "genebody_coverage", "inner_distance", "infer_experiment",
+                                "junction_annotation", "read_distribution", "read_duplication", "tin"]
+            }
+            workflow {
+                """
+                input[0] = params.rseqc_modules
+                input[1] = Channel.of([
+                    [ id: 'test1', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ],
+                [
+                    [ id: 'test2', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam', checkIfExists: true)
+                ])
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bed/test.bed12', checkIfExists: true)]
+                input[3] = Channel.of([
+                    [ id: 'test1', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true)
+                ],
+                [
+                    [ id: 'test2', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.methylated.sorted.bam.bai', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

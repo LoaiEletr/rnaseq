@@ -1,0 +1,153 @@
+{
+    "sarscov2 - bam - bed - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_freq.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        "RSEQC_INNERDISTANCE",
+                        "rseqc",
+                        "5.0.4"
+                    ]
+                ],
+                "distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "freq": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_freq.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "rscript": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.r:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_rseqc": [
+                    [
+                        "RSEQC_INNERDISTANCE",
+                        "rseqc",
+                        "5.0.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-16T11:28:36.212685796"
+    },
+    "sarscov2 - bam - bed": {
+        "content": [
+            {
+                "distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance.txt:md5,a1acc9def0f64a5500d4c4cb47cbe32b"
+                    ]
+                ],
+                "freq": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_freq.txt:md5,3fc037501f5899b5da009c8ce02fc25e"
+                    ]
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.pdf"
+                    ]
+                ],
+                "rscript": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.inner_distance_plot.r:md5,5859fbd5b42046d47e8b9aa85077f4ea"
+                    ]
+                ],
+                "versions_rseqc": [
+                    [
+                        "RSEQC_INNERDISTANCE",
+                        "rseqc",
+                        "5.0.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-16T11:27:27.073433337"
+    }
+}

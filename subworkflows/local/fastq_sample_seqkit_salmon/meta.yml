@@ -1,0 +1,51 @@
+name: "fastq_sample_seqkit_salmon"
+description: Subsample FASTQ reads using SeqKit and perform RNA-seq quantification with Salmon to determine library strandness.
+keywords:
+  - subsampling
+  - fastq
+  - quantification
+  - salmon
+  - seqkit
+  - strandness
+components:
+  - seqkit/sample
+  - salmon/quant
+input:
+  - ch_reads:
+      type: list
+      description: |
+        The input channel containing FASTQ files (single or paired-end)
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+  - ch_gtf:
+      type: file
+      description: |
+        The input channel containing GTF annotation file
+        Structure: [ val(meta), path(gtf) ]
+      pattern: "*.{gtf,gtf.gz}"
+  - ch_salmon_index:
+      type: directory
+      description: |
+        The input channel containing Salmon transcriptome index
+        Structure: [ val(meta), path(index) ]
+output:
+  - reads:
+      type: list
+      description: |
+        Subsampled FASTQ files from SeqKit
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+  - quant_dir:
+      type: directory
+      description: |
+        Directory containing Salmon quantification results
+        Structure: [ val(meta), path(quant_dir) ]
+  - strandness:
+      type: string
+      description: |
+        The detected library strandness value (e.g., 'IU', 'SF', 'SR')
+        Structure: [ val(meta), val(strandness) ]
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

@@ -1,0 +1,250 @@
+{
+    "homo_sapiens - fastq1 - index - fasta": {
+        "content": [
+            {
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.bam"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.hisat2.summary:md5,9bc9151e231ce160d646fd64c7ff8c19"
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_ALIGN",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "versions_samtools": [
+                    [
+                        "HISAT2_ALIGN",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-14T23:36:20.296412155"
+    },
+    "homo_sapiens - [fastq1, fastq2] - index - fasta": {
+        "content": [
+            {
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.bam"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.hisat2.summary:md5,aeee6f5e6b1d0204d2e4bd8b646f644a"
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_ALIGN",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "versions_samtools": [
+                    [
+                        "HISAT2_ALIGN",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-14T23:38:55.257368405"
+    },
+    "homo_sapiens - [fastq1, fastq2] - index - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "HISAT2_ALIGN",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "3": [
+                    [
+                        "HISAT2_ALIGN",
+                        "samtools",
+                        "1.23"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_ALIGN",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "versions_samtools": [
+                    [
+                        "HISAT2_ALIGN",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T05:23:07.394185468"
+    },
+    "homo_sapiens - fastq1 - index - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "HISAT2_ALIGN",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "3": [
+                    [
+                        "HISAT2_ALIGN",
+                        "samtools",
+                        "1.23"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test.hisat2.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_ALIGN",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "versions_samtools": [
+                    [
+                        "HISAT2_ALIGN",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T05:21:40.492919596"
+    }
+}

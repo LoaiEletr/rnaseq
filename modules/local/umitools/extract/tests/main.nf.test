@@ -1,0 +1,132 @@
+nextflow_process {
+    name "Test Process UMITOOLS_EXTRACT"
+    script "../main.nf"
+    process "UMITOOLS_EXTRACT"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_local"
+    tag "umitools"
+    tag "umitools/extract"
+
+    test("sarscov2 - fastq1 | quantseq") {
+        when {
+            params {
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "quantseq"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true) ]
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.reads.get(0).get(1) ==~ ".*/test\\.umi_extract\\.fastq\\.gz" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_extract\\.log" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fastq1 | takara") {
+        when {
+            params {
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "takara"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.reads.get(0).get(1)[0] ==~ ".*/test\\.umi_extract_1\\.fastq\\.gz" },
+                { assert process.out.reads.get(0).get(1)[1] ==~ ".*/test\\.umi_extract_2\\.fastq\\.gz" },
+                { assert process.out.log.get(0).get(1) ==~ ".*/test\\.umi_extract\\.log" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fastq1 - stub | corall") {
+        options "-stub"
+        when {
+            params {
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "corall"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true ],
+                    [ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true) ]
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fastq1 - stub | quantseq") {
+        options "-stub"
+        when {
+            params {
+                outdir  = "$outputDir"
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                lib_kit = "quantseq"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

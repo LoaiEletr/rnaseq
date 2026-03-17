@@ -1,0 +1,95 @@
+{
+    "yeast - counts - species name - stub | kallisto": {
+        "content": [
+            {
+                "0": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "gene_table_rds": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T22:43:29.080918635"
+    },
+    "yeast - counts - species name | kallisto": {
+        "content": [
+            {
+                "gene_table_rds": [
+                    "tximport_results.rds"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T22:38:40.03012869"
+    },
+    "sarscov2 - counts - species name - stub | featurecounts": {
+        "content": [
+            {
+                "0": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "gene_table_rds": [
+                    "merged_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T22:46:37.620441819"
+    },
+    "yeast - counts - species name - stub | salmon": {
+        "content": [
+            {
+                "0": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "gene_table_rds": [
+                    "tximport_results.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T22:45:19.453336095"
+    },
+    "yeast - counts - species name | salmon": {
+        "content": [
+            {
+                "gene_table_rds": [
+                    "tximport_results.rds"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T22:40:35.284262316"
+    },
+    "sarscov2 - counts - species name | featurecounts": {
+        "content": [
+            {
+                "gene_table_rds": [
+                    "merged_counts.rds"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T22:42:01.656653768"
+    }
+}

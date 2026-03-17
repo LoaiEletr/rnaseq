@@ -1,0 +1,84 @@
+{
+    "homo_sapiens - gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,a412992421727d291a7d65cc62cd5db8"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
+                ],
+                "gunzip": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,a412992421727d291a7d65cc62cd5db8"
+                    ]
+                ],
+                "versions_gunzip": [
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T02:50:20.145495192"
+    },
+    "homo_sapiens - gz - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
+                ],
+                "gunzip": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "purecn_ex1_normal.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_gunzip": [
+                    [
+                        "GUNZIP",
+                        "gunzip",
+                        "1.13"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T02:51:37.672830362"
+    }
+}

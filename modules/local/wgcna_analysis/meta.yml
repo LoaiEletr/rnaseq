@@ -1,0 +1,215 @@
+name: "wgcna_analysis"
+description: |
+  Performs Weighted Gene Co-expression Network Analysis (WGCNA) to identify gene modules
+  and their associations with sample traits. Includes soft-thresholding, module detection,
+  and hub gene identification.
+keywords:
+  - wgcna
+  - co-expression
+  - network
+  - modules
+  - systems biology
+  - hub genes
+tools:
+  - r_wgcna:
+      description: "Weighted Correlation Network Analysis"
+      homepage: "https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/"
+      documentation: "https://cran.r-project.org/web/packages/WGCNA/WGCNA.pdf"
+      tool_dev_url: "https://github.com/cran/WGCNA"
+      doi: "10.1186/1471-2105-9-559"
+      licence: ["GPL-2.0-only"]
+      identifier: "WGCNA"
+
+input:
+  - - count_matrix_rds:
+        type: file
+        description: RDS file containing the raw or pre-processed count matrix.
+        pattern: "*.rds"
+        ontologies: []
+  - - samplesheet_csv:
+        type: file
+        description: CSV file with sample metadata and continuous/categorical traits for correlation.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  - - min_gs:
+        type: float
+        description: Minimum gene significance threshold for defining module membership.
+        ontologies: []
+  - - min_mm:
+        type: float
+        description: Minimum module membership threshold for hub gene selection.
+        ontologies: []
+  - - top_n:
+        type: integer
+        description: Number of top hub genes to extract per module.
+        ontologies: []
+  - - cor_threshold:
+        type: float
+        description: Correlation threshold for the adjacency matrix construction.
+        ontologies: []
+  - - pval_threshold:
+        type: float
+        description: P-value threshold for statistical significance in trait correlations.
+        ontologies: []
+  - - tomtype:
+        type: string
+        description: Type of Topological Overlap Matrix (e.g., "signed", "unsigned").
+        ontologies: []
+  - - networktype:
+        type: string
+        description: Network type (e.g., "signed", "unsigned", "signed hybrid").
+        ontologies: []
+  - - deepsplit:
+        type: integer
+        description: Sensitivity of the cluster detection (0 to 4).
+        ontologies: []
+  - - reassignthreshold:
+        type: float
+        description: P-value ratio for reassigning genes between modules.
+        ontologies: []
+  - - mergecutheight:
+        type: float
+        description: Dendrogram cut height for merging similar modules.
+        ontologies: []
+  - - minmodulesize:
+        type: integer
+        description: Minimum number of genes required to form a module.
+        ontologies: []
+  - - sft_r2_threshold:
+        type: float
+        description: Minimum Scale-free Topology Fit index (R^2) for soft-threshold selection.
+        ontologies: []
+
+output:
+  wgcna_results:
+    - WGCNA:
+        type: directory
+        description: Directory containing all WGCNA analysis results.
+        pattern: "WGCNA/"
+        ontologies: []
+  vsd_object:
+    - WGCNA/vsd_object.rds:
+        type: file
+        description: RDS file containing the VST-normalized expression data.
+        pattern: "*.rds"
+        ontologies: []
+  unfiltered_log2counts:
+    - WGCNA/unfiltered_counts.rds:
+        type: file
+        description: RDS file with unfiltered log2 counts.
+        pattern: "*.rds"
+        ontologies: []
+  filtered_log2counts:
+    - WGCNA/filtered_counts.rds:
+        type: file
+        description: RDS file with filtered log2 counts.
+        pattern: "*.rds"
+        ontologies: []
+  normalized_log2counts:
+    - WGCNA/normalized_counts.rds:
+        type: file
+        description: RDS file with TMM or DESeq2 normalized log2 counts.
+        pattern: "*.rds"
+        ontologies: []
+  modules_hubgenes:
+    - WGCNA/all_traits_modules_hubgenes.rds:
+        type: file
+        description: RDS file containing a list of identified modules and their hub genes.
+        pattern: "*.rds"
+        ontologies: []
+  soft_threshold_plot:
+    - WGCNA/soft_threshold_selection.pdf:
+        type: file
+        description: PDF visualizing the scale-free topology fit vs soft-threshold power.
+        pattern: "*.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508" # PDF
+  module_dendrogram:
+    - WGCNA/module_dendrogram.pdf:
+        type: file
+        description: PDF of the gene dendrogram with assigned module colors.
+        pattern: "*.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508" # PDF
+  module_trait_heatmap:
+    - WGCNA/module_trait_correlation_heatmap.pdf:
+        type: file
+        description: Heatmap showing correlations between module eigengenes and sample traits.
+        pattern: "*.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508" # PDF
+  module_eigengenes_heatmap:
+    - WGCNA/module_eigengenes_heatmap.pdf:
+        type: file
+        description: Heatmap showing the expression patterns of module eigengenes across samples.
+        pattern: "*.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508" # PDF
+  module_analysis_results:
+    - WGCNA/module_analysis/**:
+        type: directory
+        description: Nested directory containing CSVs and plots for individual module analyses.
+        pattern: "module_analysis/**"
+        ontologies: []
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_wgcna:
+    - - "${task.process}":
+          type: string
+      - r-wgcna:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''WGCNA'')))"':
+          type: eval
+  versions_deseq2:
+    - - "${task.process}":
+          type: string
+      - bioconductor-deseq2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+  versions_pheatmap:
+    - - "${task.process}":
+          type: string
+      - r-pheatmap:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-wgcna:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''WGCNA'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-deseq2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-pheatmap:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

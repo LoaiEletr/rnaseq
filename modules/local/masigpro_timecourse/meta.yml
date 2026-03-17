@@ -1,0 +1,237 @@
+name: "masigpro_timecourse"
+description: |
+  Performs time-course differential expression analysis using maSigPro.
+  It identifies genes with significant temporal expression patterns and
+  clusters them based on their profile shapes across different experimental groups.
+keywords:
+  - masigpro
+  - time course
+  - differential expression
+  - temporal analysis
+  - regression
+tools:
+  - bioconductor_masigpro:
+      description: "Significant Gene Expression Profile Differences in Time Course Gene Expression Data"
+      homepage: "https://bioconductor.org/packages/maSigPro/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/maSigPro.html"
+      tool_dev_url: "https://github.com/b2slab/maSigPro"
+      doi: "10.1093/bioinformatics/btl056"
+      licence: ["GPL-2.0-only"]
+      identifier: "maSigPro"
+
+input:
+  - - count_matrix_rds:
+        type: file
+        description: RDS file containing the raw count matrix (genes as rows, samples as columns).
+        pattern: "*.rds"
+        ontologies: []
+  - - samplesheet_csv:
+        type: file
+        description: CSV file with sample metadata including Time, Replicate, and Group columns.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  - - pvalue_threshold:
+        type: float
+        description: Alpha threshold for the first regression step to find significant genes.
+        ontologies: []
+  - - rsq_threshold:
+        type: float
+        description: R-squared threshold for the second regression step to filter by model fit.
+        ontologies: []
+  - - cluster_method:
+        type: string
+        description: Clustering algorithm for grouping temporal profiles (hclust, kmeans, or Mclust).
+        ontologies: []
+
+output:
+  masigpro_results:
+    - masigpro_results:
+        type: directory
+        description: Directory containing all maSigPro analysis results.
+        pattern: "masigpro_results/"
+        ontologies: []
+  unfiltered_log2cpm:
+    - masigpro_results/unfiltered_log2cpm.rds:
+        type: file
+        description: RDS file with unfiltered log2-CPM normalized counts.
+        pattern: "*.rds"
+        ontologies: []
+  filtered_log2cpm:
+    - masigpro_results/filtered_log2cpm.rds:
+        type: file
+        description: RDS file with filtered log2-CPM normalized counts.
+        pattern: "*.rds"
+        ontologies: []
+  normalized_log2cpm:
+    - masigpro_results/normalized_log2cpm.rds:
+        type: file
+        description: RDS file with TMM-normalized log2-CPM counts.
+        pattern: "*.rds"
+        ontologies: []
+  cluster_plots:
+    - masigpro_results/*clusterplots.pdf:
+        type: file
+        description: PDF files visualizing the temporal profiles of gene clusters.
+        pattern: "*.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508" # PDF
+  cluster_median_expression:
+    - masigpro_results/*median_expression.csv:
+        type: file
+        description: CSV file containing the median expression for each identified cluster.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  summary_statistics:
+    - masigpro_results/*statistics.csv:
+        type: file
+        description: CSV file with detailed model statistics (p-value, R-squared) for significant genes.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  cluster_assignments:
+    - masigpro_results/*assignments.csv:
+        type: file
+        description: CSV file mapping each significant gene to its respective cluster.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  significant_expression:
+    - masigpro_results/expression_matrix_siggenes.rds:
+        type: file
+        description: RDS file containing the expression matrix of all genes passing the filters.
+        pattern: "*.rds"
+        ontologies: []
+  clusters_list:
+    - masigpro_results/clusters_list.rds:
+        type: file
+        description: RDS file with the structured list of genes per cluster.
+        pattern: "*.rds"
+        ontologies: []
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_masigpro:
+    - - "${task.process}":
+          type: string
+      - bioconductor-masigpro:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''maSigPro'')))"':
+          type: eval
+  versions_dplyr:
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+  versions_tibble:
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+  versions_edger:
+    - - "${task.process}":
+          type: string
+      - bioconductor-edger:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+  versions_ggplot2:
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+  versions_reshape2:
+    - - "${task.process}":
+          type: string
+      - r-reshape2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''reshape2'')))"':
+          type: eval
+  versions_patchwork:
+    - - "${task.process}":
+          type: string
+      - r-patchwork:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''patchwork'')))"':
+          type: eval
+  versions_mclust:
+    - - "${task.process}":
+          type: string
+      - r-mclust:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''mclust'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-masigpro:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''maSigPro'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-edger:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-reshape2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''reshape2'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-patchwork:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''patchwork'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-mclust:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''mclust'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

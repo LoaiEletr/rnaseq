@@ -1,0 +1,358 @@
+{
+    "sarscov2 - [bam, bai] - stub | paired-end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.edit_distance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.per_umi.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "5": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv_edit_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.edit_distance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv_per_umi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.per_umi.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv_umi_per_position": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T02:36:46.918020833"
+    },
+    "sarscov2 - [bam, bai] | single-end": {
+        "content": [
+            {
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.bam"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.log"
+                    ]
+                ],
+                "tsv_edit_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_edit_distance.tsv"
+                    ]
+                ],
+                "tsv_per_umi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_per_umi.tsv:md5,9b59b25634740ae3dd02a38b3aee1397"
+                    ]
+                ],
+                "tsv_umi_per_position": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_per_umi_per_position.tsv:md5,2e1a12e6f720510880068deddeefe063"
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-16T10:36:38.775973913"
+    },
+    "sarscov2 - [bam, bai] | paired-end": {
+        "content": [
+            {
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.bam"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.umi_dedup.log"
+                    ]
+                ],
+                "tsv_edit_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_edit_distance.tsv"
+                    ]
+                ],
+                "tsv_per_umi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_per_umi.tsv:md5,8e6783a4a79437b095f095f2aefe7c01"
+                    ]
+                ],
+                "tsv_umi_per_position": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_per_umi_per_position.tsv:md5,9386db4a104b8e4e32f3ca4a84efa4ac"
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-16T10:38:07.299258149"
+    },
+    "sarscov2 - [bam, bai] - stub | single-end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.edit_distance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.per_umi.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "5": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.umi_dedup.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv_edit_distance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.edit_distance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv_per_umi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.per_umi.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv_umi_per_position": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.per_position.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_umitools": [
+                    [
+                        "UMITOOLS_DEDUP",
+                        "umitools",
+                        "1.1.4"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T02:35:38.948932169"
+    }
+}

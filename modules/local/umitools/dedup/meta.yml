@@ -1,0 +1,127 @@
+name: umitools_dedup
+description: |
+  Deduplicates BAM files based on UMI (Unique Molecular Identifier) sequences and mapping coordinates.
+  It uses network-based algorithms to account for sequencing errors in the UMIs.
+keywords:
+  - umi_tools
+  - deduplication
+  - umi
+  - bam
+  - pcr duplicates
+tools:
+  - umi_tools:
+      description: "Tools for handling Unique Molecular Identifiers in NGS data sets"
+      homepage: "https://umi-tools.readthedocs.io/"
+      documentation: "https://umi-tools.readthedocs.io/en/latest/"
+      tool_dev_url: "https://github.com/CGATOxford/UMI-tools"
+      doi: "10.1101/gr.209601.116"
+      licence: ["MIT"]
+      identifier: "umi_tools"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - bam:
+        type: file
+        description: BAM file containing UMI-tagged reads
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+    - bai:
+        type: file
+        description: BAM index file (required for deduplication)
+        pattern: "*.{bai}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3327" # BAI
+
+output:
+  bam:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.bam":
+          type: file
+          description: Deduplicated BAM file
+          pattern: "*.bam"
+          ontologies:
+            - edam: "http://edamontology.org/format_2572" # BAM
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.log":
+          type: file
+          description: Log file containing deduplication statistics
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678" # LOG
+  tsv_edit_distance:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*edit_distance.tsv":
+          type: file
+          description: TSV file with edit distance statistics
+          pattern: "*edit_distance.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475" # TSV
+  tsv_per_umi:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*per_umi.tsv":
+          type: file
+          description: TSV file with per-UMI statistics
+          pattern: "*per_umi.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475" # TSV
+  tsv_umi_per_position:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*per_position.tsv":
+          type: file
+          description: TSV file with UMI per position statistics
+          pattern: "*per_position.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475" # TSV
+  versions_umitools:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - umitools:
+          type: string
+          description: The name of the tool
+      - "umi_tools --version | sed 's/.*version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - umitools:
+          type: string
+          description: The name of the tool
+      - "umi_tools --version | sed 's/.*version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

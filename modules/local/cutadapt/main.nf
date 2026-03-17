@@ -1,0 +1,44 @@
+process CUTADAPT {
+    tag "${meta.id}"
+    label 'process_low'
+
+    conda "${moduleDir}/environment.yml"
+    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2e/2ec131de77aafcf8578e3f0013d9a154b29c1b17afcd6b9ff784e16bb917e4ad/data'
+        : 'community.wave.seqera.io/library/cutadapt:5.2--6b9a64599468f0c4'}"
+
+    input:
+    tuple val(meta), path(reads)
+    tuple val(meta2), path(adapter)
+
+    output:
+    tuple val(meta), path("*.fastq.gz"), emit: reads
+    tuple val(meta), path("*.json"), emit: json
+    tuple val("${task.process}"), val('cutadapt'), eval("cutadapt --version"), topic: versions, emit: versions_cutadapt
+
+    when:
+    task.ext.when == null || task.ext.when
+
+    script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def args = task.ext.args ?: ''
+    def adapter_in = meta.single_end ? "-a file:${adapter}" : "-a file:${adapter} -A file:${adapter}"
+    def fastq_in = meta.single_end ? "-o ${prefix}.cutadapt.fastq.gz" : "-o ${prefix}.cutadapt_1.fastq.gz -p ${prefix}.cutadapt_2.fastq.gz"
+    def fastq_out = meta.single_end ? "${reads}" : "${reads[0]} ${reads[1]}"
+    """
+    cutadapt \\
+        ${args} \\
+        --json=${prefix}.cutadapt.json \\
+        ${adapter_in} \\
+        ${fastq_out} \\
+        ${fastq_in}
+    """
+
+    stub:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def gzip_fastq_out = meta.single_end ? "echo '' | gzip > ${prefix}.cutadapt.fastq.gz" : "echo '' | gzip > ${prefix}.cutadapt_1.fastq.gz ; echo '' | gzip > ${prefix}.cutadapt_2.fastq.gz"
+    """
+    ${gzip_fastq_out}
+    touch ${prefix}.cutadapt.json
+    """
+}

@@ -1,0 +1,282 @@
+nextflow_workflow {
+
+    name "Test Workflow COUNTS_ISOFORM_SWITCH_ENRICHMENT"
+    script "../main.nf"
+    workflow "COUNTS_ISOFORM_SWITCH_ENRICHMENT"
+
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "subworkflows/counts_isoform_switch_enrichment"
+    tag "isoformswitchanalyzer"
+    tag "go_enrichment"
+    tag "kegg_enrichment"
+
+    setup {
+        run("UNTAR", alias: "UNTAR_KALLISTO") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = [[id: 'kallisto_results'], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/kallisto_results.tar.gz', checkIfExists: true)]
+                """
+            }
+        }
+
+        run("UNTAR", alias: "UNTAR_SALMON") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = [[id: 'salmon_results'], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/salmon_results.tar.gz', checkIfExists: true)]
+                """
+            }
+        }
+    }
+
+    test("yeast - counts - samplesheet - gtf - transcriptome | kallisto - DIU,AS - GO,KEGG enrichment") {
+        when {
+            params {
+                outdir = "$outputDir"
+                quant_type = "kallisto"
+                method = "DIU,AS"
+                dif_cutoff = 0.1
+                pvalue_threshold = 0.05
+                ntop_isoforms = 10
+                species_name = "yeast"
+                ntop_processes = 10
+                enrichment_method = "GO,KEGG"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { meta, dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
+                input[4] = params.quant_type
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pvalue_threshold
+                input[8] = params.ntop_isoforms
+                input[9] = params.species_name
+                input[10] = params.ntop_processes
+                input[11] = params.enrichment_method.split(",")
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["isoform_results", "go_enrichment", "kegg_enrichment"])).match() }
+            )
+        }
+    }
+
+    test("yeast - counts - samplesheet - gtf - transcriptome | salmon - DIU - GO enrichment only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                quant_type = "salmon"
+                method = "DIU"
+                dif_cutoff = 0.1
+                pvalue_threshold = 0.05
+                ntop_isoforms = 10
+                species_name = "yeast"
+                ntop_processes = 10
+                enrichment_method = "GO"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { meta, dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
+                input[4] = params.quant_type
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pvalue_threshold
+                input[8] = params.ntop_isoforms
+                input[9] = params.species_name
+                input[10] = params.ntop_processes
+                input[11] = params.enrichment_method.split(",")
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["isoform_results", "go_enrichment", "kegg_enrichment"])).match() }
+            )
+        }
+    }
+
+    test("yeast - counts - samplesheet - gtf - transcriptome | kallisto - AS - KEGG enrichment only") {
+        when {
+            params {
+                outdir = "$outputDir"
+                quant_type = "kallisto"
+                method = "AS"
+                dif_cutoff = 0.1
+                pvalue_threshold = 0.05
+                ntop_isoforms = 10
+                species_name = "yeast"
+                ntop_processes = 10
+                enrichment_method = "KEGG"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { meta, dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
+                input[4] = params.quant_type
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pvalue_threshold
+                input[8] = params.ntop_isoforms
+                input[9] = params.species_name
+                input[10] = params.ntop_processes
+                input[11] = params.enrichment_method.split(",")
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["isoform_results", "go_enrichment", "kegg_enrichment"])).match() }
+            )
+        }
+    }
+
+    test("yeast - counts - samplesheet - gtf - transcriptome - stub | kallisto - DIU,AS - GO,KEGG enrichment") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                quant_type = "kallisto"
+                method = "DIU,AS"
+                dif_cutoff = 0.1
+                pvalue_threshold = 0.05
+                ntop_isoforms = 10
+                species_name = "yeast"
+                ntop_processes = 10
+                enrichment_method = "GO,KEGG"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { meta, dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
+                input[4] = params.quant_type
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pvalue_threshold
+                input[8] = params.ntop_isoforms
+                input[9] = params.species_name
+                input[10] = params.ntop_processes
+                input[11] = params.enrichment_method.split(",")
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("yeast - counts - samplesheet - gtf - transcriptome - stub | salmon - DIU - GO enrichment only") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                quant_type = "salmon"
+                method = "DIU"
+                dif_cutoff = 0.1
+                pvalue_threshold = 0.05
+                ntop_isoforms = 10
+                species_name = "yeast"
+                ntop_processes = 10
+                enrichment_method = "GO"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_SALMON.out.untar
+                .map { meta, dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
+                input[4] = params.quant_type
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pvalue_threshold
+                input[8] = params.ntop_isoforms
+                input[9] = params.species_name
+                input[10] = params.ntop_processes
+                input[11] = params.enrichment_method.split(",")
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("yeast - counts - samplesheet - gtf - transcriptome - stub | kallisto - AS - KEGG enrichment only") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                quant_type = "kallisto"
+                method = "AS"
+                dif_cutoff = 0.1
+                pvalue_threshold = 0.05
+                ntop_isoforms = 10
+                species_name = "yeast"
+                ntop_processes = 10
+                enrichment_method = "KEGG"
+            }
+            workflow {
+                """
+                input[0] = UNTAR_KALLISTO.out.untar
+                .map { meta, dir ->
+                    dir.listFiles().findAll { it.isDirectory() }
+                }
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/eukaryotes/saccharomyces_cerevisiae/genome_gfp.gtf', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/transcriptome.fasta', checkIfExists: true)]
+                input[4] = params.quant_type
+                input[5] = params.method
+                input[6] = params.dif_cutoff
+                input[7] = params.pvalue_threshold
+                input[8] = params.ntop_isoforms
+                input[9] = params.species_name
+                input[10] = params.ntop_processes
+                input[11] = params.enrichment_method.split(",")
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

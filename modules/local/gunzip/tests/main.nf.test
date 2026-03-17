@@ -1,0 +1,56 @@
+nextflow_process {
+    name "Test Process GUNZIP"
+    script "../main.nf"
+    process "GUNZIP"
+
+    tag "modules"
+    tag "modules_local"
+    tag "gunzip"
+
+    test("homo_sapiens - gz") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test1' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/purecn/purecn_ex1_normal.txt.gz', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert !(process.out.gunzip.get(0).get(1) ==~ ".*\\.gz") },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+
+    test("homo_sapiens - gz - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test1' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/purecn/purecn_ex1_normal.txt.gz', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

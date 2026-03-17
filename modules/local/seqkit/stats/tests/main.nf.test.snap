@@ -1,0 +1,88 @@
+{
+    "sarscov2 - fastq1 - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "100"
+                    ]
+                ],
+                "1": [
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ],
+                "avg_length": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "100"
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:23:53.460100051"
+    },
+    "sarscov2 - fastq1": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "151"
+                    ]
+                ],
+                "1": [
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ],
+                "avg_length": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "151"
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "SEQKIT_STATS",
+                        "seqkit",
+                        "2.12.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:22:20.858330854"
+    }
+}

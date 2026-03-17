@@ -1,0 +1,170 @@
+nextflow_process {
+    name "Test Process MSIGDB_GSEA"
+    script "../main.nf"
+    process "MSIGDB_GSEA"
+
+    tag "modules"
+    tag "modules_local"
+    tag "msigdb_gsea"
+
+    setup {
+        run("EDGER_VOOM") {
+            script "modules/local/edger_voom/main.nf"
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/leishmaniasis_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        run("LIMMA_DE") {
+            script "modules/local/limma_de/main.nf"
+            process {
+                """
+                input[0] = EDGER_VOOM.out.voom_transformed
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_leishmaniasis.csv', checkIfExists: true)
+                input[2] = 0.05
+                input[3] = 1
+                input[4] = 100
+                """
+            }
+        }
+    }
+
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | logfc ranking method") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = LIMMA_DE.out.unfiltered_deg_rds
+                input[1] = 0.05
+                input[2] = "human"
+                input[3] = "C1"
+                input[4] = 1
+                input[5] = 0.25
+                input[6] = 10
+                input[7] = "logfc"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | t-statistic ranking method") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = LIMMA_DE.out.unfiltered_deg_rds
+                input[1] = 0.05
+                input[2] = "human"
+                input[3] = "C1"
+                input[4] = 1
+                input[5] = 0.25
+                input[6] = 10
+                input[7] = "t_stat"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | signed significance ranking method") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = LIMMA_DE.out.unfiltered_deg_rds
+                input[1] = 0.05
+                input[2] = "human"
+                input[3] = "C1"
+                input[4] = 1
+                input[5] = 0.25
+                input[6] = 10
+                input[7] = "signed_significance"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | entire MSigDB collection") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = LIMMA_DE.out.unfiltered_deg_rds
+                input[1] = 0.05
+                input[2] = "human"
+                input[3] = "C1,C2,C3,C4,C5,C6,C7,C8,H"
+                input[4] = 1
+                input[5] = 0.25
+                input[6] = 10
+                input[7] = "signed_significance"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gsea_results"])).match() }
+            )
+        }
+    }
+
+    test("leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method - stub | entire MSigDB collection") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = LIMMA_DE.out.unfiltered_deg_rds
+                input[1] = 0.05
+                input[2] = "human"
+                input[3] = "C1,C2,C3,C4,C5,C6,C7,C8,H"
+                input[4] = 1
+                input[5] = 0.25
+                input[6] = 10
+                input[7] = "logfc"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gsea_results.get(0) ==~ ".*/GSEA_results" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

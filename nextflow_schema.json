@@ -43,12 +43,19 @@
             "type": "object",
             "fa_icon": "fas fa-dna",
             "description": "Reference genome related files and options required for the workflow.",
+            "required": ["species"],
             "properties": {
                 "genome": {
                     "type": "string",
-                    "description": "Name of iGenomes reference.",
+                    "description": "Name of Genomes reference.",
                     "fa_icon": "fas fa-book",
-                    "help_text": "If using a reference genome configured in the pipeline using iGenomes, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details."
+                    "help_text": "If using a reference genome configured in the pipeline, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details."
+                },
+                "species": {
+                    "type": "string",
+                    "description": "Species name for reference.",
+                    "fa_icon": "fas fa-dna",
+                    "help_text": "This parameter is *mandatory*. Specifies the species for reference genome lookup. Example: --species human --genome GRCh38. Available species: human, mouse, rat, yeast, fruitfly, zebrafish, worm, arabidopsis, chicken, cow, pig, dog, monkey"
                 },
                 "fasta": {
                     "type": "string",
@@ -56,24 +63,747 @@
                     "exists": true,
                     "mimetype": "text/plain",
                     "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
-                    "description": "Path to FASTA genome file.",
-                    "help_text": "This parameter is *mandatory* if `--genome` is not specified. If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.",
-                    "fa_icon": "far fa-file-code"
+                    "description": "Path to FASTA genome file (.gz).",
+                    "help_text": "This parameter is *mandatory* if --genome is not specified. Path to reference genome FASTA file (.fa.gz, .fasta.gz).",
+                    "fa_icon": "fas fa-file-code"
+                },
+                "gtf": {
+                    "type": "string",
+                    "description": "Path to gene annotation GTF (.gz).",
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "This parameter is *mandatory* if `--genome` is not specified.",
+                    "format": "file-path"
+                },
+                "bed": {
+                    "type": "string",
+                    "description": "Path to BED file.",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "This parameter is *mandatory* if `--gtf` is not specified for RSeQC analysis.\n",
+                    "format": "file-path"
+                },
+                "transcriptome": {
+                    "type": "string",
+                    "description": "Path to transcriptome FASTA (.gz).",
+                    "fa_icon": "fas fa-stream",
+                    "help_text": "This parameter is *mandatory* if --genome is not specified. Path to transcriptome FASTA file for kallisto/salmon (.fasta.gz, .fa.gz).",
+                    "format": "file-path"
+                },
+                "gtf_isoform": {
+                    "type": "string",
+                    "description": "Path to extended GTF (.gz) for isoform analysis.",
+                    "fa_icon": "fas fa-layer-group",
+                    "help_text": "This parameter is *mandatory* if --genome is not specified. Extended GTF with isoform annotations for differential isoform usage.",
+                    "format": "file-path"
+                },
+                "contaminant_species": {
+                    "type": "string",
+                    "fa_icon": "fas fa-biohazard",
+                    "description": "Species for contaminant genome.",
+                    "help_text": "This parameter is *mandatory* if --skip_bbsplit false. Direct path to contaminant genome FASTA file. Usage: --contaminant_species mouse."
+                },
+                "contaminant_fasta": {
+                    "type": "string",
+                    "description": "Path to contaminant genome FASTA (.gz).",
+                    "fa_icon": "fas fa-virus-slash",
+                    "help_text": "This parameter is *mandatory* if --contaminant_species is not specified. Direct path to contaminant genome FASTA file.",
+                    "format": "file-path"
+                },
+                "rrna_db": {
+                    "type": "string",
+                    "description": "Path to rRNA database (.tar.gz).",
+                    "default": "https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz",
+                    "fa_icon": "fas fa-database",
+                    "help_text": "This parameter is mandatory if --skip_sortmerna false. SortMeRNA rRNA database URL or local path.",
+                    "format": "file-path"
+                },
+                "reference_base": {
+                    "type": "string",
+                    "description": "Base URL for Ensembl references.",
+                    "default": "https://ftp.ensembl.org/pub/release-115",
+                    "help_text": "Base URL for downloading Ensembl reference files. Used when auto-fetching genome/annotation files.",
+                    "fa_icon": "fas fa-cloud-download-alt"
+                },
+                "igenomes_base": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The base path to the igenomes reference files",
+                    "fa_icon": "fas fa-server",
+                    "hidden": true,
+                    "default": "s3://ngi-igenomes/igenomes"
                 },
                 "igenomes_ignore": {
                     "type": "boolean",
                     "description": "Do not load the iGenomes reference config.",
                     "fa_icon": "fas fa-ban",
                     "hidden": true,
-                    "help_text": "Do not load `igenomes.config` when running the pipeline. You may choose this option if you observe clashes between custom parameters and those supplied in `igenomes.config`."
+                    "help_text": "Do not load `igenomes.config` when running the pipeline. You may choose this option if you observe clashes between custom parameters and those supplied in `igenomes.config`.",
+                    "default": true
+                }
+            }
+        },
+        "pre_built_indices_options": {
+            "title": "Pre-built Indices Options",
+            "type": "object",
+            "description": "Paths to pre-built index files for various tools. If provided, these will be used instead of building indices from scratch.",
+            "default": "",
+            "properties": {
+                "save_reference": {
+                    "type": "boolean",
+                    "description": "If generated by the pipeline save the indicies in the results directory.",
+                    "help_text": "If the pipeline generates an alignment index, use this parameter to save it to your results folder for future pipeline runs, reducing processing time.",
+                    "fa_icon": "fas fa-save"
                 },
-                "igenomes_base": {
+                "bbsplit_index": {
                     "type": "string",
-                    "format": "directory-path",
-                    "description": "The base path to the igenomes reference files",
-                    "fa_icon": "fas fa-ban",
-                    "hidden": true,
-                    "default": "s3://ngi-igenomes/igenomes/"
+                    "description": "Path to pre-built Bbsplit index folder or .tar.gz archive.",
+                    "fa_icon": "fas fa-bezier-curve",
+                    "exists": true,
+                    "help_text": "The BBSplit index must be built at least once with this pipeline. Use `--save_reference` to save the index, which can then be provided via `--bbsplit_index` for future runs.",
+                    "format": "path"
+                },
+                "sortmerna_index": {
+                    "type": "string",
+                    "description": "Path to pre-built SortMeRNA index folder or .tar.gz archive.",
+                    "fa_icon": "fas fa-bezier-curve",
+                    "exists": true,
+                    "help_text": "The SortMeRNA index must be built at least once with this pipeline. Use `--save_reference` to save the index, which can then be provided via `--sortmerna_index` for future runs.",
+                    "format": "path"
+                },
+                "hisat2_index": {
+                    "type": "string",
+                    "description": "Path to pre-built Hisat2 index folder or .tar.gz archive.",
+                    "fa_icon": "fas fa-bezier-curve",
+                    "exists": true,
+                    "help_text": "The Hisat2 index must be built at least once with this pipeline. Use `--save_reference` to save the index, which can then be provided via `--hisat2_index` for future runs.",
+                    "format": "path"
+                },
+                "kallisto_index": {
+                    "type": "string",
+                    "description": "Path to pre-built Kallisto index folder or .tar.gz archive.",
+                    "fa_icon": "fas fa-bezier-curve",
+                    "exists": true,
+                    "help_text": "The Kallisto index must be built at least once with this pipeline. Use `--save_reference` to save the index, which can then be provided via `--kallisto_index` for future runs.",
+                    "format": "path"
+                },
+                "salmon_index": {
+                    "type": "string",
+                    "description": "Path to pre-built Salmon index folder or .tar.gz archive",
+                    "fa_icon": "fas fa-bezier-curve",
+                    "exists": true,
+                    "help_text": "The Salmon index must be built at least once with this pipeline. Use `--save_reference` to save the index, which can then be provided via `--salmon_index` for future runs.",
+                    "format": "path"
+                }
+            },
+            "fa_icon": "fas fa-trash-alt"
+        },
+        "analysis_selection_quality_control": {
+            "title": "Analysis Selection & Quality Control",
+            "type": "object",
+            "description": "Core pipeline options to enable/disable specific analysis modules and quality control steps.",
+            "default": "",
+            "properties": {
+                "analysis_method": {
+                    "type": "string",
+                    "description": "Analysis methods to run.",
+                    "help_text": "Comma-separated methods: 'DEG', 'DEU', 'DIU', 'WGCNA', 'AS'. Example: --analysis_method DEG,WGCNA.",
+                    "fa_icon": "fas fa-tasks",
+                    "default": "DEG"
+                },
+                "with_umi": {
+                    "type": "boolean",
+                    "description": "Data contains UMI barcodes.",
+                    "help_text": "Set to true for UMI-based protocols",
+                    "fa_icon": "fas fa-barcode"
+                },
+                "skip_umi_extract": {
+                    "type": "boolean",
+                    "description": "Skip UMI extraction.",
+                    "help_text": "Skip UMI extraction (only relevant if --with_umi true).",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_trimming": {
+                    "type": "boolean",
+                    "description": "Skip read trimming.",
+                    "help_text": "Skip adapter trimming with cutadapt.",
+                    "fa_icon": "fas fa-cut"
+                },
+                "adapters": {
+                    "type": "string",
+                    "description": "Adapter sequences to trim (FASTA format).",
+                    "exists": true,
+                    "help_text": "Path to FASTA file containing adapter sequences to trim. If not provided, the pipeline will automatically:\n- Detect whether data is single-end or paired-end from the input samplesheet\n- Use default adapter files from the pipeline's assets folder:\n  * For paired-end data: `assets/adapters-PE.fa`\n  * For single-end data: `assets/adapters-SE.fa`",
+                    "fa_icon": "fas fa-cut",
+                    "format": "file-path"
+                },
+                "skip_fastqc": {
+                    "type": "boolean",
+                    "description": "Skip FastQC.",
+                    "help_text": "Skip FastQC quality control.",
+                    "fa_icon": "fas fa-chart-bar"
+                },
+                "skip_bbsplit": {
+                    "type": "boolean",
+                    "description": "Skip BBSplit.",
+                    "help_text": "Skip contaminant removal with BBSplit.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "skip_sortmerna": {
+                    "type": "boolean",
+                    "description": "Skip SortMeRNA.",
+                    "help_text": "Skip rRNA removal with SortMeRNA.",
+                    "fa_icon": "fas fa-recycle"
+                },
+                "skip_multiqc": {
+                    "type": "boolean",
+                    "description": "Skip MultiQC.",
+                    "help_text": "Skip MultiQC report generation.",
+                    "fa_icon": "fas fa-clipboard-list"
+                },
+                "rseqc_modules": {
+                    "type": "string",
+                    "description": "RSeQC modules to run.",
+                    "help_text": "Comma-separated RSeQC modules: 'geneBodyCoverage', 'inferExperiment', etc.",
+                    "fa_icon": "fas fa-toolbox"
+                },
+                "remove_duplicates": {
+                    "type": "boolean",
+                    "description": "Physically remove duplicate reads from the BAM file",
+                    "fa_icon": "fas fa-trash-alt",
+                    "help_text": "If true, duplicate reads will be removed rather than just marked. This is passed to Picard MarkDuplicates via the REMOVE_DUPLICATES=true argument."
+                },
+                "skip_picard_markduplicates": {
+                    "type": "boolean",
+                    "description": "Skip identification and marking of duplicate reads",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "skip_baserecalibration": {
+                    "type": "boolean",
+                    "description": "Skip GATK Base Quality Score Recalibration (BQSR)",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "skip_variantfiltration": {
+                    "type": "boolean",
+                    "description": "Skip GATK hard-filtering of variant calls",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "skip_interval_splitting": {
+                    "type": "boolean",
+                    "description": "Skip splitting of intervals for parallel processing",
+                    "fa_icon": "fas fa-cut",
+                    "help_text": "By default, the pipeline splits the interval list into smaller chunks to run GATK tools in parallel across multiple CPUs. Setting this to true will process the entire interval list in a single job."
+                }
+            },
+            "fa_icon": "fas fa-sliders-h",
+            "required": ["analysis_method"]
+        },
+        "umi_processing": {
+            "title": "UMI Processing Options",
+            "type": "object",
+            "description": "Options for Unique Molecular Identifier (UMI) extraction and deduplication.",
+            "fa_icon": "fas fa-fingerprint",
+            "properties": {
+                "lib_kit": {
+                    "type": "string",
+                    "description": "Library preparation kit.",
+                    "help_text": "This parameter is mandatory if with_umi true. Kit type: 'quantseq', 'corall', 'takara'.",
+                    "fa_icon": "fas fa-vials"
+                },
+                "umitools_bc_pattern": {
+                    "type": "string",
+                    "description": "UMI barcode pattern for read 1.",
+                    "help_text": "Overrides the default pattern provided by --lib_kit. Example: '^(?P<umi_1>.{8}).*'",
+                    "fa_icon": "fas fa-barcode"
+                },
+                "umitools_bc_pattern2": {
+                    "type": "string",
+                    "description": "UMI barcode pattern for read 2.",
+                    "fa_icon": "fas fa-barcode"
+                },
+                "umi_separator": {
+                    "type": "string",
+                    "description": "Separator used to append UMI to read name.",
+                    "fa_icon": "fas fa-grip-lines"
+                },
+                "umi_extract_method": {
+                    "type": "string",
+                    "description": "Method to extract UMI.",
+                    "help_text": "Options: 'string' (regex) or 'read_id'.",
+                    "fa_icon": "fas fa-cut"
+                },
+                "umi_post_extract_method": {
+                    "type": "string",
+                    "description": "Method for UMI deduplication.",
+                    "help_text": "Corresponds to --extract-umi-method in UMITOOLS_DEDUP.",
+                    "fa_icon": "fas fa-align-center"
+                }
+            }
+        },
+        "alignment_quantification": {
+            "title": "Alignment & Quantification",
+            "type": "object",
+            "description": "Options for read alignment, transcript quantification, and library-specific processing.",
+            "default": "",
+            "properties": {
+                "pseudo_aligner": {
+                    "type": "string",
+                    "description": "Pseudo-alignment tool.",
+                    "help_text": "This parameter is mandatory for transcript quantification. Options: 'kallisto' or 'salmon'.",
+                    "fa_icon": "fas fa-bullseye",
+                    "default": "kallisto"
+                },
+                "aligner": {
+                    "type": "string",
+                    "description": "Read alignment tool.",
+                    "help_text": "Genomic alignment tool: 'hisat2'.",
+                    "fa_icon": "fas fa-crosshairs"
+                },
+                "rrna_db_type": {
+                    "type": "string",
+                    "description": "rRNA database type.",
+                    "default": "fast",
+                    "help_text": "SortMeRNA database type: 'default', 'fast', 'sensitive', or 'sensitive_rfam'.",
+                    "fa_icon": "fas fa-tachometer-alt"
+                },
+                "fragment_length": {
+                    "type": "integer",
+                    "description": "Fragment length estimate",
+                    "help_text": "This parameter is *mandatory* for single-end reads when using kallisto as the pseudo_aligner.",
+                    "default": 200,
+                    "fa_icon": "fas fa-ruler-horizontal"
+                },
+                "fragment_length_sd": {
+                    "type": "integer",
+                    "description": "Fragment length SD",
+                    "default": 30,
+                    "help_text": "This parameter is *mandatory* for single-end reads when using kallisto as the pseudo_aligner.",
+                    "fa_icon": "fas fa-ruler-combined"
+                },
+                "bootstrap_count": {
+                    "type": "integer",
+                    "description": "Bootstrap iterations.",
+                    "default": 0,
+                    "help_text": "This parameter is *optional* for either single-end or paired-end reads when using kallisto as the pseudo_aligner.",
+                    "fa_icon": "fas fa-redo"
+                }
+            },
+            "fa_icon": "fas fa-bullseye"
+        },
+        "statistical_thresholds": {
+            "title": "Statistical Thresholds",
+            "type": "object",
+            "description": "Statistical cutoffs and thresholds applied across multiple analysis types",
+            "default": "",
+            "properties": {
+                "pvalue_threshold": {
+                    "type": "number",
+                    "description": "P-value cutoff.",
+                    "default": 0.05,
+                    "help_text": "Global P-value threshold for statistical significance. Applied to: differential gene expression, exon usage, isoform usage, alternative splicing, GO enrichment, KEGG enrichment, and other statistical tests.",
+                    "fa_icon": "fas fa-percentage"
+                },
+                "logfc_threshold": {
+                    "type": "number",
+                    "description": "Log2FC cutoff.",
+                    "default": 1,
+                    "help_text": "Global log2 fold change threshold for biological effect size. Applied to: differential expression and exon usage filtering.",
+                    "fa_icon": "fas fa-sort-amount-up"
+                },
+                "ntop_genes": {
+                    "type": "integer",
+                    "description": "Top genes to display.",
+                    "default": 100,
+                    "help_text": "Number of top-ranking genes to display in results. Applied to: (1) Differential expression analysis: displays top N differentially expressed genes, (2) Exon usage analysis: displays top N genes with significant differential exon usage.",
+                    "fa_icon": "fas fa-list-ol"
+                }
+            },
+            "fa_icon": "fas fa-filter"
+        },
+        "differential_expression_analysis": {
+            "title": "Differential Expression Analysis",
+            "type": "object",
+            "description": "Parameters controlling differential gene expression detection, statistical thresholds, and result reporting.",
+            "default": "",
+            "properties": {
+                "diffexpr_method": {
+                    "type": "string",
+                    "description": "DE method.",
+                    "default": "deseq2",
+                    "help_text": "Differential expression method: 'deseq2', 'limma', 'masigpro'.",
+                    "fa_icon": "fas fa-chart-line"
+                },
+                "cluster_method": {
+                    "type": "string",
+                    "default": "hclust",
+                    "help_text": "This parameter is *mandatory* when diffexpr_method is set to masigpro (for timecourse analysis). Clustering method: 'hclust', 'kmeans', 'Mclust'.",
+                    "description": "Clustering method for maSigPro",
+                    "fa_icon": "fas fa-object-group"
+                },
+                "rsq_threshold": {
+                    "type": "number",
+                    "description": "R-squared threshold.",
+                    "default": 0.7,
+                    "help_text": "This parameter is *mandatory* when diffexpr_method is set to masigpro (for timecourse analysis).",
+                    "fa_icon": "fas fa-chart-area"
+                }
+            },
+            "fa_icon": "fas fa-chart-line"
+        },
+        "differential_exon_usage_analysis": {
+            "title": "Differential Exon Usage Analysis",
+            "type": "object",
+            "description": "Parameters for detecting differential exon usage between conditions, focusing on exon-level expression changes.",
+            "default": "",
+            "properties": {
+                "gff": {
+                    "type": "string",
+                    "description": "Path to GFF annotation file for preparing annotation for DEXSeq analysis.",
+                    "fa_icon": "fas fa-file-alt",
+                    "exists": true,
+                    "help_text": "The GFF file is used to prepare annotation for DEXSeq. Use `--save_reference` to save the annotation, which can then be provided via `--gff` for future runs."
+                },
+                "aggregation": {
+                    "type": "boolean",
+                    "description": "Enable exon aggregation.",
+                    "fa_icon": "fas fa-object-group"
+                },
+                "alignment_quality": {
+                    "type": "integer",
+                    "description": "Minimum alignment quality.",
+                    "fa_icon": "fas fa-star-half-alt",
+                    "default": 20
+                },
+                "min_exonlength": {
+                    "type": "integer",
+                    "description": "Minimum exon length.",
+                    "fa_icon": "fas fa-ruler-horizontal",
+                    "default": 18
+                }
+            },
+            "fa_icon": "fas fa-layer-group"
+        },
+        "wgcna_network_analysis": {
+            "title": "WGCNA Network Analysis",
+            "type": "object",
+            "description": "Parameters for weighted gene co-expression network analysis, module detection, and hub gene identification.",
+            "default": "",
+            "properties": {
+                "min_gs": {
+                    "type": "number",
+                    "description": "Minimum gene significance for module detection.",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "default": 0.5,
+                    "fa_icon": "fas fa-signal"
+                },
+                "min_mm": {
+                    "type": "number",
+                    "description": "Minimum module membership threshold.",
+                    "default": 0.8,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-signal"
+                },
+                "ntop_hubgenes": {
+                    "type": "integer",
+                    "description": "Number of hub genes to identify per module.",
+                    "default": 10,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-list-ol"
+                },
+                "cor_threshold": {
+                    "type": "number",
+                    "description": "Correlation threshold for network construction.",
+                    "default": 0.5,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "tomtype": {
+                    "type": "string",
+                    "description": "Topological Overlap Matrix type.",
+                    "default": "signed",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA. TOM type: 'none', 'signed', 'signed 2', 'unsigned', 'unsigned 2', 'signed Nowick', or 'signed Nowick 2'",
+                    "fa_icon": "fas fa-network-wired"
+                },
+                "networktype": {
+                    "type": "string",
+                    "description": "Network type.",
+                    "default": "signed",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA. Network type: 'signed', 'unsigned', or 'signed hybrid'",
+                    "fa_icon": "fas fa-sitemap"
+                },
+                "deepsplit": {
+                    "type": "integer",
+                    "description": "Module splitting depth.",
+                    "default": 2,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA. Module splitting depth (0-4).",
+                    "fa_icon": "fas fa-code-branch"
+                },
+                "reassignthreshold": {
+                    "type": "number",
+                    "description": "Threshold for gene reassignment between modules.",
+                    "default": 0,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-exchange-alt"
+                },
+                "mergecutheight": {
+                    "type": "number",
+                    "description": "Height threshold for merging similar modules.",
+                    "default": 0.25,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-compress-arrows-alt"
+                },
+                "minmodulesize": {
+                    "type": "integer",
+                    "description": "Minimum number of genes per module.",
+                    "default": 30,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-object-group"
+                },
+                "sft_r2_threshold": {
+                    "type": "number",
+                    "description": "R\u00b2 threshold for scale-free topology fit during soft-threshold selection.",
+                    "default": 0.8,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-sliders-h"
+                },
+                "score_threshold": {
+                    "type": "integer",
+                    "description": "Confidence score threshold for filtering STRING PPI interactions.",
+                    "default": 400,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes WGCNA.",
+                    "fa_icon": "fas fa-bullseye"
+                }
+            },
+            "fa_icon": "fas fa-network-wired"
+        },
+        "isoform_splicing_analysis": {
+            "title": "Isoform & Splicing Analysis",
+            "type": "object",
+            "description": "Settings for differential isoform usage, alternative splicing detection, and transcript-level analysis.",
+            "default": "",
+            "properties": {
+                "dif_cutoff": {
+                    "type": "number",
+                    "description": "Differential usage cutoff for isoform switching.",
+                    "default": 0.1,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes DIU.",
+                    "fa_icon": "fas fa-exchange-alt"
+                },
+                "ntop_isoforms": {
+                    "type": "integer",
+                    "description": "Number of top differentially used isoforms in reports.",
+                    "default": 10,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes DIU.",
+                    "fa_icon": "fas fa-list-ol"
+                },
+                "statoff": {
+                    "type": "boolean",
+                    "description": "Disable statistical testing in splicing analysis.",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes AS.",
+                    "fa_icon": "fas fa-chart-bar"
+                },
+                "novelss": {
+                    "type": "boolean",
+                    "description": "Detect unannotated splicing events.",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes AS.",
+                    "fa_icon": "fas fa-plus-circle"
+                },
+                "allowclipping": {
+                    "type": "boolean",
+                    "description": "Allow clipped alignments in splicing analysis.",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes AS.",
+                    "fa_icon": "fas fa-cut"
+                },
+                "individualcounts": {
+                    "type": "boolean",
+                    "description": "Output read counts per splicing event.",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes AS.",
+                    "fa_icon": "fas fa-calculator"
+                },
+                "event_types": {
+                    "type": "string",
+                    "description": "Comma-separated event types: 'SE', 'MXE', 'A5SS', 'A3SS', 'RI'.",
+                    "help_text": "This parameter is *mandatory* when analysis_method includes AS.",
+                    "default": "SE",
+                    "fa_icon": "fas fa-code-branch"
+                },
+                "delta_psi": {
+                    "type": "number",
+                    "description": "Delta Percent Spliced In threshold for significant events.",
+                    "default": 0.1,
+                    "help_text": "This parameter is *mandatory* when analysis_method includes AS.",
+                    "fa_icon": "fas fa-percent"
+                }
+            },
+            "fa_icon": "fas fa-code-branch"
+        },
+        "functional_enrichment_analysis": {
+            "title": "Functional Enrichment Analysis",
+            "type": "object",
+            "description": "Settings for gene set enrichment, pathway analysis, and biological interpretation of results.",
+            "default": "",
+            "properties": {
+                "enrichment_method": {
+                    "type": "string",
+                    "description": "Enrichment method.",
+                    "default": "GO",
+                    "help_text": "This parameter is *mandatory* for performing functional enrichment. Options: 'GO', 'KEGG', 'GSEA'. Usage: --enrichment_method KEGG,GO",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "nes_threshold": {
+                    "type": "number",
+                    "description": "Normalized Enrichment Score threshold for GSEA.",
+                    "default": 1,
+                    "help_text": "This parameter is *mandatory* for GSEA.",
+                    "fa_icon": "fas fa-sliders-h"
+                },
+                "msigdb_categories": {
+                    "type": "string",
+                    "description": "MSigDB categories.",
+                    "help_text": "Comma-separated MSigDB categories (H, C1-C8) for enrichment.",
+                    "default": "C1",
+                    "fa_icon": "fas fa-th-large"
+                },
+                "padj_gsea": {
+                    "type": "number",
+                    "description": "Adjusted p-value for GSEA.",
+                    "default": 0.25,
+                    "help_text": "This parameter is *mandatory* for GSEA.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "ntop_processes": {
+                    "type": "integer",
+                    "description": "Top processes to display.",
+                    "default": 10,
+                    "help_text": "Number of top enriched processes to display in reports. Includes:\n- **GO**: Biological Process (BP), Molecular Function (MF), Cellular Component (CC)\n- **KEGG**: Pathway enrichment\n- **GSEA**: Hallmark (H1) and Collections (C1-C8), particularly C5 (GO: BP, MF, CC)",
+                    "fa_icon": "fas fa-list-ol"
+                },
+                "rank_method": {
+                    "type": "string",
+                    "description": "Gene ranking method.",
+                    "default": "logfc",
+                    "help_text": "GSEA ranking method. Options:\n- `logfc`: Rank genes by log fold change (logFC)\n- `t_stat`: Rank genes by t-statistic\n- `signed_significance`: Rank genes by signed significance (logFC \u00d7 -log10(p-value))",
+                    "fa_icon": "fas fa-sort-amount-down"
+                }
+            },
+            "fa_icon": "fas fa-project-diagram"
+        },
+        "germline_variant_calling": {
+            "title": "Germline Variant Calling Analysis",
+            "type": "object",
+            "description": "Parameters for GATK4-based variant discovery, recalibration, and annotation",
+            "fa_icon": "fas fa-microscope",
+            "properties": {
+                "fai": {
+                    "type": "string",
+                    "description": "Path to Samtools Fasta Index (.fai) file",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "Enables fast random access to the reference FASTA.",
+                    "format": "file-path"
+                },
+                "dict": {
+                    "type": "string",
+                    "description": "Path to GATK Sequence Dictionary (.dict) file",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-alt",
+                    "help_text": "Contains sequence metadata required by GATK tools.",
+                    "format": "file-path"
+                },
+                "interval_list": {
+                    "type": "string",
+                    "description": "Path to GATK Interval List (.interval_list) file",
+                    "exists": true,
+                    "fa_icon": "fas fa-list",
+                    "help_text": "Defines genomic regions for targeted variant calling (e.g., exome capture targets).",
+                    "format": "file-path"
+                },
+                "dbsnp": {
+                    "type": "string",
+                    "description": "Path to VCF file containing known SNPs (e.g., dbSNP)",
+                    "exists": true,
+                    "fa_icon": "fas fa-barcode",
+                    "help_text": "Used for variant annotation. Must be a VCF file (e.g., 'dbsnp_146.hg38.vcf.gz').",
+                    "format": "path"
+                },
+                "dbsnp_tbi": {
+                    "type": "string",
+                    "description": "Path to VCF index for the dbSNP file",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-code",
+                    "help_text": "Required for indexing the dbSNP VCF.",
+                    "format": "path"
+                },
+                "knownsites": {
+                    "type": "string",
+                    "description": "Path to VCF file(s) containing known indels for BQSR",
+                    "exists": true,
+                    "fa_icon": "fas fa-layer-group",
+                    "help_text": "Comma-separated list of VCFs used to mask known indels during recalibration.",
+                    "format": "path"
+                },
+                "knownsites_tbi": {
+                    "type": "string",
+                    "description": "Path to VCF index file(s) for the known sites",
+                    "exists": true,
+                    "fa_icon": "fas fa-file-code",
+                    "help_text": "Must match the files provided in `--knownsites`.",
+                    "format": "path"
+                },
+                "snpeff_db": {
+                    "type": "string",
+                    "description": "Path to SnpEff database folder or tar archive",
+                    "exists": true,
+                    "fa_icon": "fas fa-database",
+                    "help_text": "Path to SnpEff database. If not provided, SnpEff will attempt to download based on `--snpeff_genome`.",
+                    "format": "path"
+                },
+                "snpeff_genome": {
+                    "type": "string",
+                    "description": "SnpEff genome build version (e.g., 'GRCh38.99')",
+                    "fa_icon": "fas fa-dna",
+                    "help_text": "The specific SnpEff database version to use for annotation (e.g., 'GRCm39.99')."
+                },
+                "gatk_interval_scatter_count": {
+                    "type": "integer",
+                    "default": 4,
+                    "description": "Number of intervals to scatter for parallel processing",
+                    "fa_icon": "fas fa-grip-lines",
+                    "help_text": "Determines how many chunks the interval list is split into for parallelized GATK execution. Increasing this number increases parallelism but also overhead."
+                },
+                "gatk_hc_call_conf": {
+                    "type": "integer",
+                    "default": 20,
+                    "description": "Confidence threshold for calling variants (HaplotypeCaller)",
+                    "fa_icon": "fas fa-check-double",
+                    "help_text": "The minimum phred-scaled confidence threshold at which variants should be called. Variants with a score below this will be filtered out."
+                },
+                "gatk_vf_window_size": {
+                    "type": "integer",
+                    "default": 35,
+                    "description": "Window size for GATK VariantFiltration cluster analysis",
+                    "fa_icon": "fas fa-arrows-alt-h",
+                    "help_text": "Defines the window size (in base pairs) to evaluate clusters of variants during hard filtering."
+                },
+                "gatk_vf_cluster_size": {
+                    "type": "integer",
+                    "default": 3,
+                    "description": "Maximum number of variants allowed within the specified window",
+                    "fa_icon": "fas fa-braille",
+                    "help_text": "If more than this number of variants are found within the window size, they are filtered out as a cluster."
+                },
+                "gatk_vf_fs_filter": {
+                    "type": "number",
+                    "default": 30.0,
+                    "description": "FisherStrand (FS) filter threshold for VariantFiltration",
+                    "fa_icon": "fas fa-filter",
+                    "help_text": "Phred-scaled p-value using Fisher's Exact Test to detect strand bias. Higher values indicate more bias. GATK standard for RNA-seq is typically 30.0."
+                },
+                "gatk_vf_qd_filter": {
+                    "type": "number",
+                    "default": 2.0,
+                    "description": "QualByDepth (QD) filter threshold for VariantFiltration",
+                    "fa_icon": "fas fa-filter",
+                    "help_text": "Variant confidence normalized by depth. Low QD values suggest the call is likely an artifact."
                 }
             }
         },
@@ -161,6 +891,13 @@
                     "fa_icon": "fas fa-remove-format",
                     "hidden": true
                 },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
                 "monochrome_logs": {
                     "type": "boolean",
                     "description": "Do not use coloured log outputs.",
@@ -174,6 +911,14 @@
                     "help_text": "Incoming hook URL for messaging service. Currently, MS Teams and Slack are supported.",
                     "hidden": true
                 },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/plain",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
+                },
                 "validate_params": {
                     "type": "boolean",
                     "description": "Boolean whether to validate parameters against the schema at runtime",
@@ -185,7 +930,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "default": "https://raw.githubusercontent.com/Loai3tr/test-downstream-data/refs/heads/main/rnaseq/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
@@ -215,6 +960,39 @@
         },
         {
             "$ref": "#/$defs/reference_genome_options"
+        },
+        {
+            "$ref": "#/$defs/pre_built_indices_options"
+        },
+        {
+            "$ref": "#/$defs/analysis_selection_quality_control"
+        },
+        {
+            "$ref": "#/$defs/umi_processing"
+        },
+        {
+            "$ref": "#/$defs/alignment_quantification"
+        },
+        {
+            "$ref": "#/$defs/statistical_thresholds"
+        },
+        {
+            "$ref": "#/$defs/differential_expression_analysis"
+        },
+        {
+            "$ref": "#/$defs/differential_exon_usage_analysis"
+        },
+        {
+            "$ref": "#/$defs/wgcna_network_analysis"
+        },
+        {
+            "$ref": "#/$defs/isoform_splicing_analysis"
+        },
+        {
+            "$ref": "#/$defs/functional_enrichment_analysis"
+        },
+        {
+            "$ref": "#/$defs/germline_variant_calling"
         },
         {
             "$ref": "#/$defs/institutional_config_options"

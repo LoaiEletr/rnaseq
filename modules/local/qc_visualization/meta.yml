@@ -1,0 +1,186 @@
+name: "qc_visualization"
+description: |
+  Generates comprehensive quality control plots for RNA-seq data analysis.
+  Includes PCA, MDS, and violin plots to assess normalization and batch effects.
+keywords:
+  - qc
+  - visualization
+  - quality control
+  - rna-seq
+  - pca
+  - mds
+tools:
+  - r_ggplot2:
+      description: "Create Elegant Data Visualisations Using the Grammar of Graphics"
+      homepage: "https://ggplot2.tidyverse.org/"
+      documentation: "https://ggplot2.tidyverse.org/reference/"
+      tool_dev_url: "https://github.com/tidyverse/ggplot2"
+      licence: ["MIT"]
+      identifier: "ggplot2"
+
+input:
+  - - voom_transformed:
+        type: file
+        description: RDS file with voom-transformed expression data from edgeR.
+        pattern: "*.rds"
+        ontologies: []
+  - - samplesheet_csv:
+        type: file
+        description: CSV file with sample metadata for labeling plots.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+  - - unfiltered_log2counts:
+        type: file
+        description: RDS file with unfiltered log2 non-normalized counts.
+        pattern: "*.rds"
+        ontologies: []
+  - - filtered_logcounts:
+        type: file
+        description: RDS file with filtered log2 non-normalized counts.
+        pattern: "*.rds"
+        ontologies: []
+  - - normalized_logcounts:
+        type: file
+        description: RDS file with filtered log2 normalized counts.
+        pattern: "*.rds"
+        ontologies: []
+  - - vst_object:
+        type: file
+        description: RDS file with variance stabilizing transformed data from DESeq2.
+        pattern: "*.rds"
+        ontologies: []
+
+output:
+  qc_plots:
+    - qc_plots:
+        type: directory
+        description: Directory containing all quality control plots.
+        pattern: "qc_plots/"
+        ontologies: []
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_edger:
+    - - "${task.process}":
+          type: string
+      - bioconductor-edger:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+  versions_ggplot2:
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+  versions_deseq2:
+    - - "${task.process}":
+          type: string
+      - bioconductor-deseq2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+  versions_tibble:
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+  versions_tidyr:
+    - - "${task.process}":
+          type: string
+      - r-tidyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tidyr'')))"':
+          type: eval
+  versions_dplyr:
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+  versions_cowplot:
+    - - "${task.process}":
+          type: string
+      - r-cowplot:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''cowplot'')))"':
+          type: eval
+  versions_mass:
+    - - "${task.process}":
+          type: string
+      - r-mass:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-edger:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-deseq2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''DESeq2'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-tidyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tidyr'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-cowplot:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''cowplot'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-mass:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

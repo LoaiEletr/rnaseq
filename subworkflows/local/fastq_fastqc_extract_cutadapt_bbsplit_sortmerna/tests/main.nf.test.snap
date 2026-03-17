@@ -1,0 +1,1169 @@
+{
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - rrna_db_type | skip_sortmerna": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html",
+                            "test_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip",
+                            "test_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.html",
+                            "test.cutadapt_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.zip",
+                            "test.cutadapt_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_primary_genome_1.fastq.gz:md5,224f92d260987cde4c8ef6620bf2ded7",
+                            "test_primary_genome_2.fastq.gz:md5,624b0db474d5306465432fabda38f5b7"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.cutadapt.json"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T03:15:26.871362381"
+    },
+    "sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "8": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T06:04:25.401422833"
+    },
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html",
+                            "test_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip",
+                            "test_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.html",
+                            "test.cutadapt_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.zip",
+                            "test.cutadapt_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,3bace9222d60182352147b82e40c6b13",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,e286e66bdf02f7a4f2256da97b2facab"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.cutadapt.json"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T00:26:19.693092962"
+    },
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_cutadapt": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html",
+                            "test_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip",
+                            "test_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    
+                ],
+                "fastqc_trim_zip": [
+                    
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,cd6125c13faa1bff29fd2321f45963e9",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,6587adf4dbe66080fb9477653216576e"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "trim_json": [
+                    
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T05:02:26.096429492"
+    },
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | with_umi": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html",
+                            "test_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip",
+                            "test_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.html",
+                            "test.cutadapt_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.zip",
+                            "test.cutadapt_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,cadcfc0c89839e30a61a45f25f4779f3",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,5080275a20df035274979f30ffba4153"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.cutadapt.json"
+                    ]
+                ],
+                "umi_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.umi_extract.log"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T01:32:04.307503446"
+    },
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "8": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_1_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_2_fastqc.zip:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        "test.cutadapt.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T05:59:05.426843657"
+    },
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_fastqc": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    
+                ],
+                "fastqc_raw_zip": [
+                    
+                ],
+                "fastqc_trim_html": [
+                    
+                ],
+                "fastqc_trim_zip": [
+                    
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,3bace9222d60182352147b82e40c6b13",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,e286e66bdf02f7a4f2256da97b2facab"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.cutadapt.json"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T01:04:22.680031428"
+    },
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - sortmerna index - rrna_db_type | skip_bbsplit": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html",
+                            "test_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip",
+                            "test_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.html",
+                            "test.cutadapt_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.zip",
+                            "test.cutadapt_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,3bace9222d60182352147b82e40c6b13",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,e286e66bdf02f7a4f2256da97b2facab"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.cutadapt.json"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T02:52:47.606998832"
+    },
+    "sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_umi_extract": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.html",
+                            "test_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test_1_fastqc.zip",
+                            "test_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.html",
+                            "test.cutadapt_2_fastqc.html"
+                        ]
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        [
+                            "test.cutadapt_1_fastqc.zip",
+                            "test.cutadapt_2_fastqc.zip"
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "sequencer": "HiSeq"
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,3bace9222d60182352147b82e40c6b13",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,e286e66bdf02f7a4f2256da97b2facab"
+                        ]
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": false
+                        },
+                        "test.cutadapt.json"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T02:01:29.10301008"
+    },
+    "sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type": {
+        "content": [
+            {
+                "bbsplit_stats": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": true
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "fastqc_raw_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": true
+                        },
+                        "test_1_fastqc.html"
+                    ]
+                ],
+                "fastqc_raw_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": true
+                        },
+                        "test_1_fastqc.zip"
+                    ]
+                ],
+                "fastqc_trim_html": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": true
+                        },
+                        "test.cutadapt_fastqc.html"
+                    ]
+                ],
+                "fastqc_trim_zip": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": true
+                        },
+                        "test.cutadapt_fastqc.zip"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true,
+                            "sequencer": "HiSeq"
+                        },
+                        "test_non_rRNA_reads.fq.gz:md5,469527e34a570fe874129057bda2366f"
+                    ]
+                ],
+                "rrna_log": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": true
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "trim_json": [
+                    [
+                        {
+                            "id": "test",
+                            "sequencer": "HiSeq",
+                            "single_end": true
+                        },
+                        "test.cutadapt.json"
+                    ]
+                ],
+                "umi_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T04:03:29.290273183"
+    }
+}

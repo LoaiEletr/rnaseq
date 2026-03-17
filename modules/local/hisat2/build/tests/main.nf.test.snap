@@ -1,0 +1,120 @@
+{
+    "homo_sapiens - fasta - splice sites - exon sites": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        [
+                            "genome.1.ht2:md5,8f8a9b1b43511fbc679454cc6f93d203",
+                            "genome.2.ht2:md5,afe55bf628b41121cf2c9a999e1dbbcb",
+                            "genome.3.ht2:md5,123b1717a761500ffa59d54959215d26",
+                            "genome.4.ht2:md5,7c9d42e29a60c13a65dd0046a012d848",
+                            "genome.5.ht2:md5,0c5bdeb9777a0bb5c2da117c7b0e2a85",
+                            "genome.6.ht2:md5,e055ccdcad39cf608d234ab650eabbb2",
+                            "genome.7.ht2:md5,b9e300d0e85cdde63bd6fdcc0d5d5097",
+                            "genome.8.ht2:md5,6ae6e44dc59b540e1caadb5b8eeb394a"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        "HISAT2_BUILD",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        [
+                            "genome.1.ht2:md5,8f8a9b1b43511fbc679454cc6f93d203",
+                            "genome.2.ht2:md5,afe55bf628b41121cf2c9a999e1dbbcb",
+                            "genome.3.ht2:md5,123b1717a761500ffa59d54959215d26",
+                            "genome.4.ht2:md5,7c9d42e29a60c13a65dd0046a012d848",
+                            "genome.5.ht2:md5,0c5bdeb9777a0bb5c2da117c7b0e2a85",
+                            "genome.6.ht2:md5,e055ccdcad39cf608d234ab650eabbb2",
+                            "genome.7.ht2:md5,b9e300d0e85cdde63bd6fdcc0d5d5097",
+                            "genome.8.ht2:md5,6ae6e44dc59b540e1caadb5b8eeb394a"
+                        ]
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_BUILD",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T03:55:55.414126494"
+    },
+    "homo_sapiens - fasta - splice sites - exon sites - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        [
+                            "genome.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        "HISAT2_BUILD",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        [
+                            "genome.1.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.2.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.3.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.4.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.5.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.6.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.7.ht2:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "genome.8.ht2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_BUILD",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T03:56:57.044836297"
+    }
+}

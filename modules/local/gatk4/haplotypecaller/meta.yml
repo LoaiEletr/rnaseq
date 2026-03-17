@@ -1,0 +1,131 @@
+name: "gatk4_haplotypecaller"
+description: Call germline SNPs and indels via local re-assembly of haplotypes.
+keywords:
+  - gatk4
+  - haplotypecaller
+  - variant calling
+  - germline
+  - vcf
+  - snp
+  - indel
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK) is a structured software package for analysis of high-throughput sequencing data."
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:gatk
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: BAM file
+        pattern: "*.bam"
+    - bai:
+        type: file
+        description: BAM index file
+        pattern: "*.bai"
+    - intervals:
+        type: file
+        description: Interval file (BED or Interval List)
+        pattern: "*.{bed,interval_list}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome' ]`
+    - fasta:
+        type: file
+        description: Reference FASTA file
+        pattern: "*.{fasta,fa}"
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'index' ]`
+    - fai:
+        type: file
+        description: Reference FASTA index file
+        pattern: "*.fai"
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing dictionary information
+          e.g. `[ id:'dict' ]`
+    - dict:
+        type: file
+        description: Sequence dictionary file
+        pattern: "*.dict"
+  - - meta5:
+        type: map
+        description: |
+          Groovy Map containing dbSNP information
+          e.g. `[ id:'dbsnp' ]`
+    - dbsnp:
+        type: file
+        description: VCF file of known variants (dbSNP)
+        pattern: "*.{vcf,vcf.gz}"
+  - - meta6:
+        type: map
+        description: |
+          Groovy Map containing dbSNP index information
+          e.g. `[ id:'dbsnp_index' ]`
+    - dbsnp_tbi:
+        type: file
+        description: Index for the dbSNP VCF file
+        pattern: "*.{tbi,csi}"
+
+output:
+  vcf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.vcf.gz":
+          type: file
+          description: Compressed VCF file containing called variants
+          pattern: "*.vcf.gz"
+  tbi:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.tbi":
+          type: file
+          description: Index file for the VCF
+          pattern: "*.tbi"
+  versions_gatk4:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

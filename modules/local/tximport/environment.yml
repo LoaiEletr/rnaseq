@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - conda-forge::r-base=4.4.0
+  - conda-forge::r-jsonlite=2.0.0
+  - bioconda::bioconductor-rhdf5=2.50.0
+  - bioconda::bioconductor-tximport=1.34.0

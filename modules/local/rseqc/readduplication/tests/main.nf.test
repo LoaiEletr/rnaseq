@@ -1,0 +1,59 @@
+nextflow_process {
+    name "Test Process RSEQC_READDUPLICATION"
+    script "../main.nf"
+    process "RSEQC_READDUPLICATION"
+
+    tag "modules"
+    tag "modules_local"
+    tag "rseqc"
+    tag "rseqc/readduplication"
+
+    test("homo_sapiens - bam") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.seq_duplicaterate.get(0).get(1) =~ ".*/*\\.seq\\.DupRate\\.xls" },
+                { assert process.out.pos_duplicaterate.get(0).get(1) =~ ".*/*\\.pos\\.DupRate\\.xls" },
+                { assert process.out.pdf.get(0).get(1) =~ ".*/*\\.pdf" },
+                { assert process.out.rscript.get(0).get(1) =~ ".*/*\\.r" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["pdf"])).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - bam - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

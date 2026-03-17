@@ -1,0 +1,373 @@
+{
+    "leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method - stub | entire MSigDB collection": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-enrichplot",
+                        "1.26.1"
+                    ]
+                ],
+                "4": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "5": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "6": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "7": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-msigdbr",
+                        "25.1.1"
+                    ]
+                ],
+                "gsea_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_enrichplot": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-enrichplot",
+                        "1.26.1"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_msigdbr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-msigdbr",
+                        "25.1.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T11:13:21.319209185"
+    },
+    "leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | t-statistic ranking method": {
+        "content": [
+            {
+                "gsea_results": [
+                    "GSEA_results"
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_enrichplot": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-enrichplot",
+                        "1.26.1"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_msigdbr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-msigdbr",
+                        "25.1.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T10:47:45.174201357"
+    },
+    "leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | logfc ranking method": {
+        "content": [
+            {
+                "gsea_results": [
+                    "GSEA_results"
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_enrichplot": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-enrichplot",
+                        "1.26.1"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_msigdbr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-msigdbr",
+                        "25.1.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T10:41:42.122440724"
+    },
+    "leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | entire MSigDB collection": {
+        "content": [
+            {
+                "gsea_results": [
+                    "GSEA_results"
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_enrichplot": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-enrichplot",
+                        "1.26.1"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_msigdbr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-msigdbr",
+                        "25.1.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T11:12:03.85786211"
+    },
+    "leishmaniasis - unfiltered_deg_rds - pvalue_threshold - species_name - msigdb_categories - logfc - padj_gsea - ntop_processes - rank_method | signed significance ranking method": {
+        "content": [
+            {
+                "gsea_results": [
+                    "GSEA_results"
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_enrichplot": [
+                    [
+                        "MSIGDB_GSEA",
+                        "bioconductor-enrichplot",
+                        "1.26.1"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_msigdbr": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-msigdbr",
+                        "25.1.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "MSIGDB_GSEA",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T10:54:04.653424885"
+    }
+}

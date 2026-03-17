@@ -1,0 +1,118 @@
+name: "gatk4_baserecalibrator"
+description: Generates a recalibration table for Base Quality Score Recalibration (BQSR).
+keywords:
+  - gatk4
+  - baserecalibrator
+  - bqsr
+  - recalibration
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK) is a structured software package for analysis of high-throughput sequencing data."
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360036898312-BaseRecalibrator"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:gatk
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: BAM file
+        pattern: "*.bam"
+    - bai:
+        type: file
+        description: BAM index file
+        pattern: "*.bai"
+    - intervals:
+        type: file
+        description: Interval file (BED or Interval List)
+        pattern: "*.{bed,interval_list}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'genome' ]`
+    - fasta:
+        type: file
+        description: Reference FASTA file
+        pattern: "*.{fasta,fa}"
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'index' ]`
+    - fai:
+        type: file
+        description: Reference FASTA index file
+        pattern: "*.fai"
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing dictionary information
+          e.g. `[ id:'dict' ]`
+    - dict:
+        type: file
+        description: Sequence dictionary file
+        pattern: "*.dict"
+  - - meta5:
+        type: map
+        description: |
+          Groovy Map containing known sites information
+          e.g. `[ id:'sites' ]`
+    - known_sites:
+        type: list
+        description: One or more VCF files of known polymorphic sites
+        pattern: "*.{vcf,vcf.gz}"
+  - - meta6:
+        type: map
+        description: |
+          Groovy Map containing known sites index information
+          e.g. `[ id:'sites' ]`
+    - known_sites_tbi:
+        type: list
+        description: One or more indexes for the known polymorphic sites VCF files
+        pattern: "*.{tbi,csi}"
+
+output:
+  table:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.table":
+          type: file
+          description: Recalibration table file for BQSR
+          pattern: "*.table"
+  versions_gatk4:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

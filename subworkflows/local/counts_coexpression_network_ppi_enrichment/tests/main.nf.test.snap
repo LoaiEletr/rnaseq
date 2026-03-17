@@ -1,0 +1,429 @@
+{
+    "leishmaniasis - counts - samplesheet | GO,KEGG enrichment": {
+        "content": [
+            {
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "heatmap_plots": [
+                    [
+                        "modules_hubgenes_blue_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "ppi_results": [
+                    "STRING_PPI"
+                ],
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T07:52:56.828905744"
+    },
+    "leishmaniasis - counts - samplesheet | KEGG enrichment only - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "all_traits_modules_hubgenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        [
+                            [
+                                [
+                                    "blue_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_top10_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "MM_vs_GS_blue.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ],
+                        "module_dendrogram.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_eigengenes_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_trait_correlation_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "soft_threshold_selection.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        
+                    ]
+                ],
+                "2": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "go_enrichment": [
+                    
+                ],
+                "heatmap_plots": [
+                    
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "ppi_results": [
+                    [
+                        
+                    ]
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "wgcna_results": [
+                    [
+                        "all_traits_modules_hubgenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        [
+                            [
+                                [
+                                    "blue_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_top10_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "MM_vs_GS_blue.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ],
+                        "module_dendrogram.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_eigengenes_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_trait_correlation_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "soft_threshold_selection.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T10:20:48.21162829"
+    },
+    "leishmaniasis - counts - samplesheet | GO,KEGG enrichment - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "all_traits_modules_hubgenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        [
+                            [
+                                [
+                                    "blue_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_top10_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "MM_vs_GS_blue.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ],
+                        "module_dendrogram.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_eigengenes_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_trait_correlation_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "soft_threshold_selection.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        
+                    ]
+                ],
+                "2": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    [
+                        
+                    ]
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "heatmap_plots": [
+                    
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "ppi_results": [
+                    [
+                        
+                    ]
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "wgcna_results": [
+                    [
+                        "all_traits_modules_hubgenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        [
+                            [
+                                [
+                                    "blue_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_top10_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "MM_vs_GS_blue.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ],
+                        "module_dendrogram.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_eigengenes_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_trait_correlation_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "soft_threshold_selection.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T10:07:09.69155194"
+    },
+    "leishmaniasis - counts - samplesheet | KEGG enrichment only": {
+        "content": [
+            {
+                "go_enrichment": [
+                    
+                ],
+                "heatmap_plots": [
+                    [
+                        "modules_hubgenes_blue_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "ppi_results": [
+                    "STRING_PPI"
+                ],
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T10:03:22.834121748"
+    },
+    "leishmaniasis - counts - samplesheet | GO enrichment only": {
+        "content": [
+            {
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "heatmap_plots": [
+                    [
+                        "modules_hubgenes_blue_heatmap.pdf",
+                        "modules_hubgenes_midnightblue_heatmap.pdf",
+                        "modules_hubgenes_pink_heatmap.pdf",
+                        "modules_hubgenes_turquoise_heatmap.pdf"
+                    ]
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "ppi_results": [
+                    "STRING_PPI"
+                ],
+                "qc_plots": [
+                    "qc_plots"
+                ],
+                "wgcna_results": [
+                    "WGCNA"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T08:36:06.000312643"
+    },
+    "leishmaniasis - counts - samplesheet | GO enrichment only - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "all_traits_modules_hubgenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        [
+                            [
+                                [
+                                    "blue_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_top10_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "MM_vs_GS_blue.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ],
+                        "module_dendrogram.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_eigengenes_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_trait_correlation_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "soft_threshold_selection.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        
+                    ]
+                ],
+                "2": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    [
+                        
+                    ]
+                ],
+                "5": [
+                    
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "heatmap_plots": [
+                    
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "ppi_results": [
+                    [
+                        
+                    ]
+                ],
+                "qc_plots": [
+                    [
+                        "mds_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "pca_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "violin_plots.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "wgcna_results": [
+                    [
+                        "all_traits_modules_hubgenes.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "filtered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        [
+                            [
+                                [
+                                    "blue_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "blue_top10_hub_genes.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "MM_vs_GS_blue.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ],
+                        "module_dendrogram.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_eigengenes_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "module_trait_correlation_heatmap.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "normalized_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "soft_threshold_selection.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "unfiltered_counts.rds:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "vsd_object.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T10:17:31.317438889"
+    }
+}

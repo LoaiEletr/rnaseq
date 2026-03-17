@@ -1,0 +1,86 @@
+name: umitools_extract
+description: |
+  Extracts UMI (Unique Molecular Identifier) sequences from FASTQ files and appends them to the read name.
+  This is a critical step for identifying and removing PCR duplicates in high-sensitivity NGS assays.
+keywords:
+  - umi_tools
+  - umi
+  - extraction
+  - genomics
+tools:
+  - umi_tools:
+      description: "Tools for handling Unique Molecular Identifiers in NGS data sets"
+      homepage: "https://umi-tools.readthedocs.io/"
+      documentation: "https://umi-tools.readthedocs.io/en/latest/"
+      tool_dev_url: "https://github.com/CGATOxford/UMI-tools"
+      doi: "10.1101/gr.209601.116"
+      licence: ["MIT"]
+      identifier: "umi_tools"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test', single_end:false ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s) containing UMI sequences.
+          Single file for single-end, list of two files for paired-end data.
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+
+output:
+  reads:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*.fastq.gz":
+          type: file
+          description: FASTQ file(s) with UMIs moved to the read headers
+          pattern: "*.fastq.gz"
+          ontologies:
+            - edam: "http://edamontology.org/format_1930" # FASTQ
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*.log":
+          type: file
+          description: Log file containing extraction statistics and UMI counts
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678" # LOG
+  versions_umitools:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - umitools:
+          type: string
+          description: The name of the tool
+      - "umi_tools --version | sed 's/.*version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - umitools:
+          type: string
+          description: The name of the tool
+      - "umi_tools --version | sed 's/.*version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

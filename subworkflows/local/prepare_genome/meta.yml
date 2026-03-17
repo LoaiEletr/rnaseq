@@ -1,0 +1,193 @@
+name: "prepare_genome"
+description: |
+  A foundational reference preparation subworkflow. It manages decompression,
+  annotation conversion (GTF to BED/GFF), and builds indices for RNA-seq (HISAT2, Salmon,
+  Kallisto), filtering (SortMeRNA, BBSplit), and Variant Calling (GATK4, SnpEff, Tabix).
+keywords:
+  - reference
+  - indexing
+  - alignment
+  - variant-calling
+  - rna-seq
+  - gatk4
+components:
+  - gunzip
+  - untar
+  - tabix/tabix
+  - gxf2bed
+  - kallisto/index
+  - salmon/index
+  - hisat2/extractexons
+  - hisat2/extractsplicesites
+  - hisat2/build
+  - sortmerna
+  - bbmap/bbsplit
+  - dexseq/prepareannotation
+  - samtools/faidx
+  - snpeff/download
+  - gatk4/createsequencedictionary
+  - gatk4/bedtointervallist
+  - gatk4/intervallisttools
+input:
+  - val_fasta:
+      type: string
+      description: Path to reference genome FASTA file.
+  - val_transcriptome:
+      type: string
+      description: Path to transcriptome FASTA file.
+  - val_gtf:
+      type: string
+      description: Path to gene annotation GTF file.
+  - val_gtf_isoform:
+      type: string
+      description: Path to extended GTF for isoform analysis.
+  - val_bed:
+      type: string
+      description: Path to BED annotation file.
+  - val_gff:
+      type: string
+      description: Path to GFF annotation file (DEXSeq format).
+  - val_contaminant_fasta:
+      type: string
+      description: Path to contaminant genome FASTA for BBSplit.
+  - val_rrna_db:
+      type: string
+      description: Path to rRNA database file (.tar.gz).
+  - val_rrna_db_type:
+      type: string
+      description: SortMeRNA mode ('default', 'fast', or 'sensitive').
+  - val_aggregation:
+      type: boolean
+      description: DEXSeq aggregation method for exon counting.
+  - val_hisat2_index:
+      type: string
+      description: Path to HISAT2 index (folder or tar.gz).
+  - val_salmon_index:
+      type: string
+      description: Path to Salmon index (folder or tar.gz).
+  - val_kallisto_index:
+      type: string
+      description: Path to Kallisto index file (.idx).
+  - val_dbsnp:
+      type: string
+      description: Path to dbSNP VCF file for variant calling.
+  - val_dbsnp_tbi:
+      type: string
+      description: Path to pre-built dbSNP index (.tbi).
+  - val_knownsites:
+      type: string
+      description: Path to known sites VCF for Base Quality Score Recalibration.
+  - val_knownsites_tbi:
+      type: string
+      description: Path to pre-built known sites index (.tbi).
+  - val_snpeff_db:
+      type: string
+      description: Path to SnpEff database folder or archive.
+  - val_snpeff_genome:
+      type: string
+      description: SnpEff genome version (e.g., 'GRCh38.105').
+output:
+  - fasta_compressed:
+      type: file
+      description: The input FASTA file in its original state.
+      Structure: [val(meta), path(fasta)]
+  - fasta_uncompressed:
+      type: file
+      description: Decompressed reference FASTA.
+      Structure: [val(meta), path(fasta)]
+  - transcriptome:
+      type: file
+      description: Transcriptome FASTA file.
+      Structure: [val(meta), path(fasta)]
+  - gtf_compressed:
+      type: file
+      description: Original GTF file.
+      Structure: [val(meta), path(gtf)]
+  - gtf_uncompressed:
+      type: file
+      description: Decompressed GTF file.
+      Structure: [val(meta), path(gtf)]
+  - gtf_isoform:
+      type: file
+      description: Extended GTF for isoform analysis.
+      Structure: [val(meta), path(gtf)]
+  - contaminant_fasta:
+      type: file
+      description: Contaminant sequences for BBSplit.
+      Structure: [val(meta), path(fasta)]
+  - rrna_db_fasta:
+      type: file
+      description: rRNA database sequences.
+      Structure: [val(meta), path(fasta)]
+  - bed:
+      type: file
+      description: Genome annotation in BED format.
+      Structure: [val(meta), path(bed)]
+  - gff:
+      type: file
+      description: DEXSeq-compatible GFF file.
+      Structure: [val(meta), path(gff)]
+  - fai:
+      type: file
+      description: SAMtools FASTA index (.fai).
+      Structure: [val(meta), path(fai)]
+  - dict:
+      type: file
+      description: GATK sequence dictionary (.dict).
+      Structure: [val(meta), path(dict)]
+  - intervallist:
+      type: file
+      description: GATK interval list.
+      Structure: [val(meta), path(interval_list)]
+  - intervals_split:
+      type: file
+      description: Split interval lists for parallel processing.
+      Structure: [val(meta), path(interval_list)]
+  - knownsites:
+      type: file
+      description: VCF of known variant sites.
+      Structure: [val(meta), path(vcf)]
+  - knownsites_tbi:
+      type: file
+      description: Tabix index for known sites.
+      Structure: [val(meta), path(tbi)]
+  - dbsnp:
+      type: file
+      description: dbSNP VCF file.
+      Structure: [val(meta), path(vcf)]
+  - dbsnp_tbi:
+      type: file
+      description: Tabix index for dbSNP.
+      Structure: [val(meta), path(tbi)]
+  - snpeff_db:
+      type: directory
+      description: SnpEff database cache directory.
+      Structure: [val(meta), path(snpeff_db)]
+  - snpeff_genome:
+      type: string
+      description: SnpEff genome version identifier.
+      Structure: [val(meta), val(genome_version)]
+  - hisat2_index:
+      type: directory
+      description: Directory containing HISAT2 index.
+      Structure: [val(meta), path(hisat2_index)]
+  - kallisto_index:
+      type: file
+      description: Kallisto index file.
+      Structure: [val(meta), path(kallisto_index)]
+  - salmon_index:
+      type: directory
+      description: Directory containing Salmon index.
+      Structure: [val(meta), path(salmon_index)]
+  - sortmerna_index:
+      type: directory
+      description: Directory containing SortMeRNA index.
+      Structure: [val(meta), path(sortmerna_index)]
+  - bbsplit_index:
+      type: directory
+      description: Directory containing BBSplit index.
+      Structure: [val(meta), path(bbsplit_index)]
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

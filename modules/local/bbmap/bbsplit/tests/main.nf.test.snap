@@ -1,0 +1,458 @@
+{
+    "homo_sapiens - [fastq1, fastq2] - index | split using pre-built index": {
+        "content": [
+            {
+                "index": [
+                    [
+                        {
+                            
+                        },
+                        "bbsplit"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "condition": "control",
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_primary_genome_1.fastq.gz",
+                            "test_primary_genome_2.fastq.gz"
+                        ]
+                    ]
+                ],
+                "stats": [
+                    [
+                        {
+                            "condition": "control",
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "versions_bbmap": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T01:19:20.465314673"
+    },
+    "homo_sapiens - primary_ref - other_ref | build index": {
+        "content": [
+            {
+                "index": [
+                    [
+                        {
+                            
+                        },
+                        "bbsplit"
+                    ]
+                ],
+                "reads": [
+                    
+                ],
+                "stats": [
+                    
+                ],
+                "versions_bbmap": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T00:51:59.701920368"
+    },
+    "homo_sapiens - fastq1 - index - stub | split using pre-built index": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "treated",
+                            "single_end": true
+                        },
+                        "test_primary_.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "treated",
+                            "single_end": true
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "treated",
+                            "single_end": true
+                        },
+                        "test_primary_.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "stats": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "treated",
+                            "single_end": true
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_bbmap": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T01:28:05.80180623"
+    },
+    "homo_sapiens - primary_ref - other_ref - stub | build index": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "reads": [
+                    
+                ],
+                "stats": [
+                    
+                ],
+                "versions_bbmap": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T01:20:50.956846538"
+    },
+    "homo_sapiens - [fastq1, fastq2] - index - stub | split using pre-built index": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "control",
+                            "single_end": false
+                        },
+                        [
+                            "test_primary__1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_primary__2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "control",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            
+                        },
+                        [
+                            [
+                                [
+                                    "chr1.chrom.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "info.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "merged_ref_9219829362058850410.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "namelist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "reflist.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "scaffolds.txt.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                    "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ],
+                            [
+                                [
+                                    "chr1_index_k13_c5_b1.block:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "chr1_index_k13_c5_b1.block2.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "control",
+                            "single_end": false
+                        },
+                        [
+                            "test_primary__1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_primary__2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "stats": [
+                    [
+                        {
+                            "id": "test",
+                            "condition": "control",
+                            "single_end": false
+                        },
+                        "test.bbsplit_stats.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_bbmap": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T01:30:00.999343135"
+    },
+    "homo_sapiens - fastq1 - index | split using pre-built index": {
+        "content": [
+            {
+                "index": [
+                    [
+                        {
+                            
+                        },
+                        "bbsplit"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "condition": "treated",
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_primary_genome.fastq.gz"
+                    ]
+                ],
+                "stats": [
+                    [
+                        {
+                            "condition": "treated",
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.bbsplit_stats.txt"
+                    ]
+                ],
+                "versions_bbmap": [
+                    [
+                        "BBMAP_BBSPLIT",
+                        "bbmap",
+                        "39.50"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T00:59:31.390449218"
+    }
+}

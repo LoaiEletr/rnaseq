@@ -1,0 +1,43 @@
+name: "counts_matrixgeneration"
+description: |
+  Generate a gene-level count matrix from quantification results.
+  Supports transcript-level summarization for pseudoaligners (Salmon/Kallisto) using tximport,
+  or merging individual count files for alignment-based methods (featureCounts).
+keywords:
+  - count-matrix
+  - tximport
+  - transcript-to-gene
+  - quantification
+  - rna-seq
+components:
+  - tx2gene
+  - tximport
+  - merge/counts
+input:
+  - ch_counts:
+      type: list
+      description: |
+        Input channel containing quantification results from all samples.
+        Structure: [ path(quant_files) ]
+      pattern: "*"
+  - val_quant_method:
+      type: string
+      description: |
+        Quantification method used. Determines the processing pipeline.
+        Structure: [ "salmon" | "kallisto" | "featurecounts" ]
+  - val_species_name:
+      type: string
+      description: |
+        Species name for transcript-to-gene mapping (required for 'salmon' and 'kallisto').
+        Structure: string
+output:
+  - gene_table_rds:
+      type: file
+      description: |
+        Unified gene-level count matrix in RDS format.
+        Structure: [ path(rds) ]
+      pattern: "*.rds"
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

@@ -1,0 +1,95 @@
+{
+    "homo_sapiens - bam": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "lib_type": "reverse",
+                        "single_end": false
+                    },
+                    "test.bam:md5,6d21bfdf3070b45e802e428f6ddb4411"
+                ]
+            ],
+            {
+                "versions_picard": [
+                    [
+                        "PICARD_MARKDUPLICATES",
+                        "picard",
+                        "3.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-13T00:52:54.471149842"
+    },
+    "homo_sapiens - bam - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "PICARD_MARKDUPLICATES",
+                        "picard",
+                        "3.4.0"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "metrics": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_picard": [
+                    [
+                        "PICARD_MARKDUPLICATES",
+                        "picard",
+                        "3.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-13T00:53:54.372364528"
+    }
+}

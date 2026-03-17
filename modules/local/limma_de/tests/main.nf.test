@@ -1,0 +1,62 @@
+nextflow_process {
+    name "Test Process LIMMA_DE"
+    script "../main.nf"
+    process "LIMMA_DE"
+
+    tag "modules"
+    tag "modules_local"
+    tag "limma_de"
+
+    test("yeast - voom_object - samplesheet - pvalue_threshold - logfc - ntop_genes") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'voom_object/yeast_voom.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = "0.05"      // pvalue_threshold
+                input[3] = "1"         // logfc_threshold
+                input[4] = "100"       // top_genes
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.ebfit_rds.get(0) ==~ ".*/ebfit\\.rds" },
+                { assert process.out.de_expression_rds.get(0) ==~ ".*/de_expression_values\\.rds" },
+                { assert process.out.de_genes_rds.get(0) ==~ ".*/de_genes_full_table\\.rds" },
+                { assert process.out.unfiltered_deg_rds.get(0) ==~ ".*/unfiltered_deg_results\\.rds" },
+                { assert process.out.topgenes_rds.get(0) ==~ ".*/top_100_genes\\.rds" },
+                { assert process.out.topgenes_csv.get(0) ==~ ".*/top_100_genes\\.csv" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["ebfit_rds", "unfiltered_deg_rds", "topgenes_rds", "topgenes_csv"])).match() }
+            )
+        }
+    }
+
+    test("yeast - voom_object - samplesheet - pvalue_threshold - logfc - ntop_genes - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'voom_object/yeast_voom.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                input[2] = "0.05"      // pvalue_threshold
+                input[3] = "1"         // logfc_threshold
+                input[4] = "100"       // top_genes
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

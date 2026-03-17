@@ -1,0 +1,136 @@
+{
+    "sarscov2 - bam files - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ],
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_bash": [
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ],
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T18:39:46.799146649"
+    },
+    "sarscov2 - bam files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,f0c88682babcd5de24d3d8c07936dff8"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,72fda09f655f9605f74d8939fc224b3f"
+                    ]
+                ],
+                "1": [
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ],
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "condition": "control",
+                            "lib_type": "forward"
+                        },
+                        "control.txt:md5,f0c88682babcd5de24d3d8c07936dff8"
+                    ],
+                    [
+                        {
+                            "condition": "treatment",
+                            "lib_type": "forward"
+                        },
+                        "treatment.txt:md5,72fda09f655f9605f74d8939fc224b3f"
+                    ]
+                ],
+                "versions_bash": [
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ],
+                    [
+                        "MAKE_BAMLIST",
+                        "bash",
+                        "5.2.21"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T18:38:50.81563542"
+    }
+}

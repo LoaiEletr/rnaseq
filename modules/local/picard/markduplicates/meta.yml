@@ -1,0 +1,79 @@
+name: "picard_markduplicates"
+description: Identifies and flags biological (PCR) and technical (optical) duplicate reads to improve variant calling accuracy.
+keywords:
+  - markduplicates
+  - picard
+  - duplicates
+  - genomics
+tools:
+  - "picard":
+      description: "A set of command line tools (in Java) for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF."
+      homepage: "https://broadinstitute.github.io/picard/"
+      documentation: "https://broadinstitute.github.io/picard/"
+      tool_dev_url: "https://github.com/broadinstitute/picard"
+      licence: ["MIT"]
+      identifier: biotools:picard_tools
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: BAM/SAM file
+        pattern: "*.{bam,sam}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+
+output:
+  bam:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.bam":
+          type: file
+          description: MarkDuplicates BAM file
+          pattern: "*.bam"
+          ontologies:
+            - edam: "http://edamontology.org/format_2572" # BAM
+  metrics:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.metrics.txt":
+          type: file
+          description: Picard MarkDuplicates metrics file
+          pattern: "*.metrics.txt"
+  versions_picard:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "picard":
+          type: string
+          description: The name of the tool
+      - "picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "picard":
+          type: string
+          description: The name of the tool
+      - "picard MarkDuplicates --version 2>&1 | sed -n 's/^Version:*//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

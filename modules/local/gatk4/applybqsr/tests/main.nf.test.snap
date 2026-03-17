@@ -1,0 +1,116 @@
+{
+    "homo_sapiens - [bam, bai, baserecalibrator.table, intervals] - fasta - fai - dict": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d48b550b92be11bc37076ff7c225513a"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bai:md5,a549d09ccc4bf59bf5f832c31e51e440"
+                    ]
+                ],
+                "2": [
+                    [
+                        "GATK4_APPLYBQSR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "bai": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bai:md5,a549d09ccc4bf59bf5f832c31e51e440"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d48b550b92be11bc37076ff7c225513a"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_APPLYBQSR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T22:16:49.864114363"
+    },
+    "homo_sapiens - [bam, bai, baserecalibrator.table, intervals] - fasta - fai - dict - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "GATK4_APPLYBQSR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "bai": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_APPLYBQSR",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-15T02:35:39.773683081"
+    }
+}

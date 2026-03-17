@@ -1,0 +1,154 @@
+name: "isoformswitchanalyzer"
+description: |
+  Performs differential isoform usage (DIU) and alternative splicing (AS) analysis
+  using IsoformSwitchAnalyzeR. This module identifies isoform switches with
+  potential functional consequences from RNA-seq quantification data.
+keywords:
+  - isoform
+  - isoform switching
+  - differential isoform usage
+  - alternative splicing
+  - transcriptomics
+tools:
+  - bioconductor_isoformswitchanalyzer:
+      description: "Identification, visualization and interpretation of isoform switches from functional consequences"
+      homepage: "https://bioconductor.org/packages/IsoformSwitchAnalyzeR/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/IsoformSwitchAnalyzeR.html"
+      tool_dev_url: "https://github.com/kvittingseerup/IsoformSwitchAnalyzeR"
+      doi: "10.1093/bioinformatics/btz247"
+      licence: ["GPL-2.0-only"]
+      identifier: "IsoformSwitchAnalyzeR"
+
+input:
+  - - quant_dirs:
+        type: file
+        description: Quantification directories from salmon or kallisto (one per sample).
+        pattern: "*"
+        ontologies: []
+  - - samplesheet:
+        type: file
+        description: CSV file with sample metadata and experimental design.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752"
+  - - quant_type:
+        type: string
+        description: Quantification tool type used (e.g., "salmon", "kallisto").
+  - - meta:
+        type: map
+        description: Groovy Map containing GTF metadata.
+    - gtf:
+        type: file
+        description: GTF annotation file.
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
+  - - meta2:
+        type: map
+        description: Groovy Map containing transcript fasta metadata.
+    - transcript:
+        type: file
+        description: Transcript sequences in FASTA format.
+        pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+  - - method:
+        type: string
+        description: Analysis methods to perform (DIU, AS, or both).
+  - - dif_cutoff:
+        type: float
+        description: dIF (delta Isoform Fraction) cutoff for significance.
+  - - pval_threshold:
+        type: float
+        description: P-value threshold for significance.
+  - - ntop_isoforms:
+        type: integer
+        description: Number of top isoform switches to analyze in detail.
+
+output:
+  isoform_results:
+    - isoform_output:
+        type: directory
+        description: Directory containing all isoform switching analysis results and plots.
+        pattern: "isoform_output/"
+        ontologies: []
+  significant_geneids:
+    - isoform_output/significant_DIU_gene_ids.rds:
+        type: file
+        description: RDS file containing the gene IDs showing significant differential isoform usage.
+        pattern: "*.rds"
+        optional: true
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_isoformswitchanalyzer:
+    - - "${task.process}":
+          type: string
+      - bioconductor-isoformswitchanalyzer:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''IsoformSwitchAnalyzeR'')))"':
+          type: eval
+  versions_rhdf5:
+    - - "${task.process}":
+          type: string
+      - bioconductor-rhdf5:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+  versions_mass:
+    - - "${task.process}":
+          type: string
+      - r-mass:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+  versions_ggplot2:
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-isoformswitchanalyzer:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''IsoformSwitchAnalyzeR'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-rhdf5:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-mass:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''MASS'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

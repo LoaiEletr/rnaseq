@@ -1,0 +1,632 @@
+{
+    "rat - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,4e837dc6f0cb0be9173ff572f6c6c4b8"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,4e837dc6f0cb0be9173ff572f6c6c4b8"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:26:23.406657645"
+    },
+    "dog - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,d91d10e1cee08011c95e1af9fbb26442"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,d91d10e1cee08011c95e1af9fbb26442"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:38:32.620383497"
+    },
+    "cow - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,63ddd3c5483fe3c75df5c554a6d8ea39"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,63ddd3c5483fe3c75df5c554a6d8ea39"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:36:05.34311903"
+    },
+    "worm - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,4b6bf774a622ba86461b2dd97314c00d"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,4b6bf774a622ba86461b2dd97314c00d"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:32:09.978321908"
+    },
+    "monkey - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,84b8370d7fbb38cc690c5c13e136bfdc"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,84b8370d7fbb38cc690c5c13e136bfdc"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:39:49.40840244"
+    },
+    "human - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,3d12ede19a760f804084cb81784e2ae7"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,3d12ede19a760f804084cb81784e2ae7"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T08:40:05.343985862"
+    },
+    "zebrafish - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,ffb42621257948afe4f776ee49e0f245"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,ffb42621257948afe4f776ee49e0f245"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:30:54.420837899"
+    },
+    "human - species_name - stub": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:40:58.476266388"
+    },
+    "chicken - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,5793e8713cb7a1a8488490f319a11193"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,5793e8713cb7a1a8488490f319a11193"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:34:39.182212889"
+    },
+    "pig - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,ea7dad9ad9b51867f29ea87bf8ceb181"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,ea7dad9ad9b51867f29ea87bf8ceb181"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:37:21.020642399"
+    },
+    "yeast - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,b335f0f19d5e608e46ba8349c6ed5d4c"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,b335f0f19d5e608e46ba8349c6ed5d4c"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:27:45.888514195"
+    },
+    "fruitfly - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,1fae0c20368ee59e79290882ebbf1e7b"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,1fae0c20368ee59e79290882ebbf1e7b"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:28:59.791179735"
+    },
+    "arabidopsis - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,0643a4f9de63ad2f36e02bbbaab0a451"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,0643a4f9de63ad2f36e02bbbaab0a451"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T01:33:22.076065818"
+    },
+    "mouse - species_name": {
+        "content": [
+            {
+                "0": [
+                    "tx2gene.tsv:md5,af67af581318cc1c12918246e2344e65"
+                ],
+                "1": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "tsv": [
+                    "tx2gene.tsv:md5,af67af581318cc1c12918246e2344e65"
+                ],
+                "versions_biomart": [
+                    [
+                        "TX2GENE",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "TX2GENE",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-17T08:42:18.470572978"
+    }
+}

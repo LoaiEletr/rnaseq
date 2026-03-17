@@ -1,0 +1,116 @@
+name: "rmats"
+description: |
+  Detects differential alternative splicing events from RNA-Seq data using rMATS.
+  Supports both 'prep' (mapping/indexing) and 'post' (statistical analysis) modes
+  for large-scale datasets.
+keywords:
+  - rmats
+  - splicing
+  - alternative splicing
+  - differential analysis
+  - transcriptomics
+tools:
+  - rmats:
+      description: "rMATS - replicate multivariate analysis of transcript splicing"
+      homepage: "https://github.com/Xinglab/rmats"
+      documentation: "https://github.com/Xinglab/rmats"
+      tool_dev_url: "https://github.com/Xinglab/rmats"
+      doi: "10.1073/pnas.1419161111"
+      licence: ["MIT"]
+      identifier: "rmats"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false, lib_type:'RF' ]`
+    - bam_files:
+        type: file
+        description: BAM files for rMATS analysis.
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing information for the BAM list
+    - bam_list:
+        type: file
+        description: Text files listing paths to BAM files for condition 1 and condition 2.
+        pattern: "*.txt"
+        ontologies:
+          - edam: "http://edamontology.org/format_2330" # TXT
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing reference information
+    - gtf:
+        type: file
+        description: GTF annotation file.
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
+  - - meta4:
+        type: map
+        description: |
+          Groovy Map containing temporary directory information
+    - rmats_prep_tmp_dir:
+        type: file
+        description: Temporary directory generated during 'prep' mode, required for 'post' mode.
+        pattern: "*"
+        ontologies: []
+  - - meta5:
+        type: map
+        description: Groovy Map containing read length metadata.
+    - avg_length:
+        type: integer
+        description: Average read length of the library.
+        ontologies: []
+  - - mode:
+        type: string
+        description: rMATS run mode. 'prep' creates indices; 'post' performs the statistical test.
+        pattern: "prep|post"
+        ontologies: []
+
+output:
+  post_output:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - rmats_post_output:
+          type: directory
+          description: Directory containing rMATS statistical results (MATS.JC.txt, etc.).
+          pattern: "rmats_post_output"
+          ontologies: []
+  prep_tmp:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - rmats_prep_tmp:
+          type: directory
+          description: Temporary directory containing intermediate .rmats and bin files.
+          pattern: "rmats_prep_tmp"
+          ontologies: []
+  versions_rmats:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rmats:
+          type: string
+      - "rmats.py --version | sed 's/v//'":
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - rmats:
+          type: string
+      - "rmats.py --version | sed 's/v//'":
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

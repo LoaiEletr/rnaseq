@@ -1,0 +1,267 @@
+{
+    "homo_sapiens - fastq1 - index - reference_dir - rrna_db_type - stub | remove rRNA reads using pre-built index": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_non_rRNA_reads.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T04:44:37.188051369"
+    },
+    "homo_sapiens - [fastq1, fastq2] - index - reference_dir - rrna_db_type | remove rRNA reads using pre-built index": {
+        "content": [
+            {
+                "index": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "index"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz",
+                            "test_non_rRNA_reads_rev.fq.gz"
+                        ]
+                    ]
+                ],
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T04:30:03.98615495"
+    },
+    "homo_sapiens - fastq1 - index - reference_dir - rrna_db_type | remove rRNA reads using pre-built index": {
+        "content": [
+            {
+                "index": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "index"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_rRNA_reads.log"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_non_rRNA_reads.fq.gz"
+                    ]
+                ],
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T03:44:44.421130005"
+    },
+    "homo_sapiens - [fastq1, fastq2] - index - reference_dir - rrna_db_type - stub | remove rRNA reads using pre-built index": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rRNA_reads.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_non_rRNA_reads_fwd.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test_non_rRNA_reads_rev.fq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "versions_sortmerna": [
+                    [
+                        "SORTMERNA",
+                        "sortmerna",
+                        "4.3.6"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T04:56:01.87752377"
+    }
+}

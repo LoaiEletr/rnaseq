@@ -1,0 +1,98 @@
+nextflow_process {
+    name "Test Process DEXSEQ_PREPAREANNOTATION"
+    script "../main.nf"
+    process "DEXSEQ_PREPAREANNOTATION"
+
+    tag "modules"
+    tag "modules_local"
+    tag "dexseq"
+    tag "dexseq/prepareannotation"
+
+    test("homo_sapiens - gtf - aggregation | with aggregation") {
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = true
+            }
+            process {
+                """
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gff.get(0).get(1) ==~ ".*/DEXSeq\\.gff" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gff"])).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - gtf - aggregation | no aggregation") {
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = false
+            }
+            process {
+                """
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.gff.get(0).get(1) ==~ ".*/DEXSeq\\.gff" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["gff"])).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - gtf - aggregation - stub | with aggregation") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = true
+            }
+            process {
+                """
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - gtf - aggregation - stub | no aggregation") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                aggregation = false
+            }
+            process {
+                """
+                input[0] = [[id: 'genome'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.gtf', checkIfExists: true)]
+                input[1] = params.aggregation
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

@@ -1,0 +1,246 @@
+{
+    "sarscov2 - [fastq1, fastq2] - index - gtf - pseudoaligner_method | salmon": {
+        "content": [
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "IU",
+                            "single_end": false
+                        },
+                        "test"
+                    ]
+                ],
+                "quant_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T03:15:47.089230045"
+    },
+    "sarscov2 - fastq1 - index - gtf - fragment_length - fragment_length_sd - pseudoaligner_method | kallisto": {
+        "content": [
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "U",
+                            "single_end": true
+                        },
+                        "test"
+                    ]
+                ],
+                "quant_log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "U",
+                            "single_end": true
+                        },
+                        "kallisto_test_quant.log"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T03:12:32.530027057"
+    },
+    "sarscov2 - [fastq1, fastq2] - index - gtf - pseudoaligner_method | kallisto": {
+        "content": [
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "IU",
+                            "single_end": false
+                        },
+                        "test"
+                    ]
+                ],
+                "quant_log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "IU",
+                            "single_end": false
+                        },
+                        "kallisto_test_quant.log"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T03:13:37.561915939"
+    },
+    "sarscov2 - [fastq1, fastq2] - index - gtf - fragment_length - fragment_length_sd - pseudoaligner_method - stub | kallisto": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "quant_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T03:17:02.304568501"
+    },
+    "sarscov2 - [fastq1, fastq2] - index - gtf - pseudoaligner_method - stub | salmon": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "lib_type": "IU"
+                        },
+                        [
+                            [
+                                "ambig_info.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "expected_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "fld.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "meta_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "observed_bias.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                                "observed_bias_3p.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                            ],
+                            "cmd_info.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "flenDist.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "lib_format_counts.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            [
+                                "salmon_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            "quant.sf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "quant_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T03:18:19.985170779"
+    },
+    "sarscov2 - fastq1 - index - gtf - pseudoaligner_method | salmon": {
+        "content": [
+            {
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "U",
+                            "single_end": true
+                        },
+                        "test"
+                    ]
+                ],
+                "quant_log": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T03:14:42.571864194"
+    }
+}

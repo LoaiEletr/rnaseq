@@ -1,0 +1,337 @@
+name: "kegg_enrichment"
+description: |
+  Performs Kyoto Encyclopedia of Genes and Genomes (KEGG) enrichment analysis using clusterProfiler.
+  The module identifies overrepresented pathways across various analysis types (DE, WGCNA, MaSigPro, DIU, DEU).
+  It utilizes organism-specific OrgDb packages for gene ID mapping and supports a wide variety of species.
+keywords:
+  - kegg enrichment
+  - functional analysis
+  - pathways
+  - genomics
+  - clusterprofiler
+  - r
+tools:
+  - bioconductor_clusterprofiler:
+      description: "Statistical analysis and visualization of functional profiles for genes and gene clusters"
+      homepage: "https://bioconductor.org/packages/clusterProfiler/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html"
+      tool_dev_url: "https://github.com/YuLab-SMU/clusterProfiler"
+      doi: "10.1016/j.xinn.2021.100141"
+      licence: ["Artistic-2.0"]
+      identifier: "clusterProfiler"
+
+input:
+  - - unfiltered_deg:
+        type: file
+        description: RDS file with unfiltered differential expression results.
+        pattern: "*.rds"
+        ontologies: []
+  - - pvalue_threshold:
+        type: float
+        description: Adjusted p-value threshold for enrichment significance.
+  - - logfc_threshold:
+        type: float
+        description: Log2 fold change threshold for filtering significant genes.
+  - - species_name:
+        type: string
+        description: Species name/code used for KEGG database mapping.
+  - - wgcna_list:
+        type: file
+        description: Optional RDS file containing WGCNA module results.
+        pattern: "*.rds"
+        ontologies: []
+  - - masigpro_list:
+        type: file
+        description: Optional RDS file containing MaSigPro temporal clusters.
+        pattern: "*.rds"
+        ontologies: []
+  - - genes_diu:
+        type: file
+        description: Optional RDS file with genes from differential isoform usage.
+        pattern: "*.rds"
+        ontologies: []
+  - - genes_deu:
+        type: file
+        description: Optional RDS file with genes from differential exon usage.
+        pattern: "*.rds"
+        ontologies: []
+  - - ntop_processes:
+        type: integer
+        description: Number of top KEGG pathways to include in visualization outputs.
+
+output:
+  kegg_results:
+    - KEGG_results:
+        type: directory
+        description: Directory containing KEGG enrichment result tables and plots.
+        pattern: "KEGG_results/"
+        ontologies: []
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_clusterprofiler:
+    - - "${task.process}":
+          type: string
+      - bioconductor-clusterprofiler:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+  versions_ggplot2:
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+  versions_org_hs_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.hs.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Hs.eg.db'')))"':
+          type: eval
+  versions_purrr:
+    - - "${task.process}":
+          type: string
+      - r-purrr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''purrr'')))"':
+          type: eval
+  versions_biomart:
+    - - "${task.process}":
+          type: string
+      - bioconductor-biomart:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''biomaRt'')))"':
+          type: eval
+  versions_org_mm_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.mm.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Mm.eg.db'')))"':
+          type: eval
+  versions_org_rn_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.rn.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Rn.eg.db'')))"':
+          type: eval
+  versions_dplyr:
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+  versions_tibble:
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+  versions_org_sc_sgd_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.sc.sgd.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Sc.sgd.db'')))"':
+          type: eval
+  versions_org_dm_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.dm.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Dm.eg.db'')))"':
+          type: eval
+  versions_org_dr_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.dr.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Dr.eg.db'')))"':
+          type: eval
+  versions_org_ce_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.ce.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Ce.eg.db'')))"':
+          type: eval
+  versions_org_at_tair_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.at.tair.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.At.tair.db'')))"':
+          type: eval
+  versions_org_gg_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.gg.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Gg.eg.db'')))"':
+          type: eval
+  versions_org_bt_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.bt.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Bt.eg.db'')))"':
+          type: eval
+  versions_org_ss_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.ss.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Ss.eg.db'')))"':
+          type: eval
+  versions_org_cf_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.cf.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Cf.eg.db'')))"':
+          type: eval
+  versions_org_mmu_eg_db:
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.mmu.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Mmu.eg.db'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-clusterprofiler:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''clusterProfiler'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-ggplot2:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''ggplot2'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-purrr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''purrr'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-biomart:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''biomaRt'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-dplyr:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''dplyr'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - r-tibble:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tibble'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.hs.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Hs.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.mm.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Mm.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.rn.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Rn.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.sc.sgd.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Sc.sgd.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.dm.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Dm.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.dr.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Dr.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.ce.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Ce.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.at.tair.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.At.tair.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.gg.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Gg.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.bt.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Bt.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.ss.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Ss.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.cf.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Cf.eg.db'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-org.mmu.eg.db:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''org.Mmu.eg.db'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

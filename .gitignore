@@ -7,3 +7,6 @@ testing/
 testing*
 *.pyc
 null/
+execution_trace*
+.nf-test*
+*.sendmail_tmp.html

@@ -1,0 +1,158 @@
+name: de_visualization
+description: |
+  Generates publication-ready visualization plots for differential expression analysis.
+  Produces volcano plots to show significance vs. fold-change and heatmaps to visualize expression patterns
+  across samples for DE genes, MaSigPro clusters, or WGCNA modules.
+keywords:
+  - visualization
+  - volcano plot
+  - heatmap
+  - differential expression
+  - rna-seq
+  - r
+tools:
+  - bioconductor_enhancedvolcano:
+      description: "Publication-ready volcano plots with enhanced coloring and labeling"
+      homepage: "https://bioconductor.org/packages/EnhancedVolcano/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/EnhancedVolcano.html"
+      tool_dev_url: "https://github.com/kevinblighe/EnhancedVolcano"
+      doi: "10.18129/B9.bioc.EnhancedVolcano"
+      licence: ["GPL-3.0-only"]
+      identifier: "EnhancedVolcano"
+  - r_pheatmap:
+      description: "Pretty Heatmaps"
+      homepage: "https://cran.r-project.org/web/packages/pheatmap/index.html"
+      licence: ["GPL-2.0-or-later"]
+  - r_rcolorbrewer:
+      description: "ColorBrewer Palettes"
+      homepage: "https://cran.r-project.org/web/packages/RColorBrewer/index.html"
+      licence: ["Apache-2.0"]
+
+input:
+  - deg_file:
+      type: file
+      description: |
+        RDS file containing differential expression results (e.g., from DESeq2).
+        Required for generating volcano plots.
+      pattern: "*.rds"
+      ontologies: []
+  - samplesheet_csv:
+      type: file
+      description: CSV file with sample metadata (IDs, conditions, timepoints).
+      pattern: "*.csv"
+      ontologies:
+        - edam: "http://edamontology.org/format_3752" # CSV
+  - cluster_file:
+      type: file
+      description: |
+        Optional RDS file with cluster assignments (e.g., from MaSigPro).
+      pattern: "*.rds"
+      ontologies: []
+  - pval_threshold:
+      type: float
+      description: Adjusted P-value threshold for highlighting significant genes.
+  - lfc_threshold:
+      type: float
+      description: Log2 Fold Change threshold for highlighting significant genes.
+  - vst_file:
+      type: file
+      description: |
+        RDS file containing normalized/transformed expression data (VST/rlog).
+        Required for generating heatmaps.
+      pattern: "*.rds"
+      ontologies: []
+
+output:
+  volcano_plot:
+    - "de_visualization/volcano_sig_genes.pdf":
+        type: file
+        description: PDF volcano plot showing DE results.
+        pattern: "*.pdf"
+        ontologies: []
+  heatmaps:
+    - "de_visualization/heatmap/**":
+        type: directory
+        description: Folder containing heatmaps for DE genes, clusters, or modules.
+        pattern: "heatmap/*"
+        ontologies: []
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+          description: The name of R
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+          description: Expression to obtain R version
+  versions_enhancedvolcano:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bioconductor-enhancedvolcano:
+          type: string
+          description: The name of the tool
+      - 'Rscript -e "library(EnhancedVolcano); cat(as.character(packageVersion(''EnhancedVolcano'')))"':
+          type: eval
+  versions_pheatmap:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-pheatmap:
+          type: string
+          description: The name of the tool
+      - 'Rscript -e "library(pheatmap); cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+  versions_rcolorbrewer:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-rcolorbrewer:
+          type: string
+          description: The name of the tool
+      - 'Rscript -e "library(RColorBrewer); cat(as.character(packageVersion(''RColorBrewer'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+          description: The name of the tool
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+          description: The expression to obtain the version of R
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bioconductor-enhancedvolcano:
+          type: string
+          description: The name of the tool
+      - 'Rscript -e "library(EnhancedVolcano); cat(as.character(packageVersion(''EnhancedVolcano'')))"':
+          type: eval
+          description: The expression to obtain the version of EnhancedVolcano
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-pheatmap:
+          type: string
+          description: The name of the tool
+      - 'Rscript -e "library(pheatmap); cat(as.character(packageVersion(''pheatmap'')))"':
+          type: eval
+          description: The expression to obtain the version of pheatmap
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-rcolorbrewer:
+          type: string
+          description: The name of the tool
+      - 'Rscript -e "library(RColorBrewer); cat(as.character(packageVersion(''RColorBrewer'')))"':
+          type: eval
+          description: The expression to obtain the version of RColorBrewer
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

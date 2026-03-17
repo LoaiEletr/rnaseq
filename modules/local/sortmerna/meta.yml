@@ -1,0 +1,128 @@
+name: sortmerna
+description: |
+  Filters ribosomal RNA (rRNA) sequences from RNA-seq reads using SortMeRNA.
+  The module can either build a specialized rRNA index or use an existing index to perform high-throughput filtering.
+keywords:
+  - sortmerna
+  - rrna
+  - filtering
+  - rna-seq
+  - metatranscriptomics
+tools:
+  - sortmerna:
+      description: "Fast and accurate filtering of ribosomal RNA in metatranscriptomic data"
+      homepage: "https://bioinfo.lifl.fr/RNA/sortmerna/"
+      documentation: "https://github.com/biocore/sortmerna/wiki"
+      tool_dev_url: "https://github.com/biocore/sortmerna"
+      doi: "10.1093/bioinformatics/bts611"
+      licence: ["GPL-3.0-only"]
+      identifier: "sortmerna"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s) for rRNA filtering.
+          Single file for single-end, two files for paired-end data.
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing index information
+          e.g. `[ id:'test_index' ]`
+    - index:
+        type: directory
+        description: SortMeRNA index directory (required if only_build_index is false)
+        pattern: "index/"
+        ontologies: []
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'test_reference' ]`
+    - reference_dir:
+        type: directory
+        description: Directory containing rRNA reference databases in FASTA format
+        pattern: "*/"
+        ontologies: []
+  - rrna_db_type:
+      type: string
+      description: |
+        rRNA database type selection.
+        Options: fast, default, sensitive, sensitive_rfam.
+  - only_build_index:
+      type: boolean
+      description: |
+        Switch to determine module behavior.
+        true: Only build rRNA index; false: Filter reads using existing index.
+
+output:
+  reads:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*non_rRNA*.fq.gz":
+          type: file
+          description: FASTQ file(s) with rRNA reads removed
+          pattern: "*non_rRNA*.fq.gz"
+          ontologies:
+            - edam: "http://edamontology.org/format_1930" # FASTQ
+  index:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "index":
+          type: directory
+          description: Directory containing the built SortMeRNA index files
+          pattern: "index/"
+          ontologies: []
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.log":
+          type: file
+          description: Log file from SortMeRNA run
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678" # LOG
+  versions_sortmerna:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - sortmerna:
+          type: string
+          description: The name of the tool
+      - "sortmerna --version | grep Sort | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - sortmerna:
+          type: string
+          description: The name of the tool
+      - "sortmerna --version | grep Sort | sed 's/.*ion //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

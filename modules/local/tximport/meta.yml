@@ -1,0 +1,93 @@
+name: "tximport"
+description: |
+  Imports transcript-level abundance estimates (from Salmon, Kallisto, etc.)
+  and summarizes them to gene-level counts and abundances for downstream analysis.
+keywords:
+  - tximport
+  - quantification
+  - transcript
+  - gene
+  - rna-seq
+tools:
+  - bioconductor_tximport:
+      description: "Import and summarize transcript-level estimates for transcript- and gene-level analysis"
+      homepage: "https://bioconductor.org/packages/tximport/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/tximport.html"
+      tool_dev_url: "https://github.com/mikelove/tximport"
+      doi: "10.12688/f1000research.7563.1"
+      licence: ["GPL-2.0-only"]
+      identifier: "tximport"
+
+input:
+  - - quant_dirs:
+        type: file
+        description: List of directories containing quantification results (e.g., quant.sf or abundance.h5).
+        pattern: "*"
+        ontologies: []
+  - - quant_type:
+        type: string
+        description: The software used for quantification.
+        pattern: "salmon|kallisto"
+        ontologies: []
+  - - tx2gene_table:
+        type: file
+        description: TSV file mapping transcript IDs to gene IDs.
+        pattern: "*.tsv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3475" # TSV
+
+output:
+  rds:
+    - "*.rds":
+        type: file
+        description: RDS file containing the tximport object (counts, abundance, length).
+        pattern: "*.rds"
+        ontologies: []
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_tximport:
+    - - "${task.process}":
+          type: string
+      - bioconductor-tximport:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tximport'')))"':
+          type: eval
+  versions_rhdf5:
+    - - "${task.process}":
+          type: string
+      - bioconductor-rhdf5:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-tximport:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''tximport'')))"':
+          type: eval
+    - - "${task.process}":
+          type: string
+      - bioconductor-rhdf5:
+          type: string
+      - 'Rscript -e "cat(as.character(packageVersion(''rhdf5'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

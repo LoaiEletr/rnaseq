@@ -1,0 +1,70 @@
+name: untar
+description: |
+  Extracts contents from tar.gz archives.
+  Uses the --one-top-level flag to ensure contents are extracted into a specific subdirectory named after the archive.
+keywords:
+  - tar
+  - extraction
+  - archive
+  - compressed
+tools:
+  - tar:
+      description: "GNU tar - an archiving utility"
+      homepage: "https://www.gnu.org/software/tar/"
+      documentation: "https://www.gnu.org/software/tar/manual/"
+      tool_dev_url: "https://git.savannah.gnu.org/cgit/tar.git"
+      licence: ["GPL-3.0-only"]
+      identifier: "tar"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test' ]`
+    - archive:
+        type: file
+        description: Compressed tar archive file (typically .tar.gz)
+        pattern: "*.{tar,tar.gz,tgz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3989" # GZIP format
+
+output:
+  untar:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test' ]`
+      - "${prefix}":
+          type: directory
+          description: Directory containing the extracted contents of the archive
+          pattern: "*/"
+          ontologies: []
+  versions_untar:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - untar:
+          type: string
+          description: The name of the tool
+      - "tar --version | head -n 1 | sed 's/.*) //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - untar:
+          type: string
+          description: The name of the tool
+      - "tar --version | head -n 1 | sed 's/.*) //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

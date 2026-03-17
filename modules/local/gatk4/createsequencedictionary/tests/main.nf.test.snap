@@ -1,0 +1,84 @@
+{
+    "sarscov2 - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "fasta"
+                        },
+                        "genome.fasta.dict:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_CREATESEQUENCEDICTIONARY",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "dict": [
+                    [
+                        {
+                            "id": "fasta"
+                        },
+                        "genome.fasta.dict:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_CREATESEQUENCEDICTIONARY",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-13T00:50:42.530540163"
+    },
+    "sarscov2 - fasta": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "fasta"
+                        },
+                        "genome.dict:md5,5e732a4f0bf5e72698900622ef8e5206"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_CREATESEQUENCEDICTIONARY",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "dict": [
+                    [
+                        {
+                            "id": "fasta"
+                        },
+                        "genome.dict:md5,5e732a4f0bf5e72698900622ef8e5206"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_CREATESEQUENCEDICTIONARY",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-13T00:49:43.865303205"
+    }
+}

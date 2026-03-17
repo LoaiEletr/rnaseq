@@ -1,0 +1,61 @@
+{
+    "homo_sapiens - bams": {
+        "content": [
+            {
+                "versions_samtools": [
+                    [
+                        "SAMTOOLS_MERGE",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-15T00:34:04.553508719"
+    },
+    "homo_sapiens - bams - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "SAMTOOLS_MERGE",
+                        "samtools",
+                        "1.23"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_samtools": [
+                    [
+                        "SAMTOOLS_MERGE",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-15T00:35:11.734813953"
+    }
+}

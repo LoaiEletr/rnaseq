@@ -1,0 +1,290 @@
+nextflow_process {
+    name "Test Process TX2GENE"
+    script "../main.nf"
+    process "TX2GENE"
+
+    tag "modules"
+    tag "modules_local"
+    tag "tx2gene"
+
+    test("human - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "human"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("mouse - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "mouse"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("rat - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "rat"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("yeast - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "yeast"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fruitfly - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "fruitfly"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("zebrafish - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "zebrafish"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("worm - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "worm"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("arabidopsis - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "arabidopsis"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("chicken - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "chicken"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("cow - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "cow"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("pig - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "pig"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("dog - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "dog"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("monkey - species_name") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "monkey"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert process.out.tsv.get(0) ==~ ".*/tx2gene\\.tsv" },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    // Stub tests (one representative stub test to show pattern)
+    test("human - species_name - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = "human"
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

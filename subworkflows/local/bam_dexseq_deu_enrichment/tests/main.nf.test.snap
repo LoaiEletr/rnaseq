@@ -1,0 +1,324 @@
+{
+    "sarscov2 - bam - gff - samplesheet - stub | GO,KEGG enrichment": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "6": [
+                    [
+                        
+                    ]
+                ],
+                "7": [
+                    [
+                        
+                    ]
+                ],
+                "deu_plots": [
+                    [
+                        
+                    ]
+                ],
+                "dexseq_sigtable": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "dexseq_table": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "report": [
+                    [
+                        
+                    ]
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T03:48:08.693308646"
+    },
+    "sarscov2 - bam - gff - samplesheet | GO enrichment only": {
+        "content": [
+            {
+                "deu_plots": [
+                    "top_DEU_plots"
+                ],
+                "dexseq_sigtable": [
+                    
+                ],
+                "dexseq_table": [
+                    
+                ],
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "ma_plot": [
+                    
+                ],
+                "report": [
+                    
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T03:29:02.396440729"
+    },
+    "sarscov2 - bam - gff - samplesheet | GO,KEGG enrichment": {
+        "content": [
+            {
+                "deu_plots": [
+                    "top_DEU_plots"
+                ],
+                "dexseq_sigtable": [
+                    
+                ],
+                "dexseq_table": [
+                    
+                ],
+                "go_enrichment": [
+                    "GO_results"
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "ma_plot": [
+                    
+                ],
+                "report": [
+                    
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T03:25:46.369886455"
+    },
+    "sarscov2 - bam - gff - samplesheet - stub | GO enrichment only": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "6": [
+                    [
+                        
+                    ]
+                ],
+                "7": [
+                    
+                ],
+                "deu_plots": [
+                    [
+                        
+                    ]
+                ],
+                "dexseq_sigtable": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "dexseq_table": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "kegg_enrichment": [
+                    
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "report": [
+                    [
+                        
+                    ]
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T03:50:06.083531238"
+    },
+    "sarscov2 - bam - gff - samplesheet - stub | KEGG enrichment only": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "6": [
+                    
+                ],
+                "7": [
+                    [
+                        
+                    ]
+                ],
+                "deu_plots": [
+                    [
+                        
+                    ]
+                ],
+                "dexseq_sigtable": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "dexseq_table": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "go_enrichment": [
+                    
+                ],
+                "kegg_enrichment": [
+                    [
+                        
+                    ]
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "report": [
+                    [
+                        
+                    ]
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T03:51:54.80920546"
+    },
+    "sarscov2 - bam - gff - samplesheet | KEGG enrichment only": {
+        "content": [
+            {
+                "deu_plots": [
+                    "top_DEU_plots"
+                ],
+                "dexseq_sigtable": [
+                    
+                ],
+                "dexseq_table": [
+                    
+                ],
+                "go_enrichment": [
+                    
+                ],
+                "kegg_enrichment": [
+                    "KEGG_results"
+                ],
+                "ma_plot": [
+                    
+                ],
+                "report": [
+                    
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,9509f0501a0b8d3d031bbdade6448f1a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T03:32:17.288249604"
+    }
+}

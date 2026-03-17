@@ -1,0 +1,112 @@
+{
+    "sarscov2 - [SE, RI] - fdr_cutoff - delta_psi": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "RI",
+                        "RI.filtered.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                    ],
+                    [
+                        "SE",
+                        "SE.filtered.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                    ]
+                ],
+                "1": [
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ],
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ]
+                ],
+                "sig_rmats": [
+                    [
+                        "RI",
+                        "RI.filtered.txt:md5,ad85867b8b92bbe6451d2c56f4a298e5"
+                    ],
+                    [
+                        "SE",
+                        "SE.filtered.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                    ]
+                ],
+                "versions_awk": [
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ],
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T21:07:26.674099857"
+    },
+    "sarscov2 - [SE, RI] - fdr_cutoff - delta_psi - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "RI",
+                        "RI.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        "SE",
+                        "SE.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ],
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ]
+                ],
+                "sig_rmats": [
+                    [
+                        "RI",
+                        "RI.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        "SE",
+                        "SE.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_awk": [
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ],
+                    [
+                        "FILTER_SIGEVENTS",
+                        "awk",
+                        "5.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T21:12:54.385705961"
+    }
+}

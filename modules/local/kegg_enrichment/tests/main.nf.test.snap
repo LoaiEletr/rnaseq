@@ -1,0 +1,1682 @@
+{
+    "leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes | DESeq2": {
+        "content": [
+            {
+                "kegg_results": [
+                    "KEGG_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T06:43:06.931276735"
+    },
+    "leishmaniasis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes - stub | WGCNA": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "10": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "11": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "12": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "13": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "14": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "15": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "16": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "17": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "18": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "19": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "20": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "4": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "7": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "8": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "9": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "kegg_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T07:35:12.755814263"
+    },
+    "lymphoblastoid - pvalue_threshold - logfc - species_name - DEU genes - ntop_processes | DEXSeq": {
+        "content": [
+            {
+                "kegg_results": [
+                    "KEGG_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T06:54:30.186647911"
+    },
+    "arabidopsis - pvalue_threshold - logfc - species_name - masigpro_clusters - ntop_processes | maSigPro": {
+        "content": [
+            {
+                "kegg_results": [
+                    "KEGG_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T07:08:54.976237948"
+    },
+    "leishmaniasis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes | WGCNA": {
+        "content": [
+            {
+                "kegg_results": [
+                    "KEGG_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T07:15:10.713234469"
+    },
+    "leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes | Limma": {
+        "content": [
+            {
+                "kegg_results": [
+                    "KEGG_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T06:49:00.01854576"
+    },
+    "leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes - stub | DESeq2": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "10": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "11": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "12": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "13": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "14": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "15": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "16": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "17": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "18": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "19": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "20": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "4": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "7": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "8": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "9": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "kegg_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T07:33:04.171888857"
+    },
+    "arabidopsis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes | WGCNA": {
+        "content": [
+            {
+                "kegg_results": [
+                    "KEGG_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T07:30:52.355990334"
+    },
+    "leishmaniasis - pvalue_threshold - logfc - species_name - DIU genes - ntop_processes | IsoformSwitchAnalyzeR": {
+        "content": [
+            {
+                "kegg_results": [
+                    "KEGG_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "KEGG_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T07:00:10.492594911"
+    }
+}

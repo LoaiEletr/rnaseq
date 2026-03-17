@@ -1,0 +1,78 @@
+name: filter_sigevents
+description: |
+  Filters significant alternative splicing events from rMATS output based on FDR, delta PSI, and coverage thresholds.
+keywords:
+  - rmats
+  - filtering
+  - splicing
+  - significance
+  - awk
+tools:
+  - awk:
+      description: "Pattern scanning and processing language"
+      homepage: "https://www.gnu.org/software/gawk/"
+      documentation: "https://www.gnu.org/software/gawk/manual/"
+      tool_dev_url: "https://git.savannah.gnu.org/cgit/gawk.git"
+      licence: ["GPL-3.0-only"]
+      identifier: "awk"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - rmats_post_output:
+        type: file
+        description: Directory containing rMATS post-processing results
+        pattern: "rmats_post_output/"
+  - - event_type:
+        type: string
+        description: |
+          Type of splicing event to filter.
+          Options: SE, MXE, A5SS, A3SS, RI
+  - - fdr_cutoff:
+        type: number
+        description: False discovery rate cutoff for significance
+  - - delta_psi:
+        type: number
+        description: Minimum absolute delta PSI value for significance
+
+output:
+  sig_rmats:
+    - - event_type:
+          type: string
+          description: Type of splicing event (e.g., 'SE')
+      - "${event_type}.filtered.txt":
+          type: file
+          description: Filtered significant events file
+          pattern: "*.filtered.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330" # Textual format
+  versions_awk:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - awk:
+          type: string
+          description: The name of the tool
+      - "awk --version | awk 'NR==1 {print $3}' | sed 's/^.*Awk //; s/,.*//'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - awk:
+          type: string
+          description: The name of the tool
+      - "awk --version | awk 'NR==1 {print $3}' | sed 's/^.*Awk //; s/,.*//'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

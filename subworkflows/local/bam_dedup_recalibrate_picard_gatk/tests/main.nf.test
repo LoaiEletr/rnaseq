@@ -1,0 +1,273 @@
+nextflow_workflow {
+
+    name "Test Workflow BAM_DEDUP_RECALIBRATE_PICARD_GATK"
+    script "../main.nf"
+    workflow "BAM_DEDUP_RECALIBRATE_PICARD_GATK"
+    config './nextflow.config'
+
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "subworkflows/bam_dedup_recalibrate_picard_gatk"
+    tag "picard"
+    tag "picard/markduplicates"
+    tag "samtools"
+    tag "samtools/merge"
+    tag "samtools/index"
+    tag "gatk4"
+    tag "gatk4/splitncigarreads"
+    tag "gatk4/baserecalibrator"
+    tag "gatk4/applybqsr"
+
+    test("homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_picard_markduplicates = false
+                skip_baserecalibration = false
+                skip_interval_splitting = false
+            }
+            workflow {
+                """
+                input[0] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
+                ])
+                input[2] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                ])
+                input[3] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
+                ])
+                input[4] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.dict', checkIfExists: true)
+                ])
+                input[5] = channel.value([
+                    [ id:'genome' ],
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
+                ])
+                input[6] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz', checkIfExists: true)
+                ])
+                input[7] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[8] = params.skip_picard_markduplicates
+                input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["bam","bai","picard_metrics"])).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi | skip_picard_markduplicates") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_picard_markduplicates = true
+                skip_baserecalibration = false
+                skip_interval_splitting = false
+            }
+            workflow {
+                """
+                input[0] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
+                ])
+                input[2] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                ])
+                input[3] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
+                ])
+                input[4] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.dict', checkIfExists: true)
+                ])
+                input[5] = channel.value([
+                    [ id:'genome' ],
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
+                ])
+                input[6] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz', checkIfExists: true)
+                ])
+                input[7] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[8] = params.skip_picard_markduplicates
+                input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["bam","bai"])).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi | skip_baserecalibration") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_picard_markduplicates = false
+                skip_baserecalibration = true
+                skip_interval_splitting = false
+            }
+            workflow {
+                """
+                input[0] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
+                ])
+                input[2] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                ])
+                input[3] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
+                ])
+                input[4] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.dict', checkIfExists: true)
+                ])
+                input[5] = channel.value([
+                    [ id:'genome' ],
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
+                ])
+                input[6] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz', checkIfExists: true)
+                ])
+                input[7] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[8] = params.skip_picard_markduplicates
+                input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["bam","bai","picard_metrics"])).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - bam - bai - fasta - fai - dict - intervals - known_sites - known_sites_tbi - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_picard_markduplicates = false
+                skip_baserecalibration = false
+                skip_interval_splitting = false
+            }
+            workflow {
+                """
+                input[0] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam', checkIfExists: true),
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test2.paired_end.sorted.bam.bai', checkIfExists: true)
+                ],
+                    [[ id:'test2' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/bam/test.paired_end.sorted.bam.bai', checkIfExists: true),
+                ])
+                input[2] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                ])
+                input[3] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
+                ])
+                input[4] = channel.value([
+                    [ id:'genome' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.dict', checkIfExists: true)
+                ])
+                input[5] = channel.value([
+                    [ id:'genome' ],
+                    [file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.interval_list', checkIfExists: true)]
+                ])
+                input[6] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz', checkIfExists: true)
+                ])
+                input[7] = channel.value([
+                    [ id:'vcf' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/vcf/test.rnaseq.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[8] = params.skip_picard_markduplicates
+                input[9] = params.skip_baserecalibration
+                input[10] = params.skip_interval_splitting
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

@@ -1,0 +1,110 @@
+name: rseqc_innerdistance
+description: |
+  Calculates inner distance between paired-end reads using RSeQC inner_distance.py.
+keywords:
+  - rseqc
+  - inner distance
+  - paired-end
+  - fragment size
+tools:
+  - rseqc:
+      description: "RNA-seq quality control package"
+      homepage: "http://rseqc.sourceforge.net/"
+      documentation: "http://rseqc.sourceforge.net/"
+      tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      doi: "10.1093/bioinformatics/bts356"
+      licence: ["GPL-3.0-only"]
+      identifier: "rseqc"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: Paired-end BAM file for inner distance calculation
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'ref_genome' ]`
+    - bed:
+        type: file
+        description: BED file with gene annotations
+        pattern: "*.{bed,bed.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3003" # BED
+
+output:
+  distance:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*distance.txt":
+          type: file
+          description: Text file with inner distance statistics
+          pattern: "*distance.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330" # Textual format
+  freq:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*freq.txt":
+          type: file
+          description: Text file with frequency distribution
+          pattern: "*freq.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330" # Textual format
+  pdf:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*.pdf":
+          type: file
+          description: PDF plot of inner distance distribution
+          pattern: "*.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508" # PDF
+  rscript:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*.r":
+          type: file
+          description: R script for generating plots
+          pattern: "*.r"
+          ontologies:
+            - edam: "http://edamontology.org/format_3999" # R script
+  versions_rseqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "inner_distance.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "inner_distance.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

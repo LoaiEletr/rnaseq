@@ -1,0 +1,84 @@
+name: fastqc
+description: |
+  Performs quality control checks on raw sequencing reads.
+  Generates HTML reports and data files with quality metrics.
+keywords:
+  - quality control
+  - fastq
+  - sequencing
+tools:
+  - fastqc:
+      description: A quality control tool for high throughput sequence data
+      homepage: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+      documentation: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/
+      tool_dev_url: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+      licence: ["GPL-3.0-or-later"]
+      identifier: "fastqc"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - reads:
+        type: file
+        description: |
+          Input FASTQ file(s).
+          Single file for single-end, two files for paired-end data.
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1930" # FASTQ
+
+output:
+  html:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.html":
+          type: file
+          description: HTML quality control report
+          pattern: "*.html"
+          ontologies:
+            - edam: "http://edamontology.org/format_2331" # HTML
+  zip:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.zip":
+          type: file
+          description: Zipped FastQC report data
+          pattern: "*.zip"
+          ontologies:
+            - edam: "http://edamontology.org/format_3987" # ZIP
+  versions_fastqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - fastqc:
+          type: string
+          description: The name of the tool
+      - "fastqc --version | sed 's/.*v//'":
+          type: eval
+          description: The expression to obtain the version of FastQC
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - fastqc:
+          type: string
+          description: The name of the tool
+      - "fastqc --version | sed 's/.*v//'":
+          type: eval
+          description: The expression to obtain the version of FastQC
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

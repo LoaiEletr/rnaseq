@@ -1,0 +1,144 @@
+//
+// Comprehensive BAM quality control with RSeQC modules
+// Performs multiple RSeQC analyses based on selected modules
+//
+
+include { RSEQC_BAMSTAT } from '../../../modules/local/rseqc/bamstat/main.nf'
+include { RSEQC_GENEBODYCOVERAGE } from '../../../modules/local/rseqc/genebodycoverage/main.nf'
+include { RSEQC_INFEREXPERIMENT } from '../../../modules/local/rseqc/inferexperiment/main.nf'
+include { RSEQC_INNERDISTANCE } from '../../../modules/local/rseqc/innerdistance/main.nf'
+include { RSEQC_JUNCTIONANNOTATION } from '../../../modules/local/rseqc/junctionannotation/main.nf'
+include { RSEQC_READDISTRIBUTION } from '../../../modules/local/rseqc/readdistribution/main.nf'
+include { RSEQC_READDUPLICATION } from '../../../modules/local/rseqc/readduplication/main.nf'
+include { RSEQC_TIN } from '../../../modules/local/rseqc/tin/main.nf'
+
+workflow BAM_RSEQC {
+    take:
+    val_rseqc_modules // list: rseqc modules to be executed
+    ch_bam // channel: [ val(meta), bam ]
+    ch_bed // channel: [ bed ]
+    ch_bai // channel: [ val(meta), bai ]
+
+    main:
+
+    ch_bamstat = channel.empty()
+
+    if ("bam_stat" in val_rseqc_modules) {
+        RSEQC_BAMSTAT(ch_bam)
+        ch_bamstat = RSEQC_BAMSTAT.out.txt
+    }
+
+    ch_genebodycoverage_r = channel.empty()
+    ch_genebodycoverage_curves = channel.empty()
+    ch_genebodycoverage_heatmap = channel.empty()
+    ch_genebodycoverage_txt = channel.empty()
+    ch_genebodycoverage_log = channel.empty()
+
+    if ("genebody_coverage" in val_rseqc_modules) {
+        RSEQC_GENEBODYCOVERAGE(
+            ch_bam.map { it[1] }.collect().map { [[id: "${it.size()} samples"], it] },
+            ch_bai.map { [[:], it[1]] }.groupTuple(),
+            ch_bed,
+        )
+        ch_genebodycoverage_r = RSEQC_GENEBODYCOVERAGE.out.rscript
+        ch_genebodycoverage_curves = RSEQC_GENEBODYCOVERAGE.out.curves
+        ch_genebodycoverage_heatmap = RSEQC_GENEBODYCOVERAGE.out.heatmap
+        ch_genebodycoverage_txt = RSEQC_GENEBODYCOVERAGE.out.txt
+        ch_genebodycoverage_log = RSEQC_GENEBODYCOVERAGE.out.log
+    }
+
+    ch_inferexperiment = channel.empty()
+
+    if ("infer_experiment" in val_rseqc_modules) {
+        RSEQC_INFEREXPERIMENT(ch_bam, ch_bed)
+        ch_inferexperiment = RSEQC_INFEREXPERIMENT.out.txt
+    }
+
+    ch_innerdistance_distance = channel.empty()
+    ch_innerdistance_freq = channel.empty()
+    ch_innerdistance_pdf = channel.empty()
+    ch_innerdistance_r = channel.empty()
+
+    if ("inner_distance" in val_rseqc_modules) {
+        RSEQC_INNERDISTANCE(ch_bam, ch_bed)
+        ch_innerdistance_distance = RSEQC_INNERDISTANCE.out.distance
+        ch_innerdistance_freq = RSEQC_INNERDISTANCE.out.freq
+        ch_innerdistance_pdf = RSEQC_INNERDISTANCE.out.pdf
+        ch_innerdistance_r = RSEQC_INNERDISTANCE.out.rscript
+    }
+
+    ch_junctionannotation_xls = channel.empty()
+    ch_junctionannotation_log = channel.empty()
+    ch_junctionannotation_r = channel.empty()
+    ch_junctionannotation_bed = channel.empty()
+    ch_junctionannotation_interact = channel.empty()
+    ch_junctionannotation_pdf = channel.empty()
+    ch_junctionannotation_events_pdf = channel.empty()
+
+    if ("junction_annotation" in val_rseqc_modules) {
+        RSEQC_JUNCTIONANNOTATION(ch_bam, ch_bed)
+        ch_junctionannotation_xls = RSEQC_JUNCTIONANNOTATION.out.xls
+        ch_junctionannotation_log = RSEQC_JUNCTIONANNOTATION.out.log
+        ch_junctionannotation_r = RSEQC_JUNCTIONANNOTATION.out.rscript
+        ch_junctionannotation_bed = RSEQC_JUNCTIONANNOTATION.out.junction_bed
+        ch_junctionannotation_interact = RSEQC_JUNCTIONANNOTATION.out.interact_bed
+        ch_junctionannotation_pdf = RSEQC_JUNCTIONANNOTATION.out.junction_pdf
+        ch_junctionannotation_events_pdf = RSEQC_JUNCTIONANNOTATION.out.events_pdf
+    }
+
+    ch_readdistribution = channel.empty()
+
+    if ("read_distribution" in val_rseqc_modules) {
+        RSEQC_READDISTRIBUTION(ch_bam, ch_bed)
+        ch_readdistribution = RSEQC_READDISTRIBUTION.out.txt
+    }
+
+    ch_readduplication_pdf = channel.empty()
+    ch_readduplication_r = channel.empty()
+    ch_readduplication_seq = channel.empty()
+    ch_readduplication_pos = channel.empty()
+
+    if ("read_duplication" in val_rseqc_modules) {
+        RSEQC_READDUPLICATION(ch_bam)
+        ch_readduplication_pdf = RSEQC_READDUPLICATION.out.pdf
+        ch_readduplication_r = RSEQC_READDUPLICATION.out.rscript
+        ch_readduplication_seq = RSEQC_READDUPLICATION.out.seq_duplicaterate
+        ch_readduplication_pos = RSEQC_READDUPLICATION.out.pos_duplicaterate
+    }
+
+    ch_tin_txt = channel.empty()
+    ch_tin_xls = channel.empty()
+
+    if ("tin" in val_rseqc_modules) {
+        RSEQC_TIN(ch_bam.join(ch_bai), ch_bed)
+        ch_tin_txt = RSEQC_TIN.out.txt
+        ch_tin_xls = RSEQC_TIN.out.xls
+    }
+
+    emit:
+    bamstat = ch_bamstat // channel: [ val(meta), txt ]
+    genebodycoverage_r = ch_genebodycoverage_r // channel: [ val(meta), [ rscript ] ]
+    genebodycoverage_curves = ch_genebodycoverage_curves // channel: [ val(meta), [ pdf ] ]
+    genebodycoverage_heatmap = ch_genebodycoverage_heatmap // channel: [ val(meta), [ pdf ] ]
+    genebodycoverage_txt = ch_genebodycoverage_txt // channel: [ val(meta), [ txt ] ]
+    genebodycoverage_log = ch_genebodycoverage_log // channel: [ val(meta), [ log ] ]
+    inferexperiment = ch_inferexperiment // channel: [ val(meta), [ txt ] ]
+    innerdistance_distance = ch_innerdistance_distance // channel: [ val(meta), [ distance ] ]
+    innerdistance_freq = ch_innerdistance_freq // channel: [ val(meta), [ freq ] ]
+    innerdistance_pdf = ch_innerdistance_pdf // channel: [ val(meta), [ pdf ] ]
+    innerdistance_r = ch_innerdistance_r // channel: [ val(meta), [ rscript ] ]
+    junctionannotation_xls = ch_junctionannotation_xls // channel: [ val(meta), [ xls ] ]
+    junctionannotation_log = ch_junctionannotation_log // channel: [ val(meta), [ log ] ]
+    junctionannotation_r = ch_junctionannotation_r // channel: [ val(meta), [ rscript ] ]
+    junctionannotation_bed = ch_junctionannotation_bed // channel: [ val(meta), [ junction_bed ] ]
+    junctionannotation_interact = ch_junctionannotation_interact // channel: [ val(meta), [ interact_bed ] ]
+    junctionannotation_pdf = ch_junctionannotation_pdf // channel: [ val(meta), [ junction_pdf ] ]
+    junctionannotation_events_pdf = ch_junctionannotation_events_pdf // channel: [ val(meta), [ events_pdf ] ]
+    readdistribution = ch_readdistribution // channel: [ val(meta), [ txt ] ]
+    readduplication_pdf = ch_readduplication_pdf // channel: [ val(meta), [ pdf ] ]
+    readduplication_r = ch_readduplication_r // channel: [ val(meta), [ rscript ] ]
+    readduplication_seq = ch_readduplication_seq // channel: [ val(meta), [ seq_duplicaterate ] ]
+    readduplication_pos = ch_readduplication_pos // channel: [ val(meta), [ pos_duplicaterate ] ]
+    tin_txt = ch_tin_txt // channel: [ val(meta), [ txt ] ]
+    tin_xls = ch_tin_xls // channel: [ val(meta), [ xls ] ]
+}

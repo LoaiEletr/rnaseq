@@ -1,0 +1,220 @@
+{
+    "yeast - tximport matrix - samplesheet": {
+        "content": [
+            {
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,49daec329968baa33ec0a710c652084d"
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,e3cd738c36220cae511c37a1af775518"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d7164a044e491c2542a01ffdd3732471"
+                ],
+                "versions_edger": [
+                    [
+                        "EDGER_VOOM",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "EDGER_VOOM",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf"
+                ],
+                "voom_transformed": [
+                    "voom_transformed.rds"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T02:43:32.064806645"
+    },
+    "yeast - featurecounts matrix - samplesheet": {
+        "content": [
+            {
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,e49ff027f9fb8a40e1b64580456c7b40"
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,c8c4b75624b47133169a9acc55c8ff9c"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,b7a96b1d8e57017cbe0209f6ad87a80a"
+                ],
+                "versions_edger": [
+                    [
+                        "EDGER_VOOM",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "EDGER_VOOM",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf"
+                ],
+                "voom_transformed": [
+                    "voom_transformed.rds"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T02:44:39.947312077"
+    },
+    "yeast - tximport matrix - samplesheet - stub": {
+        "content": [
+            {
+                "0": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        "EDGER_VOOM",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "6": [
+                    [
+                        "EDGER_VOOM",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_edger": [
+                    [
+                        "EDGER_VOOM",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "EDGER_VOOM",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_transformed": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T02:45:32.964693652"
+    },
+    "yeast - featurecounts matrix - samplesheet - stub": {
+        "content": [
+            {
+                "0": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        "EDGER_VOOM",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "6": [
+                    [
+                        "EDGER_VOOM",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "filtered_log2cpm": [
+                    "filtered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "normalized_log2cpm": [
+                    "normalized_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "unfiltered_log2cpm": [
+                    "unfiltered_log2cpm.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_edger": [
+                    [
+                        "EDGER_VOOM",
+                        "bioconductor-edger",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "EDGER_VOOM",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "voom_plot": [
+                    "voom_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "voom_transformed": [
+                    "voom_transformed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T02:46:25.678595072"
+    }
+}

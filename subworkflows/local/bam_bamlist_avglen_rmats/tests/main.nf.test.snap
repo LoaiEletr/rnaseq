@@ -1,0 +1,408 @@
+{
+    "sarscov2 - bam - fastq - gtf": {
+        "content": [
+            {
+                "rmats2sashimi_output": [
+                    [
+                        {
+                            "id": "MXE"
+                        },
+                        [
+                            [
+                                "MXE.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "events_file.txt:md5,eedafa7333e7b6cced0023e2dbcd6995"
+                            ]
+                        ]
+                    ],
+                    [
+                        {
+                            "id": "SE"
+                        },
+                        [
+                            [
+                                "SE.event.list.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                "events_file.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                            ]
+                        ]
+                    ]
+                ],
+                "rmats_output": [
+                    [
+                        {
+                            "lib_type": "forward",
+                            "single_end": false
+                        },
+                        "rmats_post_output"
+                    ]
+                ],
+                "rmats_prep_tmp": [
+                    [
+                        {
+                            "lib_type": "forward",
+                            "single_end": false
+                        },
+                        "rmats_prep_tmp"
+                    ]
+                ],
+                "sigevents_txt": [
+                    [
+                        "MXE",
+                        "MXE.filtered.txt:md5,eedafa7333e7b6cced0023e2dbcd6995"
+                    ],
+                    [
+                        "SE",
+                        "SE.filtered.txt:md5,73205f8e2b670e7b1ffab8de918dd304"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T04:52:16.798366272"
+    },
+    "sarscov2 - bam - fastq - gtf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "single_end": false,
+                            "lib_type": "forward"
+                        },
+                        [
+                            [
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "single_end": false,
+                            "lib_type": "forward"
+                        },
+                        [
+                            "A3SS.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "A3SS.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "A5SS.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "A5SS.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "MXE.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "MXE.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "RI.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "RI.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "SE.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "SE.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        "MXE",
+                        "MXE.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        "SE",
+                        "SE.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "MXE"
+                        },
+                        [
+                            
+                        ]
+                    ],
+                    [
+                        {
+                            "id": "SE"
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "rmats2sashimi_output": [
+                    [
+                        {
+                            "id": "MXE"
+                        },
+                        [
+                            
+                        ]
+                    ],
+                    [
+                        {
+                            "id": "SE"
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "rmats_output": [
+                    [
+                        {
+                            "single_end": false,
+                            "lib_type": "forward"
+                        },
+                        [
+                            "A3SS.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "A3SS.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "A5SS.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "A5SS.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JC.raw.input.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "JCEC.raw.input.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "MXE.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "MXE.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "RI.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "RI.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "SE.MATS.JC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "SE.MATS.JCEC.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelJunction.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.A3SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.A5SS.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.MXE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.RI.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "fromGTF.novelSpliceSite.SE.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "rmats_prep_tmp": [
+                    [
+                        {
+                            "single_end": false,
+                            "lib_type": "forward"
+                        },
+                        [
+                            [
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ],
+                                [
+                                    "rMATS_result_.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_FDR.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_I-L.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_ID.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_INP.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                                    "rMATS_result_P-V.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "sigevents_txt": [
+                    [
+                        "MXE",
+                        "MXE.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        "SE",
+                        "SE.filtered.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-24T04:53:58.248700006"
+    }
+}

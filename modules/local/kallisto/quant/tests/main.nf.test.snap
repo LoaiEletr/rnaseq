@@ -1,0 +1,228 @@
+{
+    "sarcov2 - fastq1 - index - gtf - fragment_length - fragment_length_sd - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "KALLISTO_QUANT",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_QUANT",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T06:41:39.64624297"
+    },
+    "sarcov2 - [fastq1, fastq2] - index - gtf - fragment_length - fragment_length_sd": {
+        "content": [
+            {
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "kallisto_test_quant.log"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test"
+                    ]
+                ],
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_QUANT",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T06:40:01.041175757"
+    },
+    "sarcov2 - [fastq1, fastq2] - index - gtf - fragment_length - fragment_length_sd - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "KALLISTO_QUANT",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        [
+                            "abundance.h5:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "abundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "kallisto_test_quant.log:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "run_info.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_QUANT",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T06:44:53.906868325"
+    },
+    "sarcov2 - fastq1 - index - gtf - fragment_length - fragment_length_sd": {
+        "content": [
+            {
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "kallisto_test_quant.log"
+                    ]
+                ],
+                "quant_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "forward",
+                            "single_end": true
+                        },
+                        "test"
+                    ]
+                ],
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_QUANT",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T06:38:59.373042451"
+    }
+}

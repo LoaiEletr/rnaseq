@@ -1,0 +1,92 @@
+{
+    "sarscov2 - bam - gff - alignment_quality - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T02:09:19.767688469"
+    },
+    "sarscov2 - bam - gff - alignment_quality": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,47ad42277f7bf925db993e44663721d0"
+                    ]
+                ],
+                "1": [
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,47ad42277f7bf925db993e44663721d0"
+                    ]
+                ],
+                "versions_htseq": [
+                    [
+                        "DEXSEQ_COUNT",
+                        "htseq",
+                        "2.0.9"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T02:05:32.082349303"
+    }
+}

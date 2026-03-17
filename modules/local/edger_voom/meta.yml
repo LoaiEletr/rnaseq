@@ -1,0 +1,105 @@
+name: edger_voom
+description: |
+  Performs count normalization (TMM) and variance stabilization using edgeR and the voom transformation.
+  Outputs log2-CPM values and mean-variance trend plots.
+keywords:
+  - edger
+  - voom
+  - normalization
+  - rna-seq
+  - differential expression
+tools:
+  - bioconductor_edger:
+      description: "Empirical analysis of digital gene expression data in R"
+      homepage: "https://bioconductor.org/packages/edgeR/"
+      documentation: "https://bioconductor.org/packages/release/bioc/html/edgeR.html"
+      tool_dev_url: "https://github.com/LTLA/edgeR"
+      doi: "10.1093/bioinformatics/btp616"
+      licence: ["GPL-2.0-only"]
+      identifier: "edgeR"
+
+input:
+  - - count_matrix_rds:
+        type: file
+        description: RDS file containing the raw count matrix.
+        pattern: "*.rds"
+        ontologies: []
+  - - samplesheet_csv:
+        type: file
+        description: CSV file containing sample metadata for experimental design.
+        pattern: "*.csv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3752" # CSV
+
+output:
+  unfiltered_log2cpm:
+    - unfiltered_log2cpm.rds:
+        type: file
+        description: RDS file with unfiltered log2-CPM normalized counts.
+        pattern: "*.rds"
+        ontologies: []
+  filtered_log2cpm:
+    - filtered_log2cpm.rds:
+        type: file
+        description: RDS file with filtered log2-CPM normalized counts.
+        pattern: "*.rds"
+        ontologies: []
+  normalized_log2cpm:
+    - normalized_log2cpm.rds:
+        type: file
+        description: RDS file with TMM normalized log2-CPM counts.
+        pattern: "*.rds"
+        ontologies: []
+  voom_transformed:
+    - voom_transformed.rds:
+        type: file
+        description: RDS file with voom-transformed EList object.
+        pattern: "*.rds"
+        ontologies: []
+  voom_plot:
+    - voom_plot.pdf:
+        type: file
+        description: PDF file showing the voom mean-variance trend.
+        pattern: "*.pdf"
+        ontologies:
+          - edam: "http://edamontology.org/format_3508" # PDF
+  versions_rbase:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+          description: The name of R
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+  versions_edger:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bioconductor-edger:
+          type: string
+          description: The name of the tool
+      - 'Rscript -e "library(edgeR); cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - r-base:
+          type: string
+      - "Rscript -e 'cat(as.character(getRversion()))'":
+          type: eval
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - bioconductor-edger:
+          type: string
+      - 'Rscript -e "library(edgeR); cat(as.character(packageVersion(''edgeR'')))"':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

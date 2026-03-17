@@ -1,0 +1,72 @@
+name: "dexseq_prepareannotation"
+description: |
+  Prepares GTF annotation files for DEXSeq differential exon usage analysis by
+  creating a flattened GFF file of exonic bins.
+keywords:
+  - dexseq
+  - annotation
+  - gtf
+  - gff
+  - differential exon usage
+tools:
+  - htseq:
+      description: "Analysing high-throughput sequencing data with Python"
+      homepage: "https://htseq.readthedocs.io/"
+      documentation: "https://htseq.readthedocs.io/en/master/"
+      tool_dev_url: "https://github.com/htseq/htseq"
+      doi: "10.1093/bioinformatics/btu638"
+      licence: ["GPL-3.0-only"]
+      identifier: "htseq"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - gtf:
+        type: file
+        description: GTF annotation file to convert to DEXSeq GFF format.
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2305" # GTF
+  - - aggregation:
+        type: boolean
+        description: Whether to aggregate overlapping genes into a single aggregate gene.
+        ontologies: []
+
+output:
+  gff:
+    - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - "*.gff":
+        type: file
+        description: Flattened GFF file containing non-overlapping exonic bins.
+        pattern: "*.gff"
+        ontologies:
+          - edam: "http://edamontology.org/format_2305" # GFF
+  versions_htseq:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - htseq:
+          type: string
+      - 'python -c ''from importlib.metadata import version; print(version("HTSeq"))''':
+          type: eval
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+      - htseq:
+          type: string
+      - 'python -c ''from importlib.metadata import version; print(version("HTSeq"))''':
+          type: eval
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

@@ -1,0 +1,55 @@
+nextflow_process {
+    name "Test Process SNPEFF_DOWNLOAD"
+    script "modules/local/snpeff/download/main.nf"
+    process "SNPEFF_DOWNLOAD"
+
+    tag "modules"
+    tag "modules_local"
+    tag "snpeff"
+    tag "snpeff/download"
+
+    test("S.cerevisiae - snpeff_db") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'R64-1-1.99' ],
+                    "R64-1-1.99"
+                ]
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("S.cerevisiae - snpeff_db - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'R64-1-1.99' ],
+                    "R64-1-1.99"
+                ]
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

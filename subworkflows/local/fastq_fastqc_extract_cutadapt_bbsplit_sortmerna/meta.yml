@@ -1,0 +1,122 @@
+name: "fastq_fastqc_extract_cutadapt_bbsplit_sortmerna"
+description: |
+  Comprehensive FASTQ preprocessing workflow for RNA-seq data.
+  Performs: quality control (FastQC), UMI extraction (UMI-tools), adapter trimming (Cutadapt),
+  contamination removal (BBMap bbsplit), and ribosomal RNA filtering (SortMeRNA).
+keywords:
+  - fastq
+  - preprocessing
+  - quality-control
+  - umi
+  - adapter-trimming
+  - contamination-removal
+  - rrna-filtering
+components:
+  - fastqc
+  - umitools/extract
+  - cutadapt
+  - bbmap/bbsplit
+  - sortmerna
+input:
+  - ch_reads:
+      type: list
+      description: |
+        The input channel containing FASTQ files (single or paired-end)
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+  - ch_adapter:
+      type: file
+      description: |
+        The adapter sequences for trimming
+        Structure: [ val(meta), path(adapter) ]
+  - ch_rrna_db:
+      type: file
+      description: |
+        The ribosomal RNA database files for SortMeRNA
+        Structure: [ val(meta), path(rrna_db) ]
+  - ch_bbsplit_index:
+      type: directory
+      description: |
+        Pre-built BBMap bbsplit index directory
+        Structure: [ val(meta), path(bbsplit_index) ]
+  - ch_sortmerna_index:
+      type: directory
+      description: |
+        Pre-built SortMeRNA index directory
+        Structure: [ val(meta), path(sortmerna_index) ]
+  - val_rrna_db_type:
+      type: string
+      description: SortMeRNA database type ('default', 'fast', or 'sensitive')
+  - val_with_umi:
+      type: boolean
+      description: Enable UMI extraction
+  - val_skip_umi_extract:
+      type: boolean
+      description: Skip UMI extraction step
+  - val_skip_fastqc:
+      type: boolean
+      description: Skip FastQC steps
+  - val_skip_cutadapt:
+      type: boolean
+      description: Skip Cutadapt trimming
+  - val_skip_bbsplit:
+      type: boolean
+      description: Skip BBMap contamination removal
+  - val_skip_sortmerna:
+      type: boolean
+      description: Skip SortMeRNA filtering
+output:
+  - fastqc_raw_html:
+      type: file
+      description: |
+        FastQC HTML reports for raw reads
+        Structure: [ val(meta), path(html) ]
+      pattern: "*.html"
+  - fastqc_raw_zip:
+      type: file
+      description: |
+        FastQC ZIP archives for raw reads
+        Structure: [ val(meta), path(zip) ]
+      pattern: "*.zip"
+  - umi_log:
+      type: file
+      description: |
+        Log files from UMI-tools extract
+        Structure: [ val(meta), path(log) ]
+      pattern: "*.log"
+  - trim_json:
+      type: file
+      description: |
+        JSON reports from Cutadapt
+        Structure: [ val(meta), path(json) ]
+      pattern: "*.json"
+  - fastqc_trim_html:
+      type: file
+      description: |
+        FastQC HTML reports for trimmed reads
+        Structure: [ val(meta), path(html) ]
+  - fastqc_trim_zip:
+      type: file
+      description: |
+        FastQC ZIP archives for trimmed reads
+        Structure: [ val(meta), path(zip) ]
+  - bbsplit_stats:
+      type: file
+      description: |
+        Statistics from BBMap bbsplit
+        Structure: [ val(meta), path(stats) ]
+      pattern: "*.txt"
+  - reads:
+      type: list
+      description: |
+        Preprocessed FASTQ files
+        Structure: [ val(meta), path(reads) ]
+  - rrna_log:
+      type: file
+      description: |
+        Log files from SortMeRNA
+        Structure: [ val(meta), path(log) ]
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

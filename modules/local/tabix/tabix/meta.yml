@@ -1,0 +1,67 @@
+name: "tabix_tabix"
+description: Generic indexer for TAB-delimited genome position files.
+keywords:
+  - tabix
+  - index
+  - vcf
+  - bed
+  - gff
+tools:
+  - "tabix":
+      description: "Tabix indexes a TAB-delimited genome position file in appropriate format and creates an index file (.tbi or .csi) which allows as fast retrieval of data as with a BAM index."
+      homepage: "http://www.htslib.org/doc/tabix.html"
+      documentation: "http://www.htslib.org/doc/tabix.html"
+      tool_dev_url: "https://github.com/samtools/htslib"
+      doi: "10.1093/bioinformatics/btq671"
+      licence: ["MIT"]
+      identifier: biotools:htslib
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - tab:
+        type: file
+        description: A tab-delimited file (e.g. VCF, BED, GFF) compressed with bgzip.
+        pattern: "*.{gz}"
+
+output:
+  index:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.tbi":
+          type: file
+          description: The generated index file.
+          pattern: "*.tbi"
+  versions_tabix:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "tabix":
+          type: string
+          description: The name of the tool
+      - "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "tabix":
+          type: string
+          description: The name of the tool
+      - "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

@@ -1,0 +1,154 @@
+name: "rseqc_junctionannotation"
+description: |
+  Annotates splice junctions from RNA-seq BAM files using RSeQC junction_annotation.py.
+  Identifies and classifies splicing events as known, partially novel, or completely novel.
+keywords:
+  - rseqc
+  - splice junctions
+  - annotation
+  - rna-seq
+  - quality control
+tools:
+  - "rseqc":
+      description: "RNA-seq quality control package"
+      homepage: "http://rseqc.sourceforge.net/"
+      documentation: "http://rseqc.sourceforge.net/"
+      tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      doi: "10.1093/bioinformatics/bts356"
+      licence: ["GPL-3.0-only"]
+      identifier: "rseqc"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam:
+        type: file
+        description: BAM file for splice junction annotation
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'reference' ]`
+    - bed:
+        type: file
+        description: BED file with gene annotations for junction mapping
+        pattern: "*.{bed,bed.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3003" # BED
+
+output:
+  xls:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*.xls":
+          type: file
+          description: Spreadsheet with junction annotation statistics
+          pattern: "*.xls"
+          ontologies:
+            - edam: "http://edamontology.org/format_3468" # XLS
+  rscript:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.r":
+          type: file
+          description: R script for generating junction plots
+          pattern: "*.r"
+          ontologies:
+            - edam: "http://edamontology.org/format_3999" # R script
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.log":
+          type: file
+          description: Log file containing console output and statistics
+          pattern: "*.log"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678" # LOG
+  junction_bed:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.junction.bed":
+          type: file
+          description: BED file with annotated splice junctions
+          pattern: "*.junction.bed"
+          ontologies:
+            - edam: "http://edamontology.org/format_3003" # BED
+  interact_bed:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.Interact.bed":
+          type: file
+          description: BED file with interaction annotations
+          pattern: "*.Interact.bed"
+          ontologies:
+            - edam: "http://edamontology.org/format_3003" # BED
+  junction_pdf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*junction.pdf":
+          type: file
+          description: PDF plot of annotated splice junctions
+          pattern: "*.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508" # PDF
+  events_pdf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*events.pdf":
+          type: file
+          description: PDF plot of splicing events classification
+          pattern: "*.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508" # PDF
+  versions_rseqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "rseqc":
+          type: string
+          description: The name of the tool
+      - "junction_annotation.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "rseqc":
+          type: string
+          description: The name of the tool
+      - "junction_annotation.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

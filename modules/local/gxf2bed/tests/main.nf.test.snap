@@ -1,0 +1,69 @@
+{
+    "homo_sapiens - gtf": {
+        "content": [
+            {
+                "bed": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.bed"
+                    ]
+                ],
+                "versions_gxf2bed": [
+                    [
+                        "GXF2BED",
+                        "gxf2bed",
+                        "0.2.7"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T03:10:20.369718316"
+    },
+    "homo_sapiens - gtf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GXF2BED",
+                        "gxf2bed",
+                        "0.2.7"
+                    ]
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_gxf2bed": [
+                    [
+                        "GXF2BED",
+                        "gxf2bed",
+                        "0.2.7"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T03:11:20.884991896"
+    }
+}

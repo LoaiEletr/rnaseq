@@ -1,0 +1,178 @@
+name: "counts_diffexpr_qc_enrichment_visualization"
+description: |
+  Comprehensive differential expression analysis workflow supporting DESeq2, limma-voom, and maSigPro.
+  Includes quality control, volcano/heatmap visualizations, and functional enrichment (GO, KEGG, and GSEA).
+keywords:
+  - differential-expression
+  - rna-seq
+  - deseq2
+  - limma
+  - masigpro
+  - timecourse
+  - enrichment
+  - go
+  - kegg
+  - gsea
+components:
+  - edger/voom
+  - limma/de
+  - deseq2/de
+  - masigpro/timecourse
+  - qc/visualization
+  - de/visualization
+  - go/enrichment
+  - kegg/enrichment
+  - msigdb/gsea
+input:
+  - ch_counts:
+      type: file
+      description: |
+        Input gene expression count matrix.
+        Structure: [ path(counts_matrix) ]
+      pattern: "*.rds"
+  - ch_samplesheet:
+      type: file
+      description: |
+        Sample metadata/samplesheet defining experimental groups.
+        Structure: [ path(samplesheet) ]
+      pattern: "*.{csv,tsv,txt}"
+  - val_pvalue_threshold:
+      type: float
+      description: P-value threshold for statistical significance.
+  - val_logfc_threshold:
+      type: float
+      description: Log fold change threshold for significant DE genes.
+  - val_ntop_genes:
+      type: integer
+      description: Number of top DE genes to report.
+  - val_diffexpr_method:
+      type: string
+      description: |
+        Method for DE analysis.
+        Structure: [ "limma" | "deseq2" | "masigpro" ]
+  - val_species_name:
+      type: string
+      description: Species name for enrichment (e.g., 'human').
+  - val_nes_threshold:
+      type: float
+      description: NES threshold for GSEA.
+  - val_msigdb_categories:
+      type: string
+      description: MSigDB categories (e.g., 'H,C2,C5').
+  - val_padj_gsea:
+      type: float
+      description: Adjusted p-value threshold for GSEA.
+  - val_ntop_processes:
+      type: integer
+      description: Number of top pathways/processes to visualize.
+  - val_rank_method:
+      type: string
+      description: |
+        GSEA ranking metric.
+        Structure: [ "t_stat" | "logfc" | "signed_significance" ]
+  - val_rsq_threshold:
+      type: float
+      description: R-squared threshold (maSigPro only).
+  - val_cluster_method:
+      type: string
+      description: |
+        Clustering method (maSigPro only).
+        Structure: [ "hclust" | "Mclust" | "kmeans" ]
+  - val_enrichment_method:
+      type: string
+      description: |
+        Enrichment method(s) to perform.
+        Structure: [ "GO" | "KEGG" | "GSEA" | "GO,KEGG,GSEA" ]
+output:
+  - unfiltered_log2counts:
+      type: file
+      description: Unfiltered log2 counts RDS.
+      Structure: [path(unfiltered_log2counts)]
+  - filtered_log2counts:
+      type: file
+      description: Filtered log2 counts RDS.
+      Structure: [path(filtered_log2counts)]
+  - normalized_log2counts:
+      type: file
+      description: Normalized log2 counts RDS.
+      Structure: [path(normalized_log2counts)]
+  - voom_object:
+      type: file
+      description: Voom object (limma method only).
+      Structure: [path(voom_object)]
+  - voom_plot:
+      type: file
+      description: Voom mean-variance plot (limma method only).
+      Structure: [path(voom_plot)]
+  - ebfit_rds:
+      type: file
+      description: eBayes fitted model (limma method only).
+      Structure: [path(ebfit_rds)]
+  - diffgenes_expression:
+      type: file
+      description: Expression matrix of DE genes.
+      Structure: [path(diffgenes_expression)]
+  - diffgenes_table:
+      type: file
+      description: Results table of all DE genes.
+      Structure: [path(diffgenes_table)]
+  - unfiltered_deg:
+      type: file
+      description: Full DE results before filtering (limma/DESeq2).
+      Structure: [path(unfiltered_deg)]
+  - topgenes_rds:
+      type: file
+      description: Top DE genes RDS.
+      Structure: [path(topgenes_rds)]
+  - topgenes_csv:
+      type: file
+      description: Top DE genes CSV.
+      Structure: [path(topgenes_csv)]
+  - timecourse_clusterplots:
+      type: file
+      description: Cluster plots (maSigPro only).
+      Structure: [path(cluster_plots)]
+  - timecourse_clustermedian:
+      type: file
+      description: Median cluster expression (maSigPro only).
+      Structure: [path(cluster_median_expression)]
+  - timecourse_summarystatistics:
+      type: file
+      description: Summary stats (maSigPro only).
+      Structure: [path(summary_statistics)]
+  - timecourse_clusterassignments:
+      type: file
+      description: Gene-to-cluster assignments (maSigPro only).
+      Structure: [path(cluster_assignments)]
+  - timecourse_clusterlist:
+      type: file
+      description: Cluster list RDS (maSigPro only).
+      Structure: [path(clusters_list)]
+  - qc_plots:
+      type: directory
+      description: Directory of QC visualizations.
+      Structure: [path(qc_plots)]
+  - volcano_plot:
+      type: file
+      description: Volcano plot of results.
+      Structure: [path(volcano_plot)]
+  - heatmap_plots:
+      type: directory
+      description: Heatmap visualizations of DE genes.
+      Structure: [path(heatmaps)]
+  - go_enrichment:
+      type: directory
+      description: GO enrichment results.
+      Structure: [path(go_results)]
+  - kegg_enrichment:
+      type: directory
+      description: KEGG enrichment results.
+      Structure: [path(kegg_results)]
+  - gsea_results:
+      type: directory
+      description: GSEA results.
+      Structure: [path(gsea_results)]
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

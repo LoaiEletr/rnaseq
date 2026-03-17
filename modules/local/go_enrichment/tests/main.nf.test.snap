@@ -1,0 +1,1682 @@
+{
+    "leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes | DESeq2": {
+        "content": [
+            {
+                "go_results": [
+                    "GO_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T03:05:01.265891658"
+    },
+    "leishmaniasis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes - stub | WGCNA": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "10": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "11": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "12": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "13": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "14": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "15": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "16": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "17": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "18": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "19": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "20": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "4": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "7": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "8": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "9": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "go_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T06:14:38.229994761"
+    },
+    "lymphoblastoid - pvalue_threshold - logfc - species_name - DEU genes - ntop_processes | DEXSeq": {
+        "content": [
+            {
+                "go_results": [
+                    "GO_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T03:30:11.771452737"
+    },
+    "arabidopsis - pvalue_threshold - logfc - species_name - masigpro_clusters - ntop_processes | maSigPro": {
+        "content": [
+            {
+                "go_results": [
+                    "GO_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T04:16:33.540760621"
+    },
+    "leishmaniasis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes | WGCNA": {
+        "content": [
+            {
+                "go_results": [
+                    "GO_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T04:43:06.041479258"
+    },
+    "leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes | Limma": {
+        "content": [
+            {
+                "go_results": [
+                    "GO_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T03:24:36.631015326"
+    },
+    "leishmaniasis - unfiltered_deg - pvalue_threshold - logfc - species_name - ntop_processes - stub | DESeq2": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "10": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ],
+                "11": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "12": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "13": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "14": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "15": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "16": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "17": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "18": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "19": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "20": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "4": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "7": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "8": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "9": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "go_results": [
+                    [
+                        
+                    ]
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T06:12:31.857521764"
+    },
+    "arabidopsis - pvalue_threshold - logfc - species_name - WGCNA list - ntop_processes | WGCNA": {
+        "content": [
+            {
+                "go_results": [
+                    "GO_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T06:10:17.367803591"
+    },
+    "leishmaniasis - pvalue_threshold - logfc - species_name - DIU genes - ntop_processes | IsoformSwitchAnalyzeR": {
+        "content": [
+            {
+                "go_results": [
+                    "GO_results"
+                ],
+                "versions_biomart": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-biomart",
+                        "2.62.0"
+                    ]
+                ],
+                "versions_clusterprofiler": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-clusterprofiler",
+                        "4.14.0"
+                    ]
+                ],
+                "versions_dplyr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-dplyr",
+                        "1.1.4"
+                    ]
+                ],
+                "versions_ggplot2": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_org_at_tair_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.at.tair.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_bt_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.bt.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ce_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ce.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_cf_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.cf.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_dr_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.dr.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_gg_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.gg.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_hs_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.hs.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mm_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mm.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_mmu_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.mmu.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_rn_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.rn.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_sc_sgd_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.sc.sgd.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_org_ss_eg_db": [
+                    [
+                        "GO_ENRICHMENT",
+                        "bioconductor-org.ss.eg.db",
+                        "3.20.0"
+                    ]
+                ],
+                "versions_purrr": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-purrr",
+                        "1.2.1"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_tibble": [
+                    [
+                        "GO_ENRICHMENT",
+                        "r-tibble",
+                        "3.3.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T03:40:26.065919918"
+    }
+}

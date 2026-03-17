@@ -1,0 +1,101 @@
+nextflow_process {
+    name "Test Process EDGER_VOOM"
+    script "../main.nf"
+    process "EDGER_VOOM"
+
+    tag "modules"
+    tag "modules_local"
+    tag "edger_voom"
+
+    test("yeast - tximport matrix - samplesheet") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.unfiltered_log2cpm.get(0) ==~ ".*/unfiltered_log2cpm\\.rds" },
+                { assert process.out.filtered_log2cpm.get(0) ==~ ".*/filtered_log2cpm\\.rds" },
+                { assert process.out.normalized_log2cpm.get(0) ==~ ".*/normalized_log2cpm\\.rds" },
+                { assert process.out.voom_transformed.get(0) ==~ ".*/voom_transformed\\.rds" },
+                { assert process.out.voom_plot.get(0) ==~ ".*/voom_plot\\.pdf" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["voom_transformed", "voom_plot"])).match() }
+            )
+        }
+    }
+
+    test("yeast - featurecounts matrix - samplesheet") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.unfiltered_log2cpm.get(0) ==~ ".*/unfiltered_log2cpm\\.rds" },
+                { assert process.out.filtered_log2cpm.get(0) ==~ ".*/filtered_log2cpm\\.rds" },
+                { assert process.out.normalized_log2cpm.get(0) ==~ ".*/normalized_log2cpm\\.rds" },
+                { assert process.out.voom_transformed.get(0) ==~ ".*/voom_transformed\\.rds" },
+                { assert process.out.voom_plot.get(0) ==~ ".*/voom_plot\\.pdf" },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["voom_transformed", "voom_plot"])).match() }
+            )
+        }
+    }
+
+    test("yeast - tximport matrix - samplesheet - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/tximport/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("yeast - featurecounts matrix - samplesheet - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file(params.pipelines_testdata_base_path + 'count_matrices/featurecounts/yeast_raw_counts.rds', checkIfExists: true)
+                input[1] = file(params.pipelines_testdata_base_path + 'samplesheets/samplesheet_yeast.csv', checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

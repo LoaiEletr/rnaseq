@@ -1,0 +1,141 @@
+name: rseqc_genebodycoverage
+description: |
+  Calculates gene body coverage statistics from BAM files using RSeQC geneBody_coverage.py.
+  Generates coverage curves and heatmaps to assess 5'-3' bias in RNA-seq data.
+keywords:
+  - rseqc
+  - gene body coverage
+  - rna-seq
+  - quality control
+  - 5-3 bias
+tools:
+  - rseqc:
+      description: "RNA-seq quality control package"
+      homepage: "http://rseqc.sourceforge.net/"
+      documentation: "http://rseqc.sourceforge.net/"
+      tool_dev_url: "https://sourceforge.net/projects/rseqc/"
+      doi: "10.1093/bioinformatics/bts356"
+      licence: ["GPL-3.0-only"]
+      identifier: "rseqc"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - bam_files:
+        type: file
+        description: BAM files for gene body coverage analysis
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing index information
+    - bai_files:
+        type: file
+        description: BAM index files
+        pattern: "*.{bai}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3591" # BAI
+  - - meta3:
+        type: map
+        description: |
+          Groovy Map containing reference information
+    - bed:
+        type: file
+        description: BED file with gene annotations
+        pattern: "*.{bed,bed.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3003" # BED
+
+output:
+  rscript:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.geneBodyCoverage.r":
+          type: file
+          description: R script for generating gene body coverage plots
+          pattern: "*.geneBodyCoverage.r"
+          ontologies:
+            - edam: "http://edamontology.org/format_3999" # R script
+  curves:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.geneBodyCoverage.curves.pdf":
+          type: file
+          description: PDF file with gene body coverage curves
+          pattern: "*.geneBodyCoverage.curves.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508" # PDF
+  heatmap:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.geneBodyCoverage.heatMap.pdf":
+          type: file
+          description: PDF file with gene body coverage heatmap
+          pattern: "*.geneBodyCoverage.heatMap.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508" # PDF
+  txt:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.geneBodyCoverage.txt":
+          type: file
+          description: Text file with gene body coverage statistics
+          pattern: "*.geneBodyCoverage.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330" # Textual format
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "log.txt":
+          type: file
+          description: Log file from gene body coverage analysis
+          pattern: "log.txt"
+          ontologies:
+            - edam: "http://edamontology.org/data_1678" # LOG
+  versions_rseqc:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "geneBody_coverage.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rseqc:
+          type: string
+          description: The name of the tool
+      - "geneBody_coverage.py --version | sed 's/.*.py //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

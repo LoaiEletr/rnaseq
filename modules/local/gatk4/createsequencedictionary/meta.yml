@@ -1,0 +1,70 @@
+name: "gatk4_createsequencedictionary"
+description: Create a sequence dictionary for a reference FASTA file
+keywords:
+  - gatk4
+  - createsequencedictionary
+  - dictionary
+  - genomics
+  - fasta
+tools:
+  - "gatk4":
+      description: "Genome Analysis Toolkit (GATK4)"
+      homepage: "https://gatk.broadinstitute.org/hc/en-us"
+      documentation: "https://gatk.broadinstitute.org/hc/en-us/articles/360037060912-CreateSequenceDictionary-Picard-"
+      tool_dev_url: "https://github.com/broadinstitute/gatk"
+      doi: ""
+      licence: "['BSD-3-Clause']"
+      identifier: ""
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'fasta' ]`
+    - fasta:
+        type: file
+        description: Reference FASTA file
+        pattern: "*.{fasta,fa}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929" # FASTA
+
+output:
+  - dict:
+      - - meta:
+            type: map
+            description: |
+              Groovy Map containing reference information
+              e.g. `[ id:'fasta' ]`
+        - "*.dict":
+            type: file
+            description: Sequence dictionary file
+            pattern: "*.dict"
+            ontologies: []
+  - versions_gatk4:
+      - - "${task.process}":
+            type: string
+            description: The name of the process
+        - "gatk4":
+            type: string
+            description: The name of the tool
+        - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+            type: eval
+            description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "gatk4":
+          type: string
+          description: The name of the tool
+      - "gatk --version | sed -n '/GATK.*v/s/.*v//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

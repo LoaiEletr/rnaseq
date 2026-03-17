@@ -1,0 +1,128 @@
+{
+    "lymphoblastoid - counts - samplesheet - gff - pvalue_threshold - logfc - top_n - min_exonlength": {
+        "content": [
+            {
+                "gene_plots": [
+                    "top_DEU_plots"
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf"
+                ],
+                "report": [
+                    "DEXSeqReport"
+                ],
+                "results_table": [
+                    "DEXSeq_table.csv"
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,25a34c80f6b389680d59f3e7d65bd30d"
+                ],
+                "significant_results": [
+                    "significant_DEUs.csv"
+                ],
+                "versions_dexseq": [
+                    [
+                        "DEXSEQ_DEU",
+                        "bioconductor-dexseq",
+                        "1.52.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DEXSEQ_DEU",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-16T09:43:09.486674878"
+    },
+    "lymphoblastoid - counts - samplesheet - gff - pvalue_threshold - logfc - top_n - min_exonlength - stub": {
+        "content": [
+            {
+                "0": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    [
+                        
+                    ]
+                ],
+                "4": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    [
+                        
+                    ]
+                ],
+                "6": [
+                    [
+                        "DEXSEQ_DEU",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "7": [
+                    [
+                        "DEXSEQ_DEU",
+                        "bioconductor-dexseq",
+                        "1.52.0"
+                    ]
+                ],
+                "gene_plots": [
+                    [
+                        
+                    ]
+                ],
+                "ma_plot": [
+                    "DEXSeq_MA_plot.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "report": [
+                    [
+                        
+                    ]
+                ],
+                "results_table": [
+                    "DEXSeq_table.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "significant_genes": [
+                    "significant_DEU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "significant_results": [
+                    "significant_DEUs.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_dexseq": [
+                    [
+                        "DEXSEQ_DEU",
+                        "bioconductor-dexseq",
+                        "1.52.0"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "DEXSEQ_DEU",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-23T02:21:57.548204808"
+    }
+}

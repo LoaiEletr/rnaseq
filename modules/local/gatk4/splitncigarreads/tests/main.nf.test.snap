@@ -1,0 +1,84 @@
+{
+    "homo_sapiens - [bam, bai] - fasta - fai - interval - dict - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_SPLITNCIGARREADS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_SPLITNCIGARREADS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-13T02:43:04.851075935"
+    },
+    "homo_sapiens - [bam, bai] - fasta - fai - interval - dict": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,92c5290ca730cc1caebffcc6507f0885"
+                    ]
+                ],
+                "1": [
+                    [
+                        "GATK4_SPLITNCIGARREADS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.bam:md5,92c5290ca730cc1caebffcc6507f0885"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_SPLITNCIGARREADS",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T22:44:52.672139753"
+    }
+}

@@ -1,0 +1,89 @@
+name: rmats2sashimiplot
+description: |
+  Generates Sashimi plots from rMATS significant alternative splicing events.
+keywords:
+  - rmats
+  - sashimi
+  - visualization
+  - splicing
+tools:
+  - rmats2sashimiplot:
+      description: "Generate Sashimi plots from rMATS output"
+      homepage: "https://github.com/Xinglab/rmats2sashimiplot"
+      documentation: "https://github.com/Xinglab/rmats2sashimiplot"
+      tool_dev_url: "https://github.com/Xinglab/rmats2sashimiplot"
+      licence: ["MIT"]
+      identifier: "rmats2sashimiplot"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'SE' ]`
+    - rmats_sigevent:
+        type: file
+        description: Filtered significant events file for the specific event type
+        pattern: "*.txt"
+        ontologies:
+          - edam: "http://edamontology.org/format_2330" # Textual format
+    - bam_list1:
+        type: file
+        description: First condition BAM list file
+        pattern: "*.txt"
+        ontologies:
+          - edam: "http://edamontology.org/format_2330" # Textual format
+    - bam_list2:
+        type: file
+        description: Second condition BAM list file
+        pattern: "*.txt"
+        ontologies:
+          - edam: "http://edamontology.org/format_2330" # Textual format
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing information for BAM files
+          e.g. `[ id:'all_bams' ]`
+    - bam_files:
+        type: file
+        description: BAM files for Sashimi plot generation
+        pattern: "*.{bam,bam.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2572" # BAM
+
+output:
+  sashimi_output:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "${prefix}":
+          type: directory
+          description: Directory containing Sashimi plot output
+          pattern: "sashimi_*_out"
+  versions_rmats2sashimiplot:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rmats2sashimiplot:
+          type: string
+          description: The name of the tool
+      - "pip show rmats2sashimiplot | grep 'Version:' | awk '{print $2}' | sed 's/Version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - rmats2sashimiplot:
+          type: string
+          description: The name of the tool
+      - "pip show rmats2sashimiplot | grep 'Version:' | awk '{print $2}' | sed 's/Version: //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

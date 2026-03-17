@@ -1,0 +1,69 @@
+{
+    "homo_sapiens - transcriptome": {
+        "content": [
+            {
+                "index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome.idx"
+                    ]
+                ],
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_INDEX",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T05:47:31.34043545"
+    },
+    "homo_sapiens - transcriptome - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "KALLISTO_INDEX",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "transcriptome"
+                        },
+                        "transcriptome.idx:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_kallisto": [
+                    [
+                        "KALLISTO_INDEX",
+                        "kallisto",
+                        "0.51.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T05:48:25.052653945"
+    }
+}

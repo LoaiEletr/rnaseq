@@ -1,0 +1,69 @@
+name: hisat2_extractsplicesites
+description: |
+  Extracts splice site information from GTF files for HISAT2 alignment.
+keywords:
+  - hisat2
+  - splice sites
+  - gtf
+tools:
+  - hisat2:
+      description: "Hierarchical indexing for spliced alignment of transcripts"
+      homepage: "https://daehwankimlab.github.io/hisat2/"
+      documentation: "https://daehwankimlab.github.io/hisat2/manual/"
+      tool_dev_url: "https://github.com/DaehwanKimLab/hisat2"
+      licence: ["GPL-3.0-only"]
+      identifier: "hisat2"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - gtf:
+        type: file
+        description: Input GTF annotation file
+        pattern: "*.{gtf,gtf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306" # GTF
+
+output:
+  splice_sites:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.splice_sites.tsv":
+          type: file
+          description: TSV file containing splice site coordinates extracted from GTF
+          pattern: "*.splice_sites.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475" # TSV
+  versions_hisat2:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - hisat2:
+          type: string
+          description: The name of the tool
+      - "hisat2 --version | head -n 1 | awk '{print $3}' | sed 's/^.*version //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - hisat2:
+          type: string
+          description: The name of the tool
+      - "hisat2 --version | head -n 1 | awk '{print $3}' | sed 's/^.*version //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@LoaiEletr"
+maintainers:
+  - "@LoaiEletr"

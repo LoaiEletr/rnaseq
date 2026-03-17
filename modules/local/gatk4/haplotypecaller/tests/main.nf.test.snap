@@ -1,0 +1,77 @@
+{
+    "homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.vcf.tbi:md5,1a60c330fb42841e8dcf3cd507a70bfc"
+                    ]
+                ],
+                "2": [
+                    [
+                        "GATK4_HAPLOTYPECALLER",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.vcf.tbi:md5,1a60c330fb42841e8dcf3cd507a70bfc"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions_gatk4": [
+                    [
+                        "GATK4_HAPLOTYPECALLER",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T22:34:15.109002154"
+    },
+    "homo_sapiens - [bam, bai, interval] - fasta - fai - dict - dbsnp - dbsnp_tbi": {
+        "content": [
+            {
+                "versions_gatk4": [
+                    [
+                        "GATK4_HAPLOTYPECALLER",
+                        "gatk4",
+                        "4.6.2.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-16T22:33:09.747499635"
+    }
+}

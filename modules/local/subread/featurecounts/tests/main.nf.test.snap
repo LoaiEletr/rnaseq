@@ -1,0 +1,262 @@
+{
+    "sarscov2 - bam - gtf | single-end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,aa43021d456d9cd255832ef3c15d021a"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,4e50fb077f63df0fe65e0159ab0c1d36"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,aa43021d456d9cd255832ef3c15d021a"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,4e50fb077f63df0fe65e0159ab0c1d36"
+                    ]
+                ],
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:56:43.229433838"
+    },
+    "sarscov2 - bam - gtf | paired-end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,ee9271be8ab33f00a279369d6261ee0e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,1da8956b1684a40bdbfb83c95089c2a7"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,ee9271be8ab33f00a279369d6261ee0e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,1da8956b1684a40bdbfb83c95089c2a7"
+                    ]
+                ],
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:57:43.026296524"
+    },
+    "sarscov2 - bam - gtf - stub | single-end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": true
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:58:31.160199694"
+    },
+    "sarscov2 - bam - gtf - stub | paired-end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ],
+                "counts": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "lib_type": "reverse",
+                            "single_end": false
+                        },
+                        "test.counts.txt.summary:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_subread": [
+                    [
+                        "SUBREAD_FEATURECOUNTS",
+                        "subread",
+                        "2.1.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-21T01:59:21.239375411"
+    }
+}

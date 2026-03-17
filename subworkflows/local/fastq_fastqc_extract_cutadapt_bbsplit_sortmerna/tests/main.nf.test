@@ -1,0 +1,515 @@
+nextflow_workflow {
+
+    name "Test Workflow FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA"
+    script "../main.nf"
+    workflow "FASTQ_FASTQC_EXTRACT_CUTADAPT_BBSPLIT_SORTMERNA"
+    config './nextflow.config'
+
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "subworkflows/fastq_fastqc_extract_cutadapt_bbsplit_sortmerna"
+    tag "fastqc"
+    tag "umitools"
+    tag "umitools/extract"
+    tag "cutadapt"
+    tag "bbmap"
+    tag "bbmap/bbsplit"
+    tag "sortmerna"
+
+    setup {
+        run("UNTAR") {
+            script "modules/local/untar/main.nf"
+            process {
+                """
+                input[0] = [[id: 'database'], file("https://github.com/biocore/sortmerna/releases/download/v4.3.4/database.tar.gz")]
+                """
+            }
+        }
+
+        run("BBMAP_BBSPLIT") {
+            script "modules/local/bbmap/bbsplit/main.nf"
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'index' ],
+                    []
+                ])
+                input[1] = [[:], []]
+                input[2] = [[:], file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)]
+                input[3] = [[:], file(params.modules_testdata_base_path + 'genomics/mus_musculus/genome/chr19.fa.gz', checkIfExists: true)]
+                input[4] = true
+                """
+            }
+        }
+
+        run("SORTMERNA") {
+            script "modules/local/sortmerna/main.nf"
+            process {
+                """
+                input[0] = [[id: 'index'], []]
+                input[1] = [[:], []]
+                input[2] = UNTAR.out.untar
+                input[3] = "fast"
+                input[4] = true
+                """
+            }
+        }
+    }
+
+    // Base test: All steps enabled
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_fastqc") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = true
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | with_umi") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = true
+                umi_extract_method = 'regex'
+                umi_separator = ':'
+                umitools_bc_pattern = null
+                umitools_bc_pattern2 = null
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log", "umi_log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_umi_extract") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = true
+                skip_umi_extract  = true
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type | skip_cutadapt") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = true
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - sortmerna index - rrna_db_type | skip_bbsplit") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = true
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = [[:], []]
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log"])).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - rrna_db_type | skip_sortmerna") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = true
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = [[:], []]
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log"])).match() }
+            )
+        }
+    }
+
+    // Single-end tests
+    test("sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type") {
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-SE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(sanitizeOutput(workflow.out, unstableKeys:["fastqc_raw_html", "fastqc_raw_zip", "fastqc_trim_html", "fastqc_trim_zip", "trim_json", "bbsplit_stats", "rrna_log"])).match() }
+            )
+        }
+    }
+
+    // Stub tests
+    test("sarscov2 - [fastq1, fastq2] - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-PE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: false, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fastq1 - adapter - rrna_db - bbsplit index - sortmerna index - rrna_db_type - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_fastqc       = false
+                with_umi          = false
+                skip_umi_extract  = false
+                skip_cutadapt     = false
+                skip_bbsplit      = false
+                skip_sortmerna    = false
+                adapter = "$projectDir/assets/adapters-SE.fa"
+                rrna_db_type = "fast"
+                lib_kit = "quantseq"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test', single_end: true, sequencer: 'HiSeq' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    ]
+                ])
+                input[1] = [[:], file(params.adapter)]
+                input[2] = UNTAR.out.untar
+                input[3] = BBMAP_BBSPLIT.out.index
+                input[4] = SORTMERNA.out.index
+                input[5] = params.rrna_db_type
+                input[6] = params.with_umi
+                input[7] = params.skip_umi_extract
+                input[8] = params.skip_fastqc
+                input[9] = params.skip_cutadapt
+                input[10] = params.skip_bbsplit
+                input[11] = params.skip_sortmerna
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

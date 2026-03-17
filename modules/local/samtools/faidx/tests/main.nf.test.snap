@@ -1,0 +1,84 @@
+{
+    "sarscov2 - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.fasta.fai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "SAMTOOLS_FAIDX",
+                        "samtools",
+                        "1.23"
+                    ]
+                ],
+                "fai": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.fasta.fai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_samtools": [
+                    [
+                        "SAMTOOLS_FAIDX",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-14T22:21:39.731220606"
+    },
+    "sarscov2 - fasta": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.fasta.fai:md5,9da2a56e2853dc8c0b86a9e7229c9fe5"
+                    ]
+                ],
+                "1": [
+                    [
+                        "SAMTOOLS_FAIDX",
+                        "samtools",
+                        "1.23"
+                    ]
+                ],
+                "fai": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.fasta.fai:md5,9da2a56e2853dc8c0b86a9e7229c9fe5"
+                    ]
+                ],
+                "versions_samtools": [
+                    [
+                        "SAMTOOLS_FAIDX",
+                        "samtools",
+                        "1.23"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-14T22:20:35.976108555"
+    }
+}

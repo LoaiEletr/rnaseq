@@ -1,0 +1,84 @@
+{
+    "homo_sapiens - gtf": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.exons.tsv:md5,46ef24d307ab0edc1a7d65474f98fa3d"
+                    ]
+                ],
+                "1": [
+                    [
+                        "HISAT2_EXTRACTEXONS",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "exons_sites": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.exons.tsv:md5,46ef24d307ab0edc1a7d65474f98fa3d"
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_EXTRACTEXONS",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T03:38:17.819936191"
+    },
+    "homo_sapiens - gtf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "HISAT2_EXTRACTEXONS",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ],
+                "exons_sites": [
+                    [
+                        {
+                            "id": "genome"
+                        },
+                        "genome.exons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_hisat2": [
+                    [
+                        "HISAT2_EXTRACTEXONS",
+                        "hisat2",
+                        "2.2.1"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-20T03:39:04.247192631"
+    }
+}

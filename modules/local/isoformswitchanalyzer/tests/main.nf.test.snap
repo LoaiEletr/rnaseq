@@ -1,0 +1,300 @@
+{
+    "yeast - quant_dirs - samplesheet - pseudo_aligner - gtf - transcriptome - method - dif_cutoff - pval_threshold - ntop_isoforms | salmon": {
+        "content": [
+            {
+                "isoform_results": [
+                    "isoform_output"
+                ],
+                "significant_geneids": [
+                    
+                ],
+                "versions_ggplot2": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_isoformswitchanalyzer": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-isoformswitchanalyzer",
+                        "2.6.0"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T08:54:57.078523731"
+    },
+    "yeast - quant_dirs - samplesheet - pseudo_aligner - gtf - transcriptome - method - dif_cutoff - pval_threshold - ntop_isoforms - stub | kallisto": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-isoformswitchanalyzer",
+                        "2.6.0"
+                    ]
+                ],
+                "4": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "6": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_ggplot2": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_isoformswitchanalyzer": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-isoformswitchanalyzer",
+                        "2.6.0"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T08:56:00.602452504"
+    },
+    "yeast - quant_dirs - samplesheet - pseudo_aligner - gtf - transcriptome - method - dif_cutoff - pval_threshold - ntop_isoforms - stub | salmon": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "3": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-isoformswitchanalyzer",
+                        "2.6.0"
+                    ]
+                ],
+                "4": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "6": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "isoform_results": [
+                    [
+                        "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "significant_geneids": [
+                    "significant_DIU_gene_ids.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions_ggplot2": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_isoformswitchanalyzer": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-isoformswitchanalyzer",
+                        "2.6.0"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T08:57:00.350379296"
+    },
+    "yeast - quant_dirs - samplesheet - pseudo_aligner - gtf - transcriptome - method - dif_cutoff - pval_threshold - ntop_isoforms | kallisto": {
+        "content": [
+            {
+                "isoform_results": [
+                    "isoform_output"
+                ],
+                "significant_geneids": [
+                    
+                ],
+                "versions_ggplot2": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-ggplot2",
+                        "4.0.1"
+                    ]
+                ],
+                "versions_isoformswitchanalyzer": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-isoformswitchanalyzer",
+                        "2.6.0"
+                    ]
+                ],
+                "versions_mass": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-mass",
+                        "7.3.65"
+                    ]
+                ],
+                "versions_rbase": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "r-base",
+                        "4.4.0"
+                    ]
+                ],
+                "versions_rhdf5": [
+                    [
+                        "ISOFORMSWITCHANALYZER",
+                        "bioconductor-rhdf5",
+                        "2.50.0"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-22T08:52:35.035512557"
+    }
+}

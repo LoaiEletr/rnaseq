@@ -1,0 +1,49 @@
+nextflow_process {
+    name "Test Process UNTAR"
+    script "../main.nf"
+    process "UNTAR"
+
+    tag "modules"
+    tag "modules_local"
+    tag "untar"
+
+    test("generic - tar.gz") {
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = [[id: 'hello'], file(params.modules_testdata_base_path + 'generic/tar/hello.tar.gz', checkIfExists: true)]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert !(process.out.untar.get(0).get(1) =~ ".*\\.tar") },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("generic - tar.gz - stub") {
+        options "-stub"
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = [[id: 'hello'], file(params.modules_testdata_base_path + 'generic/tar/hello.tar.gz', checkIfExists: true)]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
