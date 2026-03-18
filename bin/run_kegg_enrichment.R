@@ -229,7 +229,7 @@ convertSymbols <- function(genes) {
             })
         })
     } else {
-        useMart("ensembl", dataset = speciesInfo$biomart, host = "https://may2025.archive.ensembl.org")
+        useMart("ensembl", dataset = speciesInfo$biomart, host = "https://jan2024.archive.ensembl.org")
     }
 
     if (!inherits(mart, "Mart")) {

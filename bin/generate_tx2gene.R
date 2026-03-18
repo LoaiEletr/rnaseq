@@ -66,7 +66,7 @@ mart <- tryCatch({
         })
     } else {
         ## Standard Ensembl for vertebrates
-        useMart("ensembl", dataset = dataset, host = "https://may2025.archive.ensembl.org")
+        useMart("ensembl", dataset = dataset, host = "https://jan2024.archive.ensembl.org")
     }
 }, error = function(e) {
     cat("Failed to connect to BioMart:", e$message, "\n")

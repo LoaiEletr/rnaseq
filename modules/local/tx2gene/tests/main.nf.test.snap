@@ -3,7 +3,7 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,4e837dc6f0cb0be9173ff572f6c6c4b8"
+                    "tx2gene.tsv:md5,2cad115533cb2a599782285df040ebb4"
                 ],
                 "1": [
                     [
@@ -20,7 +20,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,4e837dc6f0cb0be9173ff572f6c6c4b8"
+                    "tx2gene.tsv:md5,2cad115533cb2a599782285df040ebb4"
                 ],
                 "versions_biomart": [
                     [
@@ -40,9 +40,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:26:23.406657645"
+        "timestamp": "2026-03-18T02:37:13.117754646"
     },
     "dog - species_name": {
         "content": [
@@ -93,7 +93,7 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,63ddd3c5483fe3c75df5c554a6d8ea39"
+                    "tx2gene.tsv:md5,53652dfcff65a2b023818cca1ff23561"
                 ],
                 "1": [
                     [
@@ -110,7 +110,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,63ddd3c5483fe3c75df5c554a6d8ea39"
+                    "tx2gene.tsv:md5,53652dfcff65a2b023818cca1ff23561"
                 ],
                 "versions_biomart": [
                     [
@@ -130,9 +130,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:36:05.34311903"
+        "timestamp": "2026-03-18T02:50:18.909545282"
     },
     "worm - species_name": {
         "content": [
@@ -228,7 +228,7 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,3d12ede19a760f804084cb81784e2ae7"
+                    "tx2gene.tsv:md5,80a1537b5440caeb7564c40f769b885e"
                 ],
                 "1": [
                     [
@@ -245,7 +245,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,3d12ede19a760f804084cb81784e2ae7"
+                    "tx2gene.tsv:md5,80a1537b5440caeb7564c40f769b885e"
                 ],
                 "versions_biomart": [
                     [
@@ -267,13 +267,13 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-03-17T08:40:05.343985862"
+        "timestamp": "2026-03-18T02:33:28.469296651"
     },
     "zebrafish - species_name": {
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,ffb42621257948afe4f776ee49e0f245"
+                    "tx2gene.tsv:md5,20d49069cc25407bff63679116220fc3"
                 ],
                 "1": [
                     [
@@ -290,7 +290,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,ffb42621257948afe4f776ee49e0f245"
+                    "tx2gene.tsv:md5,20d49069cc25407bff63679116220fc3"
                 ],
                 "versions_biomart": [
                     [
@@ -310,9 +310,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:30:54.420837899"
+        "timestamp": "2026-03-18T02:42:56.842492916"
     },
     "human - species_name - stub": {
         "content": [
@@ -408,7 +408,7 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,ea7dad9ad9b51867f29ea87bf8ceb181"
+                    "tx2gene.tsv:md5,eca55d21c56609e8b5896bf3dd5866e2"
                 ],
                 "1": [
                     [
@@ -425,7 +425,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,ea7dad9ad9b51867f29ea87bf8ceb181"
+                    "tx2gene.tsv:md5,eca55d21c56609e8b5896bf3dd5866e2"
                 ],
                 "versions_biomart": [
                     [
@@ -445,9 +445,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:37:21.020642399"
+        "timestamp": "2026-03-18T02:52:16.551790532"
     },
     "yeast - species_name": {
         "content": [
@@ -490,15 +490,15 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:27:45.888514195"
+        "timestamp": "2026-03-18T02:39:02.736866113"
     },
     "fruitfly - species_name": {
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,1fae0c20368ee59e79290882ebbf1e7b"
+                    "tx2gene.tsv:md5,608b29ed662f16c9042c03fd637e43b9"
                 ],
                 "1": [
                     [
@@ -515,7 +515,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,1fae0c20368ee59e79290882ebbf1e7b"
+                    "tx2gene.tsv:md5,608b29ed662f16c9042c03fd637e43b9"
                 ],
                 "versions_biomart": [
                     [
@@ -535,9 +535,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-02-23T01:28:59.791179735"
+        "timestamp": "2026-03-18T02:41:04.566160974"
     },
     "arabidopsis - species_name": {
         "content": [
@@ -588,7 +588,7 @@
         "content": [
             {
                 "0": [
-                    "tx2gene.tsv:md5,af67af581318cc1c12918246e2344e65"
+                    "tx2gene.tsv:md5,7a51625e9a47c3e1b1ac2bd062ca1a21"
                 ],
                 "1": [
                     [
@@ -605,7 +605,7 @@
                     ]
                 ],
                 "tsv": [
-                    "tx2gene.tsv:md5,af67af581318cc1c12918246e2344e65"
+                    "tx2gene.tsv:md5,7a51625e9a47c3e1b1ac2bd062ca1a21"
                 ],
                 "versions_biomart": [
                     [
@@ -627,6 +627,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-03-17T08:42:18.470572978"
+        "timestamp": "2026-03-18T02:35:20.970562959"
     }
 }
